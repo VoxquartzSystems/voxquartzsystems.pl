@@ -1,0 +1,199 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTASection from '../../components/CTASection.astro';
+import RelatedLinks from '../../components/RelatedLinks.astro';
+import { getRelatedAlternatives, getIntegrationsForTool } from '../../lib/related';
+
+export async function getStaticPaths() {
+  const alternatives = await getCollection('alternatives');
+  return alternatives.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { alt: entry.data, allAlternatives: alternatives.map((e) => e.data) },
+  }));
+}
+
+const { alt, allAlternatives } = Astro.props;
+
+const related = getRelatedAlternatives(alt.slug, allAlternatives);
+
+const intCollection = await getCollection('integrations');
+const allIntegrations = intCollection.map((e) => e.data);
+const crossIntegrations = getIntegrationsForTool(alt.systemName, allIntegrations, 3);
+
+const tcoTotals = {
+  boxed: alt.tco.reduce((sum, row) => sum + row.boxed, 0),
+  custom: alt.tco.reduce((sum, row) => sum + row.custom, 0),
+};
+
+const pageTitle = `Alternatywa dla ${alt.systemName} — Dedykowany system na miarę | VoxquartzSystems`;
+const pageDescription = `Porównanie ${alt.systemName} z dedykowanym rozwiązaniem. Sprawdź ograniczenia, koszty TCO i kiedy warto przejść na system szyty na miarę.`;
+const canonicalUrl = `https://voxquartzsystems.pl/alternatywa-dla/${alt.slug}/`;
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: `Alternatywa dla ${alt.systemName}`,
+    description: pageDescription,
+    publisher: {
+      '@type': 'Organization',
+      name: 'VoxquartzSystems',
+      url: 'https://voxquartzsystems.pl',
+    },
+  },
+];
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonical={canonicalUrl}
+  ogImage={`/og/alternatywa-dla/${alt.slug}.png`}
+  schema={schema}
+>
+  <Breadcrumbs
+    items={[
+      { label: 'Strona główna', href: '/' },
+      { label: 'Alternatywy', href: '/alternatywa-dla/' },
+      { label: alt.systemName, href: `/alternatywa-dla/${alt.slug}` },
+    ]}
+  />
+
+  <!-- Hero -->
+  <section class="mb-16">
+    <span class="inline-block text-accent font-label text-sm font-semibold tracking-wider uppercase mb-4">
+      {alt.category}
+    </span>
+    <h1 class="text-4xl md:text-5xl font-display font-bold text-text-primary mb-6">
+      Alternatywa dla {alt.systemName}
+      <span class="block text-2xl md:text-3xl text-text-muted font-normal mt-2">
+        Dedykowany system na miarę
+      </span>
+    </h1>
+  </section>
+
+  <!-- What is it -->
+  <section class="mb-16">
+    <SectionHeader label="Przegląd" title={`Co to jest ${alt.systemName}?`} />
+    <div class="bg-bg-card border border-border rounded-2xl p-6 md:p-8">
+      <p class="text-text-muted leading-relaxed text-lg">{alt.whatItIs}</p>
+    </div>
+  </section>
+
+  <!-- Limitations -->
+  <section class="mb-16">
+    <SectionHeader
+      label="Ograniczenia"
+      title={`5 ograniczeń ${alt.systemName}`}
+      description="Każdy system pudełkowy ma kompromisy. Oto najczęstsze problemy, które zgłaszają nam klienci."
+    />
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {alt.limitations.map((lim, index) => (
+        <div class="bg-bg-card border border-border rounded-xl p-5 hover:border-border-hover transition-colors">
+          <div class="w-8 h-8 rounded-lg bg-red-500/10 flex items-center justify-center mb-3">
+            <span class="text-red-400 font-label font-bold text-sm">{index + 1}</span>
+          </div>
+          <h3 class="text-text-primary font-semibold mb-2">{lim.title}</h3>
+          <p class="text-text-muted text-sm leading-relaxed">{lim.description}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Comparison Table -->
+  <section class="mb-16">
+    <SectionHeader
+      label="Porównanie"
+      title={`${alt.systemName} vs Dedykowane rozwiązanie`}
+    />
+    <div class="overflow-x-auto">
+      <table class="w-full border-collapse">
+        <thead>
+          <tr class="border-b border-border">
+            <th class="text-left py-4 px-4 text-text-muted font-label text-sm font-semibold">Funkcja</th>
+            <th class="text-left py-4 px-4 text-text-muted font-label text-sm font-semibold">{alt.systemName}</th>
+            <th class="text-left py-4 px-4 text-accent-light font-label text-sm font-semibold">Dedykowane</th>
+          </tr>
+        </thead>
+        <tbody>
+          {alt.comparison.map((row) => (
+            <tr class="border-b border-border hover:bg-bg-card transition-colors">
+              <td class="py-3 px-4 text-text-primary text-sm">{row.feature}</td>
+              <td class="py-3 px-4 text-text-dim text-sm">{row.boxed}</td>
+              <td class="py-3 px-4 text-accent-light text-sm font-medium">{row.custom}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- TCO -->
+  <section class="mb-16">
+    <SectionHeader
+      label="Koszty"
+      title="Całkowity koszt posiadania (TCO) na 3 lata"
+      description="Porównanie kosztów systemu pudełkowego z dedykowanym rozwiązaniem w perspektywie 3 lat."
+    />
+    <div class="overflow-x-auto">
+      <table class="w-full border-collapse">
+        <thead>
+          <tr class="border-b border-border">
+            <th class="text-left py-4 px-4 text-text-muted font-label text-sm font-semibold">Pozycja</th>
+            <th class="text-right py-4 px-4 text-text-muted font-label text-sm font-semibold">{alt.systemName}</th>
+            <th class="text-right py-4 px-4 text-accent-light font-label text-sm font-semibold">Dedykowane</th>
+          </tr>
+        </thead>
+        <tbody>
+          {alt.tco.map((row) => (
+            <tr class="border-b border-border hover:bg-bg-card transition-colors">
+              <td class="py-3 px-4 text-text-primary text-sm">{row.label}</td>
+              <td class="py-3 px-4 text-text-dim text-sm text-right">{row.boxed.toLocaleString('pl-PL')} zł</td>
+              <td class="py-3 px-4 text-accent-light text-sm text-right font-medium">{row.custom.toLocaleString('pl-PL')} zł</td>
+            </tr>
+          ))}
+          <tr class="border-t-2 border-accent/30 bg-bg-card">
+            <td class="py-4 px-4 text-text-primary font-semibold">Suma (3 lata)</td>
+            <td class="py-4 px-4 text-text-dim text-right font-semibold">{tcoTotals.boxed.toLocaleString('pl-PL')} zł</td>
+            <td class="py-4 px-4 text-accent-light text-right font-bold">{tcoTotals.custom.toLocaleString('pl-PL')} zł</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- When Custom -->
+  <section class="mb-16">
+    <SectionHeader
+      label="Kiedy warto"
+      title="Kiedy warto przejść na dedykowane rozwiązanie?"
+      description={alt.targetAudience}
+    />
+    <div class="space-y-3">
+      {alt.whenCustom.map((item) => (
+        <div class="flex gap-4 items-start bg-bg-card border border-border rounded-xl p-5">
+          <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+          <p class="text-text-muted leading-relaxed">{item}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <FAQ items={alt.faq} />
+
+  <!-- CTA -->
+  <CTASection title={`Potrzebujesz alternatywy dla ${alt.systemName}?`} />
+
+  <!-- Related -->
+  <RelatedLinks items={related} heading="Inne alternatywy w tej kategorii" />
+  {crossIntegrations.length > 0 && (
+    <RelatedLinks items={crossIntegrations} heading={`Integracje z ${alt.systemName}`} />
+  )}
+</BaseLayout>

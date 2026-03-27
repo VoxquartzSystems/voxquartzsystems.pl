@@ -1,0 +1,14 @@
+{
+  "name": "VoxquartzSystems — Freelancer IT",
+  "short_name": "VoxquartzSystems",
+  "description": "Freelancer IT — strony, aplikacje mobilne, SaaS, AI",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0b",
+  "theme_color": "#0a0a0b",
+  "lang": "pl",
+  "icons": [
+    { "src": "/favicon.ico", "sizes": "48x48", "type": "image/x-icon" },
+    { "src": "/og-image.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

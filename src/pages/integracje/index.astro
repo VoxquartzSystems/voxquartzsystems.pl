@@ -1,0 +1,136 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import Card from '../../components/Card.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const integrations = await getCollection('integrations');
+const items = integrations.map((e) => e.data).sort((a, b) => a.toolA.localeCompare(b.toolA));
+
+const categoryLabels: Record<string, string> = {
+  ai: 'AI',
+  crm: 'CRM',
+  'e-commerce': 'E-commerce',
+  erp: 'ERP',
+  komunikacja: 'Komunikacja',
+  ksiegowosc: 'Księgowość',
+  kurierzy: 'Kurierzy',
+  logistyka: 'Logistyka',
+  marketplace: 'Marketplace',
+  'platforma-sklepowa': 'Platforma sklepowa',
+  platnosci: 'Płatności',
+};
+
+const difficultyLabels: Record<string, string> = {
+  basic: 'Podstawowa',
+  medium: 'Średnia',
+  advanced: 'Zaawansowana',
+};
+
+const allCategories = [...new Set(items.flatMap((i) => [i.categoryA, i.categoryB]))].sort();
+
+const title = 'Integracje systemów IT — automatyzacja procesów biznesowych | VoxquartzSystems';
+const description = 'Profesjonalne integracje systemów IT: BaseLinker, Shoper, Shopify, WooCommerce, Allegro, InPost, Przelewy24 i więcej. Automatyzacja procesów biznesowych.';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Integracje systemów IT',
+  description,
+  url: 'https://voxquartzsystems.pl/integracje/',
+  numberOfItems: items.length,
+  provider: {
+    '@type': 'Organization',
+    name: 'VoxquartzSystems',
+    url: 'https://voxquartzsystems.pl',
+  },
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical="https://voxquartzsystems.pl/integracje/"
+  schema={schema}
+>
+  <Breadcrumbs items={[
+    { label: 'Strona główna', href: '/' },
+    { label: 'Integracje', href: '/integracje/' },
+  ]} />
+
+  <SectionHeader
+    label="Integracje"
+    title="Integracje systemów — automatyzacja procesów biznesowych"
+    description="Łączymy systemy e-commerce, płatności, kurierów, ERP i AI w jeden sprawny ekosystem. Wybierz interesującą Cię integrację."
+  />
+
+  <!-- Category filters (pure JS) -->
+  <div class="flex flex-wrap gap-2 mb-8" id="category-filters">
+    <button
+      class="filter-btn px-4 py-2 text-sm rounded-lg border border-accent bg-accent/10 text-accent-light font-medium transition-all"
+      data-filter="all"
+    >
+      Wszystkie ({items.length})
+    </button>
+    {allCategories.map((cat) => {
+      const count = items.filter((i) => i.categoryA === cat || i.categoryB === cat).length;
+      return (
+        <button
+          class="filter-btn px-4 py-2 text-sm rounded-lg border border-border text-text-muted hover:border-border-hover hover:text-text-primary transition-all"
+          data-filter={cat}
+        >
+          {categoryLabels[cat] || cat} ({count})
+        </button>
+      );
+    })}
+  </div>
+
+  <!-- Cards grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="integrations-grid">
+    {items.map((item) => (
+      <div data-category-a={item.categoryA} data-category-b={item.categoryB}>
+        <Card
+          title={`${item.toolA} + ${item.toolB}`}
+          description={item.description.slice(0, 140) + '...'}
+          href={`/integracje/${item.slug}/`}
+          tags={[item.toolA, item.toolB, difficultyLabels[item.difficulty]]}
+        />
+      </div>
+    ))}
+  </div>
+
+  <CTASection
+    title="Potrzebujesz niestandardowej integracji?"
+    description="Jeśli nie widzisz swojej integracji na liście — napisz. Łączymy dowolne systemy przez API, webhooks i middleware."
+  />
+</BaseLayout>
+
+<script>
+  const filters = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const cards = document.querySelectorAll<HTMLElement>('#integrations-grid > div');
+
+  filters.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter!;
+
+      filters.forEach((b) => {
+        b.classList.remove('border-accent', 'bg-accent/10', 'text-accent-light');
+        b.classList.add('border-border', 'text-text-muted');
+      });
+      btn.classList.remove('border-border', 'text-text-muted');
+      btn.classList.add('border-accent', 'bg-accent/10', 'text-accent-light');
+
+      cards.forEach((card) => {
+        if (filter === 'all') {
+          card.style.display = '';
+        } else {
+          const catA = card.dataset.categoryA;
+          const catB = card.dataset.categoryB;
+          card.style.display = catA === filter || catB === filter ? '' : 'none';
+        }
+      });
+    });
+  });
+</script>

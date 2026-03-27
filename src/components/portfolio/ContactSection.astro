@@ -1,0 +1,86 @@
+<section id="contact" class="fade-in">
+    <div class="contact-grid">
+        <div class="contact-info">
+            <span class="section-label">Kontakt</span>
+            <h2 class="section-title">Porozmawiajmy o Twoim projekcie</h2>
+            <p>Potrzebujesz strony, aplikacji lub integracji z AI? Napisz — odpowiadam w ciągu 24 godzin.</p>
+            <a href="mailto:kontakt@voxquartzsystems.pl" class="contact-email" aria-label="Wyślij email">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                kontakt@voxquartzsystems.pl
+            </a>
+        </div>
+        <form class="contact-form" id="contact-form">
+            <input type="hidden" name="access_key" value="177c045b-3001-4911-ac1d-27cb026478e3">
+            <input type="hidden" name="subject" value="Nowa wiadomość z portfolio VoxquartzSystems">
+            <input type="hidden" name="from_name" value="VoxquartzSystems Portfolio">
+            <input type="checkbox" name="botcheck" style="display:none">
+            <div class="form-group">
+                <label for="name">Imię i nazwisko</label>
+                <input type="text" id="name" name="name" placeholder="Jan Kowalski" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="jan@firma.pl" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Wiadomość</label>
+                <textarea id="message" name="message" placeholder="Opisz swój projekt..." required></textarea>
+            </div>
+            <div class="h-captcha" data-captcha="true" data-theme="dark" data-lang="pl"></div>
+            <div class="form-submit">
+                <button type="submit" class="btn btn-primary" id="contact-submit">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                    <span id="submit-text">Wyślij wiadomość</span>
+                </button>
+            </div>
+            <div id="form-status" class="form-status" style="display:none"></div>
+        </form>
+    </div>
+    <p style="text-align:center;margin-top:1.5rem;color:var(--color-text-muted);font-size:0.9rem;">
+        Nie wiesz ile to kosztuje? <a href="/narzedzia/kalkulator-kosztow-saas/" style="color:var(--color-accent);text-decoration:underline;">Skorzystaj z kalkulatora kosztów →</a>
+    </p>
+</section>
+
+<script>
+(function() {
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const submitBtn = document.getElementById('contact-submit');
+        const submitText = document.getElementById('submit-text');
+        const status = document.getElementById('form-status');
+
+        submitBtn.disabled = true;
+        submitText.textContent = 'Wysyłanie...';
+        status.style.display = 'none';
+
+        try {
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: new FormData(form)
+            });
+            const data = await response.json();
+
+            if (data.success) {
+                status.className = 'form-status success';
+                status.textContent = 'Wiadomość wysłana! Odpowiemy w ciągu 24 godzin.';
+                form.reset();
+            } else {
+                status.className = 'form-status error';
+                status.textContent = 'Wystąpił błąd. Spróbuj ponownie lub napisz na email.';
+            }
+        } catch (err) {
+            status.className = 'form-status error';
+            status.textContent = 'Wystąpił błąd. Spróbuj ponownie lub napisz na email.';
+        }
+
+        status.style.display = 'block';
+        submitBtn.disabled = false;
+        submitText.textContent = 'Wyślij wiadomość';
+    });
+})();
+</script>
+<script src="https://web3forms.com/client/script.js" async defer></script>

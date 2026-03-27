@@ -1,0 +1,78 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import Card from '../../components/Card.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const industries = await getCollection('ai-industries');
+const items = industries.map((e) => e.data);
+
+const title = 'Integracja AI dla Twojej branży | VoxquartzSystems';
+const description = 'Wdrożenie sztucznej inteligencji dopasowane do Twojej branży. E-commerce, logistyka, medycyna, fintech, HR i więcej — sprawdź zastosowania AI i ROI.';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'AI dla branż',
+  description,
+  url: 'https://voxquartzsystems.pl/ai-dla/',
+  numberOfItems: items.length,
+  provider: {
+    '@type': 'Organization',
+    name: 'VoxquartzSystems',
+    url: 'https://voxquartzsystems.pl',
+  },
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical="https://voxquartzsystems.pl/ai-dla/"
+  schema={schema}
+>
+  <Breadcrumbs items={[
+    { label: 'Strona główna', href: '/' },
+    { label: 'AI dla branż', href: '/ai-dla/' },
+  ]} />
+
+  <SectionHeader
+    label="AI dla branż"
+    title="Integracja AI dla Twojej branży"
+    description="Sztuczna inteligencja to nie gadżet — to narzędzie, które już teraz oszczędza firmom tysiące godzin rocznie. Sprawdź, jak AI zmienia Twoją branżę."
+  />
+
+  <!-- AI Audit CTA banner -->
+  <a
+    href="/narzedzia/audyt-gotowosci-ai/"
+    class="group flex items-center justify-between gap-4 mb-10 p-5 rounded-xl border border-accent/30 bg-accent/5 hover:bg-accent/10 transition-all"
+  >
+    <div>
+      <p class="text-text-primary font-semibold">Sprawdź czy Twoja firma jest gotowa na AI</p>
+      <p class="text-text-muted text-sm">10 pytań, wykres radarowy i spersonalizowane rekomendacje</p>
+    </div>
+    <span class="text-accent-light group-hover:translate-x-1 transition-transform">
+      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+      </svg>
+    </span>
+  </a>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {items.map((item) => (
+      <Card
+        title={`AI dla branży ${item.industry}`}
+        description={item.intro.slice(0, 140) + '...'}
+        href={`/ai-dla/${item.slug}/`}
+        tags={item.stack.slice(0, 3)}
+      />
+    ))}
+  </div>
+
+  <CTASection
+    title="Nie widzisz swojej branży?"
+    description="Wdrażamy AI w dowolnym sektorze. Opisz swój przypadek, a przeanalizujemy możliwości automatyzacji."
+  />
+</BaseLayout>

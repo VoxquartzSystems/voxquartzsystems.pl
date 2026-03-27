@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import CTASection from '../../components/CTASection.astro';
+import AIReadinessAudit from '../../components/react/AIReadinessAudit';
+import { getCollection } from 'astro:content';
+import RelatedLinks from '../../components/RelatedLinks.astro';
+
+const intCollection = await getCollection('integrations');
+const popularIntegrations = intCollection.map((e) => e.data).slice(0, 3).map((i) => ({
+  title: `${i.toolA} + ${i.toolB}`,
+  href: `/integracje/${i.slug}/`,
+  description: i.description.slice(0, 120) + '...',
+}));
+
+const aiCollection = await getCollection('ai-industries');
+const aiIndustries = aiCollection.map((e) => e.data).slice(0, 3).map((i) => ({
+  title: `AI dla branży ${i.industry}`,
+  href: `/ai-dla/${i.slug}/`,
+  description: i.intro.slice(0, 120) + '...',
+}));
+
+const title = 'Audyt gotowości na AI — sprawdź swoją firmę | VoxquartzSystems';
+const description = 'Bezpłatny test gotowości Twojej firmy na wdrożenie sztucznej inteligencji. 10 pytań, wynik z rekomendacjami i wykresem radarowym. Sprawdź teraz.';
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: 'Audyt gotowości firmy na AI',
+    description,
+    url: 'https://voxquartzsystems.pl/narzedzia/audyt-gotowosci-ai/',
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Web',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'PLN',
+    },
+    author: {
+      '@type': 'Organization',
+      name: 'VoxquartzSystems',
+      url: 'https://voxquartzsystems.pl',
+    },
+  },
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical="https://voxquartzsystems.pl/narzedzia/audyt-gotowosci-ai/"
+  schema={schema}
+>
+  <Breadcrumbs items={[
+    { label: 'Strona główna', href: '/' },
+    { label: 'Narzędzia', href: '/narzedzia/' },
+    { label: 'Audyt gotowości na AI', href: '/narzedzia/audyt-gotowosci-ai/' },
+  ]} />
+
+  <SectionHeader
+    label="Narzędzie"
+    title="Audyt gotowości na AI"
+    description="Odpowiedz na 10 pytań i sprawdź, czy Twoja firma jest gotowa na wdrożenie sztucznej inteligencji. Otrzymasz spersonalizowane rekomendacje."
+  />
+
+  <AIReadinessAudit client:load />
+
+  <RelatedLinks items={popularIntegrations} heading="Popularne integracje" />
+  <RelatedLinks items={aiIndustries} heading="AI dla branż" />
+
+  <CTASection
+    title="Chcesz omówić wyniki?"
+    description="Umów się na bezpłatną konsultację — przeanalizujemy Twoje wyniki i zaproponujemy plan wdrożenia AI."
+  />
+</BaseLayout>

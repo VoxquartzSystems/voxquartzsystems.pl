@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import CTASection from '../../components/CTASection.astro';
+import SaaSCalculator from '../../components/react/SaaSCalculator';
+import { getCollection } from 'astro:content';
+import RelatedLinks from '../../components/RelatedLinks.astro';
+
+const intCollection = await getCollection('integrations');
+const popularIntegrations = intCollection.map((e) => e.data).slice(0, 3).map((i) => ({
+  title: `${i.toolA} + ${i.toolB}`,
+  href: `/integracje/${i.slug}/`,
+  description: i.description.slice(0, 120) + '...',
+}));
+
+const aiCollection = await getCollection('ai-industries');
+const aiIndustries = aiCollection.map((e) => e.data).slice(0, 3).map((i) => ({
+  title: `AI dla branży ${i.industry}`,
+  href: `/ai-dla/${i.slug}/`,
+  description: i.intro.slice(0, 120) + '...',
+}));
+
+const title = 'Kalkulator kosztów aplikacji SaaS | VoxquartzSystems';
+const description = 'Oblicz szacunkowy koszt budowy aplikacji webowej, sklepu, SaaS lub panelu administracyjnego. Porównaj ceny freelancera, agencji i software house.';
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: 'Kalkulator kosztów aplikacji SaaS',
+    description,
+    url: 'https://voxquartzsystems.pl/narzedzia/kalkulator-kosztow-saas/',
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Web',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'PLN',
+    },
+    author: {
+      '@type': 'Organization',
+      name: 'VoxquartzSystems',
+      url: 'https://voxquartzsystems.pl',
+    },
+  },
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical="https://voxquartzsystems.pl/narzedzia/kalkulator-kosztow-saas/"
+  schema={schema}
+>
+  <Breadcrumbs items={[
+    { label: 'Strona główna', href: '/' },
+    { label: 'Narzędzia', href: '/narzedzia/' },
+    { label: 'Kalkulator kosztów SaaS', href: '/narzedzia/kalkulator-kosztow-saas/' },
+  ]} />
+
+  <SectionHeader
+    label="Narzędzie"
+    title="Kalkulator kosztów aplikacji"
+    description="Wybierz typ projektu, funkcjonalności i skalę — otrzymasz szacunkową wycenę w kilka sekund. Bez zobowiązań, bez rejestracji."
+  />
+
+  <SaaSCalculator client:load />
+
+  <RelatedLinks items={popularIntegrations} heading="Popularne integracje" />
+  <RelatedLinks items={aiIndustries} heading="AI dla branż" />
+
+  <CTASection
+    title="Potrzebujesz dokładniejszej wyceny?"
+    description="Kalkulator pokazuje szacunki. Napisz do mnie, a przygotuję indywidualną ofertę dopasowaną do Twojego projektu."
+  />
+</BaseLayout>

@@ -1,0 +1,310 @@
+/* ===================================================
+   ATELIER PIEKNA — Design System
+   style.css: Reset, Custom Properties, Typography,
+              Layout Utilities
+   =================================================== */
+
+/* ---------------------------------------------------
+   1. CSS RESET
+   --------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+img,
+video,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  border: none;
+  background: none;
+}
+
+/* ---------------------------------------------------
+   2. CUSTOM PROPERTIES — Light Mode
+   --------------------------------------------------- */
+:root {
+  /* Colors */
+  --color-primary:   #B76E79;
+  --color-bg:        #FFF8F0;
+  --color-text:      #2D2D2D;
+  --color-surface:   #F5E6E0;
+  --color-accent:    #C9A96E;
+  --color-accent-2:  #A8B5A0;
+
+  /* Spacing (8px grid) */
+  --space-xs:   4px;
+  --space-sm:   8px;
+  --space-md:   16px;
+  --space-lg:   24px;
+  --space-xl:   32px;
+  --space-2xl:  48px;
+  --space-3xl:  64px;
+  --space-4xl:  96px;
+
+  /* Border Radius */
+  --radius-sm:  8px;
+  --radius-md:  12px;
+  --radius-lg:  16px;
+  --radius-xl:  20px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-subtle:   0 1px 4px rgba(45, 45, 45, 0.06),
+                     0 2px 8px rgba(45, 45, 45, 0.04);
+  --shadow-default:  0 4px 12px rgba(45, 45, 45, 0.10),
+                     0 2px 6px rgba(45, 45, 45, 0.06);
+  --shadow-elevated: 0 8px 24px rgba(45, 45, 45, 0.14),
+                     0 4px 12px rgba(45, 45, 45, 0.08);
+
+  /* Typography */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
+}
+
+/* ---------------------------------------------------
+   3. CUSTOM PROPERTIES — Dark Mode
+   --------------------------------------------------- */
+[data-theme="dark"] {
+  --color-bg:      #1A1A1A;
+  --color-surface: #242424;
+  --color-primary: #C9A96E;
+  --color-text:    #F5E6E0;
+
+  --shadow-subtle:   0 1px 4px rgba(0, 0, 0, 0.30),
+                     0 2px 8px rgba(0, 0, 0, 0.20);
+  --shadow-default:  0 4px 12px rgba(0, 0, 0, 0.40),
+                     0 2px 6px rgba(0, 0, 0, 0.28);
+  --shadow-elevated: 0 8px 24px rgba(0, 0, 0, 0.50),
+                     0 4px 12px rgba(0, 0, 0, 0.36);
+}
+
+/* ---------------------------------------------------
+   4. BASE / BODY
+   --------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---------------------------------------------------
+   5. TYPOGRAPHY SCALE
+   --------------------------------------------------- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  line-height: 1.2;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+}
+
+h4 {
+  font-size: clamp(1.125rem, 1.5vw, 1.375rem);
+}
+
+h5 {
+  font-size: 1.125rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+p {
+  max-width: 68ch;
+}
+
+strong {
+  font-weight: 600;
+}
+
+em {
+  font-style: italic;
+}
+
+small {
+  font-size: 0.875rem;
+}
+
+/* ---------------------------------------------------
+   6. LAYOUT UTILITIES
+   --------------------------------------------------- */
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: var(--space-md);
+}
+
+/* Section */
+.section {
+  padding-block: var(--space-4xl);
+}
+
+.section-alt {
+  background-color: var(--color-surface);
+}
+
+/* Responsive grid helpers */
+.grid {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+/* Mobile-first: 1 column by default */
+.grid-2,
+.grid-3,
+.grid-4 {
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-columns: 1fr;
+}
+
+/* Flex utilities */
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+/* Spacing helpers */
+.mt-auto  { margin-top: auto; }
+.mb-auto  { margin-bottom: auto; }
+
+/* Text utilities */
+.text-center  { text-align: center; }
+.text-left    { text-align: left; }
+.text-primary { color: var(--color-primary); }
+.text-accent  { color: var(--color-accent); }
+.text-muted   { color: var(--color-text); opacity: 0.6; }
+
+/* Visibility */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------------------------------------------------
+   7. RESPONSIVE BREAKPOINTS
+   --------------------------------------------------- */
+
+/* Tablet — 768px */
+@media (min-width: 768px) {
+  .container {
+    padding-inline: var(--space-xl);
+  }
+
+  .grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop — 1024px */
+@media (min-width: 1024px) {
+  .container {
+    padding-inline: var(--space-2xl);
+  }
+
+  .grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Wide — 1440px */
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1320px;
+    padding-inline: var(--space-3xl);
+  }
+
+  .section {
+    padding-block: calc(var(--space-4xl) * 1.25);
+  }
+}

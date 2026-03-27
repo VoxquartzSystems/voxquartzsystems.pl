@@ -1,0 +1,2933 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<title>Nowy Dom - Agencja Nieruchomości | Warszawa i okolice</title>
+<meta name="description" content="Nowy Dom — demo portalu agencji nieruchomości z wyszukiwarką ofert, filtrami, mapą i formularzem kontaktowym.">
+<meta name="robots" content="noindex, follow">
+<meta name="author" content="VoxquartzSystems">
+<meta property="og:title" content="Nowy Dom — Demo portalu nieruchomości | VoxquartzSystems">
+<meta property="og:description" content="Demo portalu nieruchomości z wyszukiwarką ofert, filtrami i mapą.">
+<meta property="og:image" content="https://voxquartzsystems.pl/og-image.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://voxquartzsystems.pl/realizacje/nowy-dom/">
+<meta property="og:locale" content="pl_PL">
+<meta property="og:site_name" content="VoxquartzSystems">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nowy Dom — Demo nieruchomości | VoxquartzSystems">
+<meta name="twitter:description" content="Demo portalu nieruchomości z wyszukiwarką ofert i filtrami.">
+<meta name="twitter:image" content="https://voxquartzsystems.pl/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --primary: #1E40AF;
+  --primary-dark: #1e3a8a;
+  --accent: #3B82F6;
+  --accent-light: #60a5fa;
+  --light-bg: #f8fafc;
+  --card-bg: #ffffff;
+  --text: #1e293b;
+  --text-light: #64748b;
+  --text-lighter: #94a3b8;
+  --border: #e2e8f0;
+  --success: #10b981;
+  --error: #ef4444;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+  --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
+  --shadow-xl: 0 20px 50px rgba(0,0,0,0.15);
+  --radius: 10px;
+  --radius-lg: 14px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text);
+  background: var(--light-bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 { font-family: 'Playfair Display', Georgia, serif; line-height: 1.2; }
+
+.label, .badge, .stat-label, .nav-link, .btn, input, select, textarea {
+  font-family: 'Manrope', 'Inter', sans-serif;
+}
+
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+button { cursor: pointer; border: none; background: none; font: inherit; }
+input, select, textarea { font: inherit; }
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ===== ANIMATIONS ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in.stagger-1 { transition-delay: 0.1s; }
+.fade-in.stagger-2 { transition-delay: 0.2s; }
+.fade-in.stagger-3 { transition-delay: 0.3s; }
+.fade-in.stagger-4 { transition-delay: 0.4s; }
+.fade-in.stagger-5 { transition-delay: 0.5s; }
+.fade-in.stagger-6 { transition-delay: 0.6s; }
+
+/* ===== NAVBAR ===== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow var(--transition);
+}
+
+.navbar.scrolled {
+  box-shadow: var(--shadow-md);
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--primary);
+}
+
+.logo svg { flex-shrink: 0; }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 8px 16px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text);
+  border-radius: 8px;
+  transition: all var(--transition);
+  letter-spacing: 0.01em;
+}
+
+.nav-link:hover {
+  color: var(--primary);
+  background: rgba(30, 64, 175, 0.06);
+}
+
+.nav-link.back-link {
+  color: var(--accent);
+  font-size: 0.85rem;
+}
+
+.nav-link.back-link:hover {
+  color: var(--primary);
+  background: rgba(59, 130, 246, 0.08);
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: all var(--transition);
+}
+
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+/* Mobile menu */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 70px;
+  left: 0;
+  right: 0;
+  background: rgba(255,255,255,0.98);
+  backdrop-filter: blur(12px);
+  padding: 20px;
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-10px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all var(--transition);
+  z-index: 999;
+}
+
+.mobile-menu.open {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.mobile-menu a {
+  display: block;
+  padding: 14px 16px;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text);
+  border-radius: 8px;
+  transition: all var(--transition);
+}
+
+.mobile-menu a:hover {
+  background: rgba(30, 64, 175, 0.06);
+  color: var(--primary);
+}
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 20px 80px;
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 35%, #1E40AF 60%, #2563eb 100%);
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 80%, rgba(59,130,246,0.3), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 20%, rgba(96,165,250,0.2), transparent);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 60L60 0' stroke='rgba(255,255,255,0.03)' stroke-width='1'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 800px;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 40px;
+  font-weight: 400;
+  max-width: 550px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Search Bar */
+.search-bar {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  box-shadow: var(--shadow-xl);
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.search-field {
+  flex: 1;
+  min-width: 140px;
+}
+
+.search-field select {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--light-bg);
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 500;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  cursor: pointer;
+  transition: border-color var(--transition);
+}
+
+.search-field select:focus-visible {
+  outline: 2px solid var(--primary, #1E40AF);
+  outline-offset: 2px;
+  border-color: var(--accent);
+}
+.search-field select:focus:not(:focus-visible) {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.search-btn {
+  padding: 14px 32px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: var(--radius);
+  font-weight: 700;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+.search-btn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.4);
+}
+
+/* ===== SECTION COMMON ===== */
+.section {
+  padding: 80px 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-header h2 {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.section-header p {
+  color: var(--text-light);
+  font-size: 1.05rem;
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+/* ===== FILTER BUTTONS ===== */
+.filter-bar {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.filter-btn {
+  padding: 10px 24px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-light);
+  background: var(--card-bg);
+  border: 2px solid var(--border);
+  transition: all var(--transition);
+}
+
+.filter-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.filter-btn.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+/* ===== PROPERTY CARDS ===== */
+.properties-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.property-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 1;
+  transform: scale(1);
+}
+
+.property-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-6px);
+  border-color: transparent;
+}
+
+.property-card.hidden {
+  display: none;
+}
+
+.property-card.highlighted {
+  box-shadow: 0 0 0 3px var(--accent), var(--shadow-lg);
+  transform: translateY(-6px);
+}
+
+.property-image {
+  height: 220px;
+  position: relative;
+  overflow: hidden;
+}
+
+.property-image-bg {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.property-image-bg svg {
+  display: none;
+}
+
+.prop-img-1 { background: url('images/property-1.jpg') center/cover no-repeat; }
+.prop-img-2 { background: url('images/property-2.jpg') center/cover no-repeat; }
+.prop-img-3 { background: url('images/property-3.jpg') center/cover no-repeat; }
+.prop-img-4 { background: url('images/property-4.jpg') center/cover no-repeat; }
+.prop-img-5 { background: url('images/property-5.jpg') center/cover no-repeat; }
+.prop-img-6 { background: url('images/property-6.jpg') center/cover no-repeat; }
+
+.badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+}
+
+.badge-mieszkanie { background: rgba(59,130,246,0.9); color: #fff; }
+.badge-dom { background: rgba(16,185,129,0.9); color: #fff; }
+.badge-dzialka { background: rgba(245,158,11,0.9); color: #fff; }
+
+.property-body {
+  padding: 24px;
+}
+
+.property-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 6px;
+}
+
+.property-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.property-details {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.property-detail {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.875rem;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.property-detail svg {
+  color: var(--text-lighter);
+  flex-shrink: 0;
+}
+
+.property-location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.875rem;
+  color: var(--text-light);
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.property-location svg { color: var(--accent); flex-shrink: 0; }
+
+.btn-details {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all var(--transition);
+  width: 100%;
+  justify-content: center;
+}
+
+.btn-details:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(30,64,175,0.3);
+}
+
+/* ===== WHY US / STATS ===== */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.stat-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  text-align: center;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition);
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.stat-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px;
+  background: rgba(30, 64, 175, 0.08);
+}
+
+.stat-icon svg { color: var(--primary); }
+
+.stat-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 6px;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+/* ===== AGENTS ===== */
+.agents-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.agent-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 36px 28px;
+  text-align: center;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition);
+}
+
+.agent-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.agent-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.avatar-ak { background: linear-gradient(135deg, #1E40AF, #3B82F6); }
+.avatar-mn { background: linear-gradient(135deg, #0f172a, #1e3a8a); }
+.avatar-kw { background: linear-gradient(135deg, #3B82F6, #93c5fd); }
+
+.agent-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.agent-role {
+  font-size: 0.875rem;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.agent-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.agent-contact-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.agent-contact-item svg { color: var(--accent); flex-shrink: 0; }
+
+/* ===== CONTACT FORM ===== */
+.contact-section {
+  background: var(--card-bg);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+
+.contact-info { display: flex; flex-direction: column; gap: 24px; }
+
+.contact-info-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.contact-info-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(30,64,175,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.contact-info-icon svg { color: var(--primary); }
+
+.contact-info-text h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.contact-info-text p {
+  font-size: 0.875rem;
+  color: var(--text-light);
+}
+
+.contact-form {
+  background: var(--light-bg);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  border: 1px solid var(--border);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.form-group label span { color: var(--error); }
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 12px 16px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card-bg);
+  color: var(--text);
+  font-size: 0.9rem;
+  transition: all var(--transition);
+}
+
+.form-group input:focus-visible,
+.form-group select:focus-visible,
+.form-group textarea:focus-visible {
+  outline: 2px solid var(--primary, #1E40AF);
+  outline-offset: 2px;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+}
+.form-group input:focus:not(:focus-visible),
+.form-group select:focus:not(:focus-visible),
+.form-group textarea:focus:not(:focus-visible) {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+}
+
+.form-group input.error,
+.form-group select.error,
+.form-group textarea.error {
+  border-color: var(--error);
+  box-shadow: 0 0 0 3px rgba(239,68,68,0.1);
+}
+
+.form-group textarea { resize: vertical; min-height: 120px; }
+
+.form-error {
+  font-size: 0.78rem;
+  color: var(--error);
+  margin-top: 4px;
+  font-weight: 500;
+  display: none;
+}
+
+.form-error.show { display: block; }
+
+.form-group select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  cursor: pointer;
+}
+
+.btn-submit {
+  padding: 14px 32px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: var(--radius);
+  font-weight: 700;
+  font-size: 1rem;
+  width: 100%;
+  transition: all var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.btn-submit:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(30,64,175,0.3);
+}
+
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 32px;
+}
+
+.form-success.show { display: block; }
+
+.form-success svg { margin: 0 auto 16px; }
+
+.form-success h3 {
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+  color: var(--success);
+}
+
+.form-success p {
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background: #0f172a;
+  color: rgba(255,255,255,0.7);
+  padding: 60px 0 30px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 36px;
+  margin-bottom: 40px;
+}
+
+.footer-brand .logo {
+  color: #fff;
+  margin-bottom: 14px;
+}
+
+.footer-brand p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.footer h4 {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-links a {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.6);
+  transition: color var(--transition);
+}
+
+.footer-links a:hover { color: var(--accent-light); }
+
+.footer-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.footer-contact-item svg { color: var(--accent-light); flex-shrink: 0; }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 24px;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (min-width: 768px) {
+  .properties-grid { grid-template-columns: repeat(2, 1fr); }
+  .agents-grid { grid-template-columns: repeat(3, 1fr); }
+  .stats-grid { grid-template-columns: repeat(4, 1fr); }
+  .form-row { grid-template-columns: 1fr 1fr; }
+  .contact-grid { grid-template-columns: 1fr 1.2fr; }
+  .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; }
+  .hamburger { display: none; }
+  .nav-links { display: flex !important; }
+}
+
+@media (max-width: 767px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .mobile-menu { display: block; }
+  .search-bar { flex-direction: column; }
+  .search-field { min-width: 100%; }
+  .search-btn { width: 100%; justify-content: center; }
+}
+
+@media (min-width: 1024px) {
+  .properties-grid { grid-template-columns: repeat(3, 1fr); }
+  .section { padding: 100px 0; }
+  .hero { min-height: 680px; padding: 140px 20px 100px; }
+  .contact-form { padding: 40px 36px; }
+}
+
+/* ===== AGENT 4: Extended CSS Variables ===== */
+:root {
+  --gold: #d97706;
+  --gold-light: #fbbf24;
+  --promo-red: #dc2626;
+  --whatsapp: #25d366;
+}
+
+/* ===== AGENT 4: Hero Search Bar Enhanced ===== */
+.hero-search-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  box-shadow: var(--shadow-xl);
+  max-width: 850px;
+  margin: 0 auto;
+}
+.hero-search-card .search-field input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--light-bg);
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: border-color var(--transition);
+}
+.hero-search-card .search-field input:focus-visible {
+  outline: 2px solid var(--primary, #1E40AF);
+  outline-offset: 2px;
+  border-color: var(--accent);
+}
+.hero-search-card .search-field input:focus:not(:focus-visible) {
+  outline: none;
+  border-color: var(--accent);
+}
+.hero-search-card .search-field input::placeholder { color: var(--text-lighter); }
+.toggle-group {
+  display: flex;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  min-width: 140px;
+}
+.toggle-group button {
+  flex: 1;
+  padding: 14px 16px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  background: var(--light-bg);
+  color: var(--text-light);
+  transition: all var(--transition);
+  border: none;
+  cursor: pointer;
+}
+.toggle-group button.active {
+  background: var(--primary);
+  color: #fff;
+}
+.toggle-group button:hover:not(.active) {
+  background: rgba(30,64,175,0.06);
+  color: var(--primary);
+}
+
+/* ===== AGENT 4: Property Card Badges ===== */
+.badge-new {
+  background: var(--primary);
+  color: #fff;
+}
+.badge-promo {
+  background: var(--promo-red);
+  color: #fff;
+}
+.badge-featured {
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: #fff;
+}
+.badges-row {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  z-index: 3;
+}
+.badges-row .badge {
+  position: static;
+}
+
+/* ===== AGENT 4: Favorite Heart Button ===== */
+.btn-favorite {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 3;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  transition: all var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+.btn-favorite:hover {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-md);
+}
+.btn-favorite svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--promo-red);
+  fill: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-favorite.liked svg {
+  fill: var(--promo-red);
+  stroke: var(--promo-red);
+}
+.btn-favorite.liked {
+  animation: heartPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@keyframes heartPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+/* ===== AGENT 4: Property Image Fallback ===== */
+.property-image-bg {
+  background-color: #dbeafe;
+}
+
+/* ===== AGENT 4: Lokalizacje SVG Map ===== */
+.poland-map-section {
+  background: var(--card-bg);
+}
+.poland-map-wrap {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+}
+.poland-map-wrap svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.poland-map-wrap .map-city {
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.poland-map-wrap .map-city circle {
+  transition: all var(--transition);
+}
+.poland-map-wrap .map-city:hover circle {
+  r: 10;
+  fill: var(--accent);
+  filter: drop-shadow(0 0 6px rgba(59,130,246,0.5));
+}
+.poland-map-wrap .map-city text {
+  font-family: 'Manrope', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  fill: var(--text);
+  pointer-events: none;
+}
+.map-tooltip {
+  position: absolute;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 16px;
+  box-shadow: var(--shadow-md);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 20;
+  white-space: nowrap;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.map-tooltip.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.map-tooltip strong {
+  color: var(--primary);
+}
+
+/* ===== AGENT 4: Property Detail Modal ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15,23,42,0.7);
+  backdrop-filter: blur(4px);
+  z-index: 2000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+}
+.modal-overlay.open {
+  display: flex;
+}
+.modal-content {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-xl);
+  position: relative;
+  animation: modalIn 0.3s ease;
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.95) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.modal-close:hover {
+  background: var(--error);
+  color: #fff;
+  border-color: var(--error);
+}
+.modal-gallery {
+  position: relative;
+  height: 320px;
+  overflow: hidden;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+.modal-gallery-main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  transition: transform 0.4s ease;
+}
+.modal-gallery-main .gallery-slide {
+  min-width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-color: #e0e7ff;
+}
+.gallery-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition);
+  z-index: 5;
+}
+.gallery-nav:hover { background: #fff; transform: translateY(-50%) scale(1.1); }
+.gallery-nav.prev { left: 12px; }
+.gallery-nav.next { right: 12px; }
+.gallery-thumbs {
+  display: flex;
+  gap: 8px;
+  padding: 12px 24px;
+  overflow-x: auto;
+}
+.gallery-thumb {
+  width: 64px;
+  height: 48px;
+  border-radius: 6px;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  border: 2px solid transparent;
+  opacity: 0.6;
+  transition: all var(--transition);
+  flex-shrink: 0;
+}
+.gallery-thumb.active,
+.gallery-thumb:hover {
+  border-color: var(--primary);
+  opacity: 1;
+}
+.modal-body {
+  padding: 24px;
+}
+.modal-body h2 {
+  font-size: 1.5rem;
+  margin-bottom: 4px;
+}
+.modal-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.modal-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+.modal-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.modal-detail-item {
+  background: var(--light-bg);
+  border-radius: var(--radius);
+  padding: 14px;
+  text-align: center;
+  border: 1px solid var(--border);
+}
+.modal-detail-item .detail-val {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text);
+  display: block;
+}
+.modal-detail-item .detail-lbl {
+  font-size: 0.78rem;
+  color: var(--text-light);
+  font-weight: 500;
+}
+.virtual-tour-placeholder {
+  width: 100%;
+  height: 180px;
+  background: #0f172a;
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: rgba(255,255,255,0.7);
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 24px;
+}
+.virtual-tour-placeholder svg { opacity: 0.6; }
+/* Mortgage Calculator */
+.mortgage-calc {
+  background: var(--light-bg);
+  border-radius: var(--radius);
+  padding: 20px;
+  border: 1px solid var(--border);
+}
+.mortgage-calc h3 {
+  font-family: 'Manrope', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.calc-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.calc-field label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-light);
+  margin-bottom: 4px;
+}
+.calc-field input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  background: var(--card-bg);
+  color: var(--text);
+  transition: border-color var(--transition);
+}
+.calc-field input:focus-visible {
+  outline: 2px solid var(--primary, #1E40AF);
+  outline-offset: 2px;
+  border-color: var(--accent);
+}
+.calc-field input:focus:not(:focus-visible) {
+  outline: none;
+  border-color: var(--accent);
+}
+.calc-result {
+  background: var(--primary);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 16px;
+  text-align: center;
+}
+.calc-result .monthly {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+.calc-result .monthly-label {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+/* ===== AGENT 4: Agent Card Enhancements ===== */
+.agent-availability {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-family: 'Manrope', sans-serif;
+}
+.agent-availability.available {
+  background: rgba(16,185,129,0.1);
+  color: var(--success);
+}
+.agent-availability.limited {
+  background: rgba(245,158,11,0.1);
+  color: var(--gold);
+}
+.avail-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.available .avail-dot { background: var(--success); animation: pulse-dot 2s infinite; }
+.limited .avail-dot { background: var(--gold); }
+@keyframes pulse-dot {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.agent-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+  justify-content: center;
+}
+.btn-agent-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 0.82rem;
+  transition: all var(--transition);
+  cursor: pointer;
+  border: none;
+  font-family: 'Manrope', sans-serif;
+}
+.btn-call {
+  background: var(--primary);
+  color: #fff;
+}
+.btn-call:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+}
+.btn-whatsapp {
+  background: var(--whatsapp);
+  color: #fff;
+}
+.btn-whatsapp:hover {
+  background: #1ebe57;
+  transform: translateY(-1px);
+}
+
+/* ===== AGENT 4: Statystyki Section ===== */
+.stats-counter-section {
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+  color: #fff;
+}
+.stats-counter-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  text-align: center;
+}
+.counter-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.counter-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+.counter-icon svg { color: var(--accent-light); }
+.counter-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1;
+  color: #fff;
+}
+.counter-label {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.7);
+}
+@media (min-width: 768px) {
+  .stats-counter-grid { grid-template-columns: repeat(3, 1fr); }
+  .hero-search-card { flex-wrap: nowrap; }
+}
+
+/* ===== AGENT 4: Blog/Porady Section ===== */
+.blog-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+.blog-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition);
+}
+.blog-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+.blog-card-image {
+  height: 180px;
+  background: linear-gradient(135deg, #dbeafe, #c7d2fe);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+.blog-card-image svg { color: var(--accent); opacity: 0.4; }
+.blog-card-body {
+  padding: 24px;
+}
+.blog-card-body h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--text);
+  line-height: 1.3;
+}
+.blog-card-body p {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+.blog-link {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap var(--transition), color var(--transition);
+}
+.blog-link:hover {
+  color: var(--accent);
+  gap: 10px;
+}
+@media (min-width: 768px) {
+  .blog-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ===== AGENT 4: Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+  .fade-in { opacity: 1; transform: none; }
+  .btn-favorite.liked { animation: none; }
+}
+
+/* ===== AGENT 4: 320px fixes ===== */
+@media (max-width: 374px) {
+  .hero h1 { font-size: 1.6rem; }
+  .hero-subtitle { font-size: 0.9rem; }
+  .hero { padding: 100px 12px 60px; }
+  .container { padding: 0 12px; }
+  .toggle-group { min-width: 100%; }
+  .section { padding: 60px 0; }
+  .modal-gallery { height: 200px; }
+  .modal-price { font-size: 1.4rem; }
+  .agent-actions { flex-direction: column; }
+  .counter-number { font-size: 2rem; }
+}
+</style>
+</head>
+<body style="padding-top:40px;">
+<div style="position:fixed;top:0;left:0;right:0;z-index:9999;background:#6366f1;color:#fff;text-align:center;padding:8px 16px;font-family:Inter,system-ui,sans-serif;font-size:14px;">
+  To jest demo realizacji. <a href="/" style="color:#fff;text-decoration:underline;font-weight:600;">Wróć do portfolio VoxquartzSystems</a>
+</div>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" id="navbar">
+  <div class="container navbar-inner">
+    <a href="#" class="logo">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 16L16 5L28 16V27C28 27.5304 27.7893 28.0391 27.4142 28.4142C27.0391 28.7893 26.5304 29 26 29H6C5.46957 29 4.96086 28.7893 4.58579 28.4142C4.21071 28.0391 4 27.5304 4 27V16Z" fill="#1E40AF" stroke="#1E40AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 29V17H20V29" fill="#60a5fa" stroke="#1E40AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M4 16L16 5L28 16" stroke="#1E40AF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Nowy Dom
+    </a>
+    <ul class="nav-links">
+      <li><a href="/" class="nav-link back-link">&#8592; Powr&#243;t do portfolio</a></li>
+      <li><a href="#oferty" class="nav-link">Oferty</a></li>
+      <li><a href="#o-nas" class="nav-link">O nas</a></li>
+      <li><a href="#agenci" class="nav-link">Agenci</a></li>
+      <li><a href="#porady" class="nav-link">Porady</a></li>
+      <li><a href="#kontakt" class="nav-link">Kontakt</a></li>
+    </ul>
+    <button type="button" class="hamburger" id="hamburger" aria-label="Otwórz menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/">&#8592; Powr&#243;t do portfolio</a>
+    <a href="#oferty" class="mobile-nav-link">Oferty</a>
+    <a href="#o-nas" class="mobile-nav-link">O nas</a>
+    <a href="#agenci" class="mobile-nav-link">Agenci</a>
+    <a href="#porady" class="mobile-nav-link">Porady</a>
+    <a href="#kontakt" class="mobile-nav-link">Kontakt</a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+  <div class="hero-content">
+    <h1 class="fade-in">Znajd&#378; sw&#243;j wymarzony dom</h1>
+    <p class="hero-subtitle fade-in stagger-1">Pomagamy znale&#378;&#263; idealn&#261; nieruchomo&#347;&#263; w Warszawie i okolicach. Profesjonalna obs&#322;uga, szeroka oferta, pe&#322;ne wsparcie.</p>
+    <!-- AGENT 4: Hero Inline Search Bar -->
+    <div class="hero-search-card fade-in stagger-2">
+      <div class="search-field">
+        <div class="toggle-group" id="dealToggle">
+          <button class="active" data-deal="Kup">Kup</button>
+          <button data-deal="Wynajmij">Wynajmij</button>
+        </div>
+      </div>
+      <div class="search-field">
+        <select id="searchCity">
+          <option value="">Miasto</option>
+          <option value="Warszawa">Warszawa</option>
+          <option value="Wo&#322;omin">Wo&#322;omin</option>
+          <option value="Radzymin">Radzymin</option>
+          <option value="Koby&#322;ka">Koby&#322;ka</option>
+          <option value="Legionowo">Legionowo</option>
+          <option value="Krak&#243;w">Krak&#243;w</option>
+          <option value="Wroc&#322;aw">Wroc&#322;aw</option>
+          <option value="Gda&#324;sk">Gda&#324;sk</option>
+          <option value="Pozna&#324;">Pozna&#324;</option>
+          <option value="&#321;&#243;d&#378;">&#321;&#243;d&#378;</option>
+        </select>
+      </div>
+      <div class="search-field">
+        <input type="number" id="searchPriceMax" placeholder="Cena maks. (PLN)" min="0" step="10000">
+      </div>
+      <div class="search-field">
+        <input type="number" id="searchAreaMin" placeholder="Min. pow. (m&#178;)" min="0" step="5">
+      </div>
+      <button class="search-btn" id="searchBtn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        Szukaj
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LISTINGS ===== -->
+<section class="section" id="oferty">
+  <div class="container">
+    <div class="section-header fade-in">
+      <h2>Nasza oferta</h2>
+      <p>Wybrane nieruchomo&#347;ci w atrakcyjnych lokalizacjach Warszawy i okolic</p>
+    </div>
+
+    <div class="filter-bar fade-in">
+      <button class="filter-btn active" data-filter="all">Wszystkie</button>
+      <button class="filter-btn" data-filter="Mieszkanie">Mieszkanie</button>
+      <button class="filter-btn" data-filter="Dom">Dom</button>
+      <button class="filter-btn" data-filter="Dzia&#322;ka">Dzia&#322;ka</button>
+    </div>
+
+    <div class="properties-grid" id="propertiesGrid">
+
+      <!-- Property 1 -->
+      <div class="property-card fade-in stagger-1" data-type="Mieszkanie" data-city="Warszawa" data-price="580000" data-area="65" data-rooms="3" data-floor="4" data-year="2019" data-id="1">
+        <div class="property-image">
+          <div class="property-image-bg prop-img-1">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          </div>
+          <div class="badges-row">
+            <span class="badge badge-mieszkanie">Mieszkanie</span>
+            <span class="badge badge-new">NOWE</span>
+          </div>
+          <button class="btn-favorite" data-fav="1" aria-label="Dodaj do ulubionych"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+        </div>
+        <div class="property-body">
+          <div class="property-price">580 000 PLN</div>
+          <div class="property-title">Mieszkanie 3-pokojowe, Mokot&#243;w</div>
+          <div class="property-details">
+            <span class="property-detail">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+              65 m&#178;
+            </span>
+            <span class="property-detail">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+              3 pokoje
+            </span>
+          </div>
+          <div class="property-location">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Warszawa, Mokot&#243;w
+          </div>
+          <button class="btn-details">
+            Zobacz szczeg&#243;&#322;y
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Property 2 -->
+      <div class="property-card fade-in stagger-2" data-type="Dom" data-city="Radzymin" data-price="890000" data-area="145" data-rooms="5" data-floor="0" data-year="2021" data-id="2">
+        <div class="property-image">
+          <div class="property-image-bg prop-img-2">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          </div>
+          <div class="badges-row">
+            <span class="badge badge-dom">Dom</span>
+            <span class="badge badge-featured">WYR&#211;&#379;NIONE</span>
+          </div>
+          <button class="btn-favorite" data-fav="2" aria-label="Dodaj do ulubionych"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+        </div>
+        <div class="property-body">
+          <div class="property-price">890 000 PLN</div>
+          <div class="property-title">Dom wolnostoj&#261;cy, Radzymin</div>
+          <div class="property-details">
+            <span class="property-detail">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+              145 m&#178;
+            </span>
+            <span class="property-detail">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+              5 pokoi
+            </span>
+          </div>
+          <div class="property-location">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Radzymin
+          </div>
+          <button class="btn-details">
+            Zobacz szczeg&#243;&#322;y
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Property 3 -->
+      <div class="property-card fade-in stagger-3" data-type="Mieszkanie" data-city="Warszawa" data-price="420000" data-area="48" data-rooms="2" data-floor="7" data-year="2017" data-id="3">
+        <div class="property-image">
+          <div class="property-image-bg prop-img-3">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          </div>
+          <div class="badges-row">
+            <span class="badge badge-mieszkanie">Mieszkanie</span>
+            <span class="badge badge-promo">PROMOCJA</span>
+          </div>
+          <button class="btn-favorite" data-fav="3" aria-label="Dodaj do ulubionych"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+        </div>
+        <div class="property-body">
+          <div class="property-price">420 000 PLN</div>
+          <div class="property-title">Mieszkanie 2-pokojowe, Wola</div>
+          <div class="property-details">
+            <span class="property-detail">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+              48 m&#178;
+            </span>
+            <span class="property-detail">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+              2 pokoje
+            </span>
+          </div>
+          <div class="property-location">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Warszawa, Wola
+          </div>
+          <button class="btn-details">
+            Zobacz szczeg&#243;&#322;y
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Property 4 -->
+      <div class="property-card fade-in stagger-4" data-type="Dzia&#322;ka" data-city="Koby&#322;ka" data-price="320000" data-area="800" data-rooms="0" data-floor="0" data-year="0" data-id="4">
+        <div class="property-image">
+          <div class="property-image-bg prop-img-4">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          </div>
+          <div class="badges-row">
+            <span class="badge badge-dzialka">Dzia&#322;ka</span>
+          </div>
+          <button class="btn-favorite" data-fav="4" aria-label="Dodaj do ulubionych"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+        </div>
+        <div class="property-body">
+          <div class="property-price">320 000 PLN</div>
+          <div class="property-title">Dzia&#322;ka budowlana, Koby&#322;ka</div>
+          <div class="property-details">
+            <span class="property-detail">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+              800 m&#178;
+            </span>
+            <span class="property-detail">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0112 2a8 8 0 018 8.2c0 7.3-8 11.8-8 11.8z"/></svg>
+              Budowlana
+            </span>
+          </div>
+          <div class="property-location">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Koby&#322;ka
+          </div>
+          <button class="btn-details">
+            Zobacz szczeg&#243;&#322;y
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Property 5 -->
+      <div class="property-card fade-in stagger-5" data-type="Dom" data-city="Wo&#322;omin" data-price="750000" data-area="120" data-rooms="4" data-floor="0" data-year="2020" data-id="5">
+        <div class="property-image">
+          <div class="property-image-bg prop-img-5">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          </div>
+          <div class="badges-row">
+            <span class="badge badge-dom">Dom</span>
+            <span class="badge badge-new">NOWE</span>
+          </div>
+          <button class="btn-favorite" data-fav="5" aria-label="Dodaj do ulubionych"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+        </div>
+        <div class="property-body">
+          <div class="property-price">750 000 PLN</div>
+          <div class="property-title">Dom bli&#378;niak, Wo&#322;omin</div>
+          <div class="property-details">
+            <span class="property-detail">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+              120 m&#178;
+            </span>
+            <span class="property-detail">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+              4 pokoje
+            </span>
+          </div>
+          <div class="property-location">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Wo&#322;omin
+          </div>
+          <button class="btn-details">
+            Zobacz szczeg&#243;&#322;y
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Property 6 -->
+      <div class="property-card fade-in stagger-6" data-type="Mieszkanie" data-city="Warszawa" data-price="720000" data-area="85" data-rooms="4" data-floor="2" data-year="2022" data-id="6">
+        <div class="property-image">
+          <div class="property-image-bg prop-img-6">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          </div>
+          <div class="badges-row">
+            <span class="badge badge-mieszkanie">Mieszkanie</span>
+            <span class="badge badge-featured">WYR&#211;&#379;NIONE</span>
+          </div>
+          <button class="btn-favorite" data-fav="6" aria-label="Dodaj do ulubionych"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+        </div>
+        <div class="property-body">
+          <div class="property-price">720 000 PLN</div>
+          <div class="property-title">Mieszkanie 4-pokojowe, Ursyn&#243;w</div>
+          <div class="property-details">
+            <span class="property-detail">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+              85 m&#178;
+            </span>
+            <span class="property-detail">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+              4 pokoje
+            </span>
+          </div>
+          <div class="property-location">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Warszawa, Ursyn&#243;w
+          </div>
+          <button class="btn-details">
+            Zobacz szczeg&#243;&#322;y
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- AGENT 4: Lokalizacje (SVG Map of Poland) -->
+<section class="section poland-map-section" id="mapa">
+  <div class="container">
+    <div class="section-header fade-in">
+      <h2>Lokalizacje</h2>
+      <p>Najedź na miasto, aby sprawdzić liczbę dostępnych ofert</p>
+    </div>
+    <div class="poland-map-wrap fade-in" id="polandMapWrap">
+      <svg viewBox="0 0 400 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mapa Polski z miastami">
+        <!-- Simplified Poland outline -->
+        <path d="M120,40 L180,25 L240,30 L290,20 L330,45 L355,80 L370,130 L365,180 L380,220 L360,260 L340,300 L310,340 L280,370 L240,390 L200,395 L160,380 L120,360 L90,330 L60,290 L40,240 L35,190 L50,140 L60,100 L80,65 Z"
+          fill="#dbeafe" stroke="#93c5fd" stroke-width="2" stroke-linejoin="round"/>
+        <!-- City pins -->
+        <g class="map-city" data-city="Warszawa">
+          <circle cx="260" cy="195" r="7" fill="#1E40AF" stroke="#fff" stroke-width="2"/>
+          <text x="260" y="183" text-anchor="middle">Warszawa</text>
+        </g>
+        <g class="map-city" data-city="Kraków">
+          <circle cx="235" cy="320" r="7" fill="#1E40AF" stroke="#fff" stroke-width="2"/>
+          <text x="235" y="308" text-anchor="middle">Kraków</text>
+        </g>
+        <g class="map-city" data-city="Wrocław">
+          <circle cx="145" cy="270" r="7" fill="#1E40AF" stroke="#fff" stroke-width="2"/>
+          <text x="145" y="258" text-anchor="middle">Wrocław</text>
+        </g>
+        <g class="map-city" data-city="Gdańsk">
+          <circle cx="210" cy="60" r="7" fill="#1E40AF" stroke="#fff" stroke-width="2"/>
+          <text x="210" y="48" text-anchor="middle">Gdańsk</text>
+        </g>
+        <g class="map-city" data-city="Poznań">
+          <circle cx="135" cy="190" r="7" fill="#1E40AF" stroke="#fff" stroke-width="2"/>
+          <text x="135" y="178" text-anchor="middle">Poznań</text>
+        </g>
+        <g class="map-city" data-city="Łódź">
+          <circle cx="210" cy="230" r="7" fill="#1E40AF" stroke="#fff" stroke-width="2"/>
+          <text x="210" y="250" text-anchor="middle">Łódź</text>
+        </g>
+      </svg>
+      <div class="map-tooltip" id="mapTooltip"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHY US ===== -->
+<section class="section" id="o-nas">
+  <div class="container">
+    <div class="section-header fade-in">
+      <h2>Dlaczego my?</h2>
+      <p>Zaufanie budowane latami do&#347;wiadczenia i tysi&#261;cami zadowolonych klient&#243;w</p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card fade-in stagger-1">
+        <div class="stat-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="stat-number" data-target="15" data-suffix=" lat">0</div>
+        <div class="stat-label">do&#347;wiadczenia</div>
+      </div>
+      <div class="stat-card fade-in stagger-2">
+        <div class="stat-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="stat-number" data-target="2000" data-suffix="+">0</div>
+        <div class="stat-label">sprzedanych nieruchomo&#347;ci</div>
+      </div>
+      <div class="stat-card fade-in stagger-3">
+        <div class="stat-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3zM7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/></svg>
+        </div>
+        <div class="stat-number" data-target="98" data-suffix="%">0</div>
+        <div class="stat-label">zadowolonych klient&#243;w</div>
+      </div>
+      <div class="stat-card fade-in stagger-4">
+        <div class="stat-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="stat-number" data-target="0" data-text="Bezp&#322;atna">0</div>
+        <div class="stat-label">wycena nieruchomo&#347;ci</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AGENTS ===== -->
+<section class="section" id="agenci" style="background: var(--card-bg);">
+  <div class="container">
+    <div class="section-header fade-in">
+      <h2>Nasi agenci</h2>
+      <p>Zesp&#243;&#322; do&#347;wiadczonych specjalist&#243;w gotowych pom&#243;c</p>
+    </div>
+    <div class="agents-grid">
+      <!-- AGENT 4: Agent Card Enhanced -->
+      <div class="agent-card fade-in stagger-1">
+        <div class="agent-avatar avatar-ak">AK</div>
+        <div class="agent-name">Anna Kowalska</div>
+        <div class="agent-role">Specjalista ds. mieszka&#324;</div>
+        <div class="agent-availability available"><span class="avail-dot"></span> Dost&#281;pna teraz</div>
+        <div class="agent-contact">
+          <div class="agent-contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            +48 501 234 567
+          </div>
+          <div class="agent-contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            a.kowalska@nowydom.pl
+          </div>
+        </div>
+        <div class="agent-actions">
+          <a href="tel:+48501234567" class="btn-agent-action btn-call"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.876.37 1.73.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c1.08.33 1.93.57 2.81.7A2 2 0 0122 16.92z"/></svg> Zadzwo&#324;</a>
+          <a href="https://wa.me/48501234567" target="_blank" rel="noopener noreferrer" class="btn-agent-action btn-whatsapp"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> WhatsApp</a>
+        </div>
+      </div>
+      <!-- AGENT 4: Agent Card Enhanced -->
+      <div class="agent-card fade-in stagger-2">
+        <div class="agent-avatar avatar-mn">MN</div>
+        <div class="agent-name">Marek Nowak</div>
+        <div class="agent-role">Specjalista ds. dom&#243;w</div>
+        <div class="agent-availability limited"><span class="avail-dot"></span> Dzi&#347; do 17:00</div>
+        <div class="agent-contact">
+          <div class="agent-contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            +48 502 345 678
+          </div>
+          <div class="agent-contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            m.nowak@nowydom.pl
+          </div>
+        </div>
+        <div class="agent-actions">
+          <a href="tel:+48502345678" class="btn-agent-action btn-call"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.876.37 1.73.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c1.08.33 1.93.57 2.81.7A2 2 0 0122 16.92z"/></svg> Zadzwo&#324;</a>
+          <a href="https://wa.me/48502345678" target="_blank" rel="noopener noreferrer" class="btn-agent-action btn-whatsapp"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> WhatsApp</a>
+        </div>
+      </div>
+      <!-- AGENT 4: Agent Card Enhanced -->
+      <div class="agent-card fade-in stagger-3">
+        <div class="agent-avatar avatar-kw">KW</div>
+        <div class="agent-name">Katarzyna Wi&#347;niewska</div>
+        <div class="agent-role">Specjalista ds. dzia&#322;ek</div>
+        <div class="agent-availability available"><span class="avail-dot"></span> Dost&#281;pna teraz</div>
+        <div class="agent-contact">
+          <div class="agent-contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            +48 503 456 789
+          </div>
+          <div class="agent-contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            k.wisniewska@nowydom.pl
+          </div>
+        </div>
+        <div class="agent-actions">
+          <a href="tel:+48503456789" class="btn-agent-action btn-call"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.876.37 1.73.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c1.08.33 1.93.57 2.81.7A2 2 0 0122 16.92z"/></svg> Zadzwo&#324;</a>
+          <a href="https://wa.me/48503456789" target="_blank" rel="noopener noreferrer" class="btn-agent-action btn-whatsapp"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENT 4: Statystyki Section -->
+<section class="section stats-counter-section" id="statystyki">
+  <div class="container">
+    <div class="section-header fade-in" style="margin-bottom:40px;">
+      <h2 style="color:#fff;">Nasze osi&#261;gni&#281;cia</h2>
+      <p style="color:rgba(255,255,255,0.65);">Liczby m&#243;wi&#261; same za siebie</p>
+    </div>
+    <div class="stats-counter-grid">
+      <div class="counter-item fade-in stagger-1">
+        <div class="counter-icon">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="counter-number" data-counter-target="2000">0</div>
+        <div class="counter-label">sprzedanych nieruchomo&#347;ci</div>
+      </div>
+      <div class="counter-item fade-in stagger-2">
+        <div class="counter-icon">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="counter-number" data-counter-target="15">0</div>
+        <div class="counter-label">lat do&#347;wiadczenia</div>
+      </div>
+      <div class="counter-item fade-in stagger-3">
+        <div class="counter-icon">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3zM7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/></svg>
+        </div>
+        <div class="counter-number" data-counter-target="98" data-counter-suffix="%">0</div>
+        <div class="counter-label">zadowolonych klient&#243;w</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENT 4: Blog/Porady Section -->
+<section class="section" id="porady">
+  <div class="container">
+    <div class="section-header fade-in">
+      <h2>Blog i porady</h2>
+      <p>Przydatna wiedza dla kupuj&#261;cych i sprzedaj&#261;cych nieruchomo&#347;ci</p>
+    </div>
+    <div class="blog-grid">
+      <div class="blog-card fade-in stagger-1">
+        <div class="blog-card-image">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="blog-card-body">
+          <h3>Jak kupi&#263; pierwsze mieszkanie</h3>
+          <p>Kompletny poradnik dla os&#243;b kupuj&#261;cych swoje pierwsze mieszkanie. Dowiedz si&#281;, na co zwr&#243;ci&#263; uwag&#281; i jak unikn&#261;&#263; b&#322;&#281;d&#243;w.</p>
+          <a href="#" class="blog-link">Czytaj wi&#281;cej &#8594;</a>
+        </div>
+      </div>
+      <div class="blog-card fade-in stagger-2">
+        <div class="blog-card-image" style="background: linear-gradient(135deg, #e0f2fe, #bfdbfe);">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+        </div>
+        <div class="blog-card-body">
+          <h3>Kredyt hipoteczny krok po kroku</h3>
+          <p>Wszystko, co musisz wiedzie&#263; o kredycie hipotecznym: wymagane dokumenty, zdolno&#347;&#263; kredytowa i proces wnioskowania.</p>
+          <a href="#" class="blog-link">Czytaj wi&#281;cej &#8594;</a>
+        </div>
+      </div>
+      <div class="blog-card fade-in stagger-3">
+        <div class="blog-card-image" style="background: linear-gradient(135deg, #ede9fe, #c4b5fd);">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        </div>
+        <div class="blog-card-body">
+          <h3>Co warto sprawdzi&#263; przed zakupem</h3>
+          <p>Lista kluczowych kwestii, kt&#243;re nale&#380;y zweryfikowa&#263; przed podpisaniem umowy kupna nieruchomo&#347;ci.</p>
+          <a href="#" class="blog-link">Czytaj wi&#281;cej &#8594;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="section contact-section" id="kontakt">
+  <div class="container">
+    <div class="section-header fade-in">
+      <h2>Skontaktuj si&#281;</h2>
+      <p>Napisz do nas lub odwied&#378; nasze biuro</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info fade-in">
+        <div class="contact-info-item">
+          <div class="contact-info-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="contact-info-text">
+            <h4>Adres biura</h4>
+            <p>ul. Marsza&#322;kowska 89<br>00-001 Warszawa</p>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div class="contact-info-text">
+            <h4>Telefon</h4>
+            <p>+48 22 123 45 67</p>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="contact-info-text">
+            <h4>E-mail</h4>
+            <p>biuro@nowydom.pl</p>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="contact-info-text">
+            <h4>Godziny otwarcia</h4>
+            <p>Pon&#8211;Pt: 9:00&#8211;18:00<br>Sob: 10:00&#8211;14:00</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form fade-in" id="contactFormWrapper">
+        <form id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="formName">Imi&#281; <span>*</span></label>
+              <input type="text" id="formName" placeholder="Jan Kowalski" required>
+              <div class="form-error" id="errorName">Prosz&#281; poda&#263; imi&#281;</div>
+            </div>
+            <div class="form-group">
+              <label for="formEmail">Email <span>*</span></label>
+              <input type="email" id="formEmail" placeholder="jan@email.com" required>
+              <div class="form-error" id="errorEmail">Prosz&#281; poda&#263; poprawny adres e-mail</div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="formPhone">Telefon <span>*</span></label>
+              <input type="tel" id="formPhone" placeholder="+48 500 000 000" required>
+              <div class="form-error" id="errorPhone">Prosz&#281; poda&#263; poprawny numer telefonu (min. 9 cyfr)</div>
+            </div>
+            <div class="form-group">
+              <label for="formType">Typ nieruchomo&#347;ci <span>*</span></label>
+              <select id="formType" required>
+                <option value="">Wybierz typ</option>
+                <option value="Mieszkanie">Mieszkanie</option>
+                <option value="Dom">Dom</option>
+                <option value="Dzia&#322;ka">Dzia&#322;ka</option>
+              </select>
+              <div class="form-error" id="errorType">Prosz&#281; wybra&#263; typ nieruchomo&#347;ci</div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="formBudget">Bud&#380;et <span>*</span></label>
+              <select id="formBudget" required>
+                <option value="">Wybierz bud&#380;et</option>
+                <option value="do 300k">do 300 000 PLN</option>
+                <option value="300k-500k">300 000 &#8211; 500 000 PLN</option>
+                <option value="500k-750k">500 000 &#8211; 750 000 PLN</option>
+                <option value="750k-1M">750 000 &#8211; 1 000 000 PLN</option>
+                <option value="powyżej 1M">powy&#380;ej 1 000 000 PLN</option>
+              </select>
+              <div class="form-error" id="errorBudget">Prosz&#281; wybra&#263; bud&#380;et</div>
+            </div>
+          </div>
+          <div class="form-group" style="margin-bottom: 16px;">
+            <label for="formMessage">Wiadomo&#347;&#263; <span>*</span></label>
+            <textarea id="formMessage" placeholder="Opisz jakiej nieruchomo&#347;ci szukasz..." required></textarea>
+            <div class="form-error" id="errorMessage">Prosz&#281; wpisa&#263; wiadomo&#347;&#263;</div>
+          </div>
+          <button type="submit" class="btn-submit">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Wy&#347;lij wiadomo&#347;&#263;
+          </button>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <h3>Dzi&#281;kujemy!</h3>
+          <p>Twoja wiadomo&#347;&#263; zosta&#322;a wys&#322;ana. Skontaktujemy si&#281; z Tob&#261; w ci&#261;gu 24 godzin.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 16L16 5L28 16V27C28 27.5304 27.7893 28.0391 27.4142 28.4142C27.0391 28.7893 26.5304 29 26 29H6C5.46957 29 4.96086 28.7893 4.58579 28.4142C4.21071 28.0391 4 27.5304 4 27V16Z" fill="#3B82F6" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 29V17H20V29" fill="#93c5fd" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Nowy Dom
+        </a>
+        <p>Profesjonalna agencja nieruchomo&#347;ci z 15-letnim do&#347;wiadczeniem na rynku warszawskim. Pomagamy znale&#378;&#263; idealny dom, mieszkanie lub dzia&#322;k&#281;.</p>
+      </div>
+      <div>
+        <h4>Szybkie linki</h4>
+        <ul class="footer-links">
+          <li><a href="#oferty">Oferty</a></li>
+          <li><a href="#o-nas">O nas</a></li>
+          <li><a href="#agenci">Agenci</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Us&#322;ugi</h4>
+        <ul class="footer-links">
+          <li><a href="#">Sprzeda&#380; nieruchomo&#347;ci</a></li>
+          <li><a href="#">Wynajem</a></li>
+          <li><a href="#">Wycena</a></li>
+          <li><a href="#">Doradztwo</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <div class="footer-contact-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          ul. Marsza&#322;kowska 89, Warszawa
+        </div>
+        <div class="footer-contact-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          +48 22 123 45 67
+        </div>
+        <div class="footer-contact-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Pon&#8211;Pt: 9:00&#8211;18:00
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &#169; 2026 Nowy Dom. Wszelkie prawa zastrze&#380;one. | <a href="/" style="color: var(--accent-light);">&#8592; Powr&#243;t do portfolio</a>
+    </div>
+  </div>
+</footer>
+
+<!-- AGENT 4: Property Detail Modal -->
+<div class="modal-overlay" id="propertyModal">
+  <div class="modal-content">
+    <button class="modal-close" id="modalClose" aria-label="Zamknij">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="modal-gallery">
+      <div class="modal-gallery-main" id="galleryMain"></div>
+      <button class="gallery-nav prev" id="galleryPrev"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <button class="gallery-nav next" id="galleryNext"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+    </div>
+    <div class="gallery-thumbs" id="galleryThumbs"></div>
+    <div class="modal-body">
+      <div class="modal-price-row">
+        <div>
+          <div class="modal-price" id="modalPrice"></div>
+          <div id="modalTitle" style="font-size:1.1rem;font-weight:600;color:var(--text);margin-top:2px;"></div>
+        </div>
+        <div id="modalLocation" style="display:flex;align-items:center;gap:6px;color:var(--text-light);font-weight:500;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span id="modalLocText"></span>
+        </div>
+      </div>
+      <div class="modal-details-grid" id="modalDetailsGrid"></div>
+      <div class="virtual-tour-placeholder">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 000 20 14.5 14.5 0 000-20"/><path d="M2 12h20"/></svg>
+        Wirtualny spacer 360° (wkr&#243;tce)
+      </div>
+      <div class="mortgage-calc">
+        <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg> Kalkulator kredytu</h3>
+        <div class="calc-fields">
+          <div class="calc-field">
+            <label>Kwota (PLN)</label>
+            <input type="number" id="calcPrincipal" value="500000" min="10000" step="10000">
+          </div>
+          <div class="calc-field">
+            <label>Oprocentowanie (%)</label>
+            <input type="number" id="calcRate" value="7.5" min="0.1" step="0.1" max="20">
+          </div>
+          <div class="calc-field">
+            <label>Okres (lata)</label>
+            <input type="number" id="calcTerm" value="25" min="1" max="35">
+          </div>
+        </div>
+        <div class="calc-result">
+          <div class="monthly-label">Szacunkowa rata miesi&#281;czna</div>
+          <div class="monthly" id="calcMonthly">0 PLN</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  // ===== NAVBAR =====
+  var navbar = document.getElementById('navbar');
+  var hamburger = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobileMenu');
+
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 20) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+
+  hamburger.addEventListener('click', function() {
+    hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('open');
+    if (mobileMenu.classList.contains('open')) {
+      hamburger.setAttribute('aria-expanded', 'true');
+      hamburger.setAttribute('aria-label', 'Zamknij menu');
+    } else {
+      hamburger.setAttribute('aria-expanded', 'false');
+      hamburger.setAttribute('aria-label', 'Otwórz menu');
+    }
+  });
+
+  // Close mobile menu on link click
+  var mobileLinks = document.querySelectorAll('.mobile-nav-link');
+  for (var i = 0; i < mobileLinks.length; i++) {
+    mobileLinks[i].addEventListener('click', function() {
+      hamburger.classList.remove('active');
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      hamburger.setAttribute('aria-label', 'Otwórz menu');
+    });
+  }
+
+  // ===== AGENT 4: FILTERING (ENHANCED) =====
+  var cards = document.querySelectorAll('.property-card');
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var activeType = 'all';
+
+  var searchCity = document.getElementById('searchCity');
+  var searchPriceMax = document.getElementById('searchPriceMax');
+  var searchAreaMin = document.getElementById('searchAreaMin');
+  var searchBtn = document.getElementById('searchBtn');
+
+  // Deal toggle (Kup/Wynajmij)
+  var dealToggle = document.getElementById('dealToggle');
+  if (dealToggle) {
+    var dealBtns = dealToggle.querySelectorAll('button');
+    for (var d = 0; d < dealBtns.length; d++) {
+      (function(btn) {
+        btn.addEventListener('click', function() {
+          for (var j = 0; j < dealBtns.length; j++) dealBtns[j].classList.remove('active');
+          btn.classList.add('active');
+        });
+      })(dealBtns[d]);
+    }
+  }
+
+  // Filter button clicks
+  for (var f = 0; f < filterBtns.length; f++) {
+    (function(btn) {
+      btn.addEventListener('click', function() {
+        for (var j = 0; j < filterBtns.length; j++) {
+          filterBtns[j].classList.remove('active');
+        }
+        btn.classList.add('active');
+        activeType = btn.getAttribute('data-filter');
+        applyFilters();
+      });
+    })(filterBtns[f]);
+  }
+
+  // Hero search button
+  searchBtn.addEventListener('click', function() {
+    applyFilters();
+    document.getElementById('oferty').scrollIntoView({ behavior: 'smooth' });
+  });
+
+  function applyFilters() {
+    var city = searchCity.value;
+    var maxPrice = searchPriceMax ? (searchPriceMax.value ? parseInt(searchPriceMax.value) : 0) : 0;
+    var minArea = searchAreaMin ? (searchAreaMin.value ? parseInt(searchAreaMin.value) : 0) : 0;
+
+    for (var i = 0; i < cards.length; i++) {
+      var card = cards[i];
+      var cardType = card.getAttribute('data-type');
+      var cardCity = card.getAttribute('data-city');
+      var cardPrice = parseInt(card.getAttribute('data-price'));
+      var cardArea = parseInt(card.getAttribute('data-area') || '0');
+
+      var showType = (activeType === 'all' || cardType === activeType);
+      var showCity = (!city || cardCity === city);
+      var showPrice = (!maxPrice || cardPrice <= maxPrice);
+      var showArea = (!minArea || cardArea >= minArea);
+
+      if (showType && showCity && showPrice && showArea) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    }
+  }
+
+  // ===== AGENT 4: FAVORITES (localStorage) =====
+  var favorites = [];
+  try { favorites = JSON.parse(localStorage.getItem('nowydom_favs') || '[]'); } catch(e) {}
+
+  function updateFavButtons() {
+    var favBtns = document.querySelectorAll('.btn-favorite');
+    for (var i = 0; i < favBtns.length; i++) {
+      var id = favBtns[i].getAttribute('data-fav');
+      if (favorites.indexOf(id) !== -1) {
+        favBtns[i].classList.add('liked');
+      } else {
+        favBtns[i].classList.remove('liked');
+      }
+    }
+  }
+  updateFavButtons();
+
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('.btn-favorite');
+    if (!btn) return;
+    e.stopPropagation();
+    var id = btn.getAttribute('data-fav');
+    var idx = favorites.indexOf(id);
+    if (idx === -1) {
+      favorites.push(id);
+      btn.classList.add('liked');
+    } else {
+      favorites.splice(idx, 1);
+      btn.classList.remove('liked');
+    }
+    try { localStorage.setItem('nowydom_favs', JSON.stringify(favorites)); } catch(e2) {}
+  });
+
+  // ===== AGENT 4: POLAND MAP TOOLTIPS =====
+  var mapWrap = document.getElementById('polandMapWrap');
+  var mapTooltip = document.getElementById('mapTooltip');
+  var cityListings = {
+    'Warszawa': 3, 'Kraków': 5, 'Wrocław': 4, 'Gdańsk': 3, 'Poznań': 2, 'Łódź': 2
+  };
+
+  if (mapWrap) {
+    var mapCities = mapWrap.querySelectorAll('.map-city');
+    for (var mc = 0; mc < mapCities.length; mc++) {
+      (function(cityEl) {
+        cityEl.addEventListener('mouseenter', function(ev) {
+          var name = cityEl.getAttribute('data-city');
+          var count = cityListings[name] || 0;
+          mapTooltip.textContent = '';
+          var strong = document.createElement('strong');
+          strong.textContent = name;
+          mapTooltip.appendChild(strong);
+          mapTooltip.appendChild(document.createTextNode(': ' + count + ' ofert'));
+          var rect = mapWrap.getBoundingClientRect();
+          var circle = cityEl.querySelector('circle');
+          var svg = mapWrap.querySelector('svg');
+          var svgRect = svg.getBoundingClientRect();
+          var cx = parseFloat(circle.getAttribute('cx'));
+          var cy = parseFloat(circle.getAttribute('cy'));
+          var viewBox = svg.viewBox.baseVal;
+          var scaleX = svgRect.width / viewBox.width;
+          var scaleY = svgRect.height / viewBox.height;
+          var px = cx * scaleX + svgRect.left - rect.left;
+          var py = cy * scaleY + svgRect.top - rect.top;
+          mapTooltip.style.left = px + 'px';
+          mapTooltip.style.top = (py - 50) + 'px';
+          mapTooltip.classList.add('visible');
+        });
+        cityEl.addEventListener('mouseleave', function() {
+          mapTooltip.classList.remove('visible');
+        });
+      })(mapCities[mc]);
+    }
+  }
+
+  // ===== STAT COUNTER ANIMATION (original "Why Us" section) =====
+  var statNumbers = document.querySelectorAll('.stat-number');
+  var statsAnimated = false;
+
+  function animateCounters() {
+    if (statsAnimated) return;
+    statsAnimated = true;
+
+    for (var s = 0; s < statNumbers.length; s++) {
+      (function(el) {
+        var target = parseInt(el.getAttribute('data-target'));
+        var suffix = el.getAttribute('data-suffix') || '';
+        var text = el.getAttribute('data-text');
+
+        if (target === 0 && text) {
+          el.textContent = text;
+          return;
+        }
+
+        var duration = 2000;
+        var startTime = null;
+
+        function step(timestamp) {
+          if (!startTime) startTime = timestamp;
+          var progress = Math.min((timestamp - startTime) / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 3);
+          var current = Math.floor(eased * target);
+
+          if (target >= 1000) {
+            el.textContent = current.toLocaleString('pl-PL') + suffix;
+          } else {
+            el.textContent = current + suffix;
+          }
+
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          } else {
+            if (target >= 1000) {
+              el.textContent = target.toLocaleString('pl-PL') + suffix;
+            } else {
+              el.textContent = target + suffix;
+            }
+          }
+        }
+        requestAnimationFrame(step);
+      })(statNumbers[s]);
+    }
+  }
+
+  // ===== AGENT 4: NEW COUNTER ANIMATION (Statystyki section) =====
+  var counterNumbers = document.querySelectorAll('.counter-number');
+  var countersAnimated = false;
+
+  function animateNewCounters() {
+    if (countersAnimated) return;
+    countersAnimated = true;
+
+    for (var c = 0; c < counterNumbers.length; c++) {
+      (function(el) {
+        var target = parseInt(el.getAttribute('data-counter-target'));
+        var suffix = el.getAttribute('data-counter-suffix') || '';
+        var duration = 2200;
+        var startTime = null;
+
+        function step(ts) {
+          if (!startTime) startTime = ts;
+          var prog = Math.min((ts - startTime) / duration, 1);
+          var eased = 1 - Math.pow(1 - prog, 3);
+          var cur = Math.floor(eased * target);
+          el.textContent = cur + suffix;
+          if (prog < 1) {
+            requestAnimationFrame(step);
+          } else {
+            el.textContent = target + suffix;
+          }
+        }
+        requestAnimationFrame(step);
+      })(counterNumbers[c]);
+    }
+  }
+
+  // ===== INTERSECTION OBSERVER =====
+  var observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  var observer = new IntersectionObserver(function(entries) {
+    for (var i = 0; i < entries.length; i++) {
+      if (entries[i].isIntersecting) {
+        entries[i].target.classList.add('visible');
+
+        // Check if stat card to trigger counter animation
+        if (entries[i].target.classList.contains('stat-card')) {
+          animateCounters();
+        }
+        // Check new counter items
+        if (entries[i].target.classList.contains('counter-item')) {
+          animateNewCounters();
+        }
+      }
+    }
+  }, observerOptions);
+
+  var fadeElements = document.querySelectorAll('.fade-in');
+  for (var i = 0; i < fadeElements.length; i++) {
+    observer.observe(fadeElements[i]);
+  }
+
+  // ===== CONTACT FORM VALIDATION =====
+  var form = document.getElementById('contactForm');
+  var formSuccess = document.getElementById('formSuccess');
+
+  function showError(inputId, errorId) {
+    document.getElementById(inputId).classList.add('error');
+    document.getElementById(errorId).classList.add('show');
+  }
+
+  function clearError(inputId, errorId) {
+    document.getElementById(inputId).classList.remove('error');
+    document.getElementById(errorId).classList.remove('show');
+  }
+
+  // Real-time clearing of errors
+  var formFields = [
+    { input: 'formName', error: 'errorName' },
+    { input: 'formEmail', error: 'errorEmail' },
+    { input: 'formPhone', error: 'errorPhone' },
+    { input: 'formType', error: 'errorType' },
+    { input: 'formBudget', error: 'errorBudget' },
+    { input: 'formMessage', error: 'errorMessage' }
+  ];
+
+  for (var i = 0; i < formFields.length; i++) {
+    (function(field) {
+      var el = document.getElementById(field.input);
+      el.addEventListener('input', function() {
+        if (el.value.trim()) clearError(field.input, field.error);
+      });
+      el.addEventListener('change', function() {
+        if (el.value.trim()) clearError(field.input, field.error);
+      });
+    })(formFields[i]);
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var valid = true;
+
+    // Name
+    var nameVal = document.getElementById('formName').value.trim();
+    if (!nameVal) { showError('formName', 'errorName'); valid = false; }
+    else { clearError('formName', 'errorName'); }
+
+    // Email
+    var emailVal = document.getElementById('formEmail').value.trim();
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailVal || !emailRegex.test(emailVal)) { showError('formEmail', 'errorEmail'); valid = false; }
+    else { clearError('formEmail', 'errorEmail'); }
+
+    // Phone
+    var phoneVal = document.getElementById('formPhone').value.trim().replace(/[\s\-\+\(\)]/g, '');
+    if (!phoneVal || phoneVal.length < 9 || !/^\d+$/.test(phoneVal)) { showError('formPhone', 'errorPhone'); valid = false; }
+    else { clearError('formPhone', 'errorPhone'); }
+
+    // Type
+    if (!document.getElementById('formType').value) { showError('formType', 'errorType'); valid = false; }
+    else { clearError('formType', 'errorType'); }
+
+    // Budget
+    if (!document.getElementById('formBudget').value) { showError('formBudget', 'errorBudget'); valid = false; }
+    else { clearError('formBudget', 'errorBudget'); }
+
+    // Message
+    if (!document.getElementById('formMessage').value.trim()) { showError('formMessage', 'errorMessage'); valid = false; }
+    else { clearError('formMessage', 'errorMessage'); }
+
+    if (valid) {
+      form.style.display = 'none';
+      formSuccess.classList.add('show');
+    }
+  });
+
+  // ===== SMOOTH SCROLL =====
+  var anchors = document.querySelectorAll('a[href^="#"]');
+  for (var i = 0; i < anchors.length; i++) {
+    anchors[i].addEventListener('click', function(e) {
+      var href = this.getAttribute('href');
+      if (href === '#') return;
+      var target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        var offset = 80;
+        var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      }
+    });
+  }
+
+  // ===== AGENT 4: PROPERTY DETAIL MODAL =====
+  var modalOverlay = document.getElementById('propertyModal');
+  var modalClose = document.getElementById('modalClose');
+  var galleryMain = document.getElementById('galleryMain');
+  var galleryThumbs = document.getElementById('galleryThumbs');
+  var galleryPrev = document.getElementById('galleryPrev');
+  var galleryNext = document.getElementById('galleryNext');
+  var currentSlide = 0;
+  var totalSlides = 0;
+
+  // Image sets for each property
+  var propertyImages = {
+    '1': [
+      'images/property-1.jpg',
+      'images/house-7.jpg',
+      'images/house-8.jpg',
+      'images/house-9.jpg'
+    ],
+    '2': [
+      'images/property-2.jpg',
+      'images/property-3.jpg',
+      'images/house-10.jpg',
+      'images/house-11.jpg'
+    ],
+    '3': [
+      'images/property-3.jpg',
+      'images/property-1.jpg',
+      'images/house-7.jpg'
+    ],
+    '4': [
+      'images/property-4.jpg',
+      'images/house-12.jpg',
+      'images/property-6.jpg'
+    ],
+    '5': [
+      'images/property-5.jpg',
+      'images/property-2.jpg',
+      'images/house-10.jpg'
+    ],
+    '6': [
+      'images/property-6.jpg',
+      'images/property-1.jpg',
+      'images/house-7.jpg',
+      'images/property-3.jpg'
+    ]
+  };
+
+  function goToSlide(idx) {
+    currentSlide = idx;
+    galleryMain.style.transform = 'translateX(-' + (idx * 100) + '%)';
+    var thumbs = galleryThumbs.querySelectorAll('.gallery-thumb');
+    for (var t = 0; t < thumbs.length; t++) {
+      thumbs[t].classList.toggle('active', t === idx);
+    }
+  }
+
+  if (galleryPrev) galleryPrev.addEventListener('click', function() {
+    goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
+  });
+  if (galleryNext) galleryNext.addEventListener('click', function() {
+    goToSlide((currentSlide + 1) % totalSlides);
+  });
+
+  function openModal(card) {
+    var id = card.getAttribute('data-id');
+    var title = card.querySelector('.property-title').textContent;
+    var price = card.querySelector('.property-price').textContent;
+    var location = card.querySelector('.property-location').textContent.trim();
+    var area = card.getAttribute('data-area') || '—';
+    var rooms = card.getAttribute('data-rooms') || '—';
+    var floor = card.getAttribute('data-floor') || '—';
+    var year = card.getAttribute('data-year') || '—';
+    var priceNum = parseInt(card.getAttribute('data-price'));
+    var type = card.getAttribute('data-type');
+
+    document.getElementById('modalPrice').textContent = price;
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalLocText').textContent = location;
+
+    // Build details grid
+    var detailsHTML = '';
+    detailsHTML += '<div class="modal-detail-item"><span class="detail-val">' + area + ' m\u00B2</span><span class="detail-lbl">Powierzchnia</span></div>';
+    if (rooms !== '0' && rooms !== '—') {
+      detailsHTML += '<div class="modal-detail-item"><span class="detail-val">' + rooms + '</span><span class="detail-lbl">Pokoje</span></div>';
+    }
+    if (type !== 'Dzia\u0142ka' && floor !== '0') {
+      detailsHTML += '<div class="modal-detail-item"><span class="detail-val">' + floor + '</span><span class="detail-lbl">Pi\u0119tro</span></div>';
+    }
+    if (year !== '0' && year !== '—') {
+      detailsHTML += '<div class="modal-detail-item"><span class="detail-val">' + year + '</span><span class="detail-lbl">Rok budowy</span></div>';
+    }
+    detailsHTML += '<div class="modal-detail-item"><span class="detail-val">' + type + '</span><span class="detail-lbl">Typ</span></div>';
+    var pricePerM = Math.round(priceNum / parseInt(area));
+    if (!isNaN(pricePerM) && isFinite(pricePerM)) {
+      detailsHTML += '<div class="modal-detail-item"><span class="detail-val">' + pricePerM.toLocaleString('pl-PL') + '</span><span class="detail-lbl">PLN/m\u00B2</span></div>';
+    }
+    // trusted internal data — detailsHTML built from hardcoded property data attributes, no user input
+    document.getElementById('modalDetailsGrid').innerHTML = detailsHTML;
+
+    // Gallery
+    var imgs = propertyImages[id] || [];
+    totalSlides = imgs.length;
+    currentSlide = 0;
+    var slidesHTML = '';
+    var thumbsHTML = '';
+    for (var gi = 0; gi < imgs.length; gi++) {
+      slidesHTML += '<div class="gallery-slide" style="background-image:url(\'' + imgs[gi] + '\')"></div>';
+      thumbsHTML += '<div class="gallery-thumb' + (gi === 0 ? ' active' : '') + '" style="background-image:url(\'' + imgs[gi] + '\')" data-slide="' + gi + '"></div>';
+    }
+    // trusted internal data — slidesHTML/thumbsHTML built from hardcoded propertyImages object, no user input
+    galleryMain.innerHTML = slidesHTML;
+    galleryMain.style.transform = 'translateX(0)';
+    galleryThumbs.innerHTML = thumbsHTML;
+
+    // Thumb clicks
+    var newThumbs = galleryThumbs.querySelectorAll('.gallery-thumb');
+    for (var ti = 0; ti < newThumbs.length; ti++) {
+      (function(thumb) {
+        thumb.addEventListener('click', function() {
+          goToSlide(parseInt(thumb.getAttribute('data-slide')));
+        });
+      })(newThumbs[ti]);
+    }
+
+    // Set mortgage principal to property price
+    document.getElementById('calcPrincipal').value = priceNum;
+    calculateMortgage();
+
+    modalOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modalOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  if (modalClose) modalClose.addEventListener('click', closeModal);
+  if (modalOverlay) modalOverlay.addEventListener('click', function(e) {
+    if (e.target === modalOverlay) closeModal();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modalOverlay.classList.contains('open')) closeModal();
+    if (modalOverlay.classList.contains('open')) {
+      if (e.key === 'ArrowLeft') goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
+      if (e.key === 'ArrowRight') goToSlide((currentSlide + 1) % totalSlides);
+    }
+  });
+
+  // Open modal on card detail click
+  var detailBtns = document.querySelectorAll('.btn-details');
+  for (var i = 0; i < detailBtns.length; i++) {
+    (function(btn) {
+      btn.addEventListener('click', function() {
+        var card = btn.closest('.property-card');
+        openModal(card);
+      });
+    })(detailBtns[i]);
+  }
+
+  // ===== AGENT 4: MORTGAGE CALCULATOR =====
+  function calculateMortgage() {
+    var principal = parseFloat(document.getElementById('calcPrincipal').value) || 0;
+    var annualRate = parseFloat(document.getElementById('calcRate').value) || 0;
+    var years = parseInt(document.getElementById('calcTerm').value) || 0;
+
+    if (principal <= 0 || annualRate <= 0 || years <= 0) {
+      document.getElementById('calcMonthly').textContent = '—';
+      return;
+    }
+
+    var monthlyRate = annualRate / 100 / 12;
+    var n = years * 12;
+    var monthly = principal * (monthlyRate * Math.pow(1 + monthlyRate, n)) / (Math.pow(1 + monthlyRate, n) - 1);
+    document.getElementById('calcMonthly').textContent = Math.round(monthly).toLocaleString('pl-PL') + ' PLN';
+  }
+
+  document.getElementById('calcPrincipal').addEventListener('input', calculateMortgage);
+  document.getElementById('calcRate').addEventListener('input', calculateMortgage);
+  document.getElementById('calcTerm').addEventListener('input', calculateMortgage);
+  calculateMortgage();
+
+})();
+</script>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Portfolio", "item": "https://voxquartzsystems.pl/" },
+        { "@type": "ListItem", "position": 2, "name": "Nowy Dom — Nieruchomości", "item": "https://voxquartzsystems.pl/03-realestate/" }
+    ]
+}
+</script>
+</body>
+</html>

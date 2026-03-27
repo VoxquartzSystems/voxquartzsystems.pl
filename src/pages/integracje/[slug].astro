@@ -1,0 +1,166 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import Badge from '../../components/Badge.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTASection from '../../components/CTASection.astro';
+import RelatedLinks from '../../components/RelatedLinks.astro';
+import { getRelatedIntegrations } from '../../lib/related';
+
+export async function getStaticPaths() {
+  const integrations = await getCollection('integrations');
+  return integrations.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { integration: entry.data, allIntegrations: integrations.map((e) => e.data) },
+  }));
+}
+
+const { integration, allIntegrations } = Astro.props;
+
+const difficultyLabels: Record<string, string> = {
+  basic: 'Podstawowa',
+  medium: 'Średnia',
+  advanced: 'Zaawansowana',
+};
+
+const difficultyVariants: Record<string, 'success' | 'default' | 'warning'> = {
+  basic: 'success',
+  medium: 'default',
+  advanced: 'warning',
+};
+
+const related = getRelatedIntegrations(integration.slug, allIntegrations);
+
+const altCollection = await getCollection('alternatives');
+const allAlternatives = altCollection.map((e) => e.data);
+const crossAlternatives = allAlternatives
+  .filter((a) => a.systemName === integration.toolA || a.systemName === integration.toolB)
+  .slice(0, 2)
+  .map((a) => ({
+    title: `Alternatywa dla ${a.systemName}`,
+    href: `/alternatywa-dla/${a.slug}/`,
+    description: a.whatItIs.slice(0, 120) + '...',
+  }));
+
+const pageTitle = `Integracja ${integration.toolA} z ${integration.toolB} | VoxquartzSystems`;
+const pageDescription = integration.description.slice(0, 155);
+const canonicalUrl = `https://voxquartzsystems.pl/integracje/${integration.slug}/`;
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: `Integracja ${integration.toolA} z ${integration.toolB}`,
+    description: integration.description,
+    provider: {
+      '@type': 'Organization',
+      name: 'VoxquartzSystems',
+      url: 'https://voxquartzsystems.pl',
+    },
+    areaServed: 'PL',
+    serviceType: 'Integracja systemów IT',
+  },
+];
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonical={canonicalUrl}
+  ogImage={`/og/integracje/${integration.slug}.png`}
+  schema={schema}
+>
+  <Breadcrumbs
+    items={[
+      { label: 'Strona główna', href: '/' },
+      { label: 'Integracje', href: '/integracje/' },
+      { label: `${integration.toolA} z ${integration.toolB}`, href: `/integracje/${integration.slug}` },
+    ]}
+  />
+
+  <!-- Hero -->
+  <section class="mb-16">
+    <div class="flex flex-wrap gap-3 mb-6">
+      <Badge text={integration.categoryA} />
+      <Badge text={integration.categoryB} />
+      <Badge text={difficultyLabels[integration.difficulty]} variant={difficultyVariants[integration.difficulty]} />
+      <Badge text={`~${integration.estimatedDays} dni`} variant="default" />
+    </div>
+    <h1 class="text-4xl md:text-5xl font-display font-bold text-text-primary mb-6">
+      Integracja {integration.toolA} z {integration.toolB}
+    </h1>
+    <p class="text-xl text-text-muted max-w-3xl leading-relaxed">
+      {integration.description}
+    </p>
+  </section>
+
+  <!-- Problem -->
+  <section class="mb-16">
+    <SectionHeader
+      label="Problem"
+      title={`Dlaczego firmy potrzebują integracji ${integration.toolA} z ${integration.toolB}?`}
+    />
+    <div class="bg-bg-card border border-border rounded-2xl p-6 md:p-8">
+      <p class="text-text-muted leading-relaxed text-lg">
+        {integration.problem}
+      </p>
+    </div>
+  </section>
+
+  <!-- Solution -->
+  <section class="mb-16">
+    <SectionHeader label="Rozwiązanie" title="Jak to robimy" />
+    <div class="bg-bg-card border border-border rounded-2xl p-6 md:p-8 mb-6">
+      <p class="text-text-muted leading-relaxed text-lg">
+        {integration.solution}
+      </p>
+    </div>
+    <div class="flex flex-wrap gap-2">
+      {integration.techStack.map((tech) => (
+        <Badge text={tech} variant="default" />
+      ))}
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="mb-16">
+    <SectionHeader label="Korzyści" title="Co zyskujesz" />
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {integration.benefits.map((benefit, index) => (
+        <div class="bg-bg-card border border-border rounded-xl p-5 hover:border-border-hover transition-colors">
+          <div class="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center mb-3">
+            <span class="text-accent font-label font-bold text-sm">{index + 1}</span>
+          </div>
+          <p class="text-text-muted text-sm leading-relaxed">{benefit}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Use Cases -->
+  <section class="mb-16">
+    <SectionHeader label="Zastosowania" title="Przypadki użycia" />
+    <div class="space-y-4">
+      {integration.useCases.map((useCase) => (
+        <div class="flex gap-4 items-start bg-bg-card border border-border rounded-xl p-5">
+          <div class="w-2 h-2 rounded-full bg-accent mt-2 shrink-0"></div>
+          <p class="text-text-muted leading-relaxed">{useCase}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <FAQ items={integration.faq} />
+
+  <!-- CTA -->
+  <CTASection />
+
+  <!-- Related -->
+  <RelatedLinks items={related} heading="Powiązane integracje" />
+  {crossAlternatives.length > 0 && (
+    <RelatedLinks items={crossAlternatives} heading="Alternatywy" />
+  )}
+</BaseLayout>

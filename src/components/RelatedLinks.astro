@@ -1,0 +1,37 @@
+---
+interface RelatedItem {
+  title: string;
+  href: string;
+  description: string;
+}
+
+interface Props {
+  items: RelatedItem[];
+  heading?: string;
+}
+
+const { items, heading = 'Powiazane' } = Astro.props;
+---
+
+{items.length > 0 && (
+  <section class="mt-16">
+    <h2 class="text-2xl font-display font-bold text-text-primary mb-6">
+      {heading}
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {items.map((item) => (
+        <a
+          href={item.href}
+          class="group block bg-bg-card border border-border rounded-xl p-5 transition-all duration-300 hover:bg-bg-card-hover hover:border-border-hover"
+        >
+          <h3 class="text-sm font-semibold text-text-primary mb-1.5 group-hover:text-accent-light transition-colors">
+            {item.title}
+          </h3>
+          <p class="text-text-dim text-xs leading-relaxed line-clamp-2">
+            {item.description}
+          </p>
+        </a>
+      ))}
+    </div>
+  </section>
+)}

@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="pl" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atelier Piękna — Salon Kosmetyczny Warszawa</title>
+    <meta name="description" content="Profesjonalny salon kosmetyczny na Mokotowskiej w Warszawie. Zabiegi na twarz, ciało, manicure, pedicure, rzęsy i depilacja.">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Atelier Piękna — Demo salonu kosmetycznego | VoxquartzSystems">
+    <meta property="og:description" content="Demo strony salonu kosmetycznego z animacjami GSAP, dark mode i formularzem rezerwacji.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://voxquartzsystems.pl/07-beautysalon/images/hero.jpg">
+    <meta property="og:url" content="https://voxquartzsystems.pl/realizacje/atelier-piekna/">
+    <meta property="og:locale" content="pl_PL">
+    <meta property="og:site_name" content="VoxquartzSystems">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Atelier Piękna — Demo salonu kosmetycznego | VoxquartzSystems">
+    <meta name="twitter:description" content="Demo strony salonu kosmetycznego z animacjami GSAP, dark mode i formularzem rezerwacji.">
+    <meta name="twitter:image" content="https://voxquartzsystems.pl/07-beautysalon/images/hero.jpg">
+    <meta name="robots" content="noindex, follow">
+    <meta name="author" content="VoxquartzSystems">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico">
+    <!-- Structured data -->
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Portfolio", "item": "https://voxquartzsystems.pl/" },
+        { "@type": "ListItem", "position": 2, "name": "Atelier Piękna — Salon kosmetyczny", "item": "https://voxquartzsystems.pl/07-beautysalon/" }
+    ]
+}
+    </script>
+</head>
+<body style="padding-top:40px;">
+<div style="position:fixed;top:0;left:0;right:0;z-index:9999;background:#6366f1;color:#fff;text-align:center;padding:8px 16px;font-family:Inter,system-ui,sans-serif;font-size:14px;">
+  To jest demo realizacji. <a href="/" style="color:#fff;text-decoration:underline;font-weight:600;">Wróć do portfolio VoxquartzSystems</a>
+</div>
+
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+<nav class="navbar" id="navbar" role="navigation" aria-label="Nawigacja główna">
+    <div class="container nav-container">
+        <a href="#hero" class="nav-logo">Atelier Piękna</a>
+        <button type="button" class="nav-toggle" aria-label="Otwórz menu" aria-expanded="false">
+            <span class="hamburger"></span>
+        </button>
+        <div class="nav-menu">
+            <a href="#o-nas" class="nav-link">O nas</a>
+            <a href="#uslugi" class="nav-link">Usługi</a>
+            <a href="#galeria" class="nav-link">Galeria</a>
+            <a href="#cennik" class="nav-link">Cennik</a>
+            <a href="#rezerwacja" class="nav-link">Rezerwacja</a>
+            <a href="#kontakt" class="nav-link">Kontakt</a>
+            <button type="button" class="theme-toggle" aria-label="Przełącz tryb ciemny">
+                <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+                <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- ============================================================
+     SECTION 1: HERO
+     ============================================================ -->
+<section id="hero" class="hero" aria-label="Strona główna">
+    <div class="hero-bg" style="background-image: url('images/hero.jpg')" aria-hidden="true"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="blob blob--1" aria-hidden="true"></div>
+    <div class="blob blob--2" aria-hidden="true"></div>
+
+    <div class="hero-content container">
+        <div class="hero-badge fade-in">
+            <span class="hero-badge__dot" aria-hidden="true"></span>
+            Nowość na Mokotowskiej
+        </div>
+        <h1 class="hero-heading fade-in">Twoje piękno,<br>nasza pasja</h1>
+        <p class="hero-subtitle fade-in">Ekskluzywny salon kosmetyczny na Mokotowskiej w Warszawie</p>
+        <div class="hero-ctas fade-in">
+            <a href="#rezerwacja" class="btn btn-primary btn-magnetic">Zarezerwuj wizytę</a>
+            <a href="#o-nas" class="btn btn-ghost">Poznaj nas</a>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     SECTION 2: O NAS
+     ============================================================ -->
+<section id="o-nas" class="section" aria-labelledby="heading-o-nas">
+    <div class="container">
+        <div class="section-header fade-in">
+            <span class="section-label">O nas</span>
+            <h2 class="section-heading" id="heading-o-nas">Poznaj Atelier Piękna</h2>
+        </div>
+
+        <div class="bento-grid fade-in">
+            <!-- Large card: owner bio -->
+            <article class="bento-card bento-card--large">
+                <div class="bento-card__image">
+                    <img
+                        src="images/owner.jpg"
+                        alt="Anna Kowalska — właścicielka i kosmetolog Atelier Piękna"
+                        width="480"
+                        height="560"
+                        loading="lazy"
+                    >
+                </div>
+                <div class="bento-card__content">
+                    <span class="bento-card__label">Właścicielka &amp; kosmetolog</span>
+                    <h3 class="bento-card__name">Anna Kowalska</h3>
+                    <p class="bento-card__bio">
+                        Z pasją do kosmetologii od ponad dekady, stworzyłam Atelier Piękna jako miejsce,
+                        w którym każda klientka czuje się wyjątkowo. Specjalizuję się w zabiegach anti-age
+                        i mezoterapii, łącząc najnowsze technologie z indywidualnym podejściem.
+                    </p>
+                    <p class="bento-card__bio">
+                        Ukończyłam Akademię Medycyny Estetycznej w Warszawie oraz liczne szkolenia
+                        u europejskich mistrzów kosmetologii. Każdy zabieg traktuję jak dzieło sztuki —
+                        bo Twoje piękno na to zasługuje.
+                    </p>
+                    <ul class="bento-card__badges" aria-label="Certyfikaty i specjalizacje">
+                        <li class="badge">Mezoterapia igłowa</li>
+                        <li class="badge">HydraFacial Pro</li>
+                        <li class="badge">Laser diodowy</li>
+                        <li class="badge">Kobido</li>
+                    </ul>
+                </div>
+            </article>
+
+            <!-- Counter card: klientki -->
+            <article class="bento-card bento-card--counter" aria-label="2000 zadowolonych klientek">
+                <div class="counter-value" data-counter="2000">0</div>
+                <div class="counter-label">zadowolonych<br>klientek</div>
+                <div class="counter-icon" aria-hidden="true">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                </div>
+            </article>
+
+            <!-- Counter card: zabiegi -->
+            <article class="bento-card bento-card--counter" aria-label="15 rodzajów zabiegów">
+                <div class="counter-value" data-counter="15">0</div>
+                <div class="counter-label">rodzajów<br>zabiegów</div>
+                <div class="counter-icon" aria-hidden="true">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                </div>
+            </article>
+
+            <!-- Counter card: doświadczenie -->
+            <article class="bento-card bento-card--counter" aria-label="10 lat doświadczenia">
+                <div class="counter-value" data-counter="10">0</div>
+                <div class="counter-label">lat<br>doświadczenia</div>
+                <div class="counter-icon" aria-hidden="true">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="8" r="6"/>
+                        <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
+                    </svg>
+                </div>
+            </article>
+        </div>
+
+        <!-- Brand logos row -->
+        <div class="brands-row fade-in" aria-label="Kosmetyki których używamy">
+            <p class="brands-label">Pracujemy na produktach:</p>
+            <ul class="brands-list">
+                <li class="brand-logo">Dermalogica</li>
+                <li class="brand-logo">Mediderma</li>
+                <li class="brand-logo">OPI</li>
+                <li class="brand-logo">Indigo</li>
+                <li class="brand-logo">SkinCeuticals</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     SECTION 3: USŁUGI
+     ============================================================ -->
+<section id="uslugi" class="section section-alt" aria-labelledby="heading-uslugi">
+    <div class="container">
+        <div class="section-header fade-in">
+            <span class="section-label">Oferta</span>
+            <h2 class="section-heading" id="heading-uslugi">Nasze usługi</h2>
+            <p class="section-subtitle">Wybierz kategorię i odkryj pełen zakres naszych zabiegów</p>
+        </div>
+
+        <!-- Tabs navigation — populated by JS from TAB_KEYS / TAB_LABELS -->
+        <nav class="tabs-nav fade-in" role="tablist" aria-label="Kategorie usług">
+            <!-- JS will insert tab buttons here -->
+        </nav>
+
+        <!-- Services grid — populated by JS from SERVICES data -->
+        <div class="services-grid fade-in" role="tabpanel" aria-live="polite">
+            <!-- JS will insert service cards here -->
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     SECTION 4: GALERIA
+     ============================================================ -->
+<section id="galeria" class="section" aria-labelledby="heading-galeria">
+    <div class="container">
+        <div class="section-header fade-in">
+            <span class="section-label">Portfolio</span>
+            <h2 class="section-heading" id="heading-galeria">Galeria</h2>
+            <p class="section-subtitle">Zaglądnij do naszego salonu i obejrzyj efekty zabiegów</p>
+        </div>
+
+        <!-- Masonry grid — populated by JS from GALLERY data -->
+        <div class="masonry fade-in" role="list" aria-label="Galeria zdjęć salonu">
+            <!-- JS will insert gallery items here -->
+        </div>
+    </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" role="dialog" aria-modal="true" aria-label="Podgląd zdjęcia" hidden>
+    <div class="lightbox-backdrop"></div>
+    <div class="lightbox-inner">
+        <img class="lightbox-img" alt="" loading="lazy">
+        <p class="lightbox-caption"></p>
+        <button type="button" class="lightbox-close" aria-label="Zamknij podgląd">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+        </button>
+        <button type="button" class="lightbox-prev" aria-label="Poprzednie zdjęcie">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <polyline points="15 18 9 12 15 6"/>
+            </svg>
+        </button>
+        <button type="button" class="lightbox-next" aria-label="Następne zdjęcie">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <polyline points="9 18 15 12 9 6"/>
+            </svg>
+        </button>
+    </div>
+</div>
+
+<!-- ============================================================
+     SECTION 5: OPINIE
+     ============================================================ -->
+<section id="opinie" class="section section-alt" aria-labelledby="heading-opinie">
+    <div class="container">
+        <div class="section-header fade-in">
+            <span class="section-label">Opinie</span>
+            <h2 class="section-heading" id="heading-opinie">Co mówią nasze klientki</h2>
+        </div>
+
+        <!-- Google rating badge -->
+        <div class="google-badge fade-in" aria-label="Ocena Google: 4.9 na podstawie 127 opinii">
+            <svg class="google-badge__icon" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+            </svg>
+            <div class="google-badge__stars" aria-hidden="true">
+                <span class="star star--full">★</span>
+                <span class="star star--full">★</span>
+                <span class="star star--full">★</span>
+                <span class="star star--full">★</span>
+                <span class="star star--half">★</span>
+            </div>
+            <span class="google-badge__score">4.9</span>
+            <span class="google-badge__text">średnia z 127 opinii Google</span>
+        </div>
+
+        <!-- Carousel — slides populated by JS from REVIEWS data -->
+        <div class="carousel fade-in" aria-label="Karuzela opinii">
+            <div class="carousel-track" aria-live="polite">
+                <!-- JS will insert review slides here -->
+            </div>
+            <div class="carousel-controls" aria-label="Nawigacja karuzeli">
+                <button type="button" class="carousel-arrow carousel-prev" aria-label="Poprzednia opinia">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <polyline points="15 18 9 12 15 6"/>
+                    </svg>
+                </button>
+                <div class="carousel-dots" role="tablist" aria-label="Wybierz opinię">
+                    <!-- JS will insert dot buttons here -->
+                </div>
+                <button type="button" class="carousel-arrow carousel-next" aria-label="Następna opinia">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <polyline points="9 18 15 12 9 6"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     SECTION 6: CENNIK
+     ============================================================ -->
+<section id="cennik" class="section" aria-labelledby="heading-cennik">
+    <div class="container">
+        <div class="section-header fade-in">
+            <span class="section-label">Cennik</span>
+            <h2 class="section-heading" id="heading-cennik">Cennik</h2>
+            <p class="section-subtitle">Transparentne ceny bez ukrytych opłat</p>
+        </div>
+
+        <!-- Accordion: service categories -->
+        <div class="accordion fade-in" role="list">
+
+            <!-- Twarz -->
+            <div class="accordion-item" role="listitem">
+                <button type="button" class="accordion-header" aria-expanded="false" aria-controls="acc-twarz" id="acc-twarz-btn">
+                    <span class="accordion-title">
+                        <span class="accordion-icon" aria-hidden="true">✨</span>
+                        Twarz
+                    </span>
+                    <svg class="accordion-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <polyline points="6 9 12 15 18 9"/>
+                    </svg>
+                </button>
+                <div class="accordion-body" id="acc-twarz" role="region" aria-labelledby="acc-twarz-btn">
+                    <ul class="price-list">
+                        <li class="price-row">
+                            <span class="price-name">Oczyszczanie wodorowe HydraFacial</span>
+                            <span class="price-duration">60 min</span>
+                            <span class="price-value">180 zł</span>
+                        </li>
+                        <li class="price-row">
+                            <span class="price-name">Mezoterapia igłowa</span>
+                            <span class="price-duration">45 min</span>
+                            <span class="price-value">350 zł</span>
+                        </li>
+                        <li class="price-row">
+                            <span class="price-name">Peeling chemiczny</span>
+                            <span class="price-duration">40 min</span>
+                            <span class="price-value">220 zł</span>
+                        </li>
+                        <li class="price-row">
+                            <span class="price-name">Mikrodermabrazja diamentowa</span>
+                            <span class="price-duration">50 min</span>
+                            <span class="price-value">200 zł</span>
+                        </li>
+                        <li class="price-row">
+                            <span class="price-name">Masaż kobido</span>
+                            <span class="price-duration">60 min</span>
+                            <span class="price-value">250 zł</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Ciało -->
+            <div class="accordion-item" role="listitem">
+                <button type="button" class="accordion-header" aria-expanded="false" aria-controls="acc-cialo" id="acc-cialo-btn">
+                    <span class="accordion-title">
+                        <span class="accordion-icon" aria-hidden="true">🌿</span>
+                        Ciało
+                    </span>
+                    <svg class="accordion-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <polyline points="6 9 12 15 18 9"/>
+                    </svg>
+                </button>
+                <div class="accordion-body" id="acc-cialo" role="region" aria-labelledby="acc-cialo-btn">
+                    <ul class="price-list">
+                        <li class="price-row">
+                            <span class="price-name">Masaż gorącymi kamieniami</span>
+                            <span class="price-duration">75 min</span>
+                            <span class="price-value">280 zł</span>
+                        </li>
+                        <li class="price-row">
+                            <span class="price-name">Peeling ciała cukrowy</span>
+                            <span class="price-duration">50 min</span>
+                            <span class="price-value">160 zł</span>
+                        </li>
+                        <li class="price-row">
+                            <span class="price-name">Ujędrnianie ciała RF</span>
+                            <span class="price-duration">60 min</span>
+                            <span class="price-value">300 zł</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Dłonie & Stopy -->
+            <div class="accordion-item" role="listitem">
+                <button type="button" class="accordion-header" aria-expanded="false" aria-controls="acc-dlonie" id="acc-dlonie-btn">
+                    <span class="accordion-title">
+                        <span class="accordion-icon" aria-hidden="true">💅</span>
+                        Dłonie &amp; Stopy
+                    </span>
+                    <svg class="accordion-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <polyline points="6 9 12 15 18 9"/>
+                    </svg>
+                </button>
+                <div class="accordion-body" id="acc-dlonie" role="region" aria-labelledby="acc-dlonie-btn">
+                    <ul class="price-list">
+                        <li class="price-row">
+                            <span class="price-name">Manicure hybrydowy</span>
+                            <span class="price-duration">60 min</span>
+                            <span class="price-value">120 zł</span>
+                        </li>
+                        <li class="price-row">
+                            <span class="price-name">Pedicure spa</span>
+                            <span class="price-duration">70 min</span>
+                            <span class="price-value">140 zł</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Brwi & Rzęsy -->
+            <div class="accordion-item" role="listitem">
+                <button type="button" class="accordion-header" aria-expanded="false" aria-controls="acc-brwi" id="acc-brwi-btn">
+                    <span class="accordion-title">
+                        <span class="accordion-icon" aria-hidden="true">👁</span>
+                        Brwi &amp; Rzęsy
+                    </span>
+                    <svg class="accordion-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <polyline points="6 9 12 15 18 9"/>
+                    </svg>
+                </button>
+                <div class="accordion-body" id="acc-brwi" role="region" aria-labelledby="acc-brwi-btn">
+                    <ul class="price-list">
+                        <li class="price-row">
+                            <span class="price-name">Lifting rzęs + laminacja</span>
+                            <span class="price-duration">75 min</span>
+                            <span class="price-value">160 zł</span>
+                        </li>
+                        <li class="price-row">
+                            <span class="price-name">Modelowanie brwi henną</span>
+                            <span class="price-duration">30 min</span>
+                            <span class="price-value">80 zł</span>
+                        </li>
+                        <li class="price-row">
+                            <span class="price-name">Przedłużanie rzęs 1:1</span>
+                            <span class="price-duration">120 min</span>
+                            <span class="price-value">200 zł</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Depilacja -->
+            <div class="accordion-item" role="listitem">
+                <button type="button" class="accordion-header" aria-expanded="false" aria-controls="acc-depilacja" id="acc-depilacja-btn">
+                    <span class="accordion-title">
+                        <span class="accordion-icon" aria-hidden="true">🌸</span>
+                        Depilacja
+                    </span>
+                    <svg class="accordion-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <polyline points="6 9 12 15 18 9"/>
+                    </svg>
+                </button>
+                <div class="accordion-body" id="acc-depilacja" role="region" aria-labelledby="acc-depilacja-btn">
+                    <ul class="price-list">
+                        <li class="price-row">
+                            <span class="price-name">Depilacja laserowa</span>
+                            <span class="price-duration">wycena indywidualna</span>
+                            <span class="price-value">od 150 zł</span>
+                        </li>
+                        <li class="price-row">
+                            <span class="price-name">Depilacja woskiem (nogi)</span>
+                            <span class="price-duration">45 min</span>
+                            <span class="price-value">120 zł</span>
+                        </li>
+                        <li class="price-row">
+                            <span class="price-name">Depilacja pastą cukrową (bikini)</span>
+                            <span class="price-duration">30 min</span>
+                            <span class="price-value">100 zł</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div><!-- /.accordion -->
+
+        <!-- Packages grid -->
+        <div class="packages-section fade-in">
+            <h3 class="packages-heading">Pakiety specjalne</h3>
+            <div class="packages-grid">
+
+                <!-- Pakiet Panna Młoda -->
+                <article class="package-card">
+                    <div class="package-badge package-badge--bestseller">Bestseller</div>
+                    <div class="package-card__inner">
+                        <div class="package-icon" aria-hidden="true">💍</div>
+                        <h4 class="package-name">Pakiet Panna Młoda</h4>
+                        <p class="package-desc">makijaż + paznokcie + rzęsy + masaż</p>
+                        <div class="package-price">
+                            <span class="package-price__value">850 zł</span>
+                            <span class="package-price__note">kompletny pakiet</span>
+                        </div>
+                        <ul class="package-items" aria-label="Co zawiera pakiet">
+                            <li class="package-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                Makijaż ślubny
+                            </li>
+                            <li class="package-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                Manicure hybrydowy
+                            </li>
+                            <li class="package-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                Przedłużanie rzęs
+                            </li>
+                            <li class="package-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                Masaż relaksacyjny
+                            </li>
+                        </ul>
+                        <a href="#rezerwacja" class="btn btn-primary">Zarezerwuj pakiet</a>
+                    </div>
+                </article>
+
+                <!-- Dzień Spa dla Dwojga -->
+                <article class="package-card">
+                    <div class="package-badge package-badge--new">Nowość</div>
+                    <div class="package-card__inner">
+                        <div class="package-icon" aria-hidden="true">🌿</div>
+                        <h4 class="package-name">Dzień Spa dla Dwojga</h4>
+                        <p class="package-desc">2× masaż + 2× peeling + herbata</p>
+                        <div class="package-price">
+                            <span class="package-price__value">600 zł</span>
+                            <span class="package-price__note">dla dwóch osób</span>
+                        </div>
+                        <ul class="package-items" aria-label="Co zawiera pakiet">
+                            <li class="package-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                2× Masaż gorącymi kamieniami
+                            </li>
+                            <li class="package-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                2× Peeling ciała cukrowy
+                            </li>
+                            <li class="package-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                Herbata i przekąski
+                            </li>
+                        </ul>
+                        <a href="#rezerwacja" class="btn btn-primary">Zarezerwuj pakiet</a>
+                    </div>
+                </article>
+
+                <!-- Rytuał Anti-Age -->
+                <article class="package-card">
+                    <div class="package-badge package-badge--promo">Promocja</div>
+                    <div class="package-card__inner">
+                        <div class="package-icon" aria-hidden="true">✨</div>
+                        <h4 class="package-name">Rytuał Anti-Age</h4>
+                        <p class="package-desc">mezoterapia + peeling + maska + serum</p>
+                        <div class="package-price">
+                            <span class="package-price__value">480 zł</span>
+                            <span class="package-price__note">zabieg kompleksowy</span>
+                        </div>
+                        <ul class="package-items" aria-label="Co zawiera pakiet">
+                            <li class="package-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                Mezoterapia igłowa
+                            </li>
+                            <li class="package-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                Peeling chemiczny
+                            </li>
+                            <li class="package-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                Maska kolagenowa
+                            </li>
+                            <li class="package-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                Serum z witaminą C
+                            </li>
+                        </ul>
+                        <a href="#rezerwacja" class="btn btn-primary">Zarezerwuj pakiet</a>
+                    </div>
+                </article>
+
+            </div>
+        </div><!-- /.packages-section -->
+
+    </div>
+</section>
+
+<!-- ============================================================
+     SECTION 7: REZERWACJA
+     ============================================================ -->
+<section id="rezerwacja" class="section section-alt" aria-labelledby="heading-rezerwacja">
+    <div class="container">
+        <div class="section-header fade-in">
+            <span class="section-label">Booking</span>
+            <h2 class="section-heading" id="heading-rezerwacja">Zarezerwuj wizytę</h2>
+            <p class="section-subtitle">Wypełnij formularz, a my skontaktujemy się z Tobą w ciągu godziny</p>
+        </div>
+
+        <div class="reservation-wrapper fade-in">
+            <form class="reservation-form" id="reservation-form" aria-label="Formularz rezerwacji">
+                <div class="form-grid">
+
+                    <!-- Imię -->
+                    <div class="form-group">
+                        <input
+                            type="text"
+                            id="field-name"
+                            name="name"
+                            class="form-input"
+                            placeholder=" "
+                            required
+                            autocomplete="given-name"
+                            aria-required="true"
+                            aria-describedby="field-name-error"
+                        >
+                        <label class="form-label" for="field-name">Imię i nazwisko</label>
+                        <span class="form-error" id="field-name-error" role="alert"></span>
+                    </div>
+
+                    <!-- Telefon -->
+                    <div class="form-group">
+                        <div class="input-with-prefix">
+                            <span class="input-prefix" aria-hidden="true">+48</span>
+                            <input
+                                type="tel"
+                                id="field-phone"
+                                name="phone"
+                                class="form-input form-input--prefixed"
+                                placeholder=" "
+                                required
+                                autocomplete="tel-national"
+                                aria-required="true"
+                                aria-label="Numer telefonu (bez kierunkowego +48)"
+                                aria-describedby="field-phone-error"
+                                pattern="[0-9]{9}"
+                            >
+                            <label class="form-label form-label--prefixed" for="field-phone">Numer telefonu</label>
+                        </div>
+                        <span class="form-error" id="field-phone-error" role="alert"></span>
+                    </div>
+
+                    <!-- E-mail -->
+                    <div class="form-group">
+                        <input
+                            type="email"
+                            id="field-email"
+                            name="email"
+                            class="form-input"
+                            placeholder=" "
+                            required
+                            autocomplete="email"
+                            aria-required="true"
+                            aria-describedby="field-email-error"
+                        >
+                        <label class="form-label" for="field-email">Adres e-mail</label>
+                        <span class="form-error" id="field-email-error" role="alert"></span>
+                    </div>
+
+                    <!-- Usługa -->
+                    <div class="form-group">
+                        <select
+                            id="field-service"
+                            name="service"
+                            class="form-select"
+                            required
+                            aria-required="true"
+                            aria-describedby="field-service-error"
+                        >
+                            <option value="" disabled selected></option>
+                            <!-- Twarz -->
+                            <optgroup label="Twarz">
+                                <option value="hydrafacial">Oczyszczanie wodorowe HydraFacial — 180 zł</option>
+                                <option value="mezoterapia">Mezoterapia igłowa — 350 zł</option>
+                                <option value="peeling-chemiczny">Peeling chemiczny — 220 zł</option>
+                                <option value="mikrodermabrazja">Mikrodermabrazja diamentowa — 200 zł</option>
+                                <option value="kobido">Masaż kobido — 250 zł</option>
+                            </optgroup>
+                            <!-- Ciało -->
+                            <optgroup label="Ciało">
+                                <option value="masaz-kamienie">Masaż gorącymi kamieniami — 280 zł</option>
+                                <option value="peeling-ciala">Peeling ciała cukrowy — 160 zł</option>
+                                <option value="rf">Ujędrnianie ciała RF — 300 zł</option>
+                            </optgroup>
+                            <!-- Dłonie & Stopy -->
+                            <optgroup label="Dłonie &amp; Stopy">
+                                <option value="manicure">Manicure hybrydowy — 120 zł</option>
+                                <option value="pedicure">Pedicure spa — 140 zł</option>
+                            </optgroup>
+                            <!-- Brwi & Rzęsy -->
+                            <optgroup label="Brwi &amp; Rzęsy">
+                                <option value="lifting-rzes">Lifting rzęs + laminacja — 160 zł</option>
+                                <option value="brwi-henna">Modelowanie brwi henną — 80 zł</option>
+                                <option value="rzesy">Przedłużanie rzęs 1:1 — 200 zł</option>
+                            </optgroup>
+                            <!-- Depilacja -->
+                            <optgroup label="Depilacja">
+                                <option value="depilacja-laser">Depilacja laserowa — od 150 zł</option>
+                                <option value="depilacja-wosk">Depilacja woskiem (nogi) — 120 zł</option>
+                                <option value="depilacja-cukrowa">Depilacja pastą cukrową (bikini) — 100 zł</option>
+                            </optgroup>
+                            <!-- Pakiety -->
+                            <optgroup label="Pakiety specjalne">
+                                <option value="pakiet-panna-mloda">Pakiet Panna Młoda — 850 zł</option>
+                                <option value="pakiet-spa-dwoje">Dzień Spa dla Dwojga — 600 zł</option>
+                                <option value="pakiet-anti-age">Rytuał Anti-Age — 480 zł</option>
+                            </optgroup>
+                        </select>
+                        <label class="form-label form-label--select" for="field-service">Wybierz usługę</label>
+                        <span class="form-error" id="field-service-error" role="alert"></span>
+                    </div>
+
+                    <!-- Data -->
+                    <div class="form-group">
+                        <input
+                            type="date"
+                            id="field-date"
+                            name="date"
+                            class="form-input form-input--date"
+                            required
+                            aria-required="true"
+                            aria-describedby="field-date-error"
+                        >
+                        <label class="form-label form-label--date" for="field-date">Data wizyty</label>
+                        <span class="form-error" id="field-date-error" role="alert"></span>
+                    </div>
+
+                    <!-- Godzina -->
+                    <div class="form-group">
+                        <select
+                            id="field-time"
+                            name="time"
+                            class="form-select"
+                            required
+                            aria-required="true"
+                            aria-describedby="field-time-error"
+                        >
+                            <option value="" disabled selected></option>
+                            <option value="09:00">9:00</option>
+                            <option value="09:30">9:30</option>
+                            <option value="10:00">10:00</option>
+                            <option value="10:30">10:30</option>
+                            <option value="11:00">11:00</option>
+                            <option value="11:30">11:30</option>
+                            <option value="12:00">12:00</option>
+                            <option value="12:30">12:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="13:30">13:30</option>
+                            <option value="14:00">14:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="15:00">15:00</option>
+                            <option value="15:30">15:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="16:30">16:30</option>
+                            <option value="17:00">17:00</option>
+                            <option value="17:30">17:30</option>
+                            <option value="18:00">18:00</option>
+                            <option value="18:30">18:30</option>
+                            <option value="19:00">19:00</option>
+                            <option value="19:30">19:30</option>
+                        </select>
+                        <label class="form-label form-label--select" for="field-time">Godzina wizyty</label>
+                        <span class="form-error" id="field-time-error" role="alert"></span>
+                    </div>
+
+                    <!-- Uwagi -->
+                    <div class="form-group form-group--full">
+                        <textarea
+                            id="field-notes"
+                            name="notes"
+                            class="form-textarea"
+                            placeholder=" "
+                            rows="4"
+                            aria-describedby="field-notes-hint"
+                        ></textarea>
+                        <label class="form-label" for="field-notes">Uwagi (opcjonalnie)</label>
+                        <span class="form-hint" id="field-notes-hint">Napisz nam o swoich oczekiwaniach lub ewentualnych alergiach</span>
+                    </div>
+
+                    <!-- Submit -->
+                    <div class="form-group form-group--full form-group--submit">
+                        <button type="submit" class="btn btn-primary btn-submit" aria-label="Wyślij formularz rezerwacji">
+                            <span class="btn-text">Zarezerwuj wizytę</span>
+                            <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                            <span class="btn-loader" aria-hidden="true"></span>
+                        </button>
+                        <p class="form-privacy">
+                            Wysyłając formularz, akceptujesz
+                            <a href="#" class="link">politykę prywatności</a>.
+                            Dane są chronione i nie będą udostępniane osobom trzecim.
+                        </p>
+                    </div>
+
+                </div><!-- /.form-grid -->
+            </form>
+
+            <!-- Success state (hidden by default) -->
+            <div class="form-success" id="form-success" hidden role="status" aria-live="polite">
+                <div class="form-success__icon" aria-hidden="true">
+                    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="9 12 11 14 15 10"/>
+                    </svg>
+                </div>
+                <h3 class="form-success__heading">Dziękujemy!</h3>
+                <p class="form-success__text">Potwierdzenie SMS w ciągu 1h</p>
+                <p class="form-success__subtext">Oddzwonimy, aby potwierdzić termin wizyty. Do zobaczenia!</p>
+                <button type="button" class="btn btn-ghost" id="form-reset-btn">Zarezerwuj kolejną wizytę</button>
+            </div>
+
+        </div><!-- /.reservation-wrapper -->
+
+    </div>
+</section>
+
+<!-- ============================================================
+     SECTION 8: KONTAKT
+     ============================================================ -->
+<section id="kontakt" class="section" aria-labelledby="heading-kontakt">
+    <div class="container">
+        <div class="section-header fade-in">
+            <span class="section-label">Kontakt</span>
+            <h2 class="section-heading" id="heading-kontakt">Kontakt</h2>
+        </div>
+
+        <div class="contact-grid fade-in">
+
+            <!-- Left column: contact info -->
+            <div class="contact-info">
+                <ul class="contact-items" aria-label="Dane kontaktowe">
+
+                    <li class="contact-item">
+                        <div class="contact-item__icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                        </div>
+                        <div class="contact-item__content">
+                            <span class="contact-item__label">Adres</span>
+                            <address class="contact-item__value">
+                                ul. Mokotowska 27<br>
+                                00-560 Warszawa
+                            </address>
+                        </div>
+                    </li>
+
+                    <li class="contact-item">
+                        <div class="contact-item__icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 5.35 5.35l1-1a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 15.5v1.42z"/>
+                            </svg>
+                        </div>
+                        <div class="contact-item__content">
+                            <span class="contact-item__label">Telefon</span>
+                            <a class="contact-item__value contact-item__link" href="tel:+48500123456">+48 500 123 456</a>
+                        </div>
+                    </li>
+
+                    <li class="contact-item">
+                        <div class="contact-item__icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                        </div>
+                        <div class="contact-item__content">
+                            <span class="contact-item__label">E-mail</span>
+                            <a class="contact-item__value contact-item__link" href="mailto:kontakt@atelierpiekna.pl">kontakt@atelierpiekna.pl</a>
+                        </div>
+                    </li>
+
+                    <li class="contact-item">
+                        <div class="contact-item__icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                        </div>
+                        <div class="contact-item__content">
+                            <span class="contact-item__label">Godziny otwarcia</span>
+                            <dl class="hours-list">
+                                <div class="hours-row">
+                                    <dt class="hours-day">Pon–Pt</dt>
+                                    <dd class="hours-time">9:00–20:00</dd>
+                                </div>
+                                <div class="hours-row">
+                                    <dt class="hours-day">Sobota</dt>
+                                    <dd class="hours-time">9:00–16:00</dd>
+                                </div>
+                                <div class="hours-row">
+                                    <dt class="hours-day">Niedziela</dt>
+                                    <dd class="hours-time hours-time--closed">zamknięte</dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </li>
+
+                </ul>
+
+                <!-- Social links -->
+                <div class="social-links" aria-label="Media społecznościowe">
+                    <a href="#" class="social-link" aria-label="Instagram Atelier Piękna" rel="noopener noreferrer">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Facebook Atelier Piękna" rel="noopener noreferrer">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="TikTok Atelier Piękna" rel="noopener noreferrer">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+                        </svg>
+                    </a>
+                </div>
+            </div><!-- /.contact-info -->
+
+            <!-- Right column: map -->
+            <div class="map-container">
+                <iframe
+                    title="Lokalizacja Atelier Piękna na mapie Google Maps"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2444.2!2d21.0208!3d52.2185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecc8c92692e49%3A0xdb2ee81f3aff09e3!2sMokotowska%2C+Warszawa!5e0!3m2!1spl!2spl!4v1711111111111"
+                    width="600"
+                    height="450"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    aria-label="Mapa z lokalizacją salonu na ul. Mokotowskiej 27 w Warszawie"
+                ></iframe>
+            </div>
+
+        </div><!-- /.contact-grid -->
+
+    </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer" role="contentinfo">
+    <div class="container">
+        <div class="footer-grid">
+
+            <!-- Column 1: Logo & description -->
+            <div class="footer-col footer-col--brand">
+                <a href="#hero" class="footer-logo">Atelier Piękna</a>
+                <p class="footer-desc">
+                    Ekskluzywny salon kosmetyczny w sercu Warszawy.
+                    Łączymy profesjonalizm z indywidualnym podejściem,
+                    by każda klientka czuła się wyjątkowo.
+                </p>
+            </div>
+
+            <!-- Column 2: Navigation links -->
+            <nav class="footer-col footer-col--nav" aria-label="Nawigacja stopki">
+                <h3 class="footer-col__heading">Nawigacja</h3>
+                <ul class="footer-nav">
+                    <li><a href="#o-nas" class="footer-link">O nas</a></li>
+                    <li><a href="#uslugi" class="footer-link">Usługi</a></li>
+                    <li><a href="#galeria" class="footer-link">Galeria</a></li>
+                    <li><a href="#cennik" class="footer-link">Cennik</a></li>
+                    <li><a href="#rezerwacja" class="footer-link">Rezerwacja</a></li>
+                    <li><a href="#kontakt" class="footer-link">Kontakt</a></li>
+                </ul>
+            </nav>
+
+            <!-- Column 3: Newsletter -->
+            <div class="footer-col footer-col--newsletter">
+                <h3 class="footer-col__heading">Newsletter</h3>
+                <p class="footer-newsletter__desc">
+                    Zapisz się po rabat <strong>–15%</strong> na pierwszą wizytę
+                </p>
+                <form class="footer-newsletter__form" aria-label="Formularz zapisu do newslettera" novalidate>
+                    <div class="newsletter-input-group">
+                        <label for="newsletter-email" class="sr-only">Adres e-mail</label>
+                        <input
+                            type="email"
+                            id="newsletter-email"
+                            name="newsletter-email"
+                            class="newsletter-input"
+                            placeholder="Twój adres e-mail"
+                            required
+                            autocomplete="email"
+                            aria-required="true"
+                        >
+                        <button type="submit" class="btn btn-primary newsletter-btn" aria-label="Zapisz się do newslettera">
+                            Zapisz się
+                        </button>
+                    </div>
+                    <p class="newsletter-privacy">
+                        Możesz wypisać się w każdej chwili. Nie spamujemy.
+                    </p>
+                </form>
+            </div>
+
+        </div><!-- /.footer-grid -->
+
+        <div class="footer-bottom">
+            <p class="footer-disclaimer">
+                Projekt koncepcyjny — element portfolio. Dane fikcyjne.
+            </p>
+            <p class="footer-copy">
+                &copy; 2026 Atelier Piękna. Wszystkie prawa zastrzeżone.
+            </p>
+            <div class="footer-social" aria-label="Media społecznościowe">
+                <a href="#" class="footer-social-link" aria-label="Instagram" rel="noopener noreferrer">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                    </svg>
+                </a>
+                <a href="#" class="footer-social-link" aria-label="Facebook" rel="noopener noreferrer">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                    </svg>
+                </a>
+                <a href="#" class="footer-social-link" aria-label="TikTok" rel="noopener noreferrer">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+                    </svg>
+                </a>
+            </div>
+        </div><!-- /.footer-bottom -->
+
+    </div>
+</footer>
+
+<!-- ============================================================
+     JSON-LD STRUCTURED DATA
+     ============================================================ -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BeautySalon",
+    "name": "Atelier Piękna",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "ul. Mokotowska 27",
+        "postalCode": "00-560",
+        "addressLocality": "Warszawa",
+        "addressCountry": "PL"
+    },
+    "telephone": "+48500123456",
+    "email": "kontakt@atelierpiekna.pl",
+    "openingHoursSpecification": [
+        {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "20:00"},
+        {"@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "16:00"}
+    ],
+    "priceRange": "$$"
+}
+</script>
+
+<!-- GSAP -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/SplitText.min.js"></script>
+<!-- App -->
+<script src="js/data.js"></script>
+<script src="js/components.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>

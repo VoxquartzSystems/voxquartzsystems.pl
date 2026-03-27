@@ -1,0 +1,106 @@
+<section id="faq" class="faq-section fade-in">
+    <span class="section-label">Częste pytania</span>
+    <h2 class="section-title">FAQ</h2>
+    <p class="section-desc">Odpowiedzi na najczęściej zadawane pytania o współpracę z nami.</p>
+
+    <div class="faq-list">
+        <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+                Ile trwa realizacja typowego projektu?
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-inner">
+                    Działamy ekspresowo — większość projektów dostarczamy w ciągu tygodnia. Prosta strona internetowa to 2-3 dni, aplikacja webowa 4-5 dni, a złożony system z integracjami AI do 7 dni. Każdy projekt zaczyna się od dokładnej estymacji, więc znasz termin jeszcze przed startem.
+                </div>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+                Jak wygląda model cenowy?
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-inner">
+                    Pracuję w modelu fixed-price lub time &amp; material — w zależności od projektu. Na początku przygotowuję szczegółową wycenę z rozkładem na etapy. Nie ma ukrytych kosztów — cena obejmuje design, development, testy i wdrożenie.
+                </div>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+                Czy podpisujesz NDA?
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-inner">
+                    Tak, standardowo podpisuję NDA przed rozpoczęciem współpracy. Poufność Twojego pomysłu jest dla mnie priorytetem. Mogę również dostosować umowę do Twoich specyficznych wymagań prawnych.
+                </div>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+                Co z utrzymaniem po wdrożeniu?
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-inner">
+                    Każdy projekt obejmuje 30 dni bezpłatnego wsparcia po wdrożeniu. Następnie oferuję pakiety utrzymaniowe (monitoring, aktualizacje, poprawki) lub współpracę ad-hoc. Nie zostawiam klientów bez opieki.
+                </div>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+                Jakie technologie polecasz na start?
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-inner">
+                    To zależy od projektu. Dla MVP zazwyczaj rekomenduję Next.js + Supabase (szybki start, niskie koszty). Dla aplikacji mobilnych — Flutter (jeden kod na iOS i Android). Dla projektów z AI — Python + OpenAI/Claude API. Na bezpłatnej konsultacji doradzę najlepszy stack.
+                </div>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+                <span>Jakie integracje systemów IT oferujesz?</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+                <p>Specjalizuję się w integracjach systemów e-commerce, CRM, ERP, płatności i kurierskich. Łączę m.in. BaseLinker, Shoper, WooCommerce z systemami płatności i logistyki. <a href="/integracje/" style="color:var(--color-accent);text-decoration:underline;">Zobacz pełną listę integracji →</a></p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+                <span>Czy wdrażasz rozwiązania AI w firmach?</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+                <p>Tak — wdrażam AI w e-commerce, logistyce, medycynie i wielu innych branżach. Od chatbotów i automatyzacji po analizę danych i rekomendacje. <a href="/ai-dla/" style="color:var(--color-accent);text-decoration:underline;">Sprawdź AI dla Twojej branży →</a> lub <a href="/narzedzia/audyt-gotowosci-ai/" style="color:var(--color-accent);text-decoration:underline;">zrób bezpłatny audyt gotowości na AI</a>.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+(function() {
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => {
+            const isOpen = item.classList.contains('open');
+
+            // Close all
+            faqItems.forEach(i => {
+                i.classList.remove('open');
+                i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+            });
+
+            // Open clicked if it was closed
+            if (!isOpen) {
+                item.classList.add('open');
+                question.setAttribute('aria-expanded', 'true');
+            }
+        });
+    });
+})();
+</script>

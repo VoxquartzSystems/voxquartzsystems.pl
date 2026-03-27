@@ -1,0 +1,1541 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<title>ZielonyDom — Ekologiczne produkty dla domu</title>
+<meta name="description" content="ZielonyDom — demo sklepu internetowego z ekologicznymi produktami, działającym koszykiem, filtrami kategorii i sekcją bestsellerów.">
+<meta name="robots" content="noindex, follow">
+<meta name="author" content="VoxquartzSystems">
+<meta property="og:title" content="ZielonyDom — Demo sklepu e-commerce | VoxquartzSystems">
+<meta property="og:description" content="Demo sklepu internetowego z ekologicznymi produktami i działającym koszykiem.">
+<meta property="og:image" content="https://voxquartzsystems.pl/og-image.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://voxquartzsystems.pl/realizacje/zielonydom/">
+<meta property="og:locale" content="pl_PL">
+<meta property="og:site_name" content="VoxquartzSystems">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ZielonyDom — Demo e-commerce | VoxquartzSystems">
+<meta name="twitter:description" content="Demo sklepu internetowego z ekologicznymi produktami i działającym koszykiem.">
+<meta name="twitter:image" content="https://voxquartzsystems.pl/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET & BASE ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#16A34A;--accent:#22c55e;--warm-bg:#fefce8;--green-bg:#f0fdf4;
+  --dark:#1a2e1a;--text:#2d4a2d;--muted:#5a7a5a;--light:#e8f5e8;
+  --white:#ffffff;--shadow:0 4px 20px rgba(22,163,74,.1);
+  --shadow-lg:0 8px 32px rgba(22,163,74,.15);--radius:18px;--radius-sm:12px;
+  --font-body:'Inter',sans-serif;--font-heading:'Playfair Display',serif;
+  --font-label:'Manrope',sans-serif;
+  --blue:#3b82f6;--red:#dc2626;--gold:#eab308;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font-body);color:var(--text);background:var(--white);line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;border:none;font-family:var(--font-label)}
+ul{list-style:none}
+h1,h2,h3,h4{font-family:var(--font-heading);color:var(--dark)}
+.container{width:100%;max-width:1200px;margin:0 auto;padding:0 20px}
+
+/* ===== FADE-IN ANIMATION ===== */
+.fade-in{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+.stagger-1{transition-delay:.05s}.stagger-2{transition-delay:.1s}
+.stagger-3{transition-delay:.15s}.stagger-4{transition-delay:.2s}
+.stagger-5{transition-delay:.25s}.stagger-6{transition-delay:.3s}
+.stagger-7{transition-delay:.35s}.stagger-8{transition-delay:.4s}
+
+/* ===== NAVBAR ===== */
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(22,163,74,.08);padding:0 20px}
+.navbar .container{display:flex;align-items:center;justify-content:space-between;height:68px}
+.nav-logo{display:flex;align-items:center;gap:8px;font-family:var(--font-heading);font-size:1.5rem;font-weight:700;color:var(--dark)}
+.nav-logo svg{flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{font-family:var(--font-label);font-size:.9rem;font-weight:500;color:var(--muted);transition:color .25s}
+.nav-links a:hover{color:var(--primary)}
+.nav-back{font-size:.85rem;color:var(--primary);font-weight:600;white-space:nowrap}
+.nav-right{display:flex;align-items:center;gap:16px}
+.cart-btn{position:relative;background:none;padding:8px;border-radius:50%;transition:background .2s}
+.cart-btn:hover{background:var(--green-bg)}
+.cart-btn svg{display:block}
+.cart-badge{position:absolute;top:0;right:0;width:20px;height:20px;background:var(--primary);color:var(--white);font-family:var(--font-label);font-size:.7rem;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;transform:scale(0);transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
+.cart-badge.show{transform:scale(1)}
+.cart-badge.bounce{animation:badgeBounce .4s ease}
+@keyframes badgeBounce{0%{transform:scale(1)}50%{transform:scale(1.35)}100%{transform:scale(1)}}
+
+/* AGENT 6: Cart Shake Animation */
+@keyframes cartShake{0%{transform:rotate(0)}15%{transform:rotate(12deg)}30%{transform:rotate(-10deg)}45%{transform:rotate(8deg)}60%{transform:rotate(-5deg)}75%{transform:rotate(3deg)}100%{transform:rotate(0)}}
+.cart-btn.shake{animation:cartShake .5s ease}
+
+/* Hamburger */
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;padding:8px}
+.hamburger span{display:block;width:24px;height:2.5px;background:var(--dark);border-radius:2px;transition:transform .3s,opacity .3s}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+/* Mobile Nav */
+.mobile-nav{display:flex;visibility:hidden;pointer-events:none;position:fixed;top:68px;left:0;right:0;background:var(--white);border-bottom:1px solid var(--light);padding:20px;flex-direction:column;gap:16px;z-index:99;transform:translateY(-10px);opacity:0;transition:transform .3s,opacity .3s}
+.mobile-nav.open{visibility:visible;pointer-events:auto;transform:translateY(0);opacity:1}
+.mobile-nav a{font-family:var(--font-label);font-size:1rem;font-weight:500;color:var(--text);padding:8px 0;border-bottom:1px solid var(--light)}
+
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+}
+
+/* ===== HERO ===== */
+.hero{background:linear-gradient(135deg,rgba(22,101,52,0.9) 0%,rgba(22,163,74,0.9) 40%,rgba(34,197,94,0.85) 70%,rgba(134,239,172,0.85) 100%),url('images/hero.jpg') center/cover no-repeat;padding:80px 20px 100px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-60px;right:-60px;width:300px;height:300px;background:rgba(255,255,255,.06);border-radius:50%}
+.hero::after{content:'';position:absolute;bottom:-40px;left:-40px;width:200px;height:200px;background:rgba(255,255,255,.04);border-radius:50%}
+.hero-content{position:relative;z-index:2;max-width:680px}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem);color:var(--white);line-height:1.15;margin-bottom:16px;font-weight:800}
+.hero p{font-size:clamp(1rem,2.5vw,1.2rem);color:rgba(255,255,255,.88);margin-bottom:32px;max-width:500px;line-height:1.7}
+.hero-cta{display:inline-flex;align-items:center;gap:8px;background:var(--white);color:var(--primary);font-family:var(--font-label);font-weight:700;font-size:1rem;padding:16px 36px;border-radius:60px;transition:transform .25s,box-shadow .25s}
+.hero-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.hero-leaves{position:absolute;right:5%;top:50%;transform:translateY(-50%);opacity:.15;z-index:1}
+@media(min-width:768px){.hero{padding:100px 20px 120px}.hero-leaves{opacity:.2}}
+
+/* AGENT 6: Floating Leaves */
+@keyframes leafFloat1{0%{transform:translate(0,0) rotate(0deg)}25%{transform:translate(15px,-30px) rotate(20deg)}50%{transform:translate(-10px,-60px) rotate(-10deg)}75%{transform:translate(20px,-90px) rotate(15deg)}100%{transform:translate(0,-120vh) rotate(30deg)}}
+@keyframes leafFloat2{0%{transform:translate(0,0) rotate(0deg)}25%{transform:translate(-20px,-25px) rotate(-15deg)}50%{transform:translate(10px,-55px) rotate(20deg)}75%{transform:translate(-15px,-85px) rotate(-5deg)}100%{transform:translate(5px,-120vh) rotate(-20deg)}}
+.floating-leaf{position:absolute;z-index:1;pointer-events:none;opacity:0.15}
+.floating-leaf svg{display:block}
+.leaf-1{bottom:-20px;left:10%;animation:leafFloat1 12s ease-in-out infinite;opacity:.12}
+.leaf-2{bottom:-30px;left:25%;animation:leafFloat2 15s ease-in-out infinite 2s;opacity:.1}
+.leaf-3{bottom:-10px;left:45%;animation:leafFloat1 18s ease-in-out infinite 4s;opacity:.08}
+.leaf-4{bottom:-25px;left:60%;animation:leafFloat2 14s ease-in-out infinite 1s;opacity:.14}
+.leaf-5{bottom:-15px;left:75%;animation:leafFloat1 16s ease-in-out infinite 3s;opacity:.1}
+.leaf-6{bottom:-20px;left:90%;animation:leafFloat2 13s ease-in-out infinite 5s;opacity:.12}
+.leaf-7{bottom:-30px;left:35%;animation:leafFloat1 17s ease-in-out infinite 6s;opacity:.09}
+
+/* AGENT 6: Tree Counter */
+.tree-counter{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.15);backdrop-filter:blur(8px);padding:12px 24px;border-radius:60px;margin-top:24px;color:var(--white);font-family:var(--font-label);font-size:.9rem;font-weight:600}
+.tree-counter svg{flex-shrink:0}
+.tree-counter-num{font-weight:700;font-size:1.1rem;color:#86efac}
+
+/* ===== CATEGORY FILTER ===== */
+.filter-section{padding:48px 20px 8px}
+.filter-group{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.filter-btn{background:var(--green-bg);color:var(--muted);padding:10px 22px;border-radius:60px;font-size:.88rem;font-weight:600;transition:all .25s}
+.filter-btn:hover{background:var(--light);color:var(--primary)}
+.filter-btn.active{background:var(--primary);color:var(--white)}
+
+/* ===== PRODUCT GRID ===== */
+.products-section{padding:32px 20px 60px}
+.products-section h2{text-align:center;font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:8px}
+.products-section .section-sub{text-align:center;color:var(--muted);margin-bottom:36px;font-size:.95rem}
+.product-grid{display:grid;grid-template-columns:1fr;gap:24px}
+@media(min-width:768px){.product-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.product-grid{grid-template-columns:repeat(4,1fr)}}
+
+.product-card{background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform .35s ease,box-shadow .35s ease,opacity .5s ease;position:relative}
+.product-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.product-card.hidden{opacity:0;transform:scale(.92);pointer-events:none;position:absolute;visibility:hidden}
+.product-card.showing{opacity:1;transform:scale(1);position:relative;visibility:visible}
+
+.product-img{height:200px;position:relative;overflow:hidden}
+.product-img .badge-eco{position:absolute;top:12px;left:12px;background:var(--primary);color:var(--white);font-family:var(--font-label);font-size:.7rem;font-weight:700;padding:4px 12px;border-radius:60px;letter-spacing:.5px;text-transform:uppercase}
+
+/* AGENT 6: Product Badges */
+.product-badge{position:absolute;top:12px;right:12px;font-family:var(--font-label);font-size:.68rem;font-weight:700;padding:4px 12px;border-radius:60px;letter-spacing:.5px;text-transform:uppercase;z-index:2}
+.badge-bestseller{background:var(--primary);color:var(--white)}
+.badge-new{background:var(--blue);color:var(--white)}
+.badge-lastunits{background:var(--red);color:var(--white);animation:badgePulse 1.5s ease-in-out infinite}
+@keyframes badgePulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.85;transform:scale(1.05)}}
+
+/* AGENT 6: Star Rating */
+.star-rating{display:flex;align-items:center;gap:2px;margin-bottom:8px}
+.star-rating .stars{position:relative;display:inline-block;font-size:0;line-height:1}
+.star-rating .stars::before{content:'\2605\2605\2605\2605\2605';font-size:.85rem;color:#e0e0e0;letter-spacing:1px}
+.star-rating .stars-filled{position:absolute;top:0;left:0;overflow:hidden;white-space:nowrap}
+.star-rating .stars-filled::before{content:'\2605\2605\2605\2605\2605';font-size:.85rem;color:var(--gold);letter-spacing:1px}
+.star-rating .rating-num{font-family:var(--font-label);font-size:.75rem;color:var(--muted);margin-left:4px}
+
+/* AGENT 6: Quick-Add Overlay */
+.quick-add-overlay{position:absolute;inset:0;background:rgba(22,101,52,.85);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;opacity:0;transition:opacity .3s ease;z-index:3;pointer-events:none}
+.product-card:hover .quick-add-overlay{opacity:1;pointer-events:auto}
+.quick-add-label{color:var(--white);font-family:var(--font-label);font-size:.85rem;font-weight:600}
+.quick-add-btns{display:flex;gap:8px}
+.quick-add-btn{width:40px;height:40px;border-radius:50%;background:var(--white);color:var(--primary);font-family:var(--font-label);font-size:.95rem;font-weight:700;display:flex;align-items:center;justify-content:center;transition:transform .15s,background .15s}
+.quick-add-btn:hover{transform:scale(1.15);background:#dcfce7}
+
+/* AGENT 6: Fly to cart animation */
+.fly-to-cart{position:fixed;z-index:9999;pointer-events:none;border-radius:var(--radius-sm);width:60px;height:60px;box-shadow:var(--shadow-lg);transition:none}
+
+.product-body{padding:18px 20px 22px}
+.product-cat{font-family:var(--font-label);font-size:.72rem;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.product-name{font-family:var(--font-heading);font-size:1.1rem;font-weight:600;color:var(--dark);margin-bottom:6px}
+.product-desc{font-size:.85rem;color:var(--muted);margin-bottom:14px;line-height:1.5}
+.product-footer{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.product-price{font-family:var(--font-label);font-size:1.2rem;font-weight:700;color:var(--dark)}
+.add-to-cart{background:var(--primary);color:var(--white);font-size:.82rem;font-weight:600;padding:10px 18px;border-radius:var(--radius-sm);transition:background .2s,transform .15s}
+.add-to-cart:hover{background:#15803d}
+.add-to-cart.added{animation:cartPop .4s ease}
+@keyframes cartPop{0%{transform:scale(1)}30%{transform:scale(1.12);background:#86efac}100%{transform:scale(1)}}
+
+/* ===== BESTSELLERS ===== */
+.bestsellers-section{padding:60px 20px;background:var(--green-bg)}
+.bestsellers-section h2{text-align:center;font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:8px}
+.bestsellers-section .section-sub{text-align:center;color:var(--muted);margin-bottom:32px;font-size:.95rem}
+.bestseller-scroll{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:8px 4px 20px;scrollbar-width:thin;scrollbar-color:var(--accent) transparent}
+.bestseller-scroll::-webkit-scrollbar{height:6px}
+.bestseller-scroll::-webkit-scrollbar-thumb{background:var(--accent);border-radius:10px}
+.bestseller-card{flex:0 0 280px;scroll-snap-align:start;background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform .3s}
+.bestseller-card:hover{transform:translateY(-4px)}
+.bestseller-img{height:180px;position:relative}
+.bestseller-badge{position:absolute;top:12px;right:12px;background:#eab308;color:var(--white);font-family:var(--font-label);font-size:.7rem;font-weight:700;padding:5px 14px;border-radius:60px;letter-spacing:.5px}
+.bestseller-body{padding:16px 18px 20px}
+.bestseller-name{font-family:var(--font-heading);font-size:1.05rem;font-weight:600;margin-bottom:4px;color:var(--dark)}
+.bestseller-price{font-family:var(--font-label);font-size:1.1rem;font-weight:700;color:var(--primary);margin-bottom:12px}
+.bestseller-add{width:100%;background:var(--primary);color:var(--white);font-size:.85rem;font-weight:600;padding:10px;border-radius:var(--radius-sm);transition:background .2s}
+.bestseller-add:hover{background:#15803d}
+.bestseller-add.added{animation:cartPop .4s ease}
+
+/* ===== WHY ECO ===== */
+.why-eco{padding:80px 20px;background:var(--warm-bg)}
+.why-eco h2{text-align:center;font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:40px}
+.why-grid{display:grid;grid-template-columns:1fr;gap:32px}
+@media(min-width:768px){.why-grid{grid-template-columns:repeat(3,1fr)}}
+.why-card{text-align:center;padding:32px 24px;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow)}
+.why-icon{width:64px;height:64px;border-radius:50%;background:var(--green-bg);display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
+.why-card h3{font-size:1.15rem;margin-bottom:10px;font-weight:700}
+.why-card p{font-size:.9rem;color:var(--muted);line-height:1.65}
+
+/* AGENT 6: Nasz Wplyw Section */
+.impact-section{padding:80px 20px;background:linear-gradient(135deg,#dcfce7 0%,#f0fdf4 50%,#ecfdf5 100%);position:relative;overflow:hidden}
+.impact-section::before{content:'';position:absolute;top:-50px;right:-50px;width:200px;height:200px;border-radius:50%;background:rgba(22,163,74,.06)}
+.impact-section::after{content:'';position:absolute;bottom:-30px;left:-30px;width:150px;height:150px;border-radius:50%;background:rgba(22,163,74,.04)}
+.impact-section h2{text-align:center;font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:12px}
+.impact-section .section-sub{text-align:center;color:var(--muted);margin-bottom:48px;font-size:.95rem}
+.impact-grid{display:grid;grid-template-columns:1fr;gap:32px;position:relative;z-index:1}
+@media(min-width:768px){.impact-grid{grid-template-columns:repeat(3,1fr)}}
+.impact-card{text-align:center;padding:40px 28px;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);transition:transform .3s}
+.impact-card:hover{transform:translateY(-4px)}
+.impact-icon{font-size:2.8rem;margin-bottom:16px;line-height:1}
+.impact-number{font-family:var(--font-label);font-size:2.6rem;font-weight:700;color:var(--primary);margin-bottom:6px;line-height:1.1}
+.impact-label{font-family:var(--font-label);font-size:.95rem;color:var(--muted);font-weight:500}
+
+/* AGENT 6: Opinie Section */
+.reviews-section{padding:80px 20px;background:var(--white)}
+.reviews-section h2{text-align:center;font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:12px}
+.reviews-section .section-sub{text-align:center;color:var(--muted);margin-bottom:48px;font-size:.95rem}
+.reviews-grid{display:grid;grid-template-columns:1fr;gap:24px}
+@media(min-width:768px){.reviews-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.reviews-grid{grid-template-columns:repeat(4,1fr)}}
+.review-card{background:var(--green-bg);border-radius:var(--radius);padding:28px 24px;box-shadow:var(--shadow);transition:transform .3s}
+.review-card:hover{transform:translateY(-3px)}
+.review-header{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.review-avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--accent));display:flex;align-items:center;justify-content:center;color:var(--white);font-family:var(--font-label);font-weight:700;font-size:1.1rem;flex-shrink:0}
+.review-author{font-family:var(--font-label);font-weight:600;font-size:.9rem;color:var(--dark)}
+.review-stars{display:flex;gap:1px;margin-top:2px}
+.review-stars .star{color:var(--gold);font-size:.8rem}
+.review-stars .star.empty{color:#ddd}
+.review-text{font-size:.88rem;color:var(--text);line-height:1.65;margin-bottom:14px;font-style:italic}
+.review-product{display:flex;align-items:center;gap:8px;padding-top:12px;border-top:1px solid rgba(22,163,74,.1)}
+.review-product-img{width:36px;height:36px;border-radius:8px;flex-shrink:0}
+.review-product-name{font-family:var(--font-label);font-size:.75rem;color:var(--muted);font-weight:500}
+
+/* AGENT 6: Blog Section */
+.blog-section{padding:80px 20px;background:linear-gradient(180deg,var(--white) 0%,#f0fdf4 100%)}
+.blog-section h2{text-align:center;font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:12px}
+.blog-section .section-sub{text-align:center;color:var(--muted);margin-bottom:48px;font-size:.95rem}
+.blog-grid{display:grid;grid-template-columns:1fr;gap:28px}
+@media(min-width:768px){.blog-grid{grid-template-columns:repeat(3,1fr)}}
+.blog-card{background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform .3s}
+.blog-card:hover{transform:translateY(-4px)}
+.blog-img{height:180px;background:linear-gradient(135deg,rgba(22,163,74,.15),rgba(34,197,94,.1));display:flex;align-items:center;justify-content:center;position:relative}
+.blog-img-icon{font-size:3rem;opacity:.6}
+.blog-body{padding:22px 24px 28px}
+.blog-tag{font-family:var(--font-label);font-size:.7rem;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.blog-title{font-family:var(--font-heading);font-size:1.15rem;font-weight:700;color:var(--dark);margin-bottom:10px;line-height:1.35}
+.blog-excerpt{font-size:.87rem;color:var(--muted);line-height:1.65;margin-bottom:16px}
+.blog-link{font-family:var(--font-label);font-size:.85rem;font-weight:600;color:var(--primary);transition:color .2s}
+.blog-link:hover{color:#15803d}
+
+/* ===== NEWSLETTER ===== */
+.newsletter{padding:70px 20px;background:linear-gradient(135deg,#dcfce7,#f0fdf4,#ecfdf5)}
+.newsletter-inner{max-width:560px;margin:0 auto;text-align:center}
+.newsletter h2{font-size:clamp(1.5rem,3vw,2rem);margin-bottom:10px}
+.newsletter p{color:var(--muted);margin-bottom:28px;font-size:.95rem}
+.newsletter-form{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.newsletter-form input{flex:1;min-width:220px;padding:14px 20px;border:2px solid var(--light);border-radius:60px;font-family:var(--font-body);font-size:.95rem;outline:none;transition:border-color .25s}
+.newsletter-form input:focus{border-color:var(--primary)}
+.newsletter-form input.input-error{border-color:var(--red)}
+.newsletter-form button{background:var(--primary);color:var(--white);font-size:.9rem;font-weight:700;padding:14px 32px;border-radius:60px;transition:background .2s,transform .2s}
+.newsletter-form button:hover{background:#15803d;transform:translateY(-1px)}
+.newsletter-msg{margin-top:16px;font-family:var(--font-label);font-size:.9rem;font-weight:600;opacity:0;transform:translateY(8px);transition:all .4s}
+.newsletter-msg.show{opacity:1;transform:translateY(0)}
+.newsletter-msg.success{color:var(--primary)}
+.newsletter-msg.error{color:#dc2626}
+
+/* AGENT 6: Eco Certificates */
+.eco-certs{padding:40px 20px 0}
+.eco-certs-inner{display:flex;flex-wrap:wrap;gap:24px;justify-content:center;align-items:center}
+.eco-cert{display:flex;flex-direction:column;align-items:center;gap:8px;opacity:.7;transition:opacity .3s}
+.eco-cert:hover{opacity:1}
+.eco-cert svg{display:block}
+.eco-cert-label{font-family:var(--font-label);font-size:.72rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+
+/* ===== FOOTER ===== */
+.footer{background:var(--dark);color:rgba(255,255,255,.75);padding:60px 20px 0}
+.footer-grid{display:grid;grid-template-columns:1fr;gap:36px;margin-bottom:48px}
+@media(min-width:768px){.footer-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.footer-grid{grid-template-columns:2fr 1fr 1fr 1.5fr}}
+.footer h4{font-family:var(--font-label);font-size:.85rem;font-weight:700;color:var(--white);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:16px}
+.footer p,.footer a{font-size:.88rem;line-height:1.8}
+.footer a{display:block;transition:color .2s}
+.footer a:hover{color:var(--accent)}
+.footer-about p{max-width:280px}
+.footer-contact-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;font-size:.88rem}
+.footer-contact-item svg{flex-shrink:0;margin-top:3px}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding:20px 0;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px}
+.footer-copy{font-size:.82rem}
+.payment-icons{display:flex;gap:12px;align-items:center}
+.payment-icon{width:48px;height:30px;background:rgba(255,255,255,.1);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--font-label);font-size:.6rem;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:.5px}
+
+/* ===== CART DRAWER ===== */
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:200;opacity:0;pointer-events:none;transition:opacity .35s}
+.cart-overlay.open{opacity:1;pointer-events:auto}
+.cart-drawer{position:fixed;top:0;right:0;bottom:0;width:min(400px,90vw);background:var(--white);z-index:201;transform:translateX(100%);transition:transform .4s cubic-bezier(.32,.72,.32,1);display:flex;flex-direction:column;box-shadow:-4px 0 32px rgba(0,0,0,.1)}
+.cart-drawer.open{transform:translateX(0)}
+.cart-header{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid var(--light)}
+.cart-header h3{font-family:var(--font-heading);font-size:1.3rem;font-weight:700}
+.cart-close{background:none;padding:8px;border-radius:50%;transition:background .2s}
+.cart-close:hover{background:var(--green-bg)}
+.cart-items{flex:1;overflow-y:auto;padding:16px 24px}
+.cart-empty{text-align:center;padding:48px 20px;color:var(--muted);font-size:.95rem}
+.cart-empty svg{margin:0 auto 16px;opacity:.3}
+.cart-item{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--light);align-items:flex-start}
+.cart-item-img{width:60px;height:60px;border-radius:var(--radius-sm);flex-shrink:0}
+.cart-item-info{flex:1;min-width:0}
+.cart-item-name{font-family:var(--font-label);font-size:.88rem;font-weight:600;color:var(--dark);margin-bottom:4px}
+.cart-item-price{font-family:var(--font-label);font-size:.82rem;color:var(--muted);margin-bottom:8px}
+.cart-qty{display:flex;align-items:center;gap:0}
+.cart-qty button{width:30px;height:30px;border-radius:8px;background:var(--green-bg);font-size:1rem;font-weight:600;color:var(--dark);display:flex;align-items:center;justify-content:center;transition:background .15s}
+.cart-qty button:hover{background:var(--light)}
+.cart-qty span{width:32px;text-align:center;font-family:var(--font-label);font-size:.9rem;font-weight:600}
+.cart-item-remove{background:none;padding:6px;color:var(--muted);transition:color .2s}
+.cart-item-remove:hover{color:#dc2626}
+.cart-footer{padding:20px 24px;border-top:1px solid var(--light);background:var(--green-bg)}
+.cart-total{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.cart-total-label{font-family:var(--font-label);font-size:.95rem;font-weight:600;color:var(--muted)}
+.cart-total-price{font-family:var(--font-label);font-size:1.35rem;font-weight:700;color:var(--dark)}
+.cart-order-btn{width:100%;background:var(--primary);color:var(--white);font-size:1rem;font-weight:700;padding:16px;border-radius:var(--radius-sm);transition:background .2s}
+.cart-order-btn:hover{background:#15803d}
+
+/* AGENT 6: Cart Progress Bar */
+.cart-progress{margin-bottom:16px}
+.cart-progress-text{font-family:var(--font-label);font-size:.8rem;color:var(--muted);margin-bottom:8px;text-align:center;font-weight:500}
+.cart-progress-text.free{color:var(--primary);font-weight:700}
+.cart-progress-bar{height:6px;background:var(--light);border-radius:10px;overflow:hidden}
+.cart-progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--primary));border-radius:10px;transition:width .4s ease;width:0}
+
+/* AGENT 6: Cart Upsell */
+.cart-upsell{padding:16px 0 0;border-top:1px solid var(--light);margin-top:12px}
+.cart-upsell-title{font-family:var(--font-label);font-size:.82rem;font-weight:700;color:var(--dark);margin-bottom:12px}
+.cart-upsell-item{display:flex;align-items:center;gap:10px;padding:8px 0;cursor:pointer;transition:opacity .2s}
+.cart-upsell-item:hover{opacity:.8}
+.cart-upsell-img{width:44px;height:44px;border-radius:8px;flex-shrink:0}
+.cart-upsell-info{flex:1;min-width:0}
+.cart-upsell-name{font-family:var(--font-label);font-size:.8rem;font-weight:600;color:var(--dark)}
+.cart-upsell-price{font-family:var(--font-label);font-size:.75rem;color:var(--muted)}
+.cart-upsell-add{background:var(--green-bg);color:var(--primary);font-size:.72rem;font-weight:700;padding:6px 12px;border-radius:8px;transition:background .15s;white-space:nowrap}
+.cart-upsell-add:hover{background:var(--light)}
+
+/* ===== REDUCED MOTION ===== */
+@media(prefers-reduced-motion:reduce){
+  .fade-in{opacity:1;transform:none;transition:none}
+  .floating-leaf{animation:none!important}
+  .cart-btn.shake{animation:none}
+  .cart-badge.bounce{animation:none}
+  .add-to-cart.added{animation:none}
+  .bestseller-add.added{animation:none}
+  .badge-lastunits{animation:none}
+  .fly-to-cart{display:none!important}
+  .impact-number{transition:none}
+  html{scroll-behavior:auto}
+  *{transition-duration:0.01ms!important;animation-duration:0.01ms!important}
+}
+
+/* ===== 320px fixes ===== */
+@media(max-width:360px){
+  .hero{padding:50px 12px 60px}
+  .hero h1{font-size:1.7rem}
+  .hero-cta{padding:12px 24px;font-size:.9rem}
+  .tree-counter{padding:8px 14px;font-size:.78rem}
+  .filter-group{gap:6px}
+  .filter-btn{padding:8px 14px;font-size:.8rem}
+  .product-body{padding:14px 14px 18px}
+  .impact-card{padding:28px 18px}
+  .impact-number{font-size:2rem}
+  .review-card{padding:20px 16px}
+  .blog-body{padding:16px 18px 22px}
+  .newsletter-form input{min-width:180px}
+  .cart-drawer{width:100vw}
+}
+</style>
+</head>
+<body style="padding-top:40px;">
+<div style="position:fixed;top:0;left:0;right:0;z-index:9999;background:#6366f1;color:#fff;text-align:center;padding:8px 16px;font-family:Inter,system-ui,sans-serif;font-size:14px;">
+  To jest demo realizacji. <a href="/" style="color:#fff;text-decoration:underline;font-weight:600;">Wróć do portfolio VoxquartzSystems</a>
+</div>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+  <div class="container">
+    <a href="#" class="nav-logo">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <path d="M16 4C16 4 8 8 8 16C8 20.4 11.6 24 16 24" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M16 4C16 4 24 8 24 16C24 20.4 20.4 24 16 24" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M16 24V28" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M16 10C16 10 12 14 14 18" stroke="#16A34A" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+        <path d="M16 10C16 10 20 14 18 18" stroke="#22c55e" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+      </svg>
+      ZielonyDom
+    </a>
+    <div class="nav-links">
+      <a href="/" class="nav-back">&larr; Powrót do portfolio</a>
+      <a href="#produkty">Produkty</a>
+      <a href="#bestsellery">Bestsellery</a>
+      <a href="#o-nas">O nas</a>
+      <a href="#kontakt">Kontakt</a>
+    </div>
+    <div class="nav-right">
+      <button class="cart-btn" id="cartToggle" aria-label="Koszyk">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a2e1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </button>
+      <button type="button" class="hamburger" id="hamburger" aria-label="Otwórz menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="/">&larr; Powrót do portfolio</a>
+  <a href="#produkty" class="mobile-nav-link">Produkty</a>
+  <a href="#bestsellery" class="mobile-nav-link">Bestsellery</a>
+  <a href="#o-nas" class="mobile-nav-link">O nas</a>
+  <a href="#kontakt" class="mobile-nav-link">Kontakt</a>
+</div>
+
+<!-- AGENT 6: Hero with Floating Leaves & Tree Counter -->
+<section class="hero">
+  <div class="container hero-content">
+    <h1>Ekologicznie.<br>Naturalnie.<br>Pięknie.</h1>
+    <p>Odkryj produkty, które dbają o Twój dom i planetę. Naturalne materiały, zero plastiku, pełna harmonia z naturą.</p>
+    <a href="#produkty" class="hero-cta">
+      Zobacz produkty
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <div class="tree-counter" aria-live="polite">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#86efac" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V8"/><path d="M5 12l7-8 7 8"/><path d="M3 17l9-6 9 6"/></svg>
+      Posadziliśmy <span class="tree-counter-num" id="treeCount">1 247</span> drzew dzięki Waszym zakupom
+    </div>
+  </div>
+
+  <!-- Floating Leaves -->
+  <div class="floating-leaf leaf-1" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 2C16 2 6 10 6 20C6 26 10 30 16 30C22 30 26 26 26 20C26 10 16 2 16 2Z" fill="rgba(255,255,255,.5)"/><path d="M16 6V26" stroke="rgba(255,255,255,.3)" stroke-width="1"/></svg></div>
+  <div class="floating-leaf leaf-2" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 32 32" fill="none"><path d="M16 2C16 2 6 10 6 20C6 26 10 30 16 30C22 30 26 26 26 20C26 10 16 2 16 2Z" fill="rgba(255,255,255,.5)"/></svg></div>
+  <div class="floating-leaf leaf-3" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 32 32" fill="none"><path d="M16 2C16 2 6 10 6 20C6 26 10 30 16 30C22 30 26 26 26 20C26 10 16 2 16 2Z" fill="rgba(255,255,255,.5)"/></svg></div>
+  <div class="floating-leaf leaf-4" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 32 32" fill="none"><path d="M16 2C16 2 6 10 6 20C6 26 10 30 16 30C22 30 26 26 26 20C26 10 16 2 16 2Z" fill="rgba(255,255,255,.5)"/><path d="M16 6V26" stroke="rgba(255,255,255,.3)" stroke-width="1"/></svg></div>
+  <div class="floating-leaf leaf-5" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 32 32" fill="none"><path d="M16 2C16 2 6 10 6 20C6 26 10 30 16 30C22 30 26 26 26 20C26 10 16 2 16 2Z" fill="rgba(255,255,255,.5)"/></svg></div>
+  <div class="floating-leaf leaf-6" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 32 32" fill="none"><path d="M16 2C16 2 6 10 6 20C6 26 10 30 16 30C22 30 26 26 26 20C26 10 16 2 16 2Z" fill="rgba(255,255,255,.5)"/></svg></div>
+  <div class="floating-leaf leaf-7" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 32 32" fill="none"><path d="M16 2C16 2 6 10 6 20C6 26 10 30 16 30C22 30 26 26 26 20C26 10 16 2 16 2Z" fill="rgba(255,255,255,.5)"/></svg></div>
+
+  <div class="hero-leaves" aria-hidden="true">
+    <svg width="260" height="260" viewBox="0 0 260 260" fill="none">
+      <ellipse cx="130" cy="100" rx="100" ry="80" fill="rgba(255,255,255,.08)" transform="rotate(-15 130 100)"/>
+      <path d="M80 200 Q130 120 180 200 Q130 160 80 200Z" fill="rgba(255,255,255,.06)"/>
+      <circle cx="200" cy="60" r="40" fill="rgba(255,255,255,.05)"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ===== CATEGORY FILTER ===== -->
+<section class="filter-section" id="produkty">
+  <div class="container">
+    <div class="filter-group">
+      <button class="filter-btn active" data-filter="all">Wszystkie</button>
+      <button class="filter-btn" data-filter="kuchnia">Kuchnia</button>
+      <button class="filter-btn" data-filter="lazienka">Łazienka</button>
+      <button class="filter-btn" data-filter="torby">Torby</button>
+      <button class="filter-btn" data-filter="dekoracje">Dekoracje</button>
+    </div>
+  </div>
+</section>
+
+<!-- AGENT 6: Product Grid with Badges, Ratings, Quick-Add -->
+<section class="products-section">
+  <div class="container">
+    <h2>Nasze produkty</h2>
+    <p class="section-sub">Ekologiczne rozwiązania na każdy dzień</p>
+    <div class="product-grid" id="productGrid">
+
+      <!-- Product 1 -->
+      <div class="product-card fade-in stagger-1 showing" data-category="lazienka" data-id="1" data-name="Mydelniczka bambusowa" data-price="39">
+        <div class="product-img" style="background:url('images/product-1.jpg') center/cover no-repeat">
+          <span class="badge-eco">Eko</span>
+          <span class="product-badge badge-bestseller">Bestseller</span>
+          <div class="quick-add-overlay">
+            <span class="quick-add-label">Szybkie dodanie</span>
+            <div class="quick-add-btns">
+              <button class="quick-add-btn" data-id="1" data-qty="1">1</button>
+              <button class="quick-add-btn" data-id="1" data-qty="2">2</button>
+              <button class="quick-add-btn" data-id="1" data-qty="3">3</button>
+            </div>
+          </div>
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Łazienka</div>
+          <h3 class="product-name">Mydelniczka bambusowa</h3>
+          <div class="star-rating"><div class="stars"><div class="stars-filled" style="width:92%"></div></div><span class="rating-num">4.6</span></div>
+          <p class="product-desc">Ręcznie wykonana z naturalnego bambusa. Odprowadza wodę dzięki żłobieniom.</p>
+          <div class="product-footer">
+            <span class="product-price">39 zł</span>
+            <button class="add-to-cart" data-id="1">Dodaj do koszyka</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-card fade-in stagger-2 showing" data-category="torby" data-id="2" data-name="Torba bawełniana &quot;Eco&quot;" data-price="29">
+        <div class="product-img" style="background:url('images/product-2.jpg') center/cover no-repeat">
+          <span class="badge-eco">Eko</span>
+          <span class="product-badge badge-new">Nowość</span>
+          <div class="quick-add-overlay">
+            <span class="quick-add-label">Szybkie dodanie</span>
+            <div class="quick-add-btns">
+              <button class="quick-add-btn" data-id="2" data-qty="1">1</button>
+              <button class="quick-add-btn" data-id="2" data-qty="2">2</button>
+              <button class="quick-add-btn" data-id="2" data-qty="3">3</button>
+            </div>
+          </div>
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Torby</div>
+          <h3 class="product-name">Torba bawełniana &bdquo;Eco&rdquo;</h3>
+          <div class="star-rating"><div class="stars"><div class="stars-filled" style="width:88%"></div></div><span class="rating-num">4.4</span></div>
+          <p class="product-desc">100% organiczna bawełna z certyfikatem GOTS. Pojemność 15 litrów.</p>
+          <div class="product-footer">
+            <span class="product-price">29 zł</span>
+            <button class="add-to-cart" data-id="2">Dodaj do koszyka</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card fade-in stagger-3 showing" data-category="kuchnia" data-id="3" data-name="Zestaw słomek bambusowych (6szt)" data-price="24">
+        <div class="product-img" style="background:url('images/product-3.jpg') center/cover no-repeat">
+          <span class="badge-eco">Eko</span>
+          <span class="product-badge badge-lastunits">Ostatnie sztuki</span>
+          <div class="quick-add-overlay">
+            <span class="quick-add-label">Szybkie dodanie</span>
+            <div class="quick-add-btns">
+              <button class="quick-add-btn" data-id="3" data-qty="1">1</button>
+              <button class="quick-add-btn" data-id="3" data-qty="2">2</button>
+              <button class="quick-add-btn" data-id="3" data-qty="3">3</button>
+            </div>
+          </div>
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Kuchnia</div>
+          <h3 class="product-name">Zestaw słomek bambusowych (6szt)</h3>
+          <div class="star-rating"><div class="stars"><div class="stars-filled" style="width:96%"></div></div><span class="rating-num">4.8</span></div>
+          <p class="product-desc">Wielorazowe słomki ze szczoteczką do czyszczenia. Różne rozmiary.</p>
+          <div class="product-footer">
+            <span class="product-price">24 zł</span>
+            <button class="add-to-cart" data-id="3">Dodaj do koszyka</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="product-card fade-in stagger-4 showing" data-category="dekoracje" data-id="4" data-name="Świeca sojowa &quot;Las&quot;" data-price="45">
+        <div class="product-img" style="background:url('images/product-4.jpg') center/cover no-repeat">
+          <span class="badge-eco">Eko</span>
+          <span class="product-badge badge-bestseller">Bestseller</span>
+          <div class="quick-add-overlay">
+            <span class="quick-add-label">Szybkie dodanie</span>
+            <div class="quick-add-btns">
+              <button class="quick-add-btn" data-id="4" data-qty="1">1</button>
+              <button class="quick-add-btn" data-id="4" data-qty="2">2</button>
+              <button class="quick-add-btn" data-id="4" data-qty="3">3</button>
+            </div>
+          </div>
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Dekoracje</div>
+          <h3 class="product-name">Świeca sojowa &bdquo;Las&rdquo;</h3>
+          <div class="star-rating"><div class="stars"><div class="stars-filled" style="width:98%"></div></div><span class="rating-num">4.9</span></div>
+          <p class="product-desc">Naturalny wosk sojowy z olejkami leśnymi. Czas palenia ok. 40 godzin.</p>
+          <div class="product-footer">
+            <span class="product-price">45 zł</span>
+            <button class="add-to-cart" data-id="4">Dodaj do koszyka</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 5 -->
+      <div class="product-card fade-in stagger-5 showing" data-category="kuchnia" data-id="5" data-name="Szczotka do naczyń kokosowa" data-price="19">
+        <div class="product-img" style="background:url('images/product-5.jpg') center/cover no-repeat">
+          <span class="badge-eco">Eko</span>
+          <span class="product-badge badge-new">Nowość</span>
+          <div class="quick-add-overlay">
+            <span class="quick-add-label">Szybkie dodanie</span>
+            <div class="quick-add-btns">
+              <button class="quick-add-btn" data-id="5" data-qty="1">1</button>
+              <button class="quick-add-btn" data-id="5" data-qty="2">2</button>
+              <button class="quick-add-btn" data-id="5" data-qty="3">3</button>
+            </div>
+          </div>
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Kuchnia</div>
+          <h3 class="product-name">Szczotka do naczyń kokosowa</h3>
+          <div class="star-rating"><div class="stars"><div class="stars-filled" style="width:84%"></div></div><span class="rating-num">4.2</span></div>
+          <p class="product-desc">Włókno kokosowe na drewnianym trzonku. Biodegradowalna w 100%.</p>
+          <div class="product-footer">
+            <span class="product-price">19 zł</span>
+            <button class="add-to-cart" data-id="5">Dodaj do koszyka</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 6 -->
+      <div class="product-card fade-in stagger-6 showing" data-category="torby" data-id="6" data-name="Worek na zakupy z juty" data-price="35">
+        <div class="product-img" style="background:url('images/product-6.jpg') center/cover no-repeat">
+          <span class="badge-eco">Eko</span>
+          <span class="product-badge badge-lastunits">Ostatnie sztuki</span>
+          <div class="quick-add-overlay">
+            <span class="quick-add-label">Szybkie dodanie</span>
+            <div class="quick-add-btns">
+              <button class="quick-add-btn" data-id="6" data-qty="1">1</button>
+              <button class="quick-add-btn" data-id="6" data-qty="2">2</button>
+              <button class="quick-add-btn" data-id="6" data-qty="3">3</button>
+            </div>
+          </div>
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Torby</div>
+          <h3 class="product-name">Worek na zakupy z juty</h3>
+          <div class="star-rating"><div class="stars"><div class="stars-filled" style="width:94%"></div></div><span class="rating-num">4.7</span></div>
+          <p class="product-desc">Wytrzymały worek jutowy z bawełnianą podszewką. Udźwig do 20 kg.</p>
+          <div class="product-footer">
+            <span class="product-price">35 zł</span>
+            <button class="add-to-cart" data-id="6">Dodaj do koszyka</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 7 -->
+      <div class="product-card fade-in stagger-7 showing" data-category="kuchnia" data-id="7" data-name="Podkładka korkowa (4szt)" data-price="32">
+        <div class="product-img" style="background:url('images/product-7.jpg') center/cover no-repeat">
+          <span class="badge-eco">Eko</span>
+          <div class="quick-add-overlay">
+            <span class="quick-add-label">Szybkie dodanie</span>
+            <div class="quick-add-btns">
+              <button class="quick-add-btn" data-id="7" data-qty="1">1</button>
+              <button class="quick-add-btn" data-id="7" data-qty="2">2</button>
+              <button class="quick-add-btn" data-id="7" data-qty="3">3</button>
+            </div>
+          </div>
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Kuchnia</div>
+          <h3 class="product-name">Podkładka korkowa (4szt)</h3>
+          <div class="star-rating"><div class="stars"><div class="stars-filled" style="width:90%"></div></div><span class="rating-num">4.5</span></div>
+          <p class="product-desc">Zestaw 4 podkładek z naturalnego korka. Chronią stół przed gorącymi naczyniami.</p>
+          <div class="product-footer">
+            <span class="product-price">32 zł</span>
+            <button class="add-to-cart" data-id="7">Dodaj do koszyka</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 8 -->
+      <div class="product-card fade-in stagger-8 showing" data-category="dekoracje" data-id="8" data-name="Doniczka z recyklingu" data-price="28">
+        <div class="product-img" style="background:url('images/product-8.jpg') center/cover no-repeat">
+          <span class="badge-eco">Eko</span>
+          <div class="quick-add-overlay">
+            <span class="quick-add-label">Szybkie dodanie</span>
+            <div class="quick-add-btns">
+              <button class="quick-add-btn" data-id="8" data-qty="1">1</button>
+              <button class="quick-add-btn" data-id="8" data-qty="2">2</button>
+              <button class="quick-add-btn" data-id="8" data-qty="3">3</button>
+            </div>
+          </div>
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Dekoracje</div>
+          <h3 class="product-name">Doniczka z recyklingu</h3>
+          <div class="star-rating"><div class="stars"><div class="stars-filled" style="width:86%"></div></div><span class="rating-num">4.3</span></div>
+          <p class="product-desc">Wykonana z przetworzonego plastiku oceanicznego. Minimalistyczny design.</p>
+          <div class="product-footer">
+            <span class="product-price">28 zł</span>
+            <button class="add-to-cart" data-id="8">Dodaj do koszyka</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== BESTSELLERS ===== -->
+<section class="bestsellers-section fade-in" id="bestsellery">
+  <div class="container">
+    <h2>Bestsellery</h2>
+    <p class="section-sub">Najchętniej wybierane przez naszych klientów</p>
+    <div class="bestseller-scroll">
+
+      <div class="bestseller-card">
+        <div class="bestseller-img" style="background:url('images/product-4.jpg') center/cover no-repeat">
+          <span class="bestseller-badge">Bestseller</span>
+        </div>
+        <div class="bestseller-body">
+          <h3 class="bestseller-name">Świeca sojowa &bdquo;Las&rdquo;</h3>
+          <div class="bestseller-price">45 zł</div>
+          <button class="bestseller-add" data-id="4">Dodaj do koszyka</button>
+        </div>
+      </div>
+
+      <div class="bestseller-card">
+        <div class="bestseller-img" style="background:url('images/bestseller-2.jpg') center/cover no-repeat">
+          <span class="bestseller-badge">Bestseller</span>
+        </div>
+        <div class="bestseller-body">
+          <h3 class="bestseller-name">Mydelniczka bambusowa</h3>
+          <div class="bestseller-price">39 zł</div>
+          <button class="bestseller-add" data-id="1">Dodaj do koszyka</button>
+        </div>
+      </div>
+
+      <div class="bestseller-card">
+        <div class="bestseller-img" style="background:url('images/bestseller-3.jpg') center/cover no-repeat">
+          <span class="bestseller-badge">Bestseller</span>
+        </div>
+        <div class="bestseller-body">
+          <h3 class="bestseller-name">Worek na zakupy z juty</h3>
+          <div class="bestseller-price">35 zł</div>
+          <button class="bestseller-add" data-id="6">Dodaj do koszyka</button>
+        </div>
+      </div>
+
+      <div class="bestseller-card">
+        <div class="bestseller-img" style="background:url('images/bestseller-4.jpg') center/cover no-repeat">
+          <span class="bestseller-badge">Bestseller</span>
+        </div>
+        <div class="bestseller-body">
+          <h3 class="bestseller-name">Zestaw słomek bambusowych</h3>
+          <div class="bestseller-price">24 zł</div>
+          <button class="bestseller-add" data-id="3">Dodaj do koszyka</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHY ECO ===== -->
+<section class="why-eco fade-in" id="o-nas">
+  <div class="container">
+    <h2>Dlaczego eko?</h2>
+    <div class="why-grid">
+      <div class="why-card fade-in stagger-1">
+        <div class="why-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c4-4 8-7.5 8-12a8 8 0 00-16 0c0 4.5 4 8 8 12z"/><path d="M12 6v6l3 3"/></svg>
+        </div>
+        <h3>Materiały naturalne</h3>
+        <p>Każdy produkt powstaje z surowców odnawialnych: bambus, korek, juta, bawełna organiczna. Dbamy o każdy detal.</p>
+      </div>
+      <div class="why-card fade-in stagger-2">
+        <div class="why-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64A9 9 0 0 1 21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9a9 9 0 0 1 2.64-6.36"/><path d="M12 2v4"/><line x1="4" y1="12" x2="4" y2="12.01"/><path d="M8 8l2 2m4-4l2 2"/></svg>
+        </div>
+        <h3>Zero plastiku</h3>
+        <p>Wszystkie opakowania są biodegradowalne lub nadają się do recyklingu. Wysyłamy bez plastikowej folii.</p>
+      </div>
+      <div class="why-card fade-in stagger-3">
+        <div class="why-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>Lokalni producenci</h3>
+        <p>Współpracujemy z polskimi rzemieślnikami i małymi manufakturami. Krótki łańcuch dostaw to mniejszy ślad węglowy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENT 6: Nasz Wplyw (Impact) Section -->
+<section class="impact-section fade-in" id="wplyw">
+  <div class="container">
+    <h2>Nasz wpływ</h2>
+    <p class="section-sub">Razem zmieniamy świat na lepsze</p>
+    <div class="impact-grid">
+      <div class="impact-card fade-in stagger-1">
+        <div class="impact-icon">&#127793;</div>
+        <div class="impact-number" data-target="1247">0</div>
+        <div class="impact-label">drzew posadzonych</div>
+      </div>
+      <div class="impact-card fade-in stagger-2">
+        <div class="impact-icon">&#9851;&#65039;</div>
+        <div class="impact-number" data-target="2.4" data-decimal="true">0</div>
+        <div class="impact-label">tony plastiku mniej</div>
+      </div>
+      <div class="impact-card fade-in stagger-3">
+        <div class="impact-icon">&#128154;</div>
+        <div class="impact-number" data-target="89" data-suffix="%">0</div>
+        <div class="impact-label">klientów wraca</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENT 6: Opinie Klientow (Reviews) Section -->
+<section class="reviews-section fade-in" id="opinie">
+  <div class="container">
+    <h2>Opinie klientów</h2>
+    <p class="section-sub">Co mówią nasi klienci</p>
+    <div class="reviews-grid">
+
+      <div class="review-card fade-in stagger-1">
+        <div class="review-header">
+          <div class="review-avatar">AK</div>
+          <div>
+            <div class="review-author">Anna Kowalska</div>
+            <div class="review-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span></div>
+          </div>
+        </div>
+        <p class="review-text">&bdquo;Mydelniczka bambusowa jest przepiękna! Wygląda jak z luksusowego spa. Jakość materiałów powyżej oczekiwań.&rdquo;</p>
+        <div class="review-product">
+          <div class="review-product-img" style="background:url('images/product-1.jpg') center/cover no-repeat"></div>
+          <span class="review-product-name">Mydelniczka bambusowa</span>
+        </div>
+      </div>
+
+      <div class="review-card fade-in stagger-2">
+        <div class="review-header">
+          <div class="review-avatar">MN</div>
+          <div>
+            <div class="review-author">Marek Nowak</div>
+            <div class="review-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star empty">&#9733;</span></div>
+          </div>
+        </div>
+        <p class="review-text">&bdquo;Świece sojowe pachną fantastycznie. Zapach lasu wypełnia cały pokój. Na pewno kupię więcej na prezenty.&rdquo;</p>
+        <div class="review-product">
+          <div class="review-product-img" style="background:url('images/product-4.jpg') center/cover no-repeat"></div>
+          <span class="review-product-name">Świeca sojowa &bdquo;Las&rdquo;</span>
+        </div>
+      </div>
+
+      <div class="review-card fade-in stagger-3">
+        <div class="review-header">
+          <div class="review-avatar">KW</div>
+          <div>
+            <div class="review-author">Kasia Wiśniewska</div>
+            <div class="review-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span></div>
+          </div>
+        </div>
+        <p class="review-text">&bdquo;Torba z juty to mój must-have na zakupy. Wytrzymała, pojemna i pięknie wygląda. Polecam każdemu!&rdquo;</p>
+        <div class="review-product">
+          <div class="review-product-img" style="background:url('images/product-6.jpg') center/cover no-repeat"></div>
+          <span class="review-product-name">Worek na zakupy z juty</span>
+        </div>
+      </div>
+
+      <div class="review-card fade-in stagger-4">
+        <div class="review-header">
+          <div class="review-avatar">PZ</div>
+          <div>
+            <div class="review-author">Piotr Zieliński</div>
+            <div class="review-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span></div>
+          </div>
+        </div>
+        <p class="review-text">&bdquo;Słomki bambusowe są genialne! Dzieci je uwielbiają. Koniec z jednorazowym plastikiem w naszym domu.&rdquo;</p>
+        <div class="review-product">
+          <div class="review-product-img" style="background:url('images/product-3.jpg') center/cover no-repeat"></div>
+          <span class="review-product-name">Zestaw słomek bambusowych</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- AGENT 6: Blog Eko Section -->
+<section class="blog-section fade-in" id="blog">
+  <div class="container">
+    <h2>Blog eko</h2>
+    <p class="section-sub">Inspiracje i porady na ekologiczne życie</p>
+    <div class="blog-grid">
+
+      <div class="blog-card fade-in stagger-1">
+        <div class="blog-img">
+          <span class="blog-img-icon">&#127807;</span>
+        </div>
+        <div class="blog-body">
+          <div class="blog-tag">Zero waste</div>
+          <h3 class="blog-title">Jak żyć zero waste</h3>
+          <p class="blog-excerpt">Praktyczny przewodnik po życiu bez odpadów. Poznaj 10 prostych kroków, które możesz wdrożyć już dziś w swoim domu.</p>
+          <a href="#" class="blog-link">Czytaj więcej &rarr;</a>
+        </div>
+      </div>
+
+      <div class="blog-card fade-in stagger-2">
+        <div class="blog-img" style="background:linear-gradient(135deg,rgba(34,197,94,.12),rgba(22,163,74,.08))">
+          <span class="blog-img-icon">&#9851;&#65039;</span>
+        </div>
+        <div class="blog-body">
+          <div class="blog-tag">Recykling</div>
+          <h3 class="blog-title">Recykling w praktyce</h3>
+          <p class="blog-excerpt">Czy wiesz, że aż 60% odpadów z naszych domów można poddać recyklingowi? Dowiedz się jak prawidłowo segregować śmieci.</p>
+          <a href="#" class="blog-link">Czytaj więcej &rarr;</a>
+        </div>
+      </div>
+
+      <div class="blog-card fade-in stagger-3">
+        <div class="blog-img" style="background:linear-gradient(135deg,rgba(134,239,172,.15),rgba(22,163,74,.06))">
+          <span class="blog-img-icon">&#127793;</span>
+        </div>
+        <div class="blog-body">
+          <div class="blog-tag">Ekozamienniki</div>
+          <h3 class="blog-title">5 ekozamienników na co dzień</h3>
+          <p class="blog-excerpt">Zamień plastikowe przedmioty na ekologiczne alternatywy. Od szczoteczki do zębów po woreczki na zakupy.</p>
+          <a href="#" class="blog-link">Czytaj więcej &rarr;</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== NEWSLETTER ===== -->
+<section class="newsletter fade-in">
+  <div class="container">
+    <div class="newsletter-inner">
+      <h2>Dołącz do eko-społeczności</h2>
+      <p>Zapisz się do newslettera i otrzymaj 10% rabatu na pierwsze zamówienie oraz porady eko na co dzień.</p>
+      <form class="newsletter-form" id="newsletterForm" novalidate>
+        <input type="email" placeholder="Twój adres e-mail" required id="newsletterEmail" autocomplete="email">
+        <button type="submit">Zapisz się</button>
+      </form>
+      <div class="newsletter-msg" id="newsletterMsg"></div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENT 6: Eco Certificates -->
+<section class="eco-certs" aria-label="Certyfikaty ekologiczne">
+  <div class="container">
+    <div class="eco-certs-inner">
+      <div class="eco-cert">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#16A34A" stroke-width="1.5" fill="none"/><path d="M24 12C18 16 16 22 18 28C20 32 24 34 24 34C24 34 28 32 30 28C32 22 30 16 24 12Z" fill="#dcfce7" stroke="#16A34A" stroke-width="1.2"/><path d="M24 16V30" stroke="#16A34A" stroke-width="1" stroke-linecap="round"/></svg>
+        <span class="eco-cert-label">Bio</span>
+      </div>
+      <div class="eco-cert">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#16A34A" stroke-width="1.5" fill="none"/><path d="M14 18h20v2H14z" fill="#16A34A"/><path d="M16 22h16v2H16z" fill="#22c55e"/><path d="M18 26h12v2H18z" fill="#86efac"/><text x="24" y="38" text-anchor="middle" fill="#16A34A" font-size="7" font-family="Manrope,sans-serif" font-weight="700">FSC</text></svg>
+        <span class="eco-cert-label">FSC</span>
+      </div>
+      <div class="eco-cert">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#16A34A" stroke-width="1.5" fill="none"/><path d="M20 20c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="#16A34A" stroke-width="1.5" fill="none" stroke-linecap="round"/><circle cx="24" cy="28" r="5" stroke="#16A34A" stroke-width="1.2" fill="#dcfce7"/><path d="M22 27l2 2 3-3" stroke="#16A34A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="eco-cert-label">Cruelty Free</span>
+      </div>
+      <div class="eco-cert">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#16A34A" stroke-width="1.5" fill="none"/><path d="M18 16c3 2 5 6 6 10 1-4 3-8 6-10" stroke="#16A34A" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M24 26v8" stroke="#16A34A" stroke-width="1.5" stroke-linecap="round"/><text x="24" y="12" text-anchor="middle" fill="#16A34A" font-size="6" font-family="Manrope,sans-serif" font-weight="700">V</text></svg>
+        <span class="eco-cert-label">Vegan</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer" id="kontakt">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <h4>O ZielonyDom</h4>
+        <p>Jesteśmy sklepem internetowym z misją. Od 2021 roku dostarczamy ekologiczne produkty, które pomagają żyć w zgodzie z naturą.</p>
+      </div>
+      <div>
+        <h4>Kategorie</h4>
+        <a href="#produkty">Kuchnia</a>
+        <a href="#produkty">Łazienka</a>
+        <a href="#produkty">Torby</a>
+        <a href="#produkty">Dekoracje</a>
+      </div>
+      <div>
+        <h4>Pomoc</h4>
+        <a href="#">Dostawa</a>
+        <a href="#">Zwroty</a>
+        <a href="#">FAQ</a>
+        <a href="#">Regulamin</a>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <div class="footer-contact-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          kontakt@zielonydom.pl
+        </div>
+        <div class="footer-contact-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.13.81.37 1.6.65 2.36a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.72-1.22a2 2 0 012.11-.45c.76.28 1.55.52 2.36.65a2 2 0 011.72 2.03z"/></svg>
+          +48 22 123 45 67
+        </div>
+        <div class="footer-contact-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          ul. Żoliborska 15, Warszawa
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy"><a href="/" style="color:var(--accent);text-decoration:none;margin-right:16px;">&larr; Powrót do portfolio</a> &copy; 2026 ZielonyDom. Wszystkie prawa zastrzeżone.</div>
+      <div class="payment-icons">
+        <div class="payment-icon">
+          <svg width="32" height="20" viewBox="0 0 32 20" fill="none"><rect x="1" y="1" width="30" height="18" rx="3" stroke="rgba(255,255,255,.3)" stroke-width="1"/><text x="16" y="13" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="7" font-family="Manrope,sans-serif" font-weight="700">VISA</text></svg>
+        </div>
+        <div class="payment-icon">
+          <svg width="32" height="20" viewBox="0 0 32 20" fill="none"><rect x="1" y="1" width="30" height="18" rx="3" stroke="rgba(255,255,255,.3)" stroke-width="1"/><circle cx="13" cy="10" r="5" fill="rgba(255,100,100,.3)"/><circle cx="19" cy="10" r="5" fill="rgba(255,200,50,.3)"/></svg>
+        </div>
+        <div class="payment-icon">
+          <svg width="32" height="20" viewBox="0 0 32 20" fill="none"><rect x="1" y="1" width="30" height="18" rx="3" stroke="rgba(255,255,255,.3)" stroke-width="1"/><text x="16" y="13" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="7" font-family="Manrope,sans-serif" font-weight="700">BLIK</text></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== CART DRAWER ===== -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h3>Koszyk</h3>
+    <button class="cart-close" id="cartClose" aria-label="Zamknij koszyk">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a2e1a" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty" id="cartEmpty">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#1a2e1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+      <p>Twój koszyk jest pusty</p>
+    </div>
+  </div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <!-- AGENT 6: Cart Progress Bar -->
+    <div class="cart-progress" id="cartProgress">
+      <div class="cart-progress-text" id="cartProgressText">Do darmowej dostawy brakuje Ci 99 zł</div>
+      <div class="cart-progress-bar"><div class="cart-progress-fill" id="cartProgressFill"></div></div>
+    </div>
+    <div class="cart-total">
+      <span class="cart-total-label">Razem:</span>
+      <span class="cart-total-price" id="cartTotal">0 zł</span>
+    </div>
+    <button class="cart-order-btn" id="cartOrderBtn">Zamów</button>
+    <!-- AGENT 6: Cart Upsell -->
+    <div class="cart-upsell" id="cartUpsell">
+      <div class="cart-upsell-title">Klienci kupili też:</div>
+      <div id="cartUpsellItems"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== PRODUCT DATA ===== */
+var PRODUCTS = [
+  { id: 1, name: 'Mydelniczka bambusowa', price: 39, category: 'lazienka', gradient: "url('images/product-1.jpg') center/cover no-repeat" },
+  { id: 2, name: 'Torba bawełniana "Eco"', price: 29, category: 'torby', gradient: "url('images/product-2.jpg') center/cover no-repeat" },
+  { id: 3, name: 'Zestaw słomek bambusowych (6szt)', price: 24, category: 'kuchnia', gradient: "url('images/product-3.jpg') center/cover no-repeat" },
+  { id: 4, name: 'Świeca sojowa "Las"', price: 45, category: 'dekoracje', gradient: "url('images/product-4.jpg') center/cover no-repeat" },
+  { id: 5, name: 'Szczotka do naczyń kokosowa', price: 19, category: 'kuchnia', gradient: "url('images/product-5.jpg') center/cover no-repeat" },
+  { id: 6, name: 'Worek na zakupy z juty', price: 35, category: 'torby', gradient: "url('images/product-6.jpg') center/cover no-repeat" },
+  { id: 7, name: 'Podkładka korkowa (4szt)', price: 32, category: 'kuchnia', gradient: "url('images/product-7.jpg') center/cover no-repeat" },
+  { id: 8, name: 'Doniczka z recyklingu', price: 28, category: 'dekoracje', gradient: "url('images/product-8.jpg') center/cover no-repeat" }
+];
+
+/* ===== CART STATE ===== */
+var cart = [];
+var FREE_SHIP_THRESHOLD = 99;
+
+/* ===== TREE COUNTER (localStorage) ===== */
+var treeBaseCount = 1247;
+var treeBonusKey = 'zielonydom_tree_bonus';
+function getTreeBonus() {
+  try { return parseInt(localStorage.getItem(treeBonusKey)) || 0; } catch(e) { return 0; }
+}
+function incrementTreeCounter() {
+  var bonus = getTreeBonus() + 1;
+  try { localStorage.setItem(treeBonusKey, bonus); } catch(e) {}
+  updateTreeDisplay();
+}
+function updateTreeDisplay() {
+  var total = treeBaseCount + getTreeBonus();
+  var el = document.getElementById('treeCount');
+  if (el) el.textContent = total.toLocaleString('pl-PL');
+}
+updateTreeDisplay();
+
+/* ===== DOM REFS ===== */
+var cartToggle = document.getElementById('cartToggle');
+var cartOverlay = document.getElementById('cartOverlay');
+var cartDrawer = document.getElementById('cartDrawer');
+var cartClose = document.getElementById('cartClose');
+var cartBadge = document.getElementById('cartBadge');
+var cartItemsEl = document.getElementById('cartItems');
+var cartEmpty = document.getElementById('cartEmpty');
+var cartFooter = document.getElementById('cartFooter');
+var cartTotal = document.getElementById('cartTotal');
+var cartOrderBtn = document.getElementById('cartOrderBtn');
+var hamburger = document.getElementById('hamburger');
+var mobileNav = document.getElementById('mobileNav');
+var cartProgressText = document.getElementById('cartProgressText');
+var cartProgressFill = document.getElementById('cartProgressFill');
+
+/* ===== HAMBURGER MENU ===== */
+hamburger.addEventListener('click', function() {
+  hamburger.classList.toggle('open');
+  mobileNav.classList.toggle('open');
+  if (mobileNav.classList.contains('open')) {
+    hamburger.setAttribute('aria-expanded', 'true');
+    hamburger.setAttribute('aria-label', 'Zamknij menu');
+  } else {
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.setAttribute('aria-label', 'Otwórz menu');
+  }
+});
+
+document.querySelectorAll('.mobile-nav-link').forEach(function(link) {
+  link.addEventListener('click', function() {
+    hamburger.classList.remove('open');
+    mobileNav.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.setAttribute('aria-label', 'Otwórz menu');
+  });
+});
+
+/* ===== CART DRAWER TOGGLE ===== */
+function openCart() {
+  cartOverlay.classList.add('open');
+  cartDrawer.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeCart() {
+  cartOverlay.classList.remove('open');
+  cartDrawer.classList.remove('open');
+  document.body.style.overflow = '';
+}
+cartToggle.addEventListener('click', openCart);
+cartClose.addEventListener('click', closeCart);
+cartOverlay.addEventListener('click', closeCart);
+
+/* ===== CART FUNCTIONS ===== */
+function getProduct(id) {
+  return PRODUCTS.find(function(p) { return p.id === parseInt(id); });
+}
+
+function addToCart(productId, qty) {
+  var id = parseInt(productId);
+  var amount = qty || 1;
+  var existing = cart.find(function(item) { return item.id === id; });
+  if (existing) {
+    existing.qty += amount;
+  } else {
+    cart.push({ id: id, qty: amount });
+  }
+  /* Increment tree counter for each add */
+  incrementTreeCounter();
+  updateCartUI();
+  updateBadge();
+  shakeCartIcon();
+}
+
+function removeFromCart(productId) {
+  var id = parseInt(productId);
+  cart = cart.filter(function(item) { return item.id !== id; });
+  updateCartUI();
+  updateBadge();
+}
+
+function changeQty(productId, delta) {
+  var id = parseInt(productId);
+  var item = cart.find(function(i) { return i.id === id; });
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) {
+    removeFromCart(id);
+    return;
+  }
+  updateCartUI();
+  updateBadge();
+}
+
+function getCartTotal() {
+  return cart.reduce(function(sum, item) {
+    var product = getProduct(item.id);
+    return sum + (product ? product.price * item.qty : 0);
+  }, 0);
+}
+
+function getCartCount() {
+  return cart.reduce(function(sum, item) { return sum + item.qty; }, 0);
+}
+
+function updateBadge() {
+  var count = getCartCount();
+  cartBadge.textContent = count;
+  if (count > 0) {
+    cartBadge.classList.add('show');
+    cartBadge.classList.remove('bounce');
+    void cartBadge.offsetWidth;
+    cartBadge.classList.add('bounce');
+  } else {
+    cartBadge.classList.remove('show');
+  }
+}
+
+/* AGENT 6: Shake cart icon */
+function shakeCartIcon() {
+  cartToggle.classList.remove('shake');
+  void cartToggle.offsetWidth;
+  cartToggle.classList.add('shake');
+  setTimeout(function() { cartToggle.classList.remove('shake'); }, 600);
+}
+
+/* AGENT 6: Update free shipping progress */
+function updateShippingProgress() {
+  var total = getCartTotal();
+  var remaining = FREE_SHIP_THRESHOLD - total;
+  var pct = Math.min((total / FREE_SHIP_THRESHOLD) * 100, 100);
+  cartProgressFill.style.width = pct + '%';
+  if (remaining <= 0) {
+    cartProgressText.textContent = 'Darmowa dostawa!';
+    cartProgressText.classList.add('free');
+  } else {
+    cartProgressText.textContent = 'Do darmowej dostawy brakuje Ci ' + remaining + ' zł';
+    cartProgressText.classList.remove('free');
+  }
+}
+
+/* AGENT 6: Upsell suggestions */
+function updateUpsell() {
+  var upsellContainer = document.getElementById('cartUpsellItems');
+  if (!upsellContainer) return;
+  var cartIds = cart.map(function(i) { return i.id; });
+  var suggestions = PRODUCTS.filter(function(p) { return cartIds.indexOf(p.id) === -1; });
+  /* Pick 2 random suggestions */
+  for (var i = suggestions.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = suggestions[i];
+    suggestions[i] = suggestions[j];
+    suggestions[j] = temp;
+  }
+  var shuffled = suggestions;
+  var picks = shuffled.slice(0, 2);
+  upsellContainer.innerHTML = '';
+  picks.forEach(function(p) {
+    var div = document.createElement('div');
+    div.className = 'cart-upsell-item';
+
+    var imgDiv = document.createElement('div');
+    imgDiv.className = 'cart-upsell-img';
+    imgDiv.style.background = p.gradient;
+
+    var infoDiv = document.createElement('div');
+    infoDiv.className = 'cart-upsell-info';
+    var nameDiv = document.createElement('div');
+    nameDiv.className = 'cart-upsell-name';
+    nameDiv.textContent = p.name;
+    var priceDiv = document.createElement('div');
+    priceDiv.className = 'cart-upsell-price';
+    priceDiv.textContent = p.price + ' zł';
+    infoDiv.appendChild(nameDiv);
+    infoDiv.appendChild(priceDiv);
+
+    var addBtn = document.createElement('button');
+    addBtn.className = 'cart-upsell-add';
+    addBtn.dataset.id = p.id;
+    addBtn.textContent = '+ Dodaj';
+
+    div.appendChild(imgDiv);
+    div.appendChild(infoDiv);
+    div.appendChild(addBtn);
+    upsellContainer.appendChild(div);
+  });
+}
+
+function updateCartUI() {
+  var existingItems = cartItemsEl.querySelectorAll('.cart-item');
+  existingItems.forEach(function(el) { el.remove(); });
+
+  if (cart.length === 0) {
+    cartEmpty.style.display = 'block';
+    cartFooter.style.display = 'none';
+    return;
+  }
+
+  cartEmpty.style.display = 'none';
+  cartFooter.style.display = 'block';
+
+  /* innerHTML used below: all data comes from hardcoded PRODUCTS array (trusted source) */
+  cart.forEach(function(item) {
+    var product = getProduct(item.id);
+    if (!product) return;
+    var el = document.createElement('div');
+    el.className = 'cart-item';
+    el.innerHTML =
+      '<div class="cart-item-img" style="background:' + product.gradient + '"></div>' +
+      '<div class="cart-item-info">' +
+        '<div class="cart-item-name">' + product.name + '</div>' +
+        '<div class="cart-item-price">' + product.price + ' zł \u00d7 ' + item.qty + ' = ' + (product.price * item.qty) + ' zł</div>' +
+        '<div class="cart-qty">' +
+          '<button onclick="changeQty(' + item.id + ', -1)" aria-label="Zmniejsz ilość">\u2212</button>' +
+          '<span>' + item.qty + '</span>' +
+          '<button onclick="changeQty(' + item.id + ', 1)" aria-label="Zwiększ ilość">+</button>' +
+        '</div>' +
+      '</div>' +
+      '<button class="cart-item-remove" onclick="removeFromCart(' + item.id + ')" aria-label="Usuń">' +
+        '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' +
+      '</button>';
+    cartItemsEl.appendChild(el);
+  });
+
+  cartTotal.textContent = getCartTotal() + ' zł';
+  updateShippingProgress();
+  updateUpsell();
+}
+
+/* ===== ADD TO CART BUTTONS ===== */
+document.addEventListener('click', function(e) {
+  /* Quick add buttons */
+  var quickBtn = e.target.closest('.quick-add-btn');
+  if (quickBtn) {
+    var id = quickBtn.dataset.id;
+    var qty = parseInt(quickBtn.dataset.qty) || 1;
+    addToCart(id, qty);
+    flyToCart(quickBtn);
+    return;
+  }
+
+  /* Upsell add buttons */
+  var upsellBtn = e.target.closest('.cart-upsell-add');
+  if (upsellBtn) {
+    var uid = upsellBtn.dataset.id;
+    addToCart(uid);
+    upsellBtn.textContent = 'Dodano!';
+    setTimeout(function() { upsellBtn.textContent = '+ Dodaj'; }, 600);
+    return;
+  }
+
+  /* Regular add buttons */
+  var btn = e.target.closest('.add-to-cart, .bestseller-add');
+  if (!btn) return;
+  var pid = btn.dataset.id;
+  addToCart(pid);
+  flyToCart(btn);
+
+  /* Button feedback animation */
+  btn.classList.add('added');
+  var originalText = btn.textContent;
+  btn.textContent = 'Dodano!';
+  setTimeout(function() {
+    btn.classList.remove('added');
+    btn.textContent = originalText;
+  }, 600);
+});
+
+/* AGENT 6: Fly to cart animation */
+function flyToCart(sourceEl) {
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced) return;
+
+  var card = sourceEl.closest('.product-card, .bestseller-card');
+  var imgEl = card ? card.querySelector('.product-img, .bestseller-img') : null;
+  if (!imgEl) return;
+
+  var sourceRect = imgEl.getBoundingClientRect();
+  var cartRect = cartToggle.getBoundingClientRect();
+
+  var flyEl = document.createElement('div');
+  flyEl.className = 'fly-to-cart';
+  flyEl.style.background = window.getComputedStyle(imgEl).background;
+  flyEl.style.left = sourceRect.left + 'px';
+  flyEl.style.top = sourceRect.top + 'px';
+  flyEl.style.width = sourceRect.width + 'px';
+  flyEl.style.height = sourceRect.height + 'px';
+  flyEl.style.opacity = '0.9';
+  document.body.appendChild(flyEl);
+
+  requestAnimationFrame(function() {
+    flyEl.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    flyEl.style.left = cartRect.left + 'px';
+    flyEl.style.top = cartRect.top + 'px';
+    flyEl.style.width = '24px';
+    flyEl.style.height = '24px';
+    flyEl.style.opacity = '0';
+    flyEl.style.borderRadius = '50%';
+  });
+
+  setTimeout(function() {
+    if (flyEl.parentNode) flyEl.parentNode.removeChild(flyEl);
+  }, 700);
+}
+
+/* ===== ORDER BUTTON ===== */
+cartOrderBtn.addEventListener('click', function() {
+  if (cart.length === 0) return;
+  var total = getCartTotal();
+  alert('Dziękujemy za zamówienie na kwotę ' + total + ' zł! (To jest demo sklepu)');
+  cart = [];
+  updateCartUI();
+  updateBadge();
+  closeCart();
+});
+
+/* ===== CATEGORY FILTER ===== */
+var filterBtns = document.querySelectorAll('.filter-btn');
+var productCards = document.querySelectorAll('.product-card');
+
+filterBtns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    filterBtns.forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    var filter = btn.dataset.filter;
+
+    productCards.forEach(function(card) {
+      var cat = card.dataset.category;
+      if (filter === 'all' || cat === filter) {
+        card.classList.remove('hidden');
+        card.classList.add('showing');
+      } else {
+        card.classList.add('hidden');
+        card.classList.remove('showing');
+      }
+    });
+  });
+});
+
+/* ===== INTERSECTION OBSERVER (fade-in on scroll) ===== */
+var observerOptions = { threshold: 0.1, rootMargin: '0px 0px -40px 0px' };
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
+
+/* AGENT 6: Impact Counter Animation on Scroll */
+var impactAnimated = false;
+var impactObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting && !impactAnimated) {
+      impactAnimated = true;
+      animateCounters();
+      impactObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+
+var impactSection = document.querySelector('.impact-section');
+if (impactSection) impactObserver.observe(impactSection);
+
+function animateCounters() {
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var counters = document.querySelectorAll('.impact-number');
+  counters.forEach(function(counter) {
+    var target = parseFloat(counter.dataset.target);
+    var isDecimal = counter.dataset.decimal === 'true';
+    var suffix = counter.dataset.suffix || '';
+    var duration = prefersReduced ? 0 : 2000;
+    var start = 0;
+    var startTime = null;
+
+    if (prefersReduced) {
+      counter.textContent = (isDecimal ? target.toFixed(1) : Math.round(target).toLocaleString('pl-PL')) + suffix;
+      return;
+    }
+
+    function step(timestamp) {
+      if (!startTime) startTime = timestamp;
+      var progress = Math.min((timestamp - startTime) / duration, 1);
+      /* Ease out cubic */
+      var ease = 1 - Math.pow(1 - progress, 3);
+      var current = start + (target - start) * ease;
+      if (isDecimal) {
+        counter.textContent = current.toFixed(1) + suffix;
+      } else {
+        counter.textContent = Math.round(current).toLocaleString('pl-PL') + suffix;
+      }
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      }
+    }
+    requestAnimationFrame(step);
+  });
+}
+
+/* ===== NEWSLETTER ===== */
+var newsletterForm = document.getElementById('newsletterForm');
+var newsletterEmail = document.getElementById('newsletterEmail');
+var newsletterMsg = document.getElementById('newsletterMsg');
+
+newsletterForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+  var email = newsletterEmail.value.trim();
+  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  newsletterMsg.classList.remove('show', 'success', 'error');
+  newsletterEmail.classList.remove('input-error');
+
+  if (!email) {
+    setTimeout(function() {
+      newsletterMsg.textContent = 'Proszę wpisać adres e-mail.';
+      newsletterMsg.classList.add('show', 'error');
+      newsletterEmail.classList.add('input-error');
+    }, 50);
+    return;
+  }
+
+  if (!emailRegex.test(email)) {
+    setTimeout(function() {
+      newsletterMsg.textContent = 'Podaj poprawny adres e-mail.';
+      newsletterMsg.classList.add('show', 'error');
+      newsletterEmail.classList.add('input-error');
+    }, 50);
+    return;
+  }
+
+  setTimeout(function() {
+    newsletterMsg.textContent = 'Dziękujemy za zapisanie się! Sprawdź swoją skrzynkę.';
+    newsletterMsg.classList.add('show', 'success');
+    newsletterEmail.value = '';
+  }, 50);
+});
+
+/* Remove error styling on input focus */
+newsletterEmail.addEventListener('focus', function() {
+  newsletterEmail.classList.remove('input-error');
+});
+</script>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Portfolio", "item": "https://voxquartzsystems.pl/" },
+        { "@type": "ListItem", "position": 2, "name": "ZielonyDom — E-commerce", "item": "https://voxquartzsystems.pl/05-ecommerce/" }
+    ]
+}
+</script>
+</body>
+</html>

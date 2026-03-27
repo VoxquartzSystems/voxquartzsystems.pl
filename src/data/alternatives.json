@@ -1,0 +1,1068 @@
+[
+  {
+    "id": "shoper",
+    "slug": "shoper",
+    "systemName": "Shoper",
+    "category": "e-commerce",
+    "whatItIs": "Shoper to polska platforma e-commerce typu SaaS, oferująca gotowe szablony sklepów internetowych z wbudowanym hostingiem i panelem administracyjnym. System jest popularny wśród małych i średnich firm w Polsce, umożliwiając szybkie uruchomienie sprzedaży online bez wiedzy programistycznej. Platforma integruje się z popularnymi bramkami płatności i firmami kurierskimi działającymi na polskim rynku.",
+    "limitations": [
+      { "title": "Limit wariantów produktu", "description": "Shoper limituje warianty produktu do 50, co blokuje sklepy z rozbudowanym asortymentem odzieżowym (rozmiar × kolor × materiał) lub konfigurowalnymi produktami." },
+      { "title": "Ograniczona edycja procesu checkout", "description": "Proces zakupowy (koszyk, formularz zamówienia, potwierdzenie) jest sztywno zdefiniowany przez platformę — nie można dodać własnych kroków, pól ani logiki warunkowej." },
+      { "title": "Limity API i throttling", "description": "API Shoper ma ograniczenie do 30 000 zapytań dziennie na sklep, co utrudnia synchronizację z zewnętrznymi systemami magazynowymi w czasie rzeczywistym przy dużym wolumenie zamówień." },
+      { "title": "Brak kontroli nad infrastrukturą", "description": "Współdzielony hosting oznacza brak wpływu na konfigurację serwera, cache, CDN czy optymalizację bazy danych — przy dużym ruchu (np. Black Friday) sklep może działać wolniej." },
+      { "title": "Szablony z ograniczoną kastomizacją", "description": "Modyfikacja wyglądu jest ograniczona do edytora szablonów Shoper — zaawansowane zmiany layoutu wymagają ingerencji w pliki Smarty, które przy aktualizacjach platformy mogą się nadpisać." }
+    ],
+    "comparison": [
+      { "feature": "Warianty produktów", "boxed": "Do 50 wariantów", "custom": "Bez limitu — dowolna matryca atrybutów" },
+      { "feature": "Proces checkout", "boxed": "Predefiniowany, 3-4 kroki", "custom": "Dowolny flow, one-page checkout, A/B testy" },
+      { "feature": "Integracje API", "boxed": "Gotowe wtyczki + limit 30k req/dzień", "custom": "Dowolne REST/GraphQL bez limitów" },
+      { "feature": "Hosting i skalowalność", "boxed": "Współdzielony hosting Shoper", "custom": "Własna infrastruktura, autoskalowanie" },
+      { "feature": "Wielojęzyczność", "boxed": "Wbudowana, ograniczona do dostępnych wersji", "custom": "Pełna kontrola nad tłumaczeniami i wariantami regionalnymi" },
+      { "feature": "Program lojalnościowy", "boxed": "Podstawowy system punktów", "custom": "Zaawansowane mechaniki: tiery, cashback, gamifikacja" },
+      { "feature": "SEO i wydajność", "boxed": "Ograniczona kontrola nad meta tagami i strukturą URL", "custom": "Pełna optymalizacja SSR/SSG, Core Web Vitals" }
+    ],
+    "tco": [
+      { "label": "Licencja / hosting (rok)", "boxed": 3600, "custom": 2400 },
+      { "label": "Wdrożenie", "boxed": 5000, "custom": 35000 },
+      { "label": "Customizacja i rozwój (rok)", "boxed": 8000, "custom": 4000 },
+      { "label": "Utrzymanie i support (rok)", "boxed": 2400, "custom": 6000 }
+    ],
+    "targetAudience": "Sklepy internetowe, które przekraczają limity platformy Shoper — mają rozbudowany katalog produktów z wieloma wariantami, potrzebują niestandardowego procesu zakupowego lub zaawansowanych integracji z systemami magazynowymi i ERP.",
+    "whenCustom": [
+      "Twój asortyment przekracza limit 50 wariantów na produkt",
+      "Potrzebujesz niestandardowego procesu checkout z logiką warunkową",
+      "Synchronizacja z ERP/WMS wymaga więcej niż 30 000 zapytań API dziennie",
+      "Zależy Ci na pełnej kontroli nad wydajnością i Core Web Vitals",
+      "Planujesz ekspansję międzynarodową z wieloma walutami i językami"
+    ],
+    "faq": [
+      { "q": "Ile kosztuje alternatywa dla Shoper?", "a": "Koszt dedykowanego sklepu internetowego zaczyna się od ok. 30 000–50 000 PLN za wdrożenie. W perspektywie 3 lat całkowity koszt posiadania (TCO) jest porównywalny z Shoper przy intensywnej kastomizacji, ale daje pełną kontrolę nad rozwojem." },
+      { "q": "Czy migracja danych z Shoper jest możliwa?", "a": "Tak — Shoper udostępnia API do eksportu produktów, zamówień i klientów. Migracja obejmuje przeniesienie katalogu, historii zamówień, kont klientów oraz przekierowania 301 dla SEO. Typowa migracja trwa 2–4 tygodnie." },
+      { "q": "Czy dedykowany sklep będzie tak samo łatwy w obsłudze jak Shoper?", "a": "Panel administracyjny dedykowanego sklepu projektuje się pod potrzeby konkretnego biznesu, więc może być nawet prostszy w codziennej obsłudze. Kluczowe operacje (dodawanie produktów, zarządzanie zamówieniami) są równie intuicyjne." }
+    ]
+  },
+  {
+    "id": "idosell",
+    "slug": "idosell",
+    "systemName": "IdoSell",
+    "category": "e-commerce",
+    "whatItIs": "IdoSell (dawniej IAI-Shop) to zaawansowana polska platforma e-commerce skierowana do średnich i dużych sklepów internetowych. System oferuje rozbudowane zarządzanie asortymentem, integracje z marketplace'ami (Allegro, Amazon, eBay) oraz narzędzia do sprzedaży wielokanałowej. IdoSell jest jednym z liderów polskiego rynku platform e-commerce pod względem liczby obsługiwanych transakcji.",
+    "limitations": [
+      { "title": "Złożoność konfiguracji panelu", "description": "Panel administracyjny IdoSell jest rozbudowany, ale nieintuicyjny — nowi użytkownicy potrzebują tygodni na naukę obsługi setek opcji rozrzuconych po zagnieżdżonych menu." },
+      { "title": "Sztywna struktura szablonów", "description": "System szablonów oparty na XML/XSLT jest przestarzały technologicznie i utrudnia tworzenie nowoczesnych interfejsów z dynamicznym ładowaniem treści czy animacjami." },
+      { "title": "Wysokie koszty przy dużym obrocie", "description": "Model cenowy IdoSell uwzględnia prowizję od obrotu — przy sklepach generujących powyżej 500 000 PLN/miesiąc koszty platformy rosną nieproporcjonalnie." },
+      { "title": "Ograniczona kontrola nad wydajnością", "description": "Strony produktowe generowane dynamicznie przez platformę mają ograniczone możliwości optymalizacji — średni czas ładowania to 3–5 sekund, co negatywnie wpływa na konwersję." },
+      { "title": "Vendor lock-in na integracje", "description": "Wiele integracji (kurierzy, płatności, marketplace) działa wyłącznie przez wewnętrzne moduły IdoSell — zmiana platformy oznacza konieczność ponownego konfigurowania wszystkich połączeń." }
+    ],
+    "comparison": [
+      { "feature": "System szablonów", "boxed": "XML/XSLT, ograniczone możliwości", "custom": "React/Vue/Next.js — nowoczesny stack" },
+      { "feature": "Prowizja od obrotu", "boxed": "Tak, rośnie z obrotem", "custom": "Brak prowizji, stały koszt utrzymania" },
+      { "feature": "Integracje marketplace", "boxed": "Wbudowane moduły (Allegro, Amazon)", "custom": "Bezpośrednie API, pełna kontrola nad mapowaniem" },
+      { "feature": "Panel administracyjny", "boxed": "Rozbudowany, ale skomplikowany", "custom": "Zaprojektowany pod konkretne procesy biznesowe" },
+      { "feature": "Wydajność (TTFB)", "boxed": "500–1500ms", "custom": "< 200ms z SSR/Edge" },
+      { "feature": "Sprzedaż B2B", "boxed": "Moduł B2B z ograniczeniami", "custom": "Dedykowane cenniki, workflow zatwierdzania, limity kredytowe" },
+      { "feature": "Analityka i raporty", "boxed": "Predefiniowane raporty", "custom": "Własne dashboardy, integracja z BI" }
+    ],
+    "tco": [
+      { "label": "Licencja / hosting (rok)", "boxed": 7200, "custom": 3600 },
+      { "label": "Wdrożenie", "boxed": 15000, "custom": 55000 },
+      { "label": "Customizacja i rozwój (rok)", "boxed": 12000, "custom": 8000 },
+      { "label": "Utrzymanie i support (rok)", "boxed": 4800, "custom": 7200 }
+    ],
+    "targetAudience": "Średnie i duże sklepy internetowe, które osiągnęły pułap możliwości IdoSell — szczególnie firmy z wysokim obrotem, gdzie prowizja od sprzedaży stanowi znaczący koszt, oraz biznesy potrzebujące nowoczesnego frontendu i zaawansowanej sprzedaży B2B.",
+    "whenCustom": [
+      "Prowizja od obrotu w IdoSell przekracza kilka tysięcy PLN miesięcznie",
+      "Potrzebujesz nowoczesnego frontendu (headless commerce) z szybkim ładowaniem",
+      "Twoje procesy B2B wymagają dedykowanych cenników i workflow zatwierdzania",
+      "Chcesz mieć pełną kontrolę nad integracjami z marketplace'ami i ERP"
+    ],
+    "faq": [
+      { "q": "Ile kosztuje dedykowany sklep zamiast IdoSell?", "a": "Dedykowany sklep internetowy o funkcjonalności porównywalnej z IdoSell to inwestycja rzędu 50 000–80 000 PLN za wdrożenie. Jednak brak prowizji od obrotu sprawia, że przy obrotach powyżej 300 000 PLN/miesiąc zwrot z inwestycji następuje w 12–18 miesięcy." },
+      { "q": "Czy stracę integrację z Allegro po migracji z IdoSell?", "a": "Nie — Allegro udostępnia publiczne REST API, które pozwala na bezpośrednią integrację. Dedykowane rozwiązanie może oferować nawet lepsze mapowanie atrybutów i automatyzację niż moduł IdoSell." },
+      { "q": "Jak długo trwa wdrożenie dedykowanego sklepu?", "a": "Typowe wdrożenie dedykowanego e-commerce trwa 3–6 miesięcy, w zależności od złożoności. Można zastosować podejście fazowe — najpierw MVP z kluczowymi funkcjami, potem iteracyjny rozwój." }
+    ]
+  },
+  {
+    "id": "shopify",
+    "slug": "shopify",
+    "systemName": "Shopify",
+    "category": "e-commerce",
+    "whatItIs": "Shopify to globalna platforma e-commerce typu SaaS, umożliwiająca tworzenie sklepów internetowych bez wiedzy technicznej. Oferuje ekosystem aplikacji z tysiącami wtyczek, wbudowane płatności Shopify Payments oraz narzędzia do dropshippingu. Na polskim rynku Shopify jest popularny wśród marek D2C i sklepów sprzedających za granicę.",
+    "limitations": [
+      { "title": "Ograniczenia lokalizacji polskiej", "description": "Shopify nie oferuje natywnej integracji z polskimi systemami fakturowania (JPK_VAE), firmami kurierskimi (InPost Paczkomaty, DPD) ani płatnościami BLIK — wymaga dodatkowych płatnych aplikacji." },
+      { "title": "Limit 100 wariantów na produkt", "description": "Każdy produkt może mieć maksymalnie 100 wariantów i 3 opcje (np. rozmiar, kolor, materiał), co jest niewystarczające dla konfigurowalnych produktów." },
+      { "title": "Prowizja od transakcji przy zewnętrznych bramkach", "description": "Shopify pobiera dodatkową prowizję 0,5–2% od każdej transakcji, jeśli nie korzystasz z Shopify Payments — a ten nie obsługuje jeszcze BLIK." },
+      { "title": "Koszty aplikacji kumulują się", "description": "Podstawowy Shopify jest tani, ale potrzebne funkcje (fakturowanie PL, SEO, recenzje, upselling) wymagają płatnych aplikacji, których łączny koszt sięga 500–2000 PLN/miesiąc." },
+      { "title": "Ograniczony dostęp do kodu backendu", "description": "Liquid (język szablonów Shopify) pozwala na modyfikacje frontendu, ale logika backendowa (np. niestandardowe rabaty, tax rules) wymaga Shopify Functions z ograniczonym API." }
+    ],
+    "comparison": [
+      { "feature": "Lokalizacja polska (JPK, BLIK, InPost)", "boxed": "Przez płatne aplikacje zewnętrzne", "custom": "Natywna integracja z polskim ekosystemem" },
+      { "feature": "Warianty produktów", "boxed": "Do 100 wariantów, 3 opcje", "custom": "Bez limitu, dowolna liczba opcji" },
+      { "feature": "Prowizja od transakcji", "boxed": "0,5–2% (bez Shopify Payments)", "custom": "Brak prowizji platformowej" },
+      { "feature": "Fakturowanie i JPK_VAE", "boxed": "Aplikacja zewnętrzna (iFirma, Fakturownia)", "custom": "Wbudowane, automatyczna generacja JPK" },
+      { "feature": "Logika rabatowa", "boxed": "Podstawowe kody rabatowe + Shopify Functions", "custom": "Dowolna logika: progresywne rabaty, bundling, dynamic pricing" },
+      { "feature": "Wielowalutowość", "boxed": "Shopify Markets (z ograniczeniami)", "custom": "Pełna kontrola nad kursami, cenami per region" },
+      { "feature": "Koszt miesięczny aplikacji", "boxed": "500–2000 PLN za potrzebne wtyczki", "custom": "Wszystkie funkcje w cenie utrzymania" }
+    ],
+    "tco": [
+      { "label": "Licencja / hosting (rok)", "boxed": 5400, "custom": 2400 },
+      { "label": "Wdrożenie", "boxed": 8000, "custom": 40000 },
+      { "label": "Customizacja i rozwój (rok)", "boxed": 10000, "custom": 5000 },
+      { "label": "Utrzymanie i support (rok)", "boxed": 3600, "custom": 6000 }
+    ],
+    "targetAudience": "Polskie sklepy internetowe, które zmagają się z brakiem natywnej lokalizacji Shopify — szczególnie firmy potrzebujące pełnej integracji z polskim ekosystemem podatkowym, kurierskim i płatniczym, oraz sklepy z prowizją transakcyjną przekraczającą budżet.",
+    "whenCustom": [
+      "Potrzebujesz natywnej obsługi JPK_VAE, BLIK i InPost Paczkomatów",
+      "Prowizja od transakcji w Shopify stanowi znaczący koszt",
+      "Koszty płatnych aplikacji przekraczają 1000 PLN miesięcznie",
+      "Twoja logika cenowa i rabatowa wykracza poza możliwości Shopify Functions",
+      "Planujesz zaawansowaną sprzedaż B2B na polskim rynku"
+    ],
+    "faq": [
+      { "q": "Czy warto przenieść sklep z Shopify na dedykowane rozwiązanie?", "a": "Warto, jeśli łączny koszt subskrypcji Shopify + aplikacji + prowizji przekracza 3 000 PLN miesięcznie. Dedykowane rozwiązanie eliminuje prowizję transakcyjną i opłaty za wtyczki, a w perspektywie 2–3 lat może być tańsze." },
+      { "q": "Jak przenieść sklep z Shopify?", "a": "Shopify udostępnia API do eksportu produktów, zamówień i klientów. Migracja obejmuje przeniesienie danych, odtworzenie integracji (płatności, kurierzy) i wdrożenie przekierowań 301. Proces trwa 3–6 tygodni." },
+      { "q": "Czy dedykowany sklep będzie tak szybko działać jak Shopify?", "a": "Tak, a nawet szybciej — dedykowane rozwiązania oparte na Next.js z SSG/ISR osiągają TTFB poniżej 100ms i wynik Lighthouse 95–100, podczas gdy Shopify z wieloma aplikacjami często spowalnia do 3–5 sekund." }
+    ]
+  },
+  {
+    "id": "woocommerce",
+    "slug": "woocommerce",
+    "systemName": "WooCommerce",
+    "category": "e-commerce",
+    "whatItIs": "WooCommerce to open-source'owa wtyczka e-commerce dla WordPressa, która przekształca stronę WordPress w sklep internetowy. Jest najpopularniejszym rozwiązaniem e-commerce na świecie pod względem liczby instalacji. WooCommerce oferuje ogromny ekosystem wtyczek, ale wymaga samodzielnego zarządzania hostingiem, bezpieczeństwem i aktualizacjami.",
+    "limitations": [
+      { "title": "Problemy wydajnościowe przy dużym katalogu", "description": "WooCommerce opiera się na architekturze WordPress (wp_posts + wp_postmeta), co powoduje drastyczny spadek wydajności przy katalogach powyżej 10 000 produktów — strony ładują się 5–10 sekund." },
+      { "title": "Bezpieczeństwo wymaga ciągłej uwagi", "description": "WordPress z WooCommerce jest jednym z najczęściej atakowanych systemów CMS — wymaga regularnych aktualizacji core'a, wtyczek i motywu, a każda aktualizacja może zepsuć działanie sklepu." },
+      { "title": "Konflikty między wtyczkami", "description": "Rozbudowany sklep WooCommerce wymaga 15–30 wtyczek, które mogą wzajemnie kolidować — aktualizacja jednej wtyczki potrafi zepsuć funkcjonalność innej." },
+      { "title": "Brak natywnej obsługi wielu walut i języków", "description": "Wielojęzyczność i wielowalutowość wymaga płatnych wtyczek (WPML + WooCommerce Multilingual kosztuje ok. 300 PLN/rok), które dodatkowo spowalniają bazę danych." },
+      { "title": "Nieskalowalny koszyk i sesje", "description": "WooCommerce przechowuje koszyki w sesjach PHP lub bazie danych WordPress, co przy dużym ruchu (>1000 jednoczesnych użytkowników) powoduje problemy z wydajnością i utratą koszyków." }
+    ],
+    "comparison": [
+      { "feature": "Wydajność przy 10 000+ produktów", "boxed": "Znaczący spadek (5–10s ładowania)", "custom": "Stała wydajność dzięki zoptymalizowanej bazie" },
+      { "feature": "Bezpieczeństwo", "boxed": "Wymaga ciągłych aktualizacji i monitoringu", "custom": "Bezpieczna architektura od podstaw, brak wektorów WP" },
+      { "feature": "Skalowalność", "boxed": "Ograniczona architekturą WordPress", "custom": "Mikroserwisy, cache, autoskalowanie" },
+      { "feature": "Wielojęzyczność", "boxed": "WPML — 300 PLN/rok, spowalnia bazę", "custom": "Natywna obsługa i18n bez wpływu na wydajność" },
+      { "feature": "Aktualizacje", "boxed": "Ryzyko konfliktów przy każdej aktualizacji", "custom": "Kontrolowane wdrożenia z testami automatycznymi" },
+      { "feature": "Koszyk i checkout", "boxed": "Sesje PHP, problemy przy dużym ruchu", "custom": "Skalowalny koszyk (Redis/baza), brak utraty sesji" },
+      { "feature": "Koszty wtyczek premium", "boxed": "2000–8000 PLN/rok za niezbędne wtyczki", "custom": "Wszystkie funkcje wbudowane w cenę" }
+    ],
+    "tco": [
+      { "label": "Licencja / hosting (rok)", "boxed": 2400, "custom": 3600 },
+      { "label": "Wdrożenie", "boxed": 8000, "custom": 40000 },
+      { "label": "Customizacja i rozwój (rok)", "boxed": 6000, "custom": 4000 },
+      { "label": "Utrzymanie i support (rok)", "boxed": 4800, "custom": 6000 }
+    ],
+    "targetAudience": "Właściciele sklepów WooCommerce, których katalog przekroczył 5 000–10 000 produktów i doświadczają problemów z wydajnością, bezpieczeństwem lub konfliktami wtyczek. Szczególnie firmy, które wydają więcej na łatanie WooCommerce niż na rozwój biznesu.",
+    "whenCustom": [
+      "Twój katalog przekracza 10 000 produktów i sklep zwalnia",
+      "Wydajesz więcej na utrzymanie i naprawianie WooCommerce niż na rozwój",
+      "Potrzebujesz stabilnej, bezpiecznej platformy bez ryzyka aktualizacji",
+      "Ruch w sklepie przekracza możliwości architektury WordPress",
+      "Konflikty wtyczek regularnie powodują awarie sklepu"
+    ],
+    "faq": [
+      { "q": "Czy warto migrować z WooCommerce na dedykowane rozwiązanie?", "a": "Warto, jeśli Twój sklep ma więcej niż 5000 produktów, ponad 100 zamówień dziennie lub wymaga 20+ wtyczek. W takim scenariuszu koszty utrzymania WooCommerce (hosting, aktualizacje, naprawy) często przewyższają koszt dedykowanego systemu." },
+      { "q": "Czy stracę pozycje w Google po migracji z WooCommerce?", "a": "Nie, jeśli migracja jest przeprowadzona prawidłowo — z przekierowaniami 301, zachowaniem struktury URL i meta danych. Dedykowane rozwiązanie z lepszą wydajnością (Core Web Vitals) może nawet poprawić pozycje." },
+      { "q": "Jak długo trwa migracja z WooCommerce?", "a": "Migracja z WooCommerce na dedykowane rozwiązanie trwa 2–4 miesiące. Dane (produkty, zamówienia, klienci) eksportuje się przez WP REST API lub bezpośrednio z bazy danych MySQL." }
+    ]
+  },
+  {
+    "id": "prestashop",
+    "slug": "prestashop",
+    "systemName": "PrestaShop",
+    "category": "e-commerce",
+    "whatItIs": "PrestaShop to open-source'owa platforma e-commerce popularna w Europie, szczególnie we Francji i Polsce. System oferuje rozbudowane zarządzanie katalogiem, wielojęzyczność i marketplace z modułami. PrestaShop wymaga samodzielnej instalacji na serwerze, co daje większą kontrolę niż rozwiązania SaaS, ale jednocześnie przenosi odpowiedzialność za infrastrukturę na właściciela sklepu.",
+    "limitations": [
+      { "title": "Przestarzała architektura i powolne działanie", "description": "PrestaShop 1.7/8.x opiera się na frameworku Symfony, ale rdzeń systemu wciąż zawiera legacy code z wersji 1.4/1.5, co powoduje wolne zapytania do bazy danych i problematyczne aktualizacje." },
+      { "title": "Kosztowne moduły z marketplace'u", "description": "Kluczowe funkcje (zaawansowane SEO, import/eksport, integracje z polskimi kurierami) wymagają płatnych modułów z PrestaShop Addons — średni sklep wydaje 3000–8000 PLN na moduły." },
+      { "title": "Problematyczne aktualizacje między wersjami", "description": "Aktualizacja z PrestaShop 1.6 do 1.7 lub z 1.7 do 8.x jest de facto migracją — wiele modułów i szablonów wymaga przepisania, co kosztuje tyle co nowe wdrożenie." },
+      { "title": "Brak natywnego wsparcia dla PWA i headless", "description": "PrestaShop nie oferuje natywnego trybu headless — dostępne REST API jest niekompletne i wolne, co utrudnia budowę nowoczesnych aplikacji frontendowych." },
+      { "title": "Ograniczona obsługa B2B", "description": "Funkcje B2B (cenniki kontrahentów, limity kredytowe, zatwierdzanie zamówień) wymagają dodatkowych modułów, które często są niskiej jakości i kolidują ze sobą." }
+    ],
+    "comparison": [
+      { "feature": "Architektura", "boxed": "Monolityczny PHP (legacy + Symfony)", "custom": "Nowoczesny stack, mikroserwisy" },
+      { "feature": "Aktualizacje", "boxed": "Problematyczne, ryzyko utraty kompatybilności", "custom": "Kontrolowane, ciągłe wdrożenia (CI/CD)" },
+      { "feature": "API i headless", "boxed": "Niekompletne REST API", "custom": "Pełne GraphQL/REST API, headless-first" },
+      { "feature": "Moduły i rozszerzenia", "boxed": "Płatne moduły, ryzyko konfliktów", "custom": "Funkcje budowane pod potrzeby, bez konfliktów" },
+      { "feature": "Wydajność", "boxed": "Wolne zapytania DB przy dużym katalogu", "custom": "Zoptymalizowana baza, cache, CDN" },
+      { "feature": "Obsługa B2B", "boxed": "Przez dodatkowe moduły", "custom": "Natywne cenniki, workflow, limity" },
+      { "feature": "Multi-store", "boxed": "Wbudowany, ale z bugami", "custom": "Stabilny multi-tenant z izolacją danych" }
+    ],
+    "tco": [
+      { "label": "Licencja / hosting (rok)", "boxed": 1800, "custom": 3600 },
+      { "label": "Wdrożenie", "boxed": 10000, "custom": 45000 },
+      { "label": "Customizacja i rozwój (rok)", "boxed": 8000, "custom": 5000 },
+      { "label": "Utrzymanie i support (rok)", "boxed": 6000, "custom": 6000 }
+    ],
+    "targetAudience": "Właściciele sklepów na PrestaShop, którzy utknęli na starej wersji (1.6/1.7) i boją się kosztownej aktualizacji, lub firmy potrzebujące funkcji B2B i headless commerce, których PrestaShop nie oferuje natywnie.",
+    "whenCustom": [
+      "Aktualizacja PrestaShop do nowej wersji kosztowałaby tyle co nowe wdrożenie",
+      "Potrzebujesz headless commerce z nowoczesnym frontendem",
+      "Wydajesz tysiące PLN rocznie na moduły z PrestaShop Addons",
+      "Twój sklep B2B wymaga zaawansowanych cenników i workflow zatwierdzania"
+    ],
+    "faq": [
+      { "q": "Ile kosztuje zamiennik PrestaShop?", "a": "Dedykowany sklep o funkcjonalności porównywalnej z PrestaShop kosztuje 40 000–60 000 PLN za wdrożenie. W perspektywie 3 lat TCO jest porównywalny, ale eliminuje koszty modułów i ryzyko problematycznych aktualizacji." },
+      { "q": "Czy mogę przenieść dane z PrestaShop?", "a": "Tak — PrestaShop przechowuje dane w MySQL, więc migracja produktów, kategorii, zamówień i klientów jest stosunkowo prosta. Kluczowe jest zachowanie struktury URL i przekierowań 301 dla SEO." },
+      { "q": "PrestaShop czy dedykowane rozwiązanie — co wybrać dla nowego sklepu?", "a": "Jeśli planujesz sklep z ponad 5000 produktów, sprzedaż B2B lub ekspansję zagraniczną, dedykowane rozwiązanie będzie tańsze w perspektywie 3 lat. PrestaShop sprawdza się w prostych sklepach B2C z małym katalogiem." }
+    ]
+  },
+  {
+    "id": "sky-shop",
+    "slug": "sky-shop",
+    "systemName": "Sky-Shop",
+    "category": "e-commerce",
+    "whatItIs": "Sky-Shop to polska platforma e-commerce typu SaaS, wyróżniająca się natywną integracją z Allegro, Amazon i eBay. System automatycznie synchronizuje oferty między sklepem a marketplace'ami i oferuje narzędzia do zarządzania sprzedażą wielokanałową. Sky-Shop jest popularny wśród sprzedawców, którzy zaczynali na Allegro i chcą mieć własny sklep.",
+    "limitations": [
+      { "title": "Ograniczone możliwości kastomizacji frontendu", "description": "Sky-Shop oferuje kilkadziesiąt szablonów, ale modyfikacja wykraczająca poza zmianę kolorów i logo wymaga znajomości ich autorskiego systemu szablonów, który nie jest dobrze udokumentowany." },
+      { "title": "Brak zaawansowanej segmentacji klientów", "description": "System nie pozwala na tworzenie dynamicznych segmentów klientów na podstawie zachowań zakupowych (RFM, scoring) — marketing automation wymaga integracji z zewnętrznymi narzędziami." },
+      { "title": "Limity na liczbę produktów w niższych planach", "description": "Tańsze plany Sky-Shop ograniczają liczbę produktów do 500 lub 2000 — rozbudowa asortymentu wymaga przejścia na droższy plan (do 400 PLN/miesiąc)." },
+      { "title": "Podstawowe raportowanie", "description": "Wbudowane raporty Sky-Shop ograniczają się do podstawowych statystyk sprzedaży — brak analityki kohortowej, customer lifetime value czy zaawansowanego śledzenia konwersji." },
+      { "title": "Brak natywnego wsparcia dla subskrypcji", "description": "Sky-Shop nie oferuje modelu sprzedaży subskrypcyjnej (recurring billing) — firmy sprzedające produkty w abonamencie muszą korzystać z obejść lub zewnętrznych systemów." }
+    ],
+    "comparison": [
+      { "feature": "Kastomizacja frontendu", "boxed": "Autorski system szablonów", "custom": "Pełna swoboda — React, Vue, dowolny design" },
+      { "feature": "Segmentacja klientów", "boxed": "Podstawowa (statyczne grupy)", "custom": "Dynamiczna segmentacja RFM, scoring behawioralny" },
+      { "feature": "Limit produktów", "boxed": "500–bezlimitowo (zależy od planu)", "custom": "Bez limitu w każdym wariancie" },
+      { "feature": "Integracja z marketplace'ami", "boxed": "Wbudowana (Allegro, Amazon, eBay)", "custom": "Bezpośrednie API, pełna kontrola" },
+      { "feature": "Sprzedaż subskrypcyjna", "boxed": "Brak natywnego wsparcia", "custom": "Wbudowany recurring billing" },
+      { "feature": "Raportowanie i analityka", "boxed": "Podstawowe statystyki sprzedaży", "custom": "Zaawansowane dashboardy, CLV, kohorty" }
+    ],
+    "tco": [
+      { "label": "Licencja / hosting (rok)", "boxed": 3000, "custom": 2400 },
+      { "label": "Wdrożenie", "boxed": 4000, "custom": 30000 },
+      { "label": "Customizacja i rozwój (rok)", "boxed": 5000, "custom": 4000 },
+      { "label": "Utrzymanie i support (rok)", "boxed": 1800, "custom": 4800 }
+    ],
+    "targetAudience": "Sprzedawcy wielokanałowi (Allegro + własny sklep), którzy potrzebują zaawansowanej segmentacji klientów, modelu subskrypcyjnego lub głębszej kastomizacji sklepu niż oferuje Sky-Shop.",
+    "whenCustom": [
+      "Potrzebujesz zaawansowanej segmentacji klientów i marketing automation",
+      "Twój model biznesowy opiera się na sprzedaży subskrypcyjnej",
+      "Zależy Ci na unikalnym designie wyróżniającym markę",
+      "Raportowanie Sky-Shop nie dostarcza potrzebnych danych biznesowych"
+    ],
+    "faq": [
+      { "q": "Czy dedykowany sklep zastąpi integrację Sky-Shop z Allegro?", "a": "Tak — Allegro REST API pozwala na bezpośrednią integrację z dedykowanym sklepem. Można automatycznie synchronizować oferty, stany magazynowe i zamówienia, zachowując pełną kontrolę nad mapowaniem kategorii i atrybutów." },
+      { "q": "Ile kosztuje alternatywa dla Sky-Shop?", "a": "Dedykowany sklep z integracją marketplace to inwestycja od 25 000 PLN. W perspektywie 3 lat TCO jest porównywalny z planem Premium Sky-Shop, ale daje pełną kontrolę nad rozwojem i brak limitów produktowych." },
+      { "q": "Czy migracja z Sky-Shop jest skomplikowana?", "a": "Sky-Shop udostępnia eksport danych w formacie CSV oraz API. Migracja produktów, klientów i historii zamówień jest standardową procedurą trwającą 2–3 tygodnie." }
+    ]
+  },
+  {
+    "id": "pipedrive",
+    "slug": "pipedrive",
+    "systemName": "Pipedrive",
+    "category": "crm",
+    "whatItIs": "Pipedrive to CRM skupiony na zarządzaniu pipeline'em sprzedażowym, popularny wśród małych i średnich zespołów handlowych. System oferuje intuicyjny interfejs oparty na widoku Kanban, automatyzację follow-upów i integrację z pocztą e-mail. Pipedrive jest ceniony za prostotę, ale ta sama prostota staje się ograniczeniem przy rosnących potrzebach.",
+    "limitations": [
+      { "title": "Brak natywnego modułu obsługi posprzedażowej", "description": "Pipedrive koncentruje się na procesie sprzedaży (od leada do zamknięcia), ale nie oferuje zarządzania ticketami, SLA ani obsługą reklamacji — wymaga integracji z osobnym helpdeskiem." },
+      { "title": "Ograniczone raportowanie i BI", "description": "Raporty w Pipedrive ograniczają się do predefiniowanych widoków pipeline'u i aktywności — brak możliwości tworzenia niestandardowych zapytań, cross-tabel czy wizualizacji." },
+      { "title": "Limity customowych pól i workflow", "description": "W planie Professional dostępnych jest maksymalnie 300 pól niestandardowych i 60 automatyzacji — firmy z rozbudowanymi procesami szybko wyczerpują te limity." },
+      { "title": "Słaba obsługa procesów B2B enterprise", "description": "Pipedrive nie obsługuje natywnie złożonych struktur korporacyjnych (spółki matki-córki, wielopoziomowe cenniki, procesy akceptacji ofert z wieloma decydentami)." },
+      { "title": "Brak modułu ofertowania i CPQ", "description": "System nie ma wbudowanego generatora ofert z konfiguratorem produktów (CPQ) — tworzenie ofert wymaga eksportu do zewnętrznych narzędzi lub ręcznego przygotowania dokumentów." }
+    ],
+    "comparison": [
+      { "feature": "Pipeline sprzedażowy", "boxed": "Kanban z predefiniowanymi etapami", "custom": "Dowolna liczba pipeline'ów z logiką warunkową" },
+      { "feature": "Obsługa posprzedażowa", "boxed": "Brak — wymaga osobnego helpdesku", "custom": "Zintegrowany moduł ticketów i SLA" },
+      { "feature": "Raportowanie", "boxed": "Predefiniowane raporty", "custom": "Dowolne dashboardy i analizy SQL" },
+      { "feature": "Automatyzacje", "boxed": "Do 60 workflow (plan Professional)", "custom": "Bez limitu, złożone scenariusze" },
+      { "feature": "CPQ / Ofertowanie", "boxed": "Brak natywnego modułu", "custom": "Konfigurator produktów, automatyczne oferty PDF" },
+      { "feature": "Struktura organizacji klienta", "boxed": "Firma → osoba kontaktowa", "custom": "Wielopoziomowa hierarchia, grupy zakupowe" },
+      { "feature": "Integracja z ERP", "boxed": "Przez Zapier lub marketplace", "custom": "Natywna synchronizacja z dowolnym ERP" }
+    ],
+    "tco": [
+      { "label": "Licencja / hosting (rok)", "boxed": 7200, "custom": 2400 },
+      { "label": "Wdrożenie", "boxed": 5000, "custom": 30000 },
+      { "label": "Customizacja i rozwój (rok)", "boxed": 4000, "custom": 5000 },
+      { "label": "Utrzymanie i support (rok)", "boxed": 1200, "custom": 4800 }
+    ],
+    "targetAudience": "Zespoły sprzedażowe B2B, które wyrosły z Pipedrive — potrzebują zintegrowanej obsługi posprzedażowej, zaawansowanego raportowania, modułu ofertowania CPQ lub obsługi złożonych struktur korporacyjnych klientów.",
+    "whenCustom": [
+      "Potrzebujesz CRM zintegrowanego z obsługą posprzedażową i ticketami",
+      "Twoje procesy sprzedażowe wymagają więcej niż 60 automatyzacji",
+      "Generujesz oferty z konfiguratorem produktów (CPQ)",
+      "Klienci mają złożone struktury korporacyjne (holdingowe)",
+      "Raportowanie Pipedrive nie dostarcza potrzebnych analiz"
+    ],
+    "faq": [
+      { "q": "Ile kosztuje dedykowany CRM zamiast Pipedrive?", "a": "Dedykowany CRM dla zespołu 10–20 osób to koszt wdrożenia od 25 000–40 000 PLN. Przy zespole powyżej 15 osób koszujących plan Professional (600 PLN/os/rok) dedykowane rozwiązanie zwraca się w 2–3 lata." },
+      { "q": "Czy mogę przenieść dane z Pipedrive?", "a": "Tak — Pipedrive ma rozbudowane API REST umożliwiające eksport kontaktów, firm, deali, aktywności i notatek. Migracja danych zajmuje 1–2 tygodnie, w tym mapowanie pól niestandardowych." },
+      { "q": "Czy dedykowany CRM będzie równie prosty jak Pipedrive?", "a": "Dedykowany CRM projektuje się pod konkretne procesy zespołu — interfejs zawiera tylko potrzebne funkcje, bez zbędnych opcji. Dla użytkowników codzienne operacje mogą być nawet prostsze." }
+    ]
+  },
+  {
+    "id": "hubspot",
+    "slug": "hubspot",
+    "systemName": "HubSpot",
+    "category": "crm",
+    "whatItIs": "HubSpot to platforma CRM i marketing automation oferująca moduły Sales Hub, Marketing Hub, Service Hub i CMS Hub. Darmowa wersja CRM przyciąga firmy, ale zaawansowane funkcje wymagają płatnych planów, których ceny rosną skokowo. HubSpot jest szczególnie popularny wśród firm technologicznych i SaaS-ów w modelu inbound marketing.",
+    "limitations": [
+      { "title": "Skokowy wzrost cen przy skalowaniu", "description": "Plan Professional Marketing Hub kosztuje od 3600 PLN/miesiąc (1000 kontaktów marketing), a każde dodatkowe 5000 kontaktów to +900 PLN/miesiąc — przy 50 000 kontaktach koszt przekracza 12 000 PLN/miesiąc." },
+      { "title": "Limit kontaktów marketingowych", "description": "HubSpot rozróżnia kontakty 'marketing' i 'non-marketing' — przekroczenie limitu kontaktów marketingowych automatycznie podnosi opłatę, co utrudnia planowanie budżetu." },
+      { "title": "Ograniczone custom objects", "description": "Custom objects w HubSpot (dostępne od planu Enterprise) mają limit 10 typów obiektów z maksymalnie 500 000 rekordów per typ — nie zastąpią rozbudowanego modelu danych." },
+      { "title": "Sztywny model danych kontaktów", "description": "Struktura kontakt → firma → deal jest predefiniowana — nie można modelować złożonych relacji (np. konsorcja, grupy zakupowe, relacje partnerskie między firmami)." },
+      { "title": "Vendor lock-in na content i landing pages", "description": "Treści marketingowe (landing pages, blog, formularze) tworzone w HubSpot CMS nie są łatwo eksportowalne — migracja wymaga ręcznego odtworzenia setek stron." }
+    ],
+    "comparison": [
+      { "feature": "Koszt przy 50 000 kontaktów", "boxed": "~12 000 PLN/miesiąc", "custom": "Stały koszt niezależny od liczby kontaktów" },
+      { "feature": "Model danych", "boxed": "Kontakt → Firma → Deal (+ ograniczone custom objects)", "custom": "Dowolny model relacyjny bez limitów" },
+      { "feature": "Marketing automation", "boxed": "Rozbudowany, ale drogi w wyższych planach", "custom": "Bez limitu workflow i kontaktów" },
+      { "feature": "Landing pages", "boxed": "Wbudowany builder (vendor lock-in)", "custom": "Własne strony, pełna kontrola nad kodem" },
+      { "feature": "Raportowanie", "boxed": "Predefiniowane + custom (plan Professional+)", "custom": "Dowolne zapytania SQL, integracja z BI" },
+      { "feature": "Integracja z polskimi narzędziami", "boxed": "Ograniczona (brak natywnych integracji PL)", "custom": "Natywna integracja z polskim ekosystemem" },
+      { "feature": "Wielojęzyczny content", "boxed": "CMS Hub z ograniczoną lokalizacją", "custom": "Pełna obsługa wielu języków i rynków" },
+      { "feature": "API i limity", "boxed": "100 000 req/dzień (OAuth)", "custom": "Bez limitów API" }
+    ],
+    "tco": [
+      { "label": "Licencja / hosting (rok)", "boxed": 48000, "custom": 3600 },
+      { "label": "Wdrożenie", "boxed": 15000, "custom": 50000 },
+      { "label": "Customizacja i rozwój (rok)", "boxed": 10000, "custom": 8000 },
+      { "label": "Utrzymanie i support (rok)", "boxed": 3600, "custom": 7200 }
+    ],
+    "targetAudience": "Firmy, których baza kontaktów przekroczyła 10 000 i koszty HubSpot rosną wykładniczo, oraz organizacje potrzebujące złożonego modelu danych, zaawansowanego raportowania i integracji z polskim ekosystemem biznesowym.",
+    "whenCustom": [
+      "Koszty HubSpot przekraczają 5 000 PLN miesięcznie i rosną z bazą kontaktów",
+      "Potrzebujesz złożonego modelu danych wykraczającego poza kontakt-firma-deal",
+      "Zależy Ci na natywnej integracji z polskimi narzędziami (GUS, CEIDG, JPK)",
+      "Marketing automation wymaga niestandardowych scenariuszy niedostępnych w HubSpot",
+      "Landing pages i content muszą być pod Twoją pełną kontrolą (bez vendor lock-in)"
+    ],
+    "faq": [
+      { "q": "Ile kosztuje zamiennik HubSpot?", "a": "Dedykowane rozwiązanie CRM + marketing automation kosztuje 40 000–70 000 PLN za wdrożenie. Przy bazie 50 000+ kontaktów zwrot z inwestycji następuje w 6–12 miesięcy dzięki eliminacji opłaty za kontakty marketingowe." },
+      { "q": "Czy dedykowany system zastąpi marketing automation HubSpot?", "a": "Tak — istnieją open-source'owe silniki marketing automation (Mautic, Chatwoot), które można zintegrować z dedykowanym CRM. Alternatywnie można zbudować własny system e-mail marketingu i lead scoringu." },
+      { "q": "Jak przenieść dane i content z HubSpot?", "a": "Kontakty, firmy i deale eksportuje się przez HubSpot API. Trudniejsza jest migracja landing pages i workflow — wymaga odtworzenia w nowym systemie. Typowa migracja trwa 4–8 tygodni." }
+    ]
+  },
+  {
+    "id": "salesforce",
+    "slug": "salesforce",
+    "systemName": "Salesforce",
+    "category": "crm",
+    "whatItIs": "Salesforce to najpopularniejszy CRM na świecie, oferujący rozbudowane moduły Sales Cloud, Service Cloud, Marketing Cloud i Commerce Cloud. Platforma jest niezwykle elastyczna dzięki językowi Apex i platformie Lightning, ale ta elastyczność wiąże się z wysoką złożonością i kosztami wdrożenia. Salesforce dominuje w segmencie enterprise, ale jest coraz częściej używany przez średnie firmy.",
+    "limitations": [
+      { "title": "Ekstremalnie wysokie koszty licencji", "description": "Licencja Enterprise Edition kosztuje ok. 700 PLN/użytkownika/miesiąc — zespół 20 osób to 168 000 PLN/rok tylko za licencje, nie licząc wdrożenia i customizacji." },
+      { "title": "Złożoność wdrożenia i administracji", "description": "Salesforce wymaga dedykowanego administratora (certyfikowany Salesforce Admin, koszt 12 000–18 000 PLN/miesiąc) — bez niego system szybko staje się chaotyczny i trudny w użyciu." },
+      { "title": "Limity Governor w Apex", "description": "Kod Apex (język programowania Salesforce) podlega ścisłym limitom: 100 zapytań SOQL per transakcja, 150 operacji DML, 10 sekund czasu CPU — co utrudnia implementację złożonej logiki." },
+      { "title": "Vendor lock-in na platformę", "description": "Logika biznesowa napisana w Apex, konfiguracje Flow i dane w formacie Salesforce są praktycznie niemożliwe do przeniesienia na inną platformę bez gruntownego przepisania." },
+      { "title": "Wolne ładowanie interfejsu Lightning", "description": "Interfejs Lightning Experience jest znany z powolnego ładowania (3–8 sekund na przejście między ekranami) — handlowcy tracą minuty dziennie na czekanie na załadowanie stron." }
+    ],
+    "comparison": [
+      { "feature": "Koszt licencji (20 osób/rok)", "boxed": "168 000 PLN", "custom": "0 PLN (własne rozwiązanie)" },
+      { "feature": "Elastyczność logiki biznesowej", "boxed": "Apex z Governor Limits", "custom": "Dowolny język, brak sztucznych limitów" },
+      { "feature": "Wydajność interfejsu", "boxed": "Lightning: 3–8s ładowania", "custom": "< 1s dzięki SPA + optymalizacji" },
+      { "feature": "Administracja", "boxed": "Wymaga certyfikowanego admina", "custom": "Prosty panel, brak potrzeby specjalisty SF" },
+      { "feature": "Migracja danych", "boxed": "Vendor lock-in (Apex, SOQL)", "custom": "Standardowe technologie, łatwa migracja" },
+      { "feature": "Integracje", "boxed": "AppExchange (płatne) + API", "custom": "Dowolne integracje bez dodatkowych kosztów" }
+    ],
+    "tco": [
+      { "label": "Licencja / hosting (rok)", "boxed": 168000, "custom": 4800 },
+      { "label": "Wdrożenie", "boxed": 80000, "custom": 70000 },
+      { "label": "Customizacja i rozwój (rok)", "boxed": 60000, "custom": 24000 },
+      { "label": "Utrzymanie i support (rok)", "boxed": 144000, "custom": 18000 }
+    ],
+    "targetAudience": "Średnie firmy (20–100 pracowników), które płacą za Salesforce Enterprise, ale wykorzystują 20–30% jego możliwości. Szczególnie organizacje, dla których koszt licencji i dedykowanego administratora SF stanowi znaczący procent budżetu IT.",
+    "whenCustom": [
+      "Koszty licencji Salesforce przekraczają 100 000 PLN rocznie",
+      "Twój zespół wykorzystuje mniej niż 30% funkcji Salesforce",
+      "Governor Limits Apex blokują implementację potrzebnej logiki",
+      "Nie chcesz uzależniać się od jednego dostawcy (vendor lock-in)",
+      "Wolny interfejs Lightning frustruje zespół sprzedażowy"
+    ],
+    "faq": [
+      { "q": "Czy opłaca się zamienić Salesforce na dedykowane rozwiązanie?", "a": "Przy zespole 20+ osób koszty licencji Salesforce (168 000+ PLN/rok) oraz administracji (150 000+ PLN/rok) szybko przekraczają koszt utrzymania dedykowanego CRM. Zwrot z inwestycji następuje w 12–18 miesięcy." },
+      { "q": "Jak przenieść dane z Salesforce?", "a": "Dane z Salesforce eksportuje się przez Data Loader lub Bulk API. Kluczowe wyzwanie to odtworzenie logiki biznesowej napisanej w Apex i Flow — wymaga to analizy i reimplementacji, co trwa 2–4 miesiące." },
+      { "q": "Czy dedykowany CRM będzie równie bezpieczny jak Salesforce?", "a": "Tak — dedykowane rozwiązanie może implementować te same standardy bezpieczeństwa (szyfrowanie, RBAC, audit trail, 2FA). Kluczowe jest projektowanie security from scratch i regularne audyty." }
+    ]
+  },
+  {
+    "id": "bitrix24",
+    "slug": "bitrix24",
+    "systemName": "Bitrix24",
+    "category": "crm",
+    "whatItIs": "Bitrix24 to platforma łącząca CRM, zarządzanie projektami, komunikację wewnętrzną i narzędzia HR w jednym systemie. Oferuje darmowy plan dla małych zespołów oraz wersję on-premise. Bitrix24 jest popularny w Polsce wśród firm szukających all-in-one rozwiązania, ale jego rozbudowana funkcjonalność często oznacza kompromisy w jakości poszczególnych modułów.",
+    "limitations": [
+      { "title": "Nieintuicyjny i przeładowany interfejs", "description": "Bitrix24 próbuje być wszystkim naraz — interfejs jest przeładowany opcjami, menu zagnieżdżone są na 4–5 poziomach, a użytkownicy potrzebują tygodni szkoleń, żeby sprawnie poruszać się po systemie." },
+      { "title": "Wolne działanie wersji cloud", "description": "Wersja chmurowa Bitrix24 jest znana z powolnego ładowania stron (4–8 sekund) i częstych timeoutów, szczególnie przy dużej liczbie rekordów w CRM (powyżej 50 000 kontaktów)." },
+      { "title": "Ograniczone API i integracje", "description": "REST API Bitrix24 jest niekompletne — wiele operacji dostępnych w interfejsie nie ma odpowiednika API, a dokumentacja jest fragmentaryczna i często nieaktualna." },
+      { "title": "Mieszanie funkcji CRM z komunikacją", "description": "Połączenie CRM z czatem firmowym i tablicą aktywności powoduje chaos informacyjny — handlowcy są rozpraszani powiadomieniami z kanałów, które nie dotyczą ich pracy." },
+      { "title": "Problematyczna wersja on-premise", "description": "Instalacja on-premise wymaga serwera z minimum 4 CPU, 8 GB RAM i specyficznej konfiguracji Bitrix Framework — aktualizacje są skomplikowane i ryzykowne." }
+    ],
+    "comparison": [
+      { "feature": "Interfejs użytkownika", "boxed": "Przeładowany, 4–5 poziomów menu", "custom": "Czysty UI zaprojektowany pod procesy firmy" },
+      { "feature": "Wydajność", "boxed": "4–8s ładowania, timeouty", "custom": "< 1s, responsywny interfejs" },
+      { "feature": "API", "boxed": "Niekompletne REST API", "custom": "Pełne API do każdej funkcji systemu" },
+      { "feature": "CRM + projekty + komunikacja", "boxed": "Wszystko w jednym (chaos)", "custom": "Zintegrowane moduły z wyraźnym podziałem" },
+      { "feature": "Automatyzacje biznesowe", "boxed": "Wizualny edytor z ograniczeniami", "custom": "Dowolna logika, webhooks, eventy" },
+      { "feature": "Raportowanie", "boxed": "Podstawowe raporty CRM", "custom": "Zaawansowane dashboardy, BI" }
+    ],
+    "tco": [
+      { "label": "Licencja / hosting (rok)", "boxed": 9600, "custom": 3600 },
+      { "label": "Wdrożenie", "boxed": 10000, "custom": 40000 },
+      { "label": "Customizacja i rozwój (rok)", "boxed": 8000, "custom": 6000 },
+      { "label": "Utrzymanie i support (rok)", "boxed": 3600, "custom": 6000 }
+    ],
+    "targetAudience": "Firmy korzystające z Bitrix24, które są sfrustrowane powolnym interfejsem, chaotyczną organizacją funkcji i ograniczonym API. Szczególnie zespoły, które potrzebują CRM i zarządzania projektami, ale nie komunikatora i HR w tym samym narzędziu.",
+    "whenCustom": [
+      "Zespół narzeka na powolność i nieintuicyjność Bitrix24",
+      "Potrzebujesz stabilnego API do integracji z innymi systemami",
+      "Chcesz CRM i zarządzanie projektami bez zbędnego komunikatora i HR",
+      "Twoja baza kontaktów przekracza 50 000 i Bitrix24 zwalnia"
+    ],
+    "faq": [
+      { "q": "Ile kosztuje zamiennik Bitrix24?", "a": "Dedykowany system CRM + zarządzanie projektami kosztuje 35 000–50 000 PLN za wdrożenie. W perspektywie 3 lat TCO jest porównywalny z planem Professional Bitrix24, ale eliminuje frustrację użytkowników z powolnym interfejsem." },
+      { "q": "Czy mogę przenieść dane z Bitrix24?", "a": "Tak — Bitrix24 REST API pozwala na eksport kontaktów, deali i aktywności. W przypadku wersji on-premise dane można wyeksportować bezpośrednio z bazy MySQL. Migracja trwa 2–4 tygodnie." },
+      { "q": "Czy dedykowane rozwiązanie zastąpi wszystkie moduły Bitrix24?", "a": "Najczęściej nie ma potrzeby odtwarzania wszystkich modułów — firmy typowo potrzebują CRM + zarządzanie projektami, a komunikację prowadzą przez Slack/Teams. Dedykowane rozwiązanie pokrywa kluczowe procesy bez zbędnego balastu." }
+    ]
+  },
+  {
+    "id": "livespace",
+    "slug": "livespace",
+    "systemName": "Livespace",
+    "category": "crm",
+    "whatItIs": "Livespace to polski CRM stworzony z myślą o procesowej sprzedaży B2B. System wyróżnia się metodologią opartą na procesach sprzedażowych — każdy etap pipeline'u ma zdefiniowane zadania i kryteria przejścia. Livespace jest popularny wśród polskich firm usługowych i software house'ów, oferując natywną obsługę języka polskiego i polskiego rynku.",
+    "limitations": [
+      { "title": "Brak modułu marketing automation", "description": "Livespace nie oferuje wbudowanego e-mail marketingu, lead scoringu ani automatyzacji kampanii marketingowych — wymaga integracji z zewnętrznymi narzędziami (Mailchimp, GetResponse)." },
+      { "title": "Ograniczone możliwości kastomizacji", "description": "System ma predefiniowany model danych z ograniczoną liczbą pól niestandardowych — nie można tworzyć własnych obiektów, relacji ani złożonych struktur danych." },
+      { "title": "Brak zaawansowanego raportowania", "description": "Raporty Livespace ograniczają się do statystyk pipeline'u i aktywności — brak możliwości tworzenia cross-tabel, analiz kohortowych czy eksportu do narzędzi BI." },
+      { "title": "Mały ekosystem integracji", "description": "W porównaniu z Pipedrive czy HubSpot, Livespace ma znacznie mniejszą liczbę natywnych integracji — wiele połączeń wymaga użycia Zapiera lub własnego API." },
+      { "title": "Brak mobilnej wersji offline", "description": "Aplikacja mobilna Livespace wymaga stałego połączenia z internetem — handlowcy w terenie nie mogą pracować offline i synchronizować danych później." }
+    ],
+    "comparison": [
+      { "feature": "Proces sprzedażowy", "boxed": "Predefiniowane etapy z zadaniami", "custom": "Dynamiczne procesy z logiką warunkową" },
+      { "feature": "Marketing automation", "boxed": "Brak — wymaga zewnętrznego narzędzia", "custom": "Wbudowany moduł kampanii i lead scoring" },
+      { "feature": "Model danych", "boxed": "Stały, ograniczone custom fields", "custom": "Elastyczny, własne obiekty i relacje" },
+      { "feature": "Raportowanie", "boxed": "Podstawowe statystyki pipeline", "custom": "Zaawansowane dashboardy, SQL, BI" },
+      { "feature": "Tryb offline", "boxed": "Brak", "custom": "Pełna praca offline z synchronizacją" },
+      { "feature": "Integracje", "boxed": "Ograniczony ekosystem", "custom": "Dowolne integracje przez API" }
+    ],
+    "tco": [
+      { "label": "Licencja / hosting (rok)", "boxed": 5400, "custom": 2400 },
+      { "label": "Wdrożenie", "boxed": 4000, "custom": 25000 },
+      { "label": "Customizacja i rozwój (rok)", "boxed": 3000, "custom": 4000 },
+      { "label": "Utrzymanie i support (rok)", "boxed": 1200, "custom": 4800 }
+    ],
+    "targetAudience": "Polskie firmy B2B, które korzystają z Livespace i potrzebują zintegrowanego marketing automation, zaawansowanego raportowania lub elastycznego modelu danych niedostępnego w Livespace.",
+    "whenCustom": [
+      "Potrzebujesz CRM ze zintegrowanym marketing automation",
+      "Model danych Livespace jest zbyt sztywny dla Twoich procesów",
+      "Twoi handlowcy pracują w terenie i potrzebują trybu offline",
+      "Raportowanie Livespace nie wystarcza do podejmowania decyzji biznesowych",
+      "Zależy Ci na integracji z polskimi systemami ERP i księgowymi"
+    ],
+    "faq": [
+      { "q": "Ile kosztuje alternatywa dla Livespace?", "a": "Dedykowany CRM B2B z marketing automation kosztuje 20 000–35 000 PLN za wdrożenie. Przy zespole powyżej 10 osób TCO w perspektywie 3 lat jest porównywalny z Livespace, ale daje znacznie większe możliwości." },
+      { "q": "Czy stracę metodologię procesowej sprzedaży?", "a": "Nie — metodologię procesową Livespace (etapy z zadaniami i kryteriami) można odtworzyć i rozbudować w dedykowanym systemie, dodając logikę warunkową i automatyzacje niedostępne w Livespace." },
+      { "q": "Jak przenieść dane z Livespace?", "a": "Livespace oferuje API REST do eksportu kontaktów, firm, szans sprzedażowych i aktywności. Migracja danych wraz z historią to standardowa procedura trwająca 1–2 tygodnie." }
+    ]
+  },
+  {
+    "id": "comarch-erp-optima",
+    "slug": "comarch-erp-optima",
+    "systemName": "Comarch ERP Optima",
+    "category": "erp",
+    "whatItIs": "Comarch ERP Optima to najpopularniejszy system ERP dla małych i średnich firm w Polsce, obejmujący moduły księgowości, kadr i płac, handlu oraz magazynu. System działa w architekturze klient-serwer (baza MS SQL Server + aplikacja desktopowa) i jest ściśle dostosowany do polskich przepisów podatkowych. Comarch ERP Optima jest de facto standardem wśród polskich biur rachunkowych.",
+    "limitations": [
+      { "title": "Architektura desktopowa (klient-serwer)", "description": "Comarch ERP Optima działa jako aplikacja Windows wymagająca instalacji na każdym stanowisku — praca zdalna wymaga konfiguracji VPN lub Pulpitu Zdalnego, co obniża wydajność i komplikuje infrastrukturę." },
+      { "title": "Koszty licencji i aktualizacji", "description": "Licencja na 5 stanowisk kosztuje ok. 15 000 PLN + coroczna opłata za aktualizacje (Asystent, ok. 4 000 PLN/rok) — bez aktualizacji system traci zgodność z przepisami podatkowymi." },
+      { "title": "Ograniczona kastomizacja bez SDK", "description": "Modyfikacja logiki biznesowej wymaga zakupu Comarch ERP SDK lub zlecenia Comarch — nie można samodzielnie dodać nowych pól, raportów czy automatyzacji bez dodatkowych kosztów." },
+      { "title": "Brak natywnego dostępu mobilnego", "description": "Comarch ERP Optima nie ma natywnej aplikacji mobilnej do zarządzania magazynem, zamówieniami czy zatwierdzania dokumentów — moduł mobilny (Comarch Mobile) to osobny, płatny produkt." },
+      { "title": "Wolne generowanie raportów", "description": "Raporty i zestawienia w Optima generują się wolno przy dużej liczbie dokumentów (>100 000/rok) — system nie jest zoptymalizowany pod analitykę i BI." }
+    ],
+    "comparison": [
+      { "feature": "Architektura", "boxed": "Desktop (Windows + MS SQL)", "custom": "Web-based, dostęp z każdego urządzenia" },
+      { "feature": "Praca zdalna", "boxed": "Wymaga VPN/RDP", "custom": "Natywny dostęp przez przeglądarkę" },
+      { "feature": "Mobilność", "boxed": "Brak (osobny płatny moduł)", "custom": "Responsywny interfejs + aplikacja mobilna" },
+      { "feature": "Kastomizacja", "boxed": "Wymaga SDK lub zlecenia Comarch", "custom": "Pełna swoboda modyfikacji" },
+      { "feature": "Zgodność z przepisami PL", "boxed": "Wbudowana (JPK, e-faktury)", "custom": "Implementowana pod aktualne przepisy" },
+      { "feature": "Raportowanie i BI", "boxed": "Podstawowe, wolne przy dużych danych", "custom": "Szybkie dashboardy, integracja z BI" },
+      { "feature": "Integracje e-commerce", "boxed": "Przez dodatki Comarch", "custom": "Natywna integracja z dowolnym sklepem" }
+    ],
+    "tco": [
+      { "label": "Licencja / hosting (rok)", "boxed": 19000, "custom": 4800 },
+      { "label": "Wdrożenie", "boxed": 15000, "custom": 60000 },
+      { "label": "Customizacja i rozwój (rok)", "boxed": 12000, "custom": 10000 },
+      { "label": "Utrzymanie i support (rok)", "boxed": 6000, "custom": 9600 }
+    ],
+    "targetAudience": "Firmy korzystające z Comarch ERP Optima, które potrzebują dostępu webowego, pracy mobilnej, zaawansowanej analityki lub głębokiej integracji z e-commerce — szczególnie przedsiębiorstwa z rozproszonymi zespołami i potrzebą pracy zdalnej.",
+    "whenCustom": [
+      "Potrzebujesz dostępu do ERP z przeglądarki bez VPN i instalacji",
+      "Twój zespół pracuje zdalnie lub w terenie i potrzebuje dostępu mobilnego",
+      "Raportowanie Optima nie wystarcza do podejmowania decyzji biznesowych",
+      "Zależy Ci na głębokiej integracji ERP z e-commerce i CRM",
+      "Koszty licencji Comarch i corocznych aktualizacji są zbyt wysokie"
+    ],
+    "faq": [
+      { "q": "Ile kosztuje zamiennik Comarch ERP Optima?", "a": "Dedykowany system ERP webowy kosztuje 50 000–80 000 PLN za wdrożenie podstawowych modułów (handel, magazyn, faktury). To więcej niż początkowy koszt Optima, ale eliminuje coroczne opłaty za Asystenta i pozwala na dowolny rozwój." },
+      { "q": "Czy dedykowany ERP będzie zgodny z polskimi przepisami?", "a": "Tak — dedykowany system implementuje KSeF (e-faktury), JPK_VAE, split payment i inne wymagania polskiego prawa. Kluczowe jest zaprojektowanie architektury umożliwiającej szybkie dostosowanie do zmian przepisów." },
+      { "q": "Jak przenieść dane z Comarch ERP Optima?", "a": "Dane z Optima przechowywane są w bazie MS SQL Server — eksport kontrahentów, dokumentów, stanów magazynowych i rozrachunków jest stosunkowo prosty. Migracja trwa 2–4 tygodnie z testami poprawności." }
+    ]
+  },
+  {
+    "id": "subiekt-gt",
+    "slug": "subiekt-gt",
+    "systemName": "Subiekt GT",
+    "category": "erp",
+    "whatItIs": "Subiekt GT firmy InsERT to popularny polski system handlowo-magazynowy przeznaczony dla małych i średnich firm. System zarządza fakturami, magazynem, zamówieniami i rozrachunkami, a w połączeniu z Rachmistrz GT lub Rewizor GT tworzy kompletne rozwiązanie do prowadzenia firmy. Subiekt GT jest szeroko stosowany w hurtowniach, sklepach stacjonarnych i firmach dystrybucyjnych.",
+    "limitations": [
+      { "title": "Architektura desktopowa z bazą Firebird", "description": "Subiekt GT działa wyłącznie na Windows z bazą Firebird — nie ma wersji webowej ani chmurowej, a Firebird nie obsługuje tak dobrze dużych zbiorów danych jak PostgreSQL czy MS SQL." },
+      { "title": "Brak natywnej integracji z e-commerce", "description": "Integracja z sklepami internetowymi wymaga dodatkowego oprogramowania (Sfera/Nexo) lub zewnętrznych konektorów — natywna synchronizacja zamówień, stanów i cen jest ograniczona." },
+      { "title": "Ograniczony rozwój produktu", "description": "InsERT skupia się na nowym produkcie (Subiekt nexo PRO) — Subiekt GT nie otrzymuje nowych funkcji, a jedynie aktualizacje zgodności z przepisami podatkowymi." },
+      { "title": "Brak wielostanowiskowej pracy zdalnej", "description": "Praca na wielu stanowiskach wymaga sieci LAN lub skomplikowanej konfiguracji VPN — brak natywnego dostępu przez internet utrudnia pracę zdalną i obsługę wielu lokalizacji." },
+      { "title": "Ograniczone raportowanie i analityka", "description": "Raporty w Subiekt GT opierają się na predefiniowanych szablonach — tworzenie niestandardowych zestawień wymaga eksportu do Excela lub zakupu dodatku Analizy InsERT." }
+    ],
+    "comparison": [
+      { "feature": "Architektura", "boxed": "Desktop Windows + Firebird", "custom": "Web-based, dowolna platforma" },
+      { "feature": "Integracja e-commerce", "boxed": "Przez Sfera lub konektory", "custom": "Natywna dwukierunkowa synchronizacja" },
+      { "feature": "Wielolokalizacyjność", "boxed": "Wymaga VPN/sieci LAN", "custom": "Przeglądarka z dowolnej lokalizacji" },
+      { "feature": "Skalowalność bazy danych", "boxed": "Firebird — do ~500 000 dokumentów", "custom": "PostgreSQL/MySQL — miliony dokumentów" },
+      { "feature": "Raportowanie", "boxed": "Predefiniowane szablony", "custom": "Niestandardowe dashboardy i BI" },
+      { "feature": "Automatyzacja procesów", "boxed": "Minimalna (alerty, szablony)", "custom": "Pełna automatyzacja workflow" },
+      { "feature": "Dostęp mobilny", "boxed": "Brak", "custom": "Responsywny interfejs + PWA" }
+    ],
+    "tco": [
+      { "label": "Licencja / hosting (rok)", "boxed": 4000, "custom": 3600 },
+      { "label": "Wdrożenie", "boxed": 6000, "custom": 45000 },
+      { "label": "Customizacja i rozwój (rok)", "boxed": 5000, "custom": 6000 },
+      { "label": "Utrzymanie i support (rok)", "boxed": 2400, "custom": 7200 }
+    ],
+    "targetAudience": "Firmy handlowe i dystrybucyjne korzystające z Subiekt GT, które potrzebują integracji z e-commerce, pracy wielolokalizacyjnej przez internet lub automatyzacji procesów magazynowo-handlowych wykraczającej poza możliwości GT.",
+    "whenCustom": [
+      "Potrzebujesz natywnej integracji systemu handlowego z e-commerce",
+      "Twoja firma ma wiele lokalizacji i potrzebuje centralnego systemu online",
+      "Baza dokumentów w Subiekt GT przekracza możliwości Firebird",
+      "Chcesz zautomatyzować procesy: zamówienia, kompletacja, wysyłka"
+    ],
+    "faq": [
+      { "q": "Ile kosztuje alternatywa dla Subiekt GT?", "a": "Dedykowany system handlowo-magazynowy webowy kosztuje 40 000–60 000 PLN za wdrożenie. To więcej niż Subiekt GT, ale daje dostęp online, integrację z e-commerce i skalowalność, których GT nie oferuje." },
+      { "q": "Czy mogę przenieść dane z Subiekt GT?", "a": "Tak — dane z Subiekt GT (kontrahenci, towary, dokumenty, stany magazynowe) przechowywane są w bazie Firebird i mogą być wyeksportowane przez API Sfera lub bezpośredni odczyt bazy. Migracja trwa 2–3 tygodnie." },
+      { "q": "Czy InsERT nexo jest lepszą alternatywą niż dedykowane rozwiązanie?", "a": "Nexo rozwiązuje część problemów GT (lepsza baza danych, częściowy dostęp online), ale wciąż jest aplikacją desktopową z ograniczoną integracją. Dedykowane rozwiązanie daje pełną elastyczność i kontrolę nad rozwojem." }
+    ]
+  },
+  {
+    "id": "enova365",
+    "slug": "enova365",
+    "systemName": "enova365",
+    "category": "erp",
+    "whatItIs": "enova365 to polski system ERP firmy Soneta, przeznaczony dla średnich firm i organizacji. System oferuje moduły księgowości, kadr i płac, handlu, magazynu, CRM i workflow. Wyróżnia się technologią .NET i możliwością pracy w chmurze (enova365 w modelu SaaS) oraz rozbudowanymi możliwościami kastomizacji przez język C# i mechanizm dodatków.",
+    "limitations": [
+      { "title": "Skomplikowany interfejs użytkownika", "description": "Interfejs enova365 oparty jest na oknach i zakładkach rodem z aplikacji desktopowych Windows — jest funkcjonalny, ale nieintuicyjny dla nowych użytkowników przyzwyczajonych do nowoczesnych interfejsów webowych." },
+      { "title": "Wysoki koszt wdrożenia i customizacji", "description": "Wdrożenie enova365 z dostosowaniem do potrzeb firmy kosztuje 30 000–100 000 PLN — dodatki w C# wymagają programistów .NET, co podnosi koszt utrzymania i rozwoju." },
+      { "title": "Zależność od ekosystemu Soneta", "description": "Dodatki i kastomizacje wymagają zgodności z SDK Soneta — każda aktualizacja systemu może wymagać dostosowania dodatków, co generuje dodatkowe koszty." },
+      { "title": "Ograniczona integracja z nowoczesnymi narzędziami", "description": "API enova365 opiera się na technologii WCF/.NET — integracja z nowoczesnymi aplikacjami webowymi (React, Vue) i usługami REST wymaga warstwy pośredniczącej." },
+      { "title": "Wolne generowanie raportów złożonych", "description": "Raporty obejmujące dane z wielu modułów (np. rentowność klienta łącząca dane handlowe, księgowe i CRM) generują się wolno ze względu na architekturę bazy danych." }
+    ],
+    "comparison": [
+      { "feature": "Interfejs", "boxed": "Okna i zakładki (.NET/WPF)", "custom": "Nowoczesny UI webowy (React/Vue)" },
+      { "feature": "Technologia", "boxed": ".NET Framework, WCF", "custom": "Dowolny stack, REST/GraphQL API" },
+      { "feature": "Kastomizacja", "boxed": "C# + SDK Soneta (vendor lock)", "custom": "Otwarty kod, dowolna technologia" },
+      { "feature": "Aktualizacje", "boxed": "Ryzyko niekompatybilności dodatków", "custom": "Kontrolowane, bez ryzyka dla customizacji" },
+      { "feature": "Raportowanie cross-modułowe", "boxed": "Wolne przy złożonych zapytaniach", "custom": "Zoptymalizowany data warehouse, BI" },
+      { "feature": "Integracje webowe", "boxed": "Wymaga warstwy pośredniczącej", "custom": "Natywne REST API, webhooks" }
+    ],
+    "tco": [
+      { "label": "Licencja / hosting (rok)", "boxed": 14400, "custom": 4800 },
+      { "label": "Wdrożenie", "boxed": 40000, "custom": 65000 },
+      { "label": "Customizacja i rozwój (rok)", "boxed": 15000, "custom": 10000 },
+      { "label": "Utrzymanie i support (rok)", "boxed": 7200, "custom": 9600 }
+    ],
+    "targetAudience": "Średnie firmy korzystające z enova365, które chcą nowoczesnego interfejsu webowego, natywnych integracji REST API i niezależności od ekosystemu Soneta — szczególnie organizacje z rozbudowanymi wymaganiami na cross-modułowe raportowanie i BI.",
+    "whenCustom": [
+      "Koszt utrzymania dodatków enova365 przy każdej aktualizacji jest zbyt wysoki",
+      "Potrzebujesz natywnego REST API do integracji z aplikacjami webowymi",
+      "Interfejs enova365 jest zbyt skomplikowany dla Twoich użytkowników",
+      "Cross-modułowe raporty generują się zbyt wolno",
+      "Chcesz uniezależnić się od ekosystemu i SDK Soneta"
+    ],
+    "faq": [
+      { "q": "Ile kosztuje dedykowany ERP zamiast enova365?", "a": "Dedykowany system ERP webowy o porównywalnej funkcjonalności kosztuje 55 000–90 000 PLN za wdrożenie. W perspektywie 3 lat TCO jest porównywalny, ale eliminuje koszty licencji i ryzyka związane z aktualizacjami SDK." },
+      { "q": "Jak przenieść dane z enova365?", "a": "enova365 przechowuje dane w MS SQL Server — eksport kontrahentów, dokumentów i danych kadrowych jest możliwy przez API lub bezpośredni odczyt bazy. Kluczowe jest zachowanie ciągłości numeracji dokumentów i rozrachunków." },
+      { "q": "Czy dedykowany ERP będzie zgodny z KSeF i JPK?", "a": "Tak — KSeF (Krajowy System e-Faktur) i JPK to standardy definiowane przez Ministerstwo Finansów. Dedykowane rozwiązanie implementuje te same formaty XML i protokoły komunikacji z systemami skarbowymi." }
+    ]
+  },
+  {
+    "id": "jira",
+    "slug": "jira",
+    "systemName": "Jira",
+    "category": "project-management",
+    "whatItIs": "Jira firmy Atlassian to najpopularniejsze narzędzie do zarządzania projektami w branży IT, oferujące planowanie sprintów (Scrum), tablice Kanban, backlog i zaawansowane raportowanie agile. System jest standardem w software house'ach i działach IT korporacji. Jira Cloud jest dostępna w modelu SaaS, a wersja Data Center dla dużych organizacji.",
+    "limitations": [
+      { "title": "Przytłaczająca złożoność konfiguracji", "description": "Jira oferuje setki opcji konfiguracyjnych (schematy workflow, issue types, screens, custom fields, permissions) — konfiguracja projektu od zera wymaga doświadczonego administratora i zajmuje dni." },
+      { "title": "Wolne ładowanie przy dużych projektach", "description": "Projekty z ponad 50 000 issues i złożonymi filtrami JQL doświadczają opóźnień 3–10 sekund przy ładowaniu tablic i wyszukiwaniu — Jira Cloud nie jest zoptymalizowana pod duże zbiory danych." },
+      { "title": "Wysokie koszty dla dużych zespołów", "description": "Jira Cloud Premium kosztuje ok. 70 PLN/użytkownika/miesiąc — zespół 50 osób to 42 000 PLN/rok, a plan Enterprise z zaawansowanymi funkcjami jest jeszcze droższy." },
+      { "title": "Ograniczone zarządzanie zasobami i budżetem", "description": "Jira nie oferuje natywnego zarządzania alokacją zasobów, śledzenia budżetu projektowego ani kontroli kosztów — wymaga dodatkowych wtyczek z Marketplace (Tempo, BigPicture)." },
+      { "title": "Brak wbudowanej dokumentacji i wiki", "description": "Jira nie zawiera modułu dokumentacji — wymaga osobnego Confluence (kolejna licencja), co prowadzi do rozproszenia informacji między dwoma systemami z osobnymi uprawnieniami." }
+    ],
+    "comparison": [
+      { "feature": "Konfiguracja projektu", "boxed": "Złożona, setki opcji", "custom": "Uproszczona, dostosowana do potrzeb" },
+      { "feature": "Wydajność przy 50k+ issues", "boxed": "Spadek wydajności, wolne JQL", "custom": "Zoptymalizowane zapytania, szybkie filtrowanie" },
+      { "feature": "Zarządzanie zasobami", "boxed": "Wymaga wtyczki (Tempo, BigPicture)", "custom": "Wbudowana alokacja zespołu i budżet" },
+      { "feature": "Dokumentacja", "boxed": "Wymaga osobnego Confluence", "custom": "Zintegrowana wiki w tym samym systemie" },
+      { "feature": "Koszty (50 osób/rok)", "boxed": "42 000 PLN (Jira + Confluence)", "custom": "Stały koszt utrzymania, bez per-user" },
+      { "feature": "Raportowanie agile", "boxed": "Burndown, velocity, cumulative flow", "custom": "Customowe metryki + BI" },
+      { "feature": "Automatyzacje", "boxed": "Jira Automation (limit reguł)", "custom": "Dowolne reguły, webhooks, CI/CD" }
+    ],
+    "tco": [
+      { "label": "Licencja / hosting (rok)", "boxed": 42000, "custom": 3600 },
+      { "label": "Wdrożenie", "boxed": 15000, "custom": 45000 },
+      { "label": "Customizacja i rozwój (rok)", "boxed": 10000, "custom": 8000 },
+      { "label": "Utrzymanie i support (rok)", "boxed": 5000, "custom": 7200 }
+    ],
+    "targetAudience": "Firmy IT i software house'y z zespołami powyżej 30 osób, które płacą znaczne kwoty za Jira + Confluence + wtyczki, a potrzebują zintegrowanego systemu z zarządzaniem zasobami, budżetem i dokumentacją w jednym miejscu.",
+    "whenCustom": [
+      "Łączne koszty Jira + Confluence + wtyczki Marketplace przekraczają 50 000 PLN/rok",
+      "Potrzebujesz zintegrowanego zarządzania zasobami i budżetem projektu",
+      "Złożoność konfiguracji Jira spowalnia onboarding nowych członków zespołu",
+      "Chcesz mieć dokumentację, zadania i raportowanie w jednym systemie"
+    ],
+    "faq": [
+      { "q": "Ile kosztuje zamiennik Jira?", "a": "Dedykowane narzędzie do zarządzania projektami IT kosztuje 40 000–60 000 PLN za wdrożenie. Przy zespole 50 osób oszczędność na licencjach Jira + Confluence wynosi ok. 40 000 PLN rocznie, co daje zwrot w 12–18 miesięcy." },
+      { "q": "Czy mogę przenieść dane z Jira?", "a": "Tak — Jira Cloud API pozwala na eksport projektów, issues, sprintów, komentarzy i załączników. Kluczowe jest zachowanie historii zmian statusów i powiązań między issues. Migracja trwa 2–4 tygodnie." },
+      { "q": "Czy dedykowane rozwiązanie obsłuży Scrum i Kanban?", "a": "Tak — metodologie agile (Scrum, Kanban, Scrumban) to wzorce organizacji pracy, nie funkcje unikalne dla Jiry. Dedykowane narzędzie może implementować te same ceremonie, tablice i metryki." }
+    ]
+  },
+  {
+    "id": "trello",
+    "slug": "trello",
+    "systemName": "Trello",
+    "category": "project-management",
+    "whatItIs": "Trello to narzędzie do zarządzania zadaniami oparte na tablicach Kanban, znane z prostoty i wizualności. System pozwala na tworzenie tablic z listami i kartami, które można przeciągać między etapami. Trello jest popularne wśród małych zespołów i do organizacji osobistej, ale przy rozbudowanych projektach szybko ujawnia swoje ograniczenia.",
+    "limitations": [
+      { "title": "Brak hierarchii zadań", "description": "Trello nie obsługuje natywnie podzadań, epików ani zależności między kartami — jedyną strukturą jest lista → karta, co uniemożliwia modelowanie złożonych projektów." },
+      { "title": "Brak śledzenia czasu i zasobów", "description": "System nie oferuje wbudowanego time trackingu, alokacji zasobów ani widoku obciążenia zespołu — wymaga zewnętrznych Power-Ups (Harvest, Clockify)." },
+      { "title": "Ograniczone raportowanie", "description": "Trello nie ma wbudowanych raportów — brak burndown charts, velocity, czasu cyklu. Jedyne narzędzie analityczne to zewnętrzne Power-Ups lub eksport do CSV." },
+      { "title": "Limit Power-Ups w darmowej wersji", "description": "Darmowy plan Trello ogranicza Power-Ups do 1 na tablicę — aby korzystać z kalendarza, automatyzacji i integracji jednocześnie, trzeba wykupić plan Premium (50 PLN/os/miesiąc)." },
+      { "title": "Brak widoku Gantta i timeline", "description": "Trello nie oferuje natywnego widoku Gantta — widok timeline jest dostępny dopiero w płatnym planie Premium i ma ograniczoną funkcjonalność w porównaniu z dedykowanymi narzędziami." }
+    ],
+    "comparison": [
+      { "feature": "Hierarchia zadań", "boxed": "Płaska: lista → karta", "custom": "Wielopoziomowa: projekt → epik → zadanie → podzadanie" },
+      { "feature": "Śledzenie czasu", "boxed": "Brak (wymaga Power-Up)", "custom": "Wbudowany timer i raportowanie czasu" },
+      { "feature": "Widok Gantta", "boxed": "Tylko w planie Premium (ograniczony)", "custom": "Pełny Gantt z zależnościami i ścieżką krytyczną" },
+      { "feature": "Raportowanie", "boxed": "Brak natywnego", "custom": "Burndown, velocity, czas cyklu, lead time" },
+      { "feature": "Automatyzacje", "boxed": "Butler (limity w darmowym planie)", "custom": "Dowolne reguły, webhooks, API" },
+      { "feature": "Obciążenie zespołu", "boxed": "Brak widoku", "custom": "Dashboard alokacji zasobów" }
+    ],
+    "tco": [
+      { "label": "Licencja / hosting (rok)", "boxed": 6000, "custom": 2400 },
+      { "label": "Wdrożenie", "boxed": 2000, "custom": 20000 },
+      { "label": "Customizacja i rozwój (rok)", "boxed": 2000, "custom": 4000 },
+      { "label": "Utrzymanie i support (rok)", "boxed": 600, "custom": 3600 }
+    ],
+    "targetAudience": "Zespoły, które wyrosły z Trello i potrzebują hierarchii zadań, śledzenia czasu pracy, widoku Gantta i raportowania — ale nie chcą złożoności Jiry ani kosztów Monday.com.",
+    "whenCustom": [
+      "Twoje projekty wymagają hierarchii: epiki, zadania, podzadania",
+      "Potrzebujesz śledzenia czasu pracy i alokacji zasobów",
+      "Brak raportowania w Trello utrudnia podejmowanie decyzji",
+      "Widok Kanban nie wystarcza — potrzebujesz Gantta i timeline"
+    ],
+    "faq": [
+      { "q": "Ile kosztuje alternatywa dla Trello?", "a": "Dedykowane narzędzie do zarządzania projektami kosztuje 15 000–25 000 PLN za wdrożenie. Przy zespole 10 osób na planie Premium (6 000 PLN/rok) zwrot następuje w 3–4 lata, ale zyskujesz funkcje niedostępne w Trello." },
+      { "q": "Czy dedykowane narzędzie będzie tak proste jak Trello?", "a": "Tak — prostota Trello to jego siła i można ją zachować w dedykowanym rozwiązaniu. Różnica polega na tym, że pod prostym interfejsem kryje się zaawansowana logika (hierarchia, raporty, czas)." },
+      { "q": "Jak przenieść tablice z Trello?", "a": "Trello API umożliwia eksport tablic, list, kart, komentarzy i załączników w formacie JSON. Migracja danych jest prosta i zajmuje 1–2 dni." }
+    ]
+  },
+  {
+    "id": "monday",
+    "slug": "monday",
+    "systemName": "Monday.com",
+    "category": "project-management",
+    "whatItIs": "Monday.com to platforma Work OS do zarządzania projektami, procesami i współpracą zespołową. System wyróżnia się kolorowym, wizualnym interfejsem i elastycznością — można go dostosować do zarządzania projektami, CRM, HR czy marketingu. Monday.com jest popularny wśród zespołów nietechnicznych dzięki niskiemu progowi wejścia.",
+    "limitations": [
+      { "title": "Szybko rosnące koszty", "description": "Monday.com wymaga minimum 3 użytkowników, a plan Pro kosztuje 80 PLN/os/miesiąc — zespół 20 osób to 19 200 PLN/rok. Dodatkowe automations i integracje mają osobne limity zależne od planu." },
+      { "title": "Ograniczone automatyzacje w niższych planach", "description": "Plan Standard oferuje 250 akcji automatyzacji miesięcznie, Pro — 25 000. Przy aktywnym zespole limit 250 akcji wyczerpuje się w ciągu kilku dni, wymuszając upgrade." },
+      { "title": "Brak zaawansowanego zarządzania zasobami", "description": "Monday.com nie oferuje natywnego widoku obciążenia zespołu z uwzględnieniem kompetencji, dostępności (urlopy, choroba) ani kosztów — moduł workload jest uproszczony." },
+      { "title": "Ograniczona obsługa metodyk agile", "description": "System nie ma natywnego wsparcia dla Scrum (sprinty, backlog grooming, planning poker) ani dedykowanych metryk agile (velocity, burndown z trend line)." },
+      { "title": "Problemy z wydajnością dużych boardów", "description": "Boardy z ponad 10 000 elementów ładują się wolno (5–15 sekund), a filtry i grupowanie przy dużej ilości danych powodują timeouty." }
+    ],
+    "comparison": [
+      { "feature": "Koszt (20 osób/rok)", "boxed": "19 200 PLN (plan Pro)", "custom": "Stały koszt, brak opłat per-user" },
+      { "feature": "Automatyzacje", "boxed": "250–25 000 akcji/miesiąc (limit planu)", "custom": "Bez limitu akcji" },
+      { "feature": "Zarządzanie zasobami", "boxed": "Uproszczony workload", "custom": "Pełna alokacja: kompetencje, dostępność, koszty" },
+      { "feature": "Metodyki agile", "boxed": "Podstawowe tablice Kanban", "custom": "Pełny Scrum z backlogiem, sprintami, metrykami" },
+      { "feature": "Wydajność", "boxed": "Problemy przy 10k+ elementów", "custom": "Zoptymalizowane pod duże zbiory danych" },
+      { "feature": "Customizacja widoków", "boxed": "Predefiniowane: tabela, Kanban, Gantt, calendar", "custom": "Dowolne widoki i dashboardy" }
+    ],
+    "tco": [
+      { "label": "Licencja / hosting (rok)", "boxed": 19200, "custom": 3600 },
+      { "label": "Wdrożenie", "boxed": 5000, "custom": 30000 },
+      { "label": "Customizacja i rozwój (rok)", "boxed": 4000, "custom": 6000 },
+      { "label": "Utrzymanie i support (rok)", "boxed": 2400, "custom": 4800 }
+    ],
+    "targetAudience": "Zespoły korzystające z Monday.com, które zmagają się z rosnącymi kosztami per-user, limitami automatyzacji i brakiem zaawansowanego zarządzania zasobami — szczególnie firmy z 20+ użytkownikami na planie Pro.",
+    "whenCustom": [
+      "Koszty Monday.com przekraczają 15 000 PLN rocznie i rosną z zespołem",
+      "Limity automatyzacji wymuszają ciągłe upgrady planu",
+      "Potrzebujesz zaawansowanego zarządzania zasobami i kompetencjami",
+      "Twoje boardy z 10 000+ elementami ładują się zbyt wolno",
+      "Brak natywnego wsparcia Scrum utrudnia pracę zespołu IT"
+    ],
+    "faq": [
+      { "q": "Ile kosztuje zamiennik Monday.com?", "a": "Dedykowane narzędzie do zarządzania projektami kosztuje 25 000–40 000 PLN za wdrożenie. Przy 20 użytkownikach oszczędność na licencjach to ok. 15 000 PLN/rok, co daje zwrot w 2–3 lata." },
+      { "q": "Czy mogę przenieść dane z Monday.com?", "a": "Tak — Monday.com API v2 (GraphQL) pozwala na eksport boardów, itemów, kolumn i aktualizacji. Migracja danych trwa 1–3 tygodnie w zależności od liczby boardów i złożoności struktury." },
+      { "q": "Czy dedykowane rozwiązanie będzie równie ładne jak Monday.com?", "a": "Tak — nowoczesne frameworki frontendowe (React, Vue) pozwalają na tworzenie interfejsów równie wizualnych co Monday.com, z dodatkiem funkcji niedostępnych w gotowym narzędziu." }
+    ]
+  },
+  {
+    "id": "asana",
+    "slug": "asana",
+    "systemName": "Asana",
+    "category": "project-management",
+    "whatItIs": "Asana to narzędzie do zarządzania projektami i współpracy zespołowej, popularne wśród zespołów marketingowych, operacyjnych i product managementu. System oferuje widoki listy, tablicy, timeline i kalendarza, a także funkcje takie jak cele (Goals), portfolio projektów i formularze. Asana jest ceniona za czysty interfejs i skupienie na work management.",
+    "limitations": [
+      { "title": "Brak natywnego śledzenia czasu", "description": "Asana nie oferuje wbudowanego time trackingu — śledzenie czasu pracy wymaga integracji z zewnętrznymi narzędziami (Toggl, Harvest), co oznacza dodatkowy koszt i przełączanie się między aplikacjami." },
+      { "title": "Ograniczone raportowanie w niższych planach", "description": "Zaawansowane dashboardy i Universal Reporting są dostępne dopiero od planu Business (ok. 100 PLN/os/miesiąc) — plany Premium oferują jedynie podstawowe widoki postępu." },
+      { "title": "Brak natywnego budżetowania projektów", "description": "Asana nie ma modułu do śledzenia kosztów, budżetów ani fakturowania projektowego — firmy usługowe muszą korzystać z osobnych narzędzi do finansowego zarządzania projektami." },
+      { "title": "Limit 1 osoba przypisana do zadania", "description": "Każde zadanie w Asana może mieć tylko jednego assignee — zadania wymagające współpracy wielu osób muszą być rozdzielane na podzadania, co komplikuje strukturę projektu." },
+      { "title": "Rosnące koszty przy skali", "description": "Plan Business dla zespołu 30 osób to 36 000 PLN/rok — a funkcje takie jak Goals i Portfolios, kluczowe dla PMO, wymagają właśnie tego planu." }
+    ],
+    "comparison": [
+      { "feature": "Śledzenie czasu", "boxed": "Brak (wymaga Toggl/Harvest)", "custom": "Wbudowany timer i raportowanie godzin" },
+      { "feature": "Budżetowanie projektów", "boxed": "Brak natywnego modułu", "custom": "Śledzenie kosztów, budżetów, rentowności" },
+      { "feature": "Raportowanie", "boxed": "Zaawansowane od planu Business", "custom": "Pełne dashboardy w każdym wariancie" },
+      { "feature": "Przypisanie do zadania", "boxed": "1 osoba (assignee)", "custom": "Wielu wykonawców z różnymi rolami" },
+      { "feature": "Koszty (30 osób/rok)", "boxed": "36 000 PLN (Business)", "custom": "Stały koszt niezależny od liczby osób" },
+      { "feature": "Integracja z fakturowaniem", "boxed": "Brak", "custom": "Automatyczne generowanie faktur z zalogowanych godzin" }
+    ],
+    "tco": [
+      { "label": "Licencja / hosting (rok)", "boxed": 36000, "custom": 3600 },
+      { "label": "Wdrożenie", "boxed": 5000, "custom": 30000 },
+      { "label": "Customizacja i rozwój (rok)", "boxed": 3000, "custom": 5000 },
+      { "label": "Utrzymanie i support (rok)", "boxed": 2400, "custom": 4800 }
+    ],
+    "targetAudience": "Firmy usługowe i agencje korzystające z Asana, które potrzebują zintegrowanego śledzenia czasu, budżetowania projektów i fakturowania — szczególnie zespoły powyżej 20 osób na planie Business.",
+    "whenCustom": [
+      "Potrzebujesz śledzenia czasu pracy zintegrowanego z zarządzaniem projektami",
+      "Brak budżetowania projektów w Asana utrudnia kontrolę kosztów",
+      "Koszty Asana Business przekraczają 30 000 PLN rocznie",
+      "Chcesz przypisywać wielu wykonawców do jednego zadania"
+    ],
+    "faq": [
+      { "q": "Ile kosztuje zamiennik Asana?", "a": "Dedykowane narzędzie do zarządzania projektami z time trackingiem i budżetowaniem kosztuje 25 000–40 000 PLN za wdrożenie. Przy 30 użytkownikach oszczędność na licencjach to 32 000 PLN/rok." },
+      { "q": "Czy mogę przenieść dane z Asana?", "a": "Tak — Asana REST API pozwala na eksport projektów, zadań, podzadań, komentarzy i załączników. Migracja danych jest standardową procedurą trwającą 1–3 tygodnie." },
+      { "q": "Czy dedykowane rozwiązanie zastąpi Asana Goals i Portfolios?", "a": "Tak — moduł celów (OKR) i portfolio projektów można odtworzyć w dedykowanym systemie, dodając funkcje niedostępne w Asana, takie jak powiązanie celów z budżetem i rentownością." }
+    ]
+  },
+  {
+    "id": "clickup",
+    "slug": "clickup",
+    "systemName": "ClickUp",
+    "category": "project-management",
+    "whatItIs": "ClickUp to platforma all-in-one do zarządzania projektami, dokumentacji, celami i współpracą. System próbuje zastąpić Jira, Asana, Notion i Slack jednocześnie, oferując hierarchię Space → Folder → List → Task i dziesiątki widoków. ClickUp jest popularny wśród startupów i zespołów szukających jednego narzędzia do wszystkiego.",
+    "limitations": [
+      { "title": "Niestabilność i bugi", "description": "ClickUp jest znany z częstych bugów interfejsu — użytkownicy raportują znikające filtry, niepoprawne sortowanie, błędy w automatyzacjach i sporadyczne utraty danych w dokumentach." },
+      { "title": "Przytłaczająca liczba funkcji", "description": "System oferuje setki funkcji, co prowadzi do paraliżu decyzyjnego — konfiguracja workspace'a z właściwą hierarchią, widokami i statusami wymaga tygodni eksperymentowania." },
+      { "title": "Wolne ładowanie przy dużych workspace'ach", "description": "Workspace'y z ponad 50 000 zadań doświadczają znaczących opóźnień — ładowanie widoków trwa 5–15 sekund, a przełączanie między przestrzeniami bywa frustrująco wolne." },
+      { "title": "Ograniczone offline i mobilna", "description": "Aplikacja mobilna ClickUp jest ograniczona funkcjonalnie w porównaniu z wersją webową, a tryb offline praktycznie nie istnieje — wymagane jest stałe połączenie." },
+      { "title": "Częste zmiany UI i funkcji", "description": "ClickUp regularnie zmienia interfejs i reorganizuje funkcje bez wcześniejszego ostrzeżenia — użytkownicy muszą co kilka tygodni uczyć się nowego layoutu, co obniża produktywność." }
+    ],
+    "comparison": [
+      { "feature": "Stabilność", "boxed": "Częste bugi interfejsu i automatyzacji", "custom": "Stabilny, testowany system" },
+      { "feature": "Wydajność przy 50k+ zadań", "boxed": "5–15s ładowania", "custom": "Szybkie filtrowanie i wyszukiwanie" },
+      { "feature": "Prostota", "boxed": "Setki funkcji, paraliż decyzyjny", "custom": "Tylko potrzebne funkcje, czysty UI" },
+      { "feature": "Spójność interfejsu", "boxed": "Częste zmiany UI", "custom": "Stabilny, przewidywalny interfejs" },
+      { "feature": "Dokumentacja", "boxed": "ClickUp Docs (podstawowy)", "custom": "Zintegrowana wiki z wersjonowaniem" },
+      { "feature": "Automatyzacje", "boxed": "Wbudowane, ale zawodne", "custom": "Niezawodne, z logowaniem i debugowaniem" },
+      { "feature": "Tryb offline", "boxed": "Praktycznie brak", "custom": "Pełna praca offline z synchronizacją" }
+    ],
+    "tco": [
+      { "label": "Licencja / hosting (rok)", "boxed": 10800, "custom": 3600 },
+      { "label": "Wdrożenie", "boxed": 3000, "custom": 25000 },
+      { "label": "Customizacja i rozwój (rok)", "boxed": 2000, "custom": 5000 },
+      { "label": "Utrzymanie i support (rok)", "boxed": 1200, "custom": 4800 }
+    ],
+    "targetAudience": "Zespoły korzystające z ClickUp, które są sfrustrowane niestabilnością, wolnym ładowaniem i ciągłymi zmianami interfejsu — szczególnie firmy, które potrzebują niezawodnego narzędzia do krytycznych procesów biznesowych.",
+    "whenCustom": [
+      "Bugi ClickUp wpływają na produktywność zespołu",
+      "Workspace z dziesiątkami tysięcy zadań ładuje się zbyt wolno",
+      "Ciągłe zmiany UI frustrują użytkowników i wymagają ponownych szkoleń",
+      "Potrzebujesz stabilnego, niezawodnego systemu do krytycznych procesów"
+    ],
+    "faq": [
+      { "q": "Ile kosztuje dedykowane rozwiązanie zamiast ClickUp?", "a": "Dedykowane narzędzie do zarządzania projektami kosztuje 20 000–35 000 PLN za wdrożenie. ClickUp jest tani (450 PLN/os/rok), ale koszty utraconej produktywności przez bugi i wolne ładowanie często przewyższają oszczędność na licencji." },
+      { "q": "Jak przenieść dane z ClickUp?", "a": "ClickUp API v2 umożliwia eksport przestrzeni, folderów, list i zadań. Migracja obejmuje przeniesienie hierarchii, statusów, custom fields i komentarzy. Proces trwa 1–3 tygodnie." },
+      { "q": "Czy dedykowane rozwiązanie zastąpi ClickUp Docs?", "a": "Tak — zintegrowana dokumentacja z wersjonowaniem, komentarzami i powiązaniem z zadaniami jest standardową funkcją dedykowanych narzędzi. W przeciwieństwie do ClickUp Docs, jest stabilna i nie traci danych." }
+    ]
+  },
+  {
+    "id": "posbistro",
+    "slug": "posbistro",
+    "systemName": "POSbistro",
+    "category": "restaurants",
+    "whatItIs": "POSbistro to polski system POS (Point of Sale) dla gastronomii, działający na tabletach z systemem Android. System obsługuje przyjmowanie zamówień, zarządzanie stolikami, drukowanie rachunków, integrację z drukarkami fiskalnymi i podstawowe raportowanie. POSbistro jest popularny wśród małych i średnich restauracji, kawiarni i food trucków w Polsce.",
+    "limitations": [
+      { "title": "Ograniczone zarządzanie recepturami i food costem", "description": "POSbistro nie oferuje zaawansowanego modułu kalkulacji food costu z rozbiciem na składniki — restaurator nie widzi w czasie rzeczywistym rentowności poszczególnych dań." },
+      { "title": "Brak natywnego systemu rezerwacji online", "description": "System nie ma wbudowanego modułu rezerwacji online z potwierdzeniem SMS/e-mail — integracja z systemami rezerwacyjnymi (np. ResDiary) wymaga dodatkowej konfiguracji." },
+      { "title": "Podstawowe zarządzanie dostawami", "description": "Moduł zamówień do dostawców jest uproszczony — brak automatycznego generowania zamówień na podstawie stanów minimalnych, historii sprzedaży i prognoz." },
+      { "title": "Ograniczone raportowanie i analityka", "description": "Raporty POSbistro pokrywają podstawowe statystyki sprzedaży, ale brakuje analizy sezonowości, prognozowania popytu, analizy rentowności per stolik czy per kelner." },
+      { "title": "Brak programu lojalnościowego", "description": "POSbistro nie oferuje wbudowanego programu lojalnościowego z aplikacją mobilną, punktami, cashbackiem czy personalizowanymi ofertami dla stałych gości." }
+    ],
+    "comparison": [
+      { "feature": "Food cost i receptury", "boxed": "Podstawowa kalkulacja", "custom": "Szczegółowy food cost z rozbiciem na składniki" },
+      { "feature": "Rezerwacje online", "boxed": "Brak natywnego modułu", "custom": "Wbudowany system z potwierdzeniem SMS" },
+      { "feature": "Zamówienia do dostawców", "boxed": "Ręczne tworzenie zamówień", "custom": "Automatyczne na podstawie prognoz i stanów" },
+      { "feature": "Program lojalnościowy", "boxed": "Brak", "custom": "Aplikacja mobilna, punkty, oferty" },
+      { "feature": "Raportowanie", "boxed": "Podstawowe statystyki sprzedaży", "custom": "Analiza sezonowości, prognozy, rentowność" },
+      { "feature": "Zamówienia online (delivery)", "boxed": "Integracja z Glovo/Uber Eats", "custom": "Własny system zamówień online (brak prowizji)" }
+    ],
+    "tco": [
+      { "label": "Licencja / hosting (rok)", "boxed": 3600, "custom": 2400 },
+      { "label": "Wdrożenie", "boxed": 3000, "custom": 25000 },
+      { "label": "Customizacja i rozwój (rok)", "boxed": 2000, "custom": 4000 },
+      { "label": "Utrzymanie i support (rok)", "boxed": 1200, "custom": 4800 }
+    ],
+    "targetAudience": "Restauratorzy prowadzący 2+ lokale, którzy potrzebują zaawansowanego zarządzania food costem, własnego systemu rezerwacji i zamówień online (bez prowizji platform delivery) oraz programu lojalnościowego.",
+    "whenCustom": [
+      "Chcesz kontrolować food cost i rentowność każdego dania w czasie rzeczywistym",
+      "Potrzebujesz własnego systemu zamówień online bez prowizji Glovo/Uber Eats",
+      "Planujesz program lojalnościowy z aplikacją mobilną",
+      "Zarządzasz wieloma lokalami i potrzebujesz centralnego raportowania",
+      "Automatyzacja zamówień do dostawców zaoszczędzi czas i pieniądze"
+    ],
+    "faq": [
+      { "q": "Ile kosztuje dedykowany system POS dla restauracji?", "a": "Dedykowany system gastronomiczny kosztuje 20 000–35 000 PLN za wdrożenie. Dla restauracji z 2+ lokalami inwestycja zwraca się w 12–18 miesięcy dzięki optymalizacji food costu i eliminacji prowizji platform delivery." },
+      { "q": "Czy dedykowany system będzie współpracował z drukarką fiskalną?", "a": "Tak — integracja z drukarkami fiskalnymi (Posnet, Novitus, Elzab) jest standardem. Dedykowane rozwiązanie obsługuje również kasy online wymagane przez przepisy." },
+      { "q": "Czy mogę mieć własny system zamówień online bez Glovo?", "a": "Tak — dedykowany system zamówień online z własną stroną/aplikacją eliminuje prowizję 15–30% platform delivery. Przy zamówieniach za 20 000 PLN/miesiąc oszczędność to 3 000–6 000 PLN miesięcznie." }
+    ]
+  },
+  {
+    "id": "gastro-pos",
+    "slug": "gastro-pos",
+    "systemName": "Gastro POS",
+    "category": "restaurants",
+    "whatItIs": "Gastro POS (GoPOS) to polski system POS dla gastronomii oferujący obsługę zamówień, zarządzanie stolikami, integrację z drukarkami fiskalnymi i systemami płatności. System działa na tabletach i terminalach, a panel zarządzania jest dostępny w chmurze. Gastro POS jest skierowany do restauracji, pubów i sieci gastronomicznych.",
+    "limitations": [
+      { "title": "Ograniczone zarządzanie magazynem i recepturami", "description": "Moduł magazynowy Gastro POS jest uproszczony — nie obsługuje automatycznych rozchodów składników na podstawie sprzedaży dań z receptur, co utrudnia kontrolę stanów." },
+      { "title": "Brak zaawansowanego CRM dla gości", "description": "System nie zbiera i nie analizuje historii zamówień poszczególnych gości — brak możliwości personalizacji obsługi, rekomendacji czy targetowanych promocji." },
+      { "title": "Ograniczone zarządzanie personelem", "description": "Moduł HR jest podstawowy — brak zaawansowanego grafiku zmian z uwzględnieniem kompetencji, kosztów pracy, wydajności kelnerów i automatycznego rozliczania nadgodzin." },
+      { "title": "Brak modułu cateringowego", "description": "Gastro POS nie obsługuje natywnie zamówień cateringowych z planowaniem produkcji, logistyką dostaw i osobną kalkulacją kosztów." },
+      { "title": "Podstawowa analityka sprzedaży", "description": "Raporty ograniczają się do zestawień sprzedaży per dzień/kelner/danie — brak analizy koszyka, cross-sellingu, efektywności promocji czy prognozowania." }
+    ],
+    "comparison": [
+      { "feature": "Magazyn i receptury", "boxed": "Uproszczony, bez auto-rozchodów", "custom": "Automatyczne rozchody składników z receptur" },
+      { "feature": "CRM gości", "boxed": "Brak", "custom": "Historia zamówień, preferencje, rekomendacje" },
+      { "feature": "Grafik personelu", "boxed": "Podstawowy", "custom": "Zaawansowany z kompetencjami i kosztami pracy" },
+      { "feature": "Catering", "boxed": "Brak", "custom": "Pełny moduł: planowanie, produkcja, logistyka" },
+      { "feature": "Analityka", "boxed": "Podstawowe zestawienia", "custom": "Prognozy, analiza koszyka, efektywność promocji" },
+      { "feature": "Własne zamówienia online", "boxed": "Przez integracje", "custom": "Natywny system bez prowizji" }
+    ],
+    "tco": [
+      { "label": "Licencja / hosting (rok)", "boxed": 4200, "custom": 2400 },
+      { "label": "Wdrożenie", "boxed": 4000, "custom": 30000 },
+      { "label": "Customizacja i rozwój (rok)", "boxed": 2000, "custom": 5000 },
+      { "label": "Utrzymanie i support (rok)", "boxed": 1800, "custom": 4800 }
+    ],
+    "targetAudience": "Sieci gastronomiczne i restauracje premium, które potrzebują zaawansowanego zarządzania magazynem z recepturami, CRM gości, modułu cateringowego i analityki wykraczającej poza podstawowe raporty.",
+    "whenCustom": [
+      "Potrzebujesz automatycznych rozchodów magazynowych na podstawie receptur",
+      "Chcesz budować relacje z gośćmi dzięki historii zamówień i personalizacji",
+      "Twoja restauracja oferuje catering i potrzebujesz dedykowanego modułu",
+      "Zarządzanie personelem wymaga zaawansowanego grafiku z kosztami pracy"
+    ],
+    "faq": [
+      { "q": "Ile kosztuje dedykowany system dla restauracji zamiast Gastro POS?", "a": "Dedykowany system gastronomiczny z modułami magazyn + receptury + CRM + catering kosztuje 25 000–45 000 PLN za wdrożenie. Dla sieci 3+ lokali zwrot następuje w 12–18 miesięcy dzięki optymalizacji food costu." },
+      { "q": "Czy dedykowany system obsłuży wiele lokali?", "a": "Tak — dedykowane rozwiązanie zapewnia centralny panel zarządzania z oddzielnymi danymi per lokal, wspólnym menu, centralnym magazynem i skonsolidowanym raportowaniem." },
+      { "q": "Czy mogę zachować obecne drukarki i terminale?", "a": "Tak — dedykowany system integruje się z istniejącymi drukarkami fiskalnymi, drukarkami bonowymi i terminalami płatniczymi. Nie trzeba wymieniać sprzętu." }
+    ]
+  },
+  {
+    "id": "booksy",
+    "slug": "booksy",
+    "systemName": "Booksy",
+    "category": "beauty",
+    "whatItIs": "Booksy to polska platforma do rezerwacji online usług beauty, wellness i zdrowia. System oferuje kalendarz wizyt, zarządzanie klientami, płatności online i marketing (przypomnienia SMS, opinie). Booksy działa jako marketplace — klienci mogą wyszukiwać salony w aplikacji — oraz jako narzędzie SaaS do zarządzania salonem.",
+    "limitations": [
+      { "title": "Prowizja za nowych klientów z marketplace", "description": "Booksy pobiera prowizję za klientów pozyskanych przez marketplace (aplikację Booksy) — salon płaci za widoczność, ale nie ma kontroli nad algorytmem rekomendacji." },
+      { "title": "Ograniczona kastomizacja procesu rezerwacji", "description": "Proces rezerwacji jest standaryzowany przez Booksy — nie można dodać własnych kroków (np. ankiety przed wizytą, wymagania zdrowotne, zgoda na zabieg), formularzy ani logiki warunkowej." },
+      { "title": "Brak zaawansowanego zarządzania zasobami", "description": "System nie obsługuje rezerwacji zasobów (gabinet, urządzenie, fotel) niezależnie od pracownika — przy współdzielonych zasobach mogą występować konflikty." },
+      { "title": "Ograniczone raportowanie finansowe", "description": "Raporty Booksy pokrywają podstawową sprzedaż i frekwencję, ale brakuje analizy rentowności per usługa, per pracownik czy prognozowania przychodów." },
+      { "title": "Vendor lock-in na dane klientów", "description": "Dane klientów (numery telefonów, historia wizyt) są własnością Booksy — eksport pełnej bazy klientów z historią jest ograniczony, co utrudnia migrację." }
+    ],
+    "comparison": [
+      { "feature": "Prowizja za klientów", "boxed": "Prowizja od marketplace Booksy", "custom": "Brak prowizji — własne kanały pozyskiwania" },
+      { "feature": "Proces rezerwacji", "boxed": "Standaryzowany", "custom": "Niestandardowe kroki, formularze, logika" },
+      { "feature": "Zarządzanie zasobami", "boxed": "Tylko pracownicy", "custom": "Pracownicy + gabinety + urządzenia" },
+      { "feature": "Marketing i CRM", "boxed": "Przypomnienia SMS, opinie", "custom": "Segmentacja, kampanie, programy lojalnościowe" },
+      { "feature": "Raportowanie", "boxed": "Podstawowe statystyki", "custom": "Rentowność per usługa/pracownik, prognozy" },
+      { "feature": "Własność danych klientów", "boxed": "Dane na platformie Booksy", "custom": "Pełna kontrola nad bazą klientów" }
+    ],
+    "tco": [
+      { "label": "Licencja / hosting (rok)", "boxed": 4800, "custom": 2400 },
+      { "label": "Wdrożenie", "boxed": 1000, "custom": 20000 },
+      { "label": "Customizacja i rozwój (rok)", "boxed": 1500, "custom": 4000 },
+      { "label": "Utrzymanie i support (rok)", "boxed": 1200, "custom": 3600 }
+    ],
+    "targetAudience": "Salony beauty z 5+ stanowiskami, które chcą uniezależnić się od marketplace Booksy, mieć pełną kontrolę nad danymi klientów i procesem rezerwacji, oraz potrzebują zaawansowanego zarządzania zasobami (gabinety, urządzenia).",
+    "whenCustom": [
+      "Prowizja Booksy za klientów z marketplace jest zbyt wysoka",
+      "Potrzebujesz niestandardowego procesu rezerwacji (formularze, zgody)",
+      "Współdzielone gabinety i urządzenia wymagają osobnej rezerwacji zasobów",
+      "Chcesz mieć pełną kontrolę nad bazą klientów i ich danymi",
+      "Raportowanie Booksy nie pozwala na analizę rentowności usług"
+    ],
+    "faq": [
+      { "q": "Ile kosztuje alternatywa dla Booksy?", "a": "Dedykowany system rezerwacji online kosztuje 15 000–25 000 PLN za wdrożenie. Eliminacja prowizji Booksy i pełna kontrola nad marketingiem mogą przynieść oszczędności przewyższające koszt wdrożenia w 2 lata." },
+      { "q": "Czy stracę klientów po odejściu z Booksy?", "a": "Kluczowe jest stopniowe przyzwyczajanie klientów do nowego systemu rezerwacji — przez 2–3 miesiące można prowadzić oba systemy równolegle. Stali klienci szybko przechodzą na dedykowane rozwiązanie." },
+      { "q": "Czy dedykowany system będzie miał aplikację mobilną?", "a": "Tak — dedykowane rozwiązanie może zawierać PWA (Progressive Web App) lub natywną aplikację mobilną z funkcjami rezerwacji, historii wizyt i programu lojalnościowego." }
+    ]
+  },
+  {
+    "id": "fresha",
+    "slug": "fresha",
+    "systemName": "Fresha",
+    "category": "beauty",
+    "whatItIs": "Fresha (dawniej Versum) to globalny system do zarządzania salonami beauty i wellness, oferujący kalendarz rezerwacji, POS, zarządzanie klientami i marketing. Fresha wyróżnia się modelem 'darmowym' — brak opłaty abonamentowej za podstawowe funkcje, ale system pobiera prowizję od nowych klientów i opłaty za płatności kartą. Fresha jest popularna wśród małych i średnich salonów.",
+    "limitations": [
+      { "title": "Ukryte koszty w modelu 'darmowym'", "description": "Fresha nie pobiera abonamentu, ale nalicza 20% prowizji od nowych klientów pozyskanych z marketplace, opłatę za 'no-show protection' i prowizję od płatności online — łączne koszty mogą przewyższać abonament u konkurencji." },
+      { "title": "Brak polskiej obsługi klienta", "description": "Wsparcie techniczne Fresha jest wyłącznie w języku angielskim, a czas odpowiedzi na zgłoszenia sięga 24–72 godzin — polskojęzyczne wsparcie nie jest dostępne." },
+      { "title": "Ograniczone zarządzanie magazynem", "description": "Moduł magazynowy Fresha jest uproszczony — brak automatycznego zamawiania produktów przy niskim stanie, integracji z polskimi dostawcami kosmetyków czy śledzenia dat ważności." },
+      { "title": "Brak personalizacji interfejsu rezerwacji", "description": "Strona rezerwacji online ma jednolity wygląd Fresha — nie można dostosować kolorów, fontu, layoutu ani dodać własnych elementów brandingowych." },
+      { "title": "Ograniczone integracje z polskimi systemami", "description": "Fresha nie integruje się natywnie z polskimi systemami fiskal nymi, księgowymi (iFirma, inFakt) ani z popularnymi w Polsce bramkami SMS (SMSAPI)." }
+    ],
+    "comparison": [
+      { "feature": "Koszty", "boxed": "Ukryte: prowizje od klientów i płatności", "custom": "Transparentny, stały koszt utrzymania" },
+      { "feature": "Obsługa w języku polskim", "boxed": "Brak — tylko angielski support", "custom": "Pełna obsługa po polsku" },
+      { "feature": "Branding strony rezerwacji", "boxed": "Jednolity wygląd Fresha", "custom": "Pełna personalizacja pod markę salonu" },
+      { "feature": "Integracje polskie", "boxed": "Brak (fiskalizacja, księgowość, SMS)", "custom": "Natywna integracja z polskim ekosystemem" },
+      { "feature": "Zarządzanie magazynem", "boxed": "Podstawowe", "custom": "Automatyczne zamówienia, śledzenie dat ważności" },
+      { "feature": "Marketing automation", "boxed": "Przypomnienia i podstawowe kampanie", "custom": "Segmentacja, A/B testy, programy lojalnościowe" }
+    ],
+    "tco": [
+      { "label": "Licencja / hosting (rok)", "boxed": 3600, "custom": 2400 },
+      { "label": "Wdrożenie", "boxed": 500, "custom": 18000 },
+      { "label": "Customizacja i rozwój (rok)", "boxed": 1000, "custom": 3600 },
+      { "label": "Utrzymanie i support (rok)", "boxed": 1200, "custom": 3600 }
+    ],
+    "targetAudience": "Polskie salony beauty, które potrzebują pełnej lokalizacji (język, fiskalizacja, integracje z polskimi dostawcami), personalizacji brandingu i transparentnych kosztów bez ukrytych prowizji Fresha.",
+    "whenCustom": [
+      "Ukryte prowizje Fresha generują wyższe koszty niż abonament u konkurencji",
+      "Potrzebujesz polskojęzycznego wsparcia technicznego",
+      "Zależy Ci na personalizacji strony rezerwacji pod markę salonu",
+      "Integracja z polskim systemem fiskalnym i księgowym jest kluczowa"
+    ],
+    "faq": [
+      { "q": "Ile kosztuje dedykowany system zamiast Fresha?", "a": "Dedykowany system rezerwacji dla salonu beauty kosztuje 15 000–22 000 PLN za wdrożenie. W perspektywie 2 lat jest tańszy niż Fresha z ukrytymi prowizjami przy salonie z 200+ klientami miesięcznie." },
+      { "q": "Jak przenieść klientów z Fresha?", "a": "Fresha pozwala na eksport bazy klientów w CSV. Kluczowe jest zachowanie historii wizyt i preferencji. Migracja z powiadomieniem klientów o nowym systemie rezerwacji trwa 2–3 tygodnie." },
+      { "q": "Czy dedykowany system obsłuży wiele lokali?", "a": "Tak — dedykowane rozwiązanie może centralnie zarządzać wieloma lokalizacjami z oddzielnymi kalendarzami, wspólną bazą klientów i skonsolidowanym raportowaniem." }
+    ]
+  },
+  {
+    "id": "moment-pl",
+    "slug": "moment-pl",
+    "systemName": "Moment.pl",
+    "category": "beauty",
+    "whatItIs": "Moment.pl to polski system do zarządzania salonami fryzjerskimi i beauty, oferujący kalendarz rezerwacji, bazę klientów, kasę fiskalną online i podstawowy marketing SMS. System jest skierowany do małych polskich salonów i wyróżnia się prostotą obsługi oraz polskojęzycznym wsparciem technicznym.",
+    "limitations": [
+      { "title": "Brak marketplace i pozyskiwania klientów online", "description": "W przeciwieństwie do Booksy, Moment.pl nie oferuje marketplace'u do pozyskiwania nowych klientów — salon musi samodzielnie kierować ruch na stronę rezerwacji." },
+      { "title": "Podstawowe funkcje marketingowe", "description": "Marketing ogranicza się do przypominajek SMS o wizytach — brak segmentacji klientów, kampanii e-mail, programu lojalnościowego czy automatyzacji promocji." },
+      { "title": "Ograniczona skalowalność", "description": "System jest zaprojektowany dla pojedynczych salonów — zarządzanie siecią lokali, centralne raportowanie i wspólna baza klientów nie są dostępne lub wymagają obejść." },
+      { "title": "Brak integracji z social media", "description": "Moment.pl nie oferuje natywnej integracji z Instagram/Facebook — rezerwacje z social media wymagają ręcznego przekierowania na stronę rezerwacji." },
+      { "title": "Uproszczona analityka", "description": "Raporty ograniczają się do zestawień wizyt i przychodów — brak analizy retencji klientów, popularności usług sezonowo czy rentowności poszczególnych pracowników." }
+    ],
+    "comparison": [
+      { "feature": "Pozyskiwanie klientów", "boxed": "Brak marketplace", "custom": "SEO, Google Ads, integracja z social media" },
+      { "feature": "Marketing", "boxed": "Przypomnienia SMS", "custom": "E-mail, SMS, segmentacja, programy lojalnościowe" },
+      { "feature": "Multi-lokalizacja", "boxed": "Dla jednego salonu", "custom": "Centralne zarządzanie siecią" },
+      { "feature": "Integracja social media", "boxed": "Brak", "custom": "Rezerwacja z Instagram/Facebook" },
+      { "feature": "Analityka", "boxed": "Podstawowe zestawienia", "custom": "Retencja, sezonowość, rentowność" },
+      { "feature": "Aplikacja dla klientów", "boxed": "Brak natywnej aplikacji", "custom": "PWA lub natywna aplikacja z marką salonu" }
+    ],
+    "tco": [
+      { "label": "Licencja / hosting (rok)", "boxed": 2400, "custom": 2400 },
+      { "label": "Wdrożenie", "boxed": 500, "custom": 15000 },
+      { "label": "Customizacja i rozwój (rok)", "boxed": 800, "custom": 3000 },
+      { "label": "Utrzymanie i support (rok)", "boxed": 600, "custom": 3000 }
+    ],
+    "targetAudience": "Salony fryzjerskie i beauty rozwijające się w sieć (2+ lokalizacje), które potrzebują centralnego zarządzania, zaawansowanego marketingu z programem lojalnościowym i integracji z social media.",
+    "whenCustom": [
+      "Otwierasz kolejne lokalizacje i potrzebujesz centralnego zarządzania",
+      "Chcesz budować program lojalnościowy z aplikacją mobilną",
+      "Rezerwacja bezpośrednio z Instagram i Facebook jest kluczowa",
+      "Potrzebujesz zaawansowanej analityki retencji i rentowności"
+    ],
+    "faq": [
+      { "q": "Ile kosztuje dedykowany system rezerwacji zamiast Moment.pl?", "a": "Dedykowany system dla salonu beauty kosztuje 12 000–20 000 PLN za wdrożenie. Dla salonu z 1 lokalizacją Moment.pl jest wystarczający — inwestycja w dedykowane rozwiązanie ma sens przy 2+ lokalizacjach." },
+      { "q": "Czy mogę mieć własną aplikację mobilną dla klientów?", "a": "Tak — dedykowane rozwiązanie może zawierać aplikację mobilną (PWA lub natywną) z rezerwacją, historią wizyt, programem lojalnościowym i push notyfikacjami, opatrzoną marką Twojego salonu." },
+      { "q": "Jak przenieść dane klientów z Moment.pl?", "a": "Moment.pl pozwala na eksport danych klientów i historii wizyt. Migracja jest prosta i zajmuje kilka dni — kluczowe jest zachowanie ciągłości rezerwacji przy przejściu na nowy system." }
+    ]
+  },
+  {
+    "id": "moodle",
+    "slug": "moodle",
+    "systemName": "Moodle",
+    "category": "education",
+    "whatItIs": "Moodle to najpopularniejsza na świecie open-source'owa platforma e-learningowa (LMS), używana przez szkoły, uczelnie i firmy do tworzenia kursów online. System oferuje zarządzanie kursami, quizami, zadaniami, forum dyskusyjnym i ocenami. Moodle jest standardem w polskich uczelniach wyższych i wielu firmach szkoleniowych.",
+    "limitations": [
+      { "title": "Przestarzały interfejs użytkownika", "description": "Domyślny interfejs Moodle wygląda jak strona z lat 2010 — jest nieintuicyjny, przeładowany opcjami i nie spełnia oczekiwań użytkowników przyzwyczajonych do nowoczesnych platform (Udemy, Coursera)." },
+      { "title": "Wysokie wymagania administracyjne", "description": "Moodle wymaga serwera Linux z PHP i MySQL, regularnych aktualizacji bezpieczeństwa, zarządzania wtyczkami i monitorowania wydajności — potrzebny jest dedykowany administrator systemu." },
+      { "title": "Ograniczona gamifikacja i engagement", "description": "Natywne funkcje gamifikacji ograniczają się do odznak i ukończenia kursu — brak systemu punktów, rankingów, wyzwań, ścieżek nauki czy mechanik motywacyjnych znanych z nowoczesnych platform." },
+      { "title": "Słaba obsługa treści wideo", "description": "Moodle nie ma natywnego hostingu i streamingu wideo — pliki wideo obciążają serwer, a do profesjonalnego streamingu potrzebna jest integracja z zewnętrznym CDN lub Vimeo/YouTube." },
+      { "title": "Brak natywnego e-commerce kursów", "description": "Moodle nie oferuje wbudowanego sklepu z kursami — sprzedaż kursów online wymaga wtyczek (PayPal, WooCommerce integration) lub zewnętrznej platformy sprzedażowej." }
+    ],
+    "comparison": [
+      { "feature": "Interfejs użytkownika", "boxed": "Przestarzały, nieintuicyjny", "custom": "Nowoczesny UI, mobilne UX" },
+      { "feature": "Gamifikacja", "boxed": "Odznaki, ukończenie kursu", "custom": "Punkty, rankingi, wyzwania, ścieżki nauki" },
+      { "feature": "Video hosting", "boxed": "Brak natywnego, obciąża serwer", "custom": "Zoptymalizowany streaming z CDN" },
+      { "feature": "Sprzedaż kursów", "boxed": "Wymaga wtyczek / zewnętrznego sklepu", "custom": "Wbudowany e-commerce z płatnościami" },
+      { "feature": "Administracja", "boxed": "Wymaga admin Linux + PHP", "custom": "Zarządzany hosting, zero devops" },
+      { "feature": "Mobile learning", "boxed": "Aplikacja Moodle (ograniczona)", "custom": "Natywna aplikacja PWA, tryb offline" },
+      { "feature": "Analityka nauki", "boxed": "Podstawowe raporty ukończenia", "custom": "Learning analytics: engagement, dropout prediction" }
+    ],
+    "tco": [
+      { "label": "Licencja / hosting (rok)", "boxed": 3600, "custom": 4800 },
+      { "label": "Wdrożenie", "boxed": 8000, "custom": 40000 },
+      { "label": "Customizacja i rozwój (rok)", "boxed": 6000, "custom": 6000 },
+      { "label": "Utrzymanie i support (rok)", "boxed": 7200, "custom": 6000 }
+    ],
+    "targetAudience": "Firmy szkoleniowe sprzedające kursy online, organizacje z potrzebą zaawansowanej gamifikacji i analityki nauki, oraz instytucje szukające nowoczesnej platformy edukacyjnej z interfejsem na miarę XXI wieku.",
+    "whenCustom": [
+      "Przestarzały interfejs Moodle zniechęca uczestników kursów",
+      "Potrzebujesz gamifikacji: punkty, rankingi, wyzwania, achievements",
+      "Chcesz sprzedawać kursy online z wbudowanym e-commerce",
+      "Video-heavy kursy wymagają profesjonalnego streamingu",
+      "Analityka nauki (learning analytics) jest kluczowa dla efektywności szkoleń"
+    ],
+    "faq": [
+      { "q": "Ile kosztuje dedykowana platforma e-learningowa?", "a": "Dedykowana platforma LMS kosztuje 35 000–55 000 PLN za wdrożenie. Dla firm sprzedających kursy online zwrot następuje dzięki wyższej konwersji (lepszy UX) i wbudowanemu e-commerce." },
+      { "q": "Czy mogę przenieść kursy z Moodle?", "a": "Tak — Moodle przechowuje strukturę kursów w bazie MySQL, a treści w systemie plików. Kursy w formacie SCORM/xAPI można zaimportować do nowej platformy. Migracja trwa 2–4 tygodnie." },
+      { "q": "Czy dedykowana platforma obsłuży certyfikaty i akredytacje?", "a": "Tak — dedykowane rozwiązanie może automatycznie generować certyfikaty PDF, weryfikowalne online, z integracją z systemami akredytacyjnymi i rejestrami szkoleń (np. BUR)." }
+    ]
+  },
+  {
+    "id": "librus",
+    "slug": "librus",
+    "systemName": "Librus",
+    "category": "education",
+    "whatItIs": "Librus to polski system e-dziennika i zarządzania szkołą, dominujący w polskich szkołach podstawowych i ponadpodstawowych. System obsługuje dziennik elektroniczny, plan lekcji, obecności, oceny, komunikację z rodzicami i raporty szkolne. Librus jest de facto standardem w polskim systemie oświaty, choć jego monopolistyczna pozycja wywołuje krytykę.",
+    "limitations": [
+      { "title": "Przestarzały i powolny interfejs", "description": "Interfejs Librus nie zmienił się znacząco od lat — jest wolny (ładowanie strony 3–8 sekund), nieintuicyjny i wymaga wielu kliknięć do wykonania prostych operacji jak wpisanie oceny." },
+      { "title": "Ograniczona komunikacja z rodzicami", "description": "Moduł komunikacji ogranicza się do wiadomości w systemie — brak natywnych powiadomień push, czatu w czasie rzeczywistym czy integracji z komunikatorami (WhatsApp, Messenger)." },
+      { "title": "Brak narzędzi dydaktycznych", "description": "Librus to system administracyjny, nie dydaktyczny — nie oferuje narzędzi do tworzenia interaktywnych materiałów, quizów online, zadań domowych z auto-sprawdzaniem ani platformy e-learningowej." },
+      { "title": "Ograniczona analityka postępów uczniów", "description": "Raportowanie ogranicza się do średnich ocen i frekwencji — brak analizy trendów, identyfikacji uczniów zagrożonych drugorocznością, mapy kompetencji czy porównań z grupą." },
+      { "title": "Sztywna struktura danych szkolnych", "description": "Model danych jest dostosowany do tradycyjnego systemu oceniania — szkoły stosujące ocenianie opisowe, portfolio ucznia czy systemy punktowe muszą stosować obejścia." }
+    ],
+    "comparison": [
+      { "feature": "Interfejs", "boxed": "Przestarzały, wolny (3–8s)", "custom": "Szybki, nowoczesny, mobilny" },
+      { "feature": "Komunikacja z rodzicami", "boxed": "Wiadomości w systemie", "custom": "Push, czat, integracja z komunikatorami" },
+      { "feature": "Narzędzia dydaktyczne", "boxed": "Brak", "custom": "Quizy, zadania online, materiały interaktywne" },
+      { "feature": "Analityka postępów", "boxed": "Średnie ocen, frekwencja", "custom": "Trendy, predykcja, mapa kompetencji" },
+      { "feature": "System oceniania", "boxed": "Tradycyjne oceny 1–6", "custom": "Dowolny: punkty, opisowe, portfolio, kompetencje" },
+      { "feature": "Integracja z SIO", "boxed": "Wbudowana", "custom": "Implementowana zgodnie z API MEN" }
+    ],
+    "tco": [
+      { "label": "Licencja / hosting (rok)", "boxed": 4000, "custom": 6000 },
+      { "label": "Wdrożenie", "boxed": 2000, "custom": 45000 },
+      { "label": "Customizacja i rozwój (rok)", "boxed": 1500, "custom": 8000 },
+      { "label": "Utrzymanie i support (rok)", "boxed": 2400, "custom": 7200 }
+    ],
+    "targetAudience": "Szkoły niepubliczne i innowacyjne placówki edukacyjne, które stosują alternatywne metody oceniania, potrzebują narzędzi dydaktycznych online i zaawansowanej analityki postępów uczniów — oraz sieci szkół potrzebujące centralnego zarządzania.",
+    "whenCustom": [
+      "Twoja szkoła stosuje alternatywne metody oceniania (opisowe, portfolio, kompetencje)",
+      "Potrzebujesz zintegrowanych narzędzi dydaktycznych (quizy, materiały, LMS)",
+      "Analityka postępów uczniów powinna wykraczać poza średnie ocen",
+      "Komunikacja z rodzicami wymaga nowoczesnych kanałów (push, czat)"
+    ],
+    "faq": [
+      { "q": "Czy szkoła może legalnie zrezygnować z Librus?", "a": "Tak — Librus nie jest jedynym dopuszczonym e-dziennikiem. Szkoła może korzystać z dowolnego systemu spełniającego wymagania rozporządzenia MEN w sprawie dokumentacji szkolnej i integrującego się z SIO." },
+      { "q": "Ile kosztuje dedykowany e-dziennik dla szkoły?", "a": "Dedykowany system szkolny z e-dziennikiem, LMS i analityką kosztuje 40 000–60 000 PLN za wdrożenie. Ma to sens głównie dla sieci szkół niepublicznych (3+ placówek) lub dużych placówek z unikalnymi potrzebami." },
+      { "q": "Czy dedykowany system będzie zgodny z przepisami MEN?", "a": "Tak — dedykowany system implementuje wymagania rozporządzenia MEN, w tym integrację z SIO (System Informacji Oświatowej), generowanie wymaganej dokumentacji i archiwizację danych." }
+    ]
+  }
+]

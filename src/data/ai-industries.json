@@ -1,0 +1,737 @@
+[
+  {
+    "id": "e-commerce",
+    "slug": "e-commerce",
+    "industry": "E-commerce",
+    "intro": "Sztuczna inteligencja rewolucjonizuje handel elektroniczny, automatyzując procesy od obsługi klienta po zarządzanie asortymentem i dynamiczne ustalanie cen. Sklepy internetowe, które wdrażają AI, notują średnio 30% wzrost konwersji i znaczące obniżenie kosztów operacyjnych już w pierwszym kwartale po wdrożeniu. Algorytmy uczenia maszynowego analizują zachowania użytkowników w czasie rzeczywistym, personalizując doświadczenie zakupowe na każdym etapie lejka sprzedażowego — od pierwszej wizyty przez rekomendacje po remarketing. Dzięki integracji dużych modeli językowych z systemami e-commerce możliwe jest automatyczne generowanie unikalnych opisów produktów, inteligentna obsługa zapytań klientów przez chatboty oraz predykcyjne zarządzanie stanami magazynowymi.",
+    "useCases": [
+      {
+        "title": "Automatyczne opisy produktów",
+        "description": "Generowanie unikalnych opisów produktów za pomocą GPT-4, dostosowanych do SEO i kategorii asortymentu. System analizuje zdjęcia i specyfikacje techniczne, tworząc opisy w wielu językach jednocześnie, co eliminuje potrzebę ręcznego copywritingu przy dużych katalogach produktowych.",
+        "savings": "Oszczędność 40h/tydzień przy katalogu 10 000+ SKU"
+      },
+      {
+        "title": "Inteligentny chatbot sprzedażowy",
+        "description": "Wdrożenie chatbota opartego na RAG (Retrieval-Augmented Generation), który odpowiada na pytania klientów 24/7, rekomenduje produkty i prowadzi przez proces zakupowy. Bot jest trenowany na bazie wiedzy sklepu — regulaminie, polityce zwrotów, specyfikacjach produktów — i potrafi obsłużyć 80% zapytań bez udziału konsultanta.",
+        "savings": "Redukcja kosztów obsługi klienta o 12 000 PLN/miesiąc"
+      },
+      {
+        "title": "Dynamiczny pricing i prognozowanie popytu",
+        "description": "Algorytm ML analizuje dane historyczne sprzedaży, ceny konkurencji, sezonowość i trendy rynkowe, aby automatycznie dostosowywać ceny w czasie rzeczywistym. System prognozuje popyt z 2-tygodniowym wyprzedzeniem, optymalizując stany magazynowe i minimalizując overstock oraz braki asortymentowe.",
+        "savings": "Wzrost marży o 8-15% i redukcja overstock o 25%"
+      }
+    ],
+    "stack": ["OpenAI GPT-4", "LangChain", "Python", "PostgreSQL", "Redis", "Elasticsearch"],
+    "roi": {
+      "hoursPerWeek": 25,
+      "hourlyRate": 80,
+      "annualSavings": 96000
+    },
+    "challenges": [
+      "Jakość danych wejściowych — AI jest tak dobra jak dane, na których pracuje, a wiele sklepów ma niekompletne opisy i brakujące atrybuty produktów",
+      "Integracja z istniejącymi systemami ERP/WMS wymaga budowy custom middleware i mapowania danych",
+      "Halucynacje modeli językowych przy generowaniu opisów — konieczna walidacja i human-in-the-loop",
+      "Zgodność z przepisami o cenach i ochronie konsumentów przy dynamicznym pricingu"
+    ],
+    "faq": [
+      {
+        "q": "Ile kosztuje wdrożenie AI w sklepie internetowym?",
+        "a": "Koszt wdrożenia zależy od zakresu — prosty chatbot to wydatek 8 000-15 000 PLN, natomiast kompleksowy system z automatyzacją opisów, pricingiem i personalizacją to 30 000-80 000 PLN. Do tego dochodzą koszty API (ok. 500-2 000 PLN/miesiąc) i utrzymania."
+      },
+      {
+        "q": "Jak długo trwa wdrożenie AI w e-commerce?",
+        "a": "Podstawowy chatbot można uruchomić w 2-3 tygodnie. Pełna integracja z systemem generowania opisów i dynamicznym pricingiem zajmuje 2-4 miesiące, w zależności od złożoności istniejącej infrastruktury i jakości danych produktowych."
+      },
+      {
+        "q": "Czy AI zastąpi pracowników w moim sklepie internetowym?",
+        "a": "AI nie zastępuje pracowników, lecz przejmuje powtarzalne zadania — generowanie opisów, odpowiadanie na standardowe pytania, aktualizację cen. Dzięki temu zespół może skupić się na strategii, relacjach z kluczowymi klientami i rozwoju oferty."
+      }
+    ]
+  },
+  {
+    "id": "logistyka",
+    "slug": "logistyka",
+    "industry": "Logistyka",
+    "intro": "Branża logistyczna jest jednym z największych beneficjentów wdrożeń sztucznej inteligencji w Polsce, gdzie skala operacji i złożoność procesów tworzą idealne warunki do automatyzacji. AI optymalizuje trasy dostaw, prognozuje zapotrzebowanie magazynowe i automatyzuje procesy dokumentacyjne na niespotykaną wcześniej skalę. Firmy transportowe i operatorzy logistyczni, którzy inwestują w rozwiązania oparte na uczeniu maszynowym, redukują koszty paliwa nawet o 20% i skracają czas realizacji zamówień o kilkadziesiąt procent. Inteligentne systemy zarządzania łańcuchem dostaw pozwalają reagować na zakłócenia w czasie rzeczywistym, minimalizując przestoje i straty materiałowe, co w dobie globalnych kryzysów podażowych stanowi kluczową przewagę konkurencyjną.",
+    "useCases": [
+      {
+        "title": "Optymalizacja tras i harmonogramów dostaw",
+        "description": "System AI analizuje dane o ruchu drogowym, pogodzie, oknach dostaw i ładowności pojazdów, aby wyznaczyć optymalne trasy w czasie rzeczywistym. Algorytm uwzględnia priorytety przesyłek, ograniczenia tonażowe i strefy czasu dostaw, dynamicznie przeliczając trasy w przypadku korków lub awarii.",
+        "savings": "Redukcja kosztów paliwa o 18% i skrócenie tras o średnio 22 km/dzień na pojazd"
+      },
+      {
+        "title": "Prognozowanie zapotrzebowania magazynowego",
+        "description": "Model predykcyjny oparty na danych historycznych, sezonowości, trendach rynkowych i danych pogodowych prognozuje zapotrzebowanie na poszczególne produkty z dwutygodniowym wyprzedzeniem. System automatycznie generuje zamówienia uzupełniające i optymalizuje rozmieszczenie towarów w magazynie według częstotliwości pobrań.",
+        "savings": "Zmniejszenie stanów magazynowych o 30% przy zachowaniu 99.2% dostępności"
+      },
+      {
+        "title": "Automatyczna klasyfikacja i przetwarzanie dokumentów przewozowych",
+        "description": "OCR połączony z modelem NLP automatycznie odczytuje i klasyfikuje listy przewozowe, CMR, faktury i dokumenty celne. System wyodrębnia kluczowe dane (nadawca, odbiorca, waga, wymiary), waliduje je z zamówieniami w TMS i flaguje rozbieżności do weryfikacji przez operatora.",
+        "savings": "Oszczędność 30h/tydzień przy przetwarzaniu 500+ dokumentów dziennie"
+      }
+    ],
+    "stack": ["Python", "TensorFlow", "Google OR-Tools", "Apache Kafka", "PostgreSQL", "Docker"],
+    "roi": {
+      "hoursPerWeek": 30,
+      "hourlyRate": 90,
+      "annualSavings": 129600
+    },
+    "challenges": [
+      "Integracja z różnymi systemami TMS i WMS, które często korzystają z przestarzałych formatów wymiany danych (EDI, XML)",
+      "Jakość danych GPS i telematycznych — luki w danych, opóźnienia transmisji i niespójne formaty między dostawcami",
+      "Zmienność warunków drogowych i pogodowych wymaga ciągłego retreningu modeli optymalizacyjnych",
+      "Regulacje dotyczące czasu pracy kierowców (rozporządzenie WE 561/2006) muszą być uwzględnione w algorytmach planowania"
+    ],
+    "faq": [
+      {
+        "q": "Jak AI może obniżyć koszty transportu w mojej firmie?",
+        "a": "AI optymalizuje trasy, redukując przebieg o 15-25%, prognozuje zapotrzebowanie eliminując puste przebiegi, i automatyzuje dokumentację. Typowa firma z flotą 20+ pojazdów oszczędza 150 000-400 000 PLN rocznie na paliwie i czasie pracy dyspozytorów."
+      },
+      {
+        "q": "Czy potrzebuję dużego działu IT, żeby wdrożyć AI w logistyce?",
+        "a": "Nie — jako zewnętrzny integrator dostarczam gotowe rozwiązanie, które łączy się z Twoim obecnym TMS/WMS przez API. Potrzebujesz jednej osoby technicznej po swojej stronie do koordynacji wdrożenia. Utrzymanie systemu również mogę przejąć w ramach umowy SLA."
+      },
+      {
+        "q": "Jakie dane są potrzebne do wdrożenia AI w logistyce?",
+        "a": "Minimum to historia zamówień z ostatnich 12 miesięcy, dane GPS z pojazdów i aktualna baza adresów dostaw. Im więcej danych historycznych (idealne 2-3 lata), tym dokładniejsze prognozy. Dane mogą pochodzić z TMS, Exceli lub nawet papierowych dokumentów — pomogę je zebrać i ustrukturyzować."
+      }
+    ]
+  },
+  {
+    "id": "nieruchomosci",
+    "slug": "nieruchomosci",
+    "industry": "Nieruchomości",
+    "intro": "Rynek nieruchomości w Polsce przechodzi cyfrową transformację, a sztuczna inteligencja odgrywa w niej coraz większą i bardziej strategiczną rolę. AI automatyzuje wyceny, analizuje trendy cenowe na poziomie dzielnic i ulic, personalizuje oferty dla potencjalnych kupców i najemców oraz wspiera deweloperów w podejmowaniu decyzji inwestycyjnych. Biura nieruchomości i deweloperzy wykorzystujący zaawansowane algorytmy ML osiągają wyższą skuteczność sprzedaży, krótszy czas ekspozycji ofert i lepsze dopasowanie klient-nieruchomość. Modele predykcyjne pozwalają przewidywać zmiany cen na lokalnych rynkach z kilkumiesięcznym wyprzedzeniem, dając realną przewagę negocjacyjną zarówno sprzedającym, jak i kupującym w dynamicznie zmieniającym się otoczeniu rynkowym.",
+    "useCases": [
+      {
+        "title": "Automatyczna wycena nieruchomości (AVM)",
+        "description": "Model uczenia maszynowego analizuje dane z aktów notarialnych, ogłoszeń, lokalizacji (odległość od metra, szkół, parków), standardu budynku i trendów cenowych, aby wygenerować wycenę nieruchomości w kilka sekund. System uwzględnia ponad 120 zmiennych i jest aktualizowany co tydzień na podstawie nowych transakcji.",
+        "savings": "Skrócenie czasu wyceny z 2-3 dni do 5 minut, oszczędność 20h/tydzień"
+      },
+      {
+        "title": "Inteligentne dopasowywanie klientów do ofert",
+        "description": "System AI profiluje preferencje klientów na podstawie ich historii przeglądania, zapytań i dotychczasowych prezentacji, a następnie automatycznie dopasowuje i rankinguje oferty. Agent nieruchomości otrzymuje listę TOP 5 ofert dla każdego klienta z uzasadnieniem dopasowania, co eliminuje manualne przeszukiwanie bazy.",
+        "savings": "Wzrost konwersji prezentacji na transakcje o 35%, oszczędność 15h/tydzień"
+      },
+      {
+        "title": "Generowanie opisów i wizualizacji ofert",
+        "description": "AI automatycznie tworzy profesjonalne opisy nieruchomości na podstawie danych z formularza i zdjęć, dostosowane do platformy publikacji (Otodom, OLX, strona biura). System generuje virtual staging — wirtualną aranżację pustych pomieszczeń na podstawie zdjęć, co zwiększa atrakcyjność ogłoszeń o 60%.",
+        "savings": "Oszczędność 10h/tydzień na tworzeniu opisów i materiałów marketingowych"
+      }
+    ],
+    "stack": ["Python", "scikit-learn", "OpenAI GPT-4", "GeoPandas", "FastAPI", "MongoDB"],
+    "roi": {
+      "hoursPerWeek": 20,
+      "hourlyRate": 100,
+      "annualSavings": 96000
+    },
+    "challenges": [
+      "Brak centralnej bazy transakcji w Polsce — dane są rozproszone między księgami wieczystymi, aktami notarialnymi i portalami ogłoszeniowymi",
+      "Nieruchomości są wysoce heterogeniczne — każda jest unikalna, co utrudnia standaryzację danych wejściowych dla modeli ML",
+      "Ochrona danych osobowych (RODO) przy profilowaniu preferencji klientów wymaga odpowiednich zgód i transparentności",
+      "Dynamika rynku — modele wymagają częstego retreningu, szczególnie w okresach zmian stóp procentowych"
+    ],
+    "faq": [
+      {
+        "q": "Czy AI może zastąpić rzeczoznawcę majątkowego?",
+        "a": "AI nie zastępuje rzeczoznawcy w sensie prawnym — operaty szacunkowe nadal wymagają uprawnień. Natomiast system AVM doskonale sprawdza się jako narzędzie do szybkiej wyceny orientacyjnej, preselekcji ofert i analizy trendów cenowych. Dokładność modelu to 92-95% w porównaniu z operatami."
+      },
+      {
+        "q": "Ile kosztuje wdrożenie AI w biurze nieruchomości?",
+        "a": "System automatycznego dopasowywania klientów i generowania opisów to koszt 20 000-40 000 PLN za wdrożenie plus 1 500-3 000 PLN/miesiąc za utrzymanie i API. Model AVM to bardziej zaawansowany projekt — 50 000-120 000 PLN w zależności od zakresu geograficznego i źródeł danych."
+      },
+      {
+        "q": "Jakie dane muszę mieć, żeby wdrożyć AI w sprzedaży nieruchomości?",
+        "a": "Podstawą jest baza ofert z opisami, zdjęciami i cenami oraz historia kontaktów z klientami (CRM). Im bogatsza historia transakcji (minimum 6-12 miesięcy), tym lepsze dopasowanie. Dane z portali ogłoszeniowych mogę zintegrować automatycznie przez web scraping."
+      }
+    ]
+  },
+  {
+    "id": "gastronomia",
+    "slug": "gastronomia",
+    "industry": "Gastronomia",
+    "intro": "Sztuczna inteligencja w gastronomii to nie futurystyczna wizja, a praktyczne narzędzie, które już dziś pomaga restauracjom, sieciom gastronomicznym i firmom cateringowym optymalizować codzienne operacje i zwiększać rentowność. AI prognozuje ruch gości z uwzględnieniem pogody i wydarzeń lokalnych, minimalizuje marnowanie żywności przez precyzyjne planowanie zakupów i automatyzuje zarządzanie zamówieniami od kuchni po dostawy. Restauratorzy wdrażający inteligentne systemy redukują food waste o 30-40% i zwiększają średni rachunek dzięki spersonalizowanym rekomendacjom menu. W obliczu rosnących kosztów surowców, energii i płac w polskiej gastronomii, automatyzacja oparta na sztucznej inteligencji staje się kluczowym czynnikiem rentowności i przetrwania lokali gastronomicznych na konkurencyjnym rynku.",
+    "useCases": [
+      {
+        "title": "Prognozowanie ruchu i optymalizacja zamówień u dostawców",
+        "description": "Model predykcyjny analizuje historyczne dane sprzedażowe, pogodę, wydarzenia lokalne, dzień tygodnia i trendy sezonowe, aby prognozować liczbę gości i popyt na poszczególne dania. Na tej podstawie system automatycznie generuje zamówienia u dostawców z dokładnością do pojedynczych składników, minimalizując zarówno braki jak i nadwyżki.",
+        "savings": "Redukcja food waste o 35% i oszczędność 8 000 PLN/miesiąc na surowcach"
+      },
+      {
+        "title": "Dynamiczne menu i automatyczna kalkulacja food cost",
+        "description": "System AI monitoruje ceny surowców u dostawców w czasie rzeczywistym i automatycznie przelicza food cost każdej pozycji w menu. Algorytm sugeruje zmiany w menu — promocje dań z nadwyżkowych składników, podwyżki cen przy wzroście kosztów surowców, sezonowe rotacje — maksymalizując marżę przy zachowaniu atrakcyjności oferty.",
+        "savings": "Wzrost marży na daniach o 5-8 punktów procentowych"
+      },
+      {
+        "title": "Inteligentny system rezerwacji i zarządzania salą",
+        "description": "Chatbot AI obsługuje rezerwacje telefoniczne i online, optymalizując rozmieszczenie stolików pod kątem maksymalnego obrotu. System analizuje średni czas posiłku dla różnych typów gości, sugeruje optymalne sloty czasowe i automatycznie zarządza listą oczekujących, wysyłając powiadomienia SMS gdy stolik się zwalnia.",
+        "savings": "Wzrost obrotu stolików o 20% i oszczędność 15h/tydzień na obsłudze rezerwacji"
+      }
+    ],
+    "stack": ["Python", "Prophet (Meta)", "OpenAI GPT-4", "Node.js", "Twilio API", "MySQL"],
+    "roi": {
+      "hoursPerWeek": 20,
+      "hourlyRate": 70,
+      "annualSavings": 67200
+    },
+    "challenges": [
+      "Sezonowość i nieprzewidywalność ruchu — wydarzenia pogodowe, lokalne imprezy i trendy social media mogą drastycznie zmienić popyt z dnia na dzień",
+      "Fragmentacja systemów POS — restauracje korzystają z dziesiątek różnych systemów kasowych, często bez API",
+      "Niski poziom digitalizacji w wielu lokalach — dane historyczne często istnieją tylko w papierowych raportach lub głowach managerów",
+      "Opór personelu przed zmianami — kucharze i managerowie mogą nie ufać rekomendacjom algorytmu"
+    ],
+    "faq": [
+      {
+        "q": "Czy AI naprawdę może zmniejszyć marnowanie jedzenia w restauracji?",
+        "a": "Tak — systemy predykcyjne prognozują popyt na konkretne dania z dokładnością 85-92%, co pozwala zamówić dokładnie tyle surowców, ile potrzebujesz. Typowa restauracja redukuje food waste o 30-40%, co przekłada się na oszczędność 5 000-15 000 PLN miesięcznie w zależności od wielkości lokalu."
+      },
+      {
+        "q": "Mam małą restaurację — czy wdrożenie AI ma sens?",
+        "a": "Już od jednego lokalu AI się opłaca. Chatbot rezerwacyjny (3 000-8 000 PLN) oszczędza czas na telefonach, a system prognozowania zamówień (10 000-20 000 PLN) szybko się zwraca przez redukcję marnowania. Dla sieci 3+ lokali ROI jest jeszcze bardziej widoczny dzięki centralizacji danych."
+      },
+      {
+        "q": "Jak długo trwa wdrożenie AI w restauracji?",
+        "a": "Chatbot rezerwacyjny — 1-2 tygodnie. System prognozowania popytu potrzebuje minimum 3-6 miesięcy danych historycznych i 3-4 tygodnie na wdrożenie. Pełna integracja z POS, dostawcami i zarządzaniem menu to 2-3 miesiące. Szkolenie personelu to dodatkowy tydzień."
+      }
+    ]
+  },
+  {
+    "id": "medycyna",
+    "slug": "medycyna",
+    "industry": "Medycyna",
+    "intro": "Sztuczna inteligencja transformuje sektor ochrony zdrowia w Polsce, wspierając kliniki, przychodnie i szpitale w diagnostyce, zarządzaniu pacjentami i optymalizacji procesów administracyjnych, które pochłaniają nawet 40% czasu pracy lekarzy. AI analizuje dokumentację medyczną, automatyzuje rejestrację telefoniczną i online oraz wspomaga lekarzy w podejmowaniu trafnych decyzji klinicznych na podstawie najnowszych danych i badań. Placówki medyczne wdrażające inteligentne systemy skracają czas oczekiwania pacjentów o 40% i redukują obciążenie administracyjne personelu medycznego, co bezpośrednio przekłada się na jakość opieki. Przy rosnącym deficycie lekarzy specjalistów w Polsce, AI staje się niezbędnym narzędziem pozwalającym efektywniej wykorzystać czas wykwalifikowanego personelu medycznego i obsłużyć więcej pacjentów bez utraty jakości.",
+    "useCases": [
+      {
+        "title": "Automatyczna transkrypcja i strukturyzacja wizyt lekarskich",
+        "description": "System AI nasłuchuje rozmowy lekarz-pacjent (za zgodą), automatycznie transkrybuje wizytę i generuje ustrukturyzowaną notatkę medyczną w formacie wymaganym przez system EDM. Lekarz weryfikuje i zatwierdza gotowy dokument zamiast ręcznie go pisać, co skraca czas dokumentacji z 10-15 minut do 2 minut na wizytę.",
+        "savings": "Oszczędność 2-3h dziennie na lekarza, co przekłada się na 4-6 dodatkowych wizyt"
+      },
+      {
+        "title": "Inteligentna rejestracja i triaging pacjentów",
+        "description": "Voicebot AI obsługuje połączenia telefoniczne do rejestracji 24/7, zbierając wywiad wstępny, proponując terminy i automatycznie rezerwując wizyty w systemie HIS. System dokonuje wstępnego triażu na podstawie opisanych objawów, kierując pacjentów do odpowiedniego specjalisty i priorytetyzując pilne przypadki.",
+        "savings": "Obsługa 80% połączeń bez udziału rejestratorek, oszczędność 25h/tydzień"
+      },
+      {
+        "title": "Wspomaganie diagnostyki obrazowej",
+        "description": "Model AI wstępnie analizuje zdjęcia RTG, USG i dermatoskopowe, zaznaczając potencjalne nieprawidłowości i generując raport prawdopodobieństw dla lekarza. System nie stawia diagnoz samodzielnie — służy jako 'drugi oczy', zwracając uwagę na obszary wymagające szczególnej analizy i redukując ryzyko przeoczenia zmian.",
+        "savings": "Skrócenie czasu analizy zdjęć o 50% i redukcja przeoczonego wykrywania zmian o 15%"
+      }
+    ],
+    "stack": ["Python", "PyTorch", "Whisper (OpenAI)", "HL7 FHIR", "FastAPI", "Docker"],
+    "roi": {
+      "hoursPerWeek": 30,
+      "hourlyRate": 120,
+      "annualSavings": 172800
+    },
+    "challenges": [
+      "Regulacje prawne — wyroby medyczne z AI podlegają rozporządzeniu MDR, a systemy wspomagania diagnostyki wymagają certyfikacji CE",
+      "Ochrona danych medycznych (RODO + ustawa o prawach pacjenta) wymaga szyfrowania end-to-end i przechowywania danych na serwerach w Polsce/UE",
+      "Integracja z systemami HIS/EDM — wiele polskich placówek korzysta z przestarzałych systemów bez nowoczesnych API",
+      "Odpowiedzialność prawna za błędy AI — konieczne jasne procedury human-in-the-loop i dokumentacja procesu decyzyjnego"
+    ],
+    "faq": [
+      {
+        "q": "Czy AI w klinice jest zgodna z RODO i przepisami medycznymi?",
+        "a": "Tak, pod warunkiem prawidłowego wdrożenia. Projektuję systemy zgodnie z Privacy by Design — dane medyczne są szyfrowane, przetwarzane na serwerach w UE, a dostęp jest ograniczony rolami. Dla systemów wspomagania diagnostyki przeprowadzam analizę wymogów MDR i pomagam w procesie certyfikacji."
+      },
+      {
+        "q": "Ile kosztuje wdrożenie voicebota rejestracyjnego w przychodni?",
+        "a": "Voicebot rejestracyjny zintegrowany z systemem HIS to koszt 25 000-50 000 PLN za wdrożenie plus 2 000-5 000 PLN/miesiąc za utrzymanie i minuty rozmów. System zwraca się w ciągu 3-6 miesięcy dzięki oszczędnościom na etatach rejestracyjnych i zwiększonej dostępności terminów."
+      },
+      {
+        "q": "Czy lekarze w mojej klinice muszą być techniczni, żeby korzystać z AI?",
+        "a": "Nie — systemy projektuję tak, aby były intuicyjne i nie wymagały wiedzy technicznej. Transkrypcja wizyt działa w tle, voicebot obsługuje się sam, a wspomaganie diagnostyki to dodatkowa warstwa w istniejącym PACS. Szkolenie lekarzy zajmuje 1-2 godziny."
+      }
+    ]
+  },
+  {
+    "id": "edukacja",
+    "slug": "edukacja",
+    "industry": "Edukacja",
+    "intro": "Sektor edukacyjny w Polsce dynamicznie adaptuje sztuczną inteligencję do personalizacji nauczania, automatyzacji procesów administracyjnych i tworzenia angażujących materiałów dydaktycznych dostosowanych do różnych stylów uczenia się. Szkoły językowe, uczelnie wyższe, platformy e-learningowe i firmy szkoleniowe coraz śmielej wykorzystują AI do dopasowania tempa i formy nauki do indywidualnych potrzeb każdego ucznia. Inteligentne systemy analizują postępy w czasie rzeczywistym, identyfikują luki w wiedzy i automatycznie dostosowują ścieżki edukacyjne, oferując doświadczenie porównywalne z korepetycjami jeden na jeden. Wdrożenie AI pozwala nauczycielom i trenerom skupić się na mentoringu, inspirowaniu i bezpośredniej interakcji z uczniami zamiast na rutynowych zadaniach administracyjnych, takich jak sprawdzanie testów czy przygotowywanie materiałów.",
+    "useCases": [
+      {
+        "title": "Personalizowane ścieżki nauki z adaptacyjnymi quizami",
+        "description": "System AI analizuje odpowiedzi ucznia w czasie rzeczywistym, identyfikuje luki w wiedzy i automatycznie dostosowuje kolejne zadania. Algorytm spaced repetition optymalizuje powtórki, a model NLP generuje nowe warianty pytań dopasowane do poziomu trudności. Nauczyciel otrzymuje dashboard z mapą kompetencji każdego ucznia.",
+        "savings": "Poprawa wyników nauki o 25% i oszczędność 15h/tydzień na przygotowaniu materiałów"
+      },
+      {
+        "title": "Automatyczne sprawdzanie i ocenianie prac",
+        "description": "Model AI ocenia prace pisemne pod kątem merytoryki, struktury argumentacji, poprawności językowej i zgodności z kryteriami oceniania. System generuje szczegółowy feedback dla ucznia z konkretnymi wskazówkami do poprawy. Nauczyciel weryfikuje oceny i komentarze, co jest 5x szybsze niż ocenianie od zera.",
+        "savings": "Redukcja czasu sprawdzania prac o 70%, oszczędność 20h/tydzień przy 150+ uczniach"
+      },
+      {
+        "title": "Generator materiałów dydaktycznych i scenariuszy lekcji",
+        "description": "AI generuje kompletne materiały dydaktyczne — prezentacje, karty pracy, scenariusze lekcji i quizy — na podstawie tematu, poziomu uczniów i podstawy programowej. System uwzględnia różne style nauki i tworzy warianty materiałów dla uczniów wizualnych, audialnych i kinestetycznych.",
+        "savings": "Oszczędność 12h/tydzień na przygotowaniu materiałów dydaktycznych"
+      }
+    ],
+    "stack": ["OpenAI GPT-4", "Python", "LangChain", "Next.js", "Supabase", "Pinecone"],
+    "roi": {
+      "hoursPerWeek": 22,
+      "hourlyRate": 80,
+      "annualSavings": 84480
+    },
+    "challenges": [
+      "Ryzyko plagiatu i nieuczciwego wykorzystania AI przez uczniów — konieczne systemy detekcji i jasne polityki korzystania",
+      "Zgodność z podstawą programową MEN — generowane materiały muszą być walidowane pod kątem merytorycznym",
+      "Ochrona danych nieletnich (RODO, art. 8) wymaga zgody rodziców i szczególnych zabezpieczeń",
+      "Nierówny dostęp do technologii — nie wszyscy uczniowie mają urządzenia i internet wystarczający do korzystania z platform AI"
+    ],
+    "faq": [
+      {
+        "q": "Czy AI może zastąpić nauczyciela?",
+        "a": "Absolutnie nie — AI to narzędzie wspierające nauczyciela, nie jego zastępstwo. System przejmuje rutynowe zadania (sprawdzanie, generowanie materiałów, administracja), dzięki czemu nauczyciel ma więcej czasu na indywidualną pracę z uczniami, mentoring i budowanie relacji."
+      },
+      {
+        "q": "Jak wdrożyć AI w szkole językowej?",
+        "a": "Zaczynam od audytu procesów i identyfikacji quick wins — najczęściej to automatyzacja quizów, personalizacja ścieżek nauki i chatbot do konwersacji w języku obcym. Wdrożenie MVP trwa 4-6 tygodni, a koszt startowy to 15 000-35 000 PLN w zależności od liczby kursów."
+      },
+      {
+        "q": "Ile kosztuje platforma e-learningowa z AI?",
+        "a": "Platforma z adaptacyjnymi quizami, automatycznym sprawdzaniem i personalizowanymi ścieżkami to 40 000-100 000 PLN za MVP. Koszty utrzymania to 3 000-8 000 PLN/miesiąc (API, hosting, support). Dla dużych platform edukacyjnych przygotowuję wycenę indywidualną."
+      }
+    ]
+  },
+  {
+    "id": "fintech",
+    "slug": "fintech",
+    "industry": "Fintech",
+    "intro": "Sektor fintech w Polsce jest jednym z najbardziej zaawansowanych i innowacyjnych rynków w Europie Środkowej, a sztuczna inteligencja stanowi fundament nowoczesnych usług finansowych i bankowych. AI rewolucjonizuje scoring kredytowy wykorzystując alternatywne źródła danych, wykrywa fraudy w czasie rzeczywistym, automatyzuje procesy compliance i personalizuje oferty finansowe na niespotykaną wcześniej skalę. Firmy fintechowe oraz banki wykorzystujące zaawansowane modele uczenia maszynowego osiągają o 40% niższy wskaźnik strat kredytowych, o 60% szybsze przetwarzanie wniosków i znacząco lepsze doświadczenie użytkownika. W erze otwartej bankowości (PSD2), regulacji AML i rosnących oczekiwań klientów, inteligentne systemy oparte na sztucznej inteligencji stają się absolutnie niezbędne do zachowania konkurencyjności i pełnej zgodności regulacyjnej.",
+    "useCases": [
+      {
+        "title": "Zaawansowany scoring kredytowy z alternatywnymi danymi",
+        "description": "Model ML analizuje nie tylko tradycyjną historię kredytową, ale również dane transakcyjne (PSD2), wzorce wydatków, stabilność przychodów i dane behawioralne, aby ocenić zdolność kredytową. System obsługuje klientów thin-file (bez historii w BIK), otwierając nowy segment rynku. Dokładność predykcji default jest o 25% wyższa niż tradycyjne metody scoringowe.",
+        "savings": "Redukcja strat kredytowych o 30% i skrócenie czasu decyzji z dni do sekund"
+      },
+      {
+        "title": "Wykrywanie fraudów w czasie rzeczywistym",
+        "description": "System detekcji anomalii oparty na ensemble models analizuje każdą transakcję w czasie <100ms, oceniając prawdopodobieństwo fraudu na podstawie lokalizacji, wzorców wydatków, urządzenia i setek innych zmiennych. Model uczy się nowych schematów oszustw w trybie ciągłym, adaptując się do ewoluujących metod ataków bez konieczności manualnej rekonfiguracji reguł.",
+        "savings": "Wykrywanie 95% fraudów przy false positive rate <0.5%, oszczędność 500 000+ PLN/rok"
+      },
+      {
+        "title": "Automatyzacja procesów AML/KYC",
+        "description": "Pipeline AI automatyzuje weryfikację tożsamości (OCR dokumentów + face matching), screening na listach sankcyjnych i PEP, oraz monitorowanie transakcji pod kątem podejrzanych wzorców. System generuje raporty SAR i automatycznie eskaluje przypadki wymagające analizy compliance officera, redukując obciążenie zespołu compliance o 60%.",
+        "savings": "Oszczędność 35h/tydzień na procesach compliance i redukcja czasu onboardingu o 80%"
+      }
+    ],
+    "stack": ["Python", "XGBoost", "Apache Spark", "Kafka", "Kubernetes", "PostgreSQL"],
+    "roi": {
+      "hoursPerWeek": 35,
+      "hourlyRate": 150,
+      "annualSavings": 252000
+    },
+    "challenges": [
+      "Wymogi regulacyjne KNF i UODO — modele scoringowe muszą być wyjaśnialne (explainable AI), a decyzje automatyczne podlegają art. 22 RODO",
+      "Bias w modelach kredytowych — konieczna regularna analiza fairness i eliminacja dyskryminacji pośredniej",
+      "Bezpieczeństwo danych finansowych — wymagana zgodność z PCI DSS, szyfrowanie i audyty penetracyjne",
+      "Szybka ewolucja metod fraudu wymaga ciągłego retreningu modeli i zespołu monitorującego drift"
+    ],
+    "faq": [
+      {
+        "q": "Czy model AI do scoringu kredytowego spełnia wymogi KNF?",
+        "a": "Tak — projektuję modele zgodne z Rekomendacją W KNF, wykorzystując explainable AI (SHAP, LIME) do generowania uzasadnień decyzji kredytowych. Każda decyzja automatyczna ma ścieżkę audytową i możliwość odwołania z interwencją człowieka, zgodnie z art. 22 RODO."
+      },
+      {
+        "q": "Jak szybko AI wykrywa fraudy?",
+        "a": "System analizuje transakcję w <100ms — szybciej niż trwa autoryzacja płatności. Wykrywa 95% przypadków fraudu przy minimalnym wskaźniku fałszywych alarmów (0.3-0.5%), co oznacza, że legitymowe transakcje nie są blokowane. Model uczy się nowych wzorców w cyklu godzinowym."
+      },
+      {
+        "q": "Ile kosztuje wdrożenie systemu anty-fraudowego?",
+        "a": "System detekcji fraudów dla średniej wielkości fintechu (100k+ transakcji/miesiąc) to koszt 80 000-200 000 PLN za wdrożenie i 10 000-25 000 PLN/miesiąc za utrzymanie. ROI jest natychmiastowy — jedna uniknięta fala fraudów często pokrywa roczny koszt systemu."
+      }
+    ]
+  },
+  {
+    "id": "hr-rekrutacja",
+    "slug": "hr-rekrutacja",
+    "industry": "HR i Rekrutacja",
+    "intro": "Sztuczna inteligencja gruntownie transformuje procesy HR i rekrutacji w Polsce, od automatycznego screeningu setek CV po zaawansowaną predykcję rotacji pracowników i planowanie rozwoju talentów. Firmy rekrutacyjne, agencje pracy tymczasowej i wewnętrzne działy HR, które wdrażają AI, skracają czas rekrutacji o 60% i znacząco zwiększają jakość zatrudnień mierzoną retencją po 12 miesiącach. Algorytmy NLP i modele semantyczne analizują tysiące aplikacji w ciągu minut, identyfikując najlepszych kandydatów na podstawie kompetencji twardych i miękkich, doświadczenia branżowego oraz dopasowania kulturowego do organizacji. W obliczu chronicznego niedoboru talentów na polskim rynku pracy, AI daje realną przewagę firmom, które potrafią szybciej dotrzeć do odpowiednich kandydatów, efektywniej przeprowadzić proces selekcji i skuteczniej zatrzymać kluczowych pracowników.",
+    "useCases": [
+      {
+        "title": "Automatyczny screening i ranking CV",
+        "description": "System NLP analizuje CV i listy motywacyjne, wyodrębniając kompetencje, doświadczenie, technologie i certyfikaty, a następnie rankinguje kandydatów pod kątem dopasowania do wymagań stanowiska. Algorytm uwzględnia nie tylko twarde dopasowanie słów kluczowych, ale również semantyczne podobieństwo doświadczeń i potencjał rozwojowy.",
+        "savings": "Redukcja czasu screeningu z 40h do 2h na rekrutację, obsługa 500+ CV w minuty"
+      },
+      {
+        "title": "Chatbot rekrutacyjny i automatyzacja komunikacji",
+        "description": "Bot AI prowadzi wstępne rozmowy z kandydatami, weryfikuje dostępność, oczekiwania finansowe i kluczowe kompetencje. Automatycznie planuje rozmowy kwalifikacyjne, wysyła przypomnienia i zbiera feedback po każdym etapie. Kandydaci otrzymują natychmiastowe odpowiedzi 24/7, co drastycznie poprawia candidate experience.",
+        "savings": "Oszczędność 20h/tydzień na komunikacji z kandydatami i koordynacji spotkań"
+      },
+      {
+        "title": "Predykcja rotacji i analiza zaangażowania pracowników",
+        "description": "Model predykcyjny analizuje dane HR (absencje, wyniki ocen, staż, historię awansów, dane z pulsowych ankiet) i identyfikuje pracowników z wysokim ryzykiem odejścia. System generuje rekomendacje retencyjne — podwyżka, zmiana projektu, szkolenie — z oszacowaniem skuteczności każdej interwencji.",
+        "savings": "Redukcja rotacji o 20%, oszczędność 30 000-50 000 PLN na każdym unikniętym odejściu"
+      }
+    ],
+    "stack": ["Python", "spaCy", "OpenAI GPT-4", "Haystack", "React", "PostgreSQL"],
+    "roi": {
+      "hoursPerWeek": 25,
+      "hourlyRate": 90,
+      "annualSavings": 108000
+    },
+    "challenges": [
+      "Bias algorytmiczny w rekrutacji — modele mogą reprodukować historyczne uprzedzenia dotyczące płci, wieku i pochodzenia",
+      "Zgodność z RODO przy profilowaniu kandydatów i automatycznym podejmowaniu decyzji (art. 22) — wymagane prawo do odwołania",
+      "Jakość danych w systemach ATS — niekompletne profile, duplikaty i niestandardowe formaty CV utrudniają ekstrakcję",
+      "Opór hiring managerów przed zaufaniem rekomendacjom algorytmu — konieczna transparentność procesu"
+    ],
+    "faq": [
+      {
+        "q": "Czy AI w rekrutacji nie dyskryminuje kandydatów?",
+        "a": "Ryzyko bias istnieje, ale je mitygujemy — regularnie audytuję modele pod kątem fairness, analizuję wskaźniki dla różnych grup demograficznych i stosuję techniki debiasingu. System jest transparentny — hiring manager widzi, dlaczego kandydat został wysoko oceniony. AI eliminuje ludzkie uprzedzenia, jeśli jest prawidłowo wdrożona."
+      },
+      {
+        "q": "Ile trwa wdrożenie AI w procesie rekrutacyjnym?",
+        "a": "Chatbot rekrutacyjny to 2-3 tygodnie, system screeningu CV 3-4 tygodnie, a model predykcji rotacji wymaga 6-8 tygodni i minimum 12 miesięcy danych historycznych. Zaczynam od audytu Twoich obecnych procesów i identyfikuji, gdzie AI da najszybszy zwrot."
+      },
+      {
+        "q": "Czy AI sprawdzi się w rekrutacji specjalistów IT?",
+        "a": "Szczególnie dobrze — CV programistów są bogate w strukturalne dane (technologie, projekty, GitHub). System analizuje nie tylko CV, ale też profile GitHub i LinkedIn, oceniając realne kompetencje techniczne. Dla ról IT skracam czas rekrutacji z 30 do 10 dni roboczych."
+      }
+    ]
+  },
+  {
+    "id": "marketing",
+    "slug": "marketing",
+    "industry": "Marketing",
+    "intro": "Agencje marketingowe i wewnętrzne działy marketingu w Polsce coraz intensywniej wdrażają sztuczną inteligencję, aby zwiększyć efektywność kampanii reklamowych, zredukować koszty produkcji contentu i przyspieszyć czas reakcji na zmieniające się trendy rynkowe. AI generuje profesjonalne treści marketingowe, optymalizuje budżety reklamowe w czasie rzeczywistym i personalizuje komunikację w skali absolutnie niemożliwej do osiągnięcia przy ręcznym zarządzaniu. Agencje aktywnie wykorzystujące narzędzia AI raportują trzykrotnie szybszą produkcję contentu, 25% wyższy ROAS z kampanii performance i znacząco większą satysfakcję klientów. W erze przesycenia treściami i rosnącej ślepoty bannerowej, sztuczna inteligencja pozwala tworzyć hiperspersonalizowane komunikaty, które przebijają się przez szum informacyjny i realnie konwertują na mierzalne wyniki biznesowe.",
+    "useCases": [
+      {
+        "title": "Automatyczna produkcja contentu wielokanałowego",
+        "description": "System AI generuje spójne treści marketingowe na różne kanały — posty social media, artykuły blogowe, newslettery, copy reklamowe — na podstawie briefu i brand guidelines. Model jest fine-tunowany na tone of voice marki i automatycznie dostosowuje długość, styl i CTA do specyfiki każdego kanału.",
+        "savings": "Produkcja 50+ unikalnych treści tygodniowo zamiast 15, oszczędność 25h/tydzień"
+      },
+      {
+        "title": "Optymalizacja kampanii reklamowych z predykcyjną alokacją budżetu",
+        "description": "Algorytm ML analizuje dane z Google Ads, Meta Ads i LinkedIn w czasie rzeczywistym, prognozując performance kreacji i automatycznie realokując budżet na najlepsze segmenty i kanały. System testuje warianty copy i targeting, identyfikując winning combinations szybciej niż tradycyjne testy A/B.",
+        "savings": "Wzrost ROAS o 30-45% przy tym samym budżecie reklamowym"
+      },
+      {
+        "title": "Analiza sentymentu i social listening",
+        "description": "Pipeline NLP monitoruje wzmianki o marce w social media, forach, recenzjach i artykułach, klasyfikując sentyment i identyfikując kryzysy wizerunkowe w czasie rzeczywistym. System generuje raporty trendów, sugeruje tematy do content marketingu i automatycznie alarmuje PR team przy negatywnych wzmiankach od influencerów.",
+        "savings": "Wykrywanie kryzysów wizerunkowych 6h wcześniej, oszczędność 15h/tydzień na monitoringu"
+      }
+    ],
+    "stack": ["OpenAI GPT-4", "Python", "Meta Ads API", "Google Ads API", "Pinecone", "Next.js"],
+    "roi": {
+      "hoursPerWeek": 28,
+      "hourlyRate": 85,
+      "annualSavings": 114240
+    },
+    "challenges": [
+      "Utrzymanie spójnego tone of voice marki — generyczny content AI jest rozpoznawalny i może zaszkodzić wizerunkowi",
+      "Zależność od platform reklamowych — zmiany algorytmów Meta/Google mogą wymagać przebudowy modeli optymalizacyjnych",
+      "Prawa autorskie do treści generowanych przez AI — niejasny status prawny w UE wymaga ostrożności",
+      "Klienci agencji oczekują 'ludzkiego' podejścia — konieczna transparentność w użyciu AI i jasna polityka human review"
+    ],
+    "faq": [
+      {
+        "q": "Czy treści generowane przez AI rankują w Google?",
+        "a": "Tak — Google oficjalnie potwierdził, że nie dyskryminuje treści AI, jeśli są wartościowe dla użytkownika. Moje systemy generują treści zoptymalizowane pod SEO, z unikalnymi insightami i danymi. Kluczem jest human review i edycja — AI tworzy solidną bazę, ekspert dodaje wartość."
+      },
+      {
+        "q": "Ile kosztuje system AI do automatyzacji contentu?",
+        "a": "System generowania treści wielokanałowych z fine-tuningiem na brand guidelines to 20 000-45 000 PLN za wdrożenie plus 3 000-7 000 PLN/miesiąc (API + utrzymanie). Dla agencji obsługującej 10+ klientów system zwraca się w pierwszym miesiącu dzięki oszczędności na copywriterach."
+      },
+      {
+        "q": "Czy AI zastąpi zespół kreatywny w agencji?",
+        "a": "Nie zastąpi — transformuje jego rolę. AI przejmuje powtarzalną produkcję (adaptacje, warianty, lokalizacje), a kreatywni mogą skupić się na strategii, konceptach i big ideas. Agencje, które to rozumieją, obsługują 2x więcej klientów tym samym zespołem."
+      }
+    ]
+  },
+  {
+    "id": "prawo",
+    "slug": "prawo",
+    "industry": "Prawo",
+    "intro": "Kancelarie prawne w Polsce stoją przed rewolucją technologiczną napędzaną przez sztuczną inteligencję, która fundamentalnie zmienia sposób świadczenia usług prawnych. AI automatyzuje analizę złożonych dokumentów prawnych, wyszukiwanie orzecznictwa w bazach sądów polskich i europejskich oraz przygotowywanie pism procesowych i umów, uwalniając cenny czas prawników na pracę wymagającą ekspertyzy merytorycznej i kreatywnego myślenia strategicznego. Polskie kancelarie wdrażające rozwiązania Legal AI zwiększają throughput o 40% bez konieczności rozbudowy zespołu i kosztownych rekrutacji. W obliczu rosnącej konkurencji cenowej ze strony korporacji i platform legaltech, automatyzacja rutynowych zadań prawnych staje się kluczowym czynnikiem konkurencyjności i rentowności kancelarii każdej wielkości — od jednoosobowych po duże firmy prawnicze.",
+    "useCases": [
+      {
+        "title": "Analiza i porównywanie umów (contract review)",
+        "description": "System AI analizuje umowy, identyfikując klauzule ryzykowne, brakujące zapisy, niezgodności z templatem kancelarii i odchylenia od standardów rynkowych. Model został wytrenowany na polskim prawie cywilnym i handlowym, rozumie specyfikę polskiej terminologii prawnej i automatycznie sugeruje poprawki z uzasadnieniem prawnym.",
+        "savings": "Skrócenie czasu review umowy z 4h do 30 minut, oszczędność 25h/tydzień"
+      },
+      {
+        "title": "Wyszukiwanie orzecznictwa i przygotowywanie legal research",
+        "description": "Pipeline RAG przeszukuje bazę orzeczeń sądów polskich (SN, NSA, sądy powszechne), komentarzy doktryny i aktów prawnych, generując strukturalny raport z relevantnymi orzeczeniami, tezami i argumentacją. System rozumie kontekst prawny pytania i rankinguje wyniki według relevancji i aktualności, eliminując godziny manualnego wyszukiwania.",
+        "savings": "Redukcja czasu legal research o 70%, oszczędność 20h/tydzień"
+      },
+      {
+        "title": "Automatyczne generowanie pism procesowych i dokumentów",
+        "description": "Na podstawie stanu faktycznego i szablonów kancelarii AI generuje projekty pism procesowych, wezwań do zapłaty, umów i opinii prawnych. System uwzględnia aktualne przepisy i orzecznictwo, formatuje dokumenty zgodnie ze standardami kancelarii i automatycznie dodaje prawidłowe podstawy prawne z cytowaniem źródeł.",
+        "savings": "Oszczędność 15h/tydzień na drafting i 3x szybsze przygotowanie dokumentacji"
+      }
+    ],
+    "stack": ["OpenAI GPT-4", "LangChain", "Python", "Qdrant", "FastAPI", "Elasticsearch"],
+    "roi": {
+      "hoursPerWeek": 30,
+      "hourlyRate": 130,
+      "annualSavings": 187200
+    },
+    "challenges": [
+      "Halucynacje modeli AI w kontekście prawnym — cytowanie nieistniejących przepisów lub orzeczeń wymaga rygorystycznej walidacji",
+      "Tajemnica adwokacka i radcowska — dane klientów nie mogą być przesyłane do zewnętrznych API bez odpowiednich zabezpieczeń",
+      "Częste zmiany przepisów w polskim prawie — baza wiedzy wymaga ciągłej aktualizacji i monitoringu Dziennika Ustaw",
+      "Opór prawników przed zmianą sposobu pracy — konieczne stopniowe wdrożenie i demonstracja wartości"
+    ],
+    "faq": [
+      {
+        "q": "Czy dane moich klientów są bezpieczne przy użyciu AI?",
+        "a": "Tak — wdrażam systemy on-premise lub na dedykowanym serwerze w UE, gdzie dane nigdy nie opuszczają infrastruktury kancelarii. Dla modeli wymagających API zewnętrznych stosuję anonimizację danych przed wysłaniem. Cały system jest zgodny z wymogami tajemnicy zawodowej i RODO."
+      },
+      {
+        "q": "Ile kosztuje wdrożenie AI w kancelarii prawnej?",
+        "a": "System contract review to 30 000-60 000 PLN, wyszukiwarka orzecznictwa RAG 25 000-50 000 PLN, a generator dokumentów 20 000-40 000 PLN. Pełny pakiet Legal AI z integracją to 60 000-120 000 PLN. Utrzymanie: 3 000-8 000 PLN/miesiąc. ROI widoczny już w pierwszym kwartale."
+      },
+      {
+        "q": "Czy AI może popełnić błąd prawny, za który kancelaria odpowie?",
+        "a": "AI to narzędzie wspomagające, nie zastępca prawnika — każdy wygenerowany dokument wymaga weryfikacji przez prawnika, który ponosi odpowiedzialność. System jest zaprojektowany z myślą o human-in-the-loop i wyraźnie oznacza fragmenty wymagające weryfikacji. To jak kalkulator — pomaga, ale to księgowy odpowiada za wynik."
+      }
+    ]
+  },
+  {
+    "id": "produkcja",
+    "slug": "produkcja",
+    "industry": "Produkcja",
+    "intro": "Przemysł produkcyjny w Polsce przechodzi intensywną transformację w kierunku Przemysłu 4.0, a sztuczna inteligencja jest jej absolutnym fundamentem i głównym motorem zmian. AI optymalizuje procesy produkcyjne w czasie rzeczywistym, przewiduje awarie maszyn z tygodniowym wyprzedzeniem i automatyzuje kontrolę jakości za pomocą systemów wizyjnych, znacząco redukując kosztowne przestoje i straty materiałowe. Polskie zakłady produkcyjne wdrażające systemy predykcyjne i inteligentną automatyzację redukują nieplanowane przestoje o 45% i obniżają całkowite koszty utrzymania ruchu maszyn o 25%. W obliczu globalnej konkurencji cenowej, rosnących kosztów energii i surowców oraz niedoboru wykwalifikowanych operatorów, inteligentna automatyzacja oparta na sztucznej inteligencji staje się warunkiem przetrwania i rozwoju polskich producentów na wymagających rynkach europejskich.",
+    "useCases": [
+      {
+        "title": "Predykcyjne utrzymanie ruchu (Predictive Maintenance)",
+        "description": "Czujniki IoT zbierają dane wibracyjne, temperaturowe i akustyczne z maszyn, a model ML analizuje wzorce degradacji, prognozując awarie z wyprzedzeniem 2-4 tygodni. System generuje harmonogram konserwacji zapobiegawczej, priorytetyzując maszyny o najwyższym ryzyku awarii i optymalizując zamówienia części zamiennych.",
+        "savings": "Redukcja nieplanowanych przestojów o 45%, oszczędność 50 000+ PLN/miesiąc"
+      },
+      {
+        "title": "Automatyczna kontrola jakości z computer vision",
+        "description": "System wizyjny oparty na głębokim uczeniu analizuje produkty na linii produkcyjnej w czasie rzeczywistym, wykrywając defekty niewidoczne gołym okiem — mikropęknięcia, odchylenia wymiarowe, wady powierzchni. Kamera i model AI zastępują manualną inspekcję, osiągając dokładność 99.5% przy prędkości 100+ sztuk/minutę.",
+        "savings": "Redukcja braków o 60% i oszczędność 20h/tydzień na manualnej kontroli"
+      },
+      {
+        "title": "Optymalizacja parametrów procesu produkcyjnego",
+        "description": "Algorytm reinforcement learning optymalizuje parametry maszyn — temperatura, ciśnienie, prędkość, czas cyklu — w czasie rzeczywistym, maksymalizując jakość i throughput przy minimalnym zużyciu energii i surowców. System uczy się na danych z każdego cyklu produkcyjnego, ciągle poprawiając efektywność.",
+        "savings": "Redukcja zużycia energii o 12% i wzrost throughput o 8%"
+      }
+    ],
+    "stack": ["Python", "TensorFlow", "MQTT", "InfluxDB", "Grafana", "Docker"],
+    "roi": {
+      "hoursPerWeek": 30,
+      "hourlyRate": 110,
+      "annualSavings": 158400
+    },
+    "challenges": [
+      "Heterogeniczność parku maszynowego — maszyny od różnych producentów, z różnych lat, z różnymi protokołami komunikacji (OPC-UA, Modbus, ProfiNet)",
+      "Brak infrastruktury sieciowej na hali produkcyjnej — wiele zakładów nie ma WiFi/LAN wystarczającego do transmisji danych IoT",
+      "Cyberbezpieczeństwo OT — podłączenie maszyn do sieci tworzy nowe wektory ataku, wymagające segmentacji sieci IT/OT",
+      "Opór kadry zarządzającej przed inwestycjami w digitalizację — konieczne pilotaże z mierzalnym ROI"
+    ],
+    "faq": [
+      {
+        "q": "Czy moje stare maszyny mogą być podłączone do systemu AI?",
+        "a": "Tak — nawet maszyny sprzed 20 lat mogą być zdigitalizowane za pomocą zewnętrznych czujników IoT (wibracje, temperatura, prąd). Koszt sensoryzacji jednej maszyny to 2 000-8 000 PLN. Nie wymaga to ingerencji w sterowanie maszyny ani zmian w gwarancji."
+      },
+      {
+        "q": "Ile kosztuje wdrożenie predictive maintenance w zakładzie?",
+        "a": "Pilotaż na 5-10 krytycznych maszynach to 40 000-80 000 PLN (czujniki + platforma + model). Pełne wdrożenie na 50+ maszyn: 150 000-400 000 PLN. System zwraca się po uniknięciu 2-3 nieplanowanych przestojów, co typowo następuje w ciągu 3-6 miesięcy."
+      },
+      {
+        "q": "Jakie dane są potrzebne do wdrożenia AI w produkcji?",
+        "a": "Minimum to dane z czujników (zbierane od momentu instalacji) i historyczne raporty awarii/serwisowe. Im więcej danych historycznych, tym lepsze modele — idealnie 6-12 miesięcy. Jeśli nie masz cyfrowych danych, zaczynam od instalacji czujników i zbierania baseline przez 2-3 miesiące."
+      }
+    ]
+  },
+  {
+    "id": "turystyka",
+    "slug": "turystyka",
+    "industry": "Turystyka",
+    "intro": "Branża turystyczna w Polsce przeżywa cyfrową transformację, w której sztuczna inteligencja odgrywa coraz większą i bardziej wyrafinowaną rolę na każdym etapie podróży klienta. AI personalizuje oferty wyjazdowe na podstawie preferencji i historii rezerwacji, automatyzuje wielojęzyczną obsługę klienta przez chatboty i voiceboty oraz optymalizuje zarządzanie cenami pokojów i pakietów w hotelach i biurach podróży. Polskie firmy turystyczne i hotelarskie wdrażające rozwiązania oparte na sztucznej inteligencji notują 35% wzrost konwersji, znacząco wyższy poziom satysfakcji gości i lepsze wykorzystanie dostępnej bazy noclegowej. W branży silnie zależnej od sezonowości, kursów walut i szybko zmieniających się trendów podróżniczych, algorytmy predykcyjne dają realną przewagę w planowaniu oferty, zarządzaniu pojemnością i dynamicznym reagowaniu na zmiany popytu.",
+    "useCases": [
+      {
+        "title": "Inteligentny asystent podróży i personalizacja ofert",
+        "description": "Chatbot AI prowadzi konwersację z klientem, poznaje jego preferencje (budżet, styl podróży, zainteresowania, skład grupy), a następnie generuje spersonalizowane propozycje wyjazdów z dopasowanymi hotelami, atrakcjami i logistyką. System uczy się na historii wcześniejszych rezerwacji i ocenach klientów, ciągle poprawiając trafność rekomendacji.",
+        "savings": "Wzrost konwersji z zapytania na rezerwację o 40% i oszczędność 15h/tydzień"
+      },
+      {
+        "title": "Dynamic pricing i revenue management",
+        "description": "Algorytm ML analizuje popyt, obłożenie, ceny konkurencji, wydarzenia lokalne, pogodę i trendy wyszukiwań, aby automatycznie dostosowywać ceny pokojów hotelowych i ofert turystycznych. System optymalizuje RevPAR (Revenue Per Available Room) i yield, reagując na zmiany rynkowe w czasie rzeczywistym zamiast w cyklach tygodniowych.",
+        "savings": "Wzrost RevPAR o 15-22% i wzrost obłożenia o 8%"
+      },
+      {
+        "title": "Automatyczne generowanie opisów ofert i tłumaczenia",
+        "description": "System AI generuje atrakcyjne opisy destynacji, hoteli i atrakcji na podstawie zdjęć, danych i recenzji, dostosowując ton do grupy docelowej (rodziny, pary, backpackerzy). Automatyczne tłumaczenie na 6 języków z lokalizacją kulturową zapewnia spójną komunikację na wszystkich rynkach bez kosztów tłumaczy.",
+        "savings": "Oszczędność 20h/tydzień na copywritingu i 15 000 PLN/miesiąc na tłumaczeniach"
+      }
+    ],
+    "stack": ["OpenAI GPT-4", "Python", "Next.js", "Redis", "PostgreSQL", "Stripe API"],
+    "roi": {
+      "hoursPerWeek": 22,
+      "hourlyRate": 80,
+      "annualSavings": 84480
+    },
+    "challenges": [
+      "Sezonowość danych — modele predykcyjne muszą radzić sobie z ekstremalną sezonowością i black swan events (pandemia, konflikty)",
+      "Integracja z GDS (Amadeus, Sabre) i channel managerami — złożone API z ograniczeniami rate limit",
+      "Wielojęzyczność i wielokulturowość — opisy muszą być nie tylko przetłumaczone, ale zlokalizowane kulturowo",
+      "Zmienność regulacji turystycznych (np. wiza, COVID) wymaga ciągłej aktualizacji bazy wiedzy chatbota"
+    ],
+    "faq": [
+      {
+        "q": "Czy AI może obsłużyć klientów biura podróży 24/7?",
+        "a": "Tak — inteligentny chatbot odpowiada na pytania, prezentuje oferty i prowadzi przez proces rezerwacji non-stop. Obsługuje 70-80% standardowych zapytań samodzielnie, a trudniejsze przekierowuje do konsultanta z pełnym kontekstem rozmowy. Klienci doceniają natychmiastową odpowiedź, szczególnie w strefach czasowych."
+      },
+      {
+        "q": "Ile kosztuje system revenue management dla hotelu?",
+        "a": "System dynamic pricing dla hotelu 50-200 pokojów to koszt 25 000-50 000 PLN za wdrożenie i 3 000-6 000 PLN/miesiąc. Przy średnim wzroście RevPAR o 15%, hotel 100-pokojowy odzyskuje inwestycję w 2-3 miesiące. Dla sieci hoteli przygotowuję wycenę indywidualną z rabatami wolumenowymi."
+      },
+      {
+        "q": "Czy AI sprawdzi się w małym pensjonacie czy agroturystyce?",
+        "a": "Tak — chatbot obsługujący rezerwacje i FAQ to świetne rozwiązanie nawet dla obiektu z 5 pokojami. Koszt od 5 000 PLN za wdrożenie i 500 PLN/miesiąc. Dynamic pricing ma sens od 15+ pokojów. Dla mniejszych obiektów proponuję pakiet automatyzacji komunikacji z gośćmi."
+      }
+    ]
+  },
+  {
+    "id": "fitness-sport",
+    "slug": "fitness-sport",
+    "industry": "Fitness i Sport",
+    "intro": "Branża fitness i sportowa w Polsce intensywnie wdraża sztuczną inteligencję, aby personalizować treningi, optymalizować zarządzanie klubami fitness i zwiększać retencję członków, która jest kluczowym wskaźnikiem rentowności w tej branży. AI analizuje dane treningowe z aplikacji i wearables, parametry zdrowotne oraz nawyki i preferencje użytkowników, tworząc hiperspersonalizowane plany ćwiczeń i rekomendacje dietetyczne dopasowane do indywidualnych celów. Sieci fitness, studia treningowe i trenerzy personalni wykorzystujący rozwiązania AI notują 45% wyższą retencję klientów i znacząco większe zaangażowanie mierzone częstotliwością wizyt. W erze powszechnych wearables, smartwatchy i aplikacji zdrowotnych, inteligentne systemy pozwalają oferować wartość porównywalną z dedykowanym personal trainerem w skalowalnym i cenowo dostępnym modelu dla każdego klienta.",
+    "useCases": [
+      {
+        "title": "Spersonalizowane plany treningowe generowane przez AI",
+        "description": "System AI tworzy indywidualne plany treningowe na podstawie celów użytkownika, poziomu zaawansowania, dostępnego sprzętu, historii kontuzji i danych z wearables. Algorytm adaptuje plan w czasie rzeczywistym — jeśli klient pominął trening lub zgłasza zmęczenie, system automatycznie modyfikuje obciążenia i objętość na kolejne sesje.",
+        "savings": "Możliwość obsługi 10x więcej klientów przez trenera, oszczędność 20h/tydzień na pisaniu planów"
+      },
+      {
+        "title": "Predykcja churnu i automatyzacja retencji członków",
+        "description": "Model ML analizuje wzorce wizyt, korzystanie z usług, dane z aplikacji i historię płatności, identyfikując członków z wysokim ryzykiem rezygnacji z karnetu. System automatycznie wyzwala spersonalizowane kampanie retencyjne — specjalna oferta, zaproszenie na nowe zajęcia, kontakt trenera — 2-3 tygodnie przed spodziewanym odejściem.",
+        "savings": "Redukcja churnu o 25%, co przy 2 000 członkach to 150 000 PLN/rok zachowanych przychodów"
+      },
+      {
+        "title": "Analiza techniki ćwiczeń z computer vision",
+        "description": "System wizyjny analizuje technikę wykonywania ćwiczeń na podstawie nagrania z kamery telefonu lub kamery w klubie, identyfikując błędy (niewłaściwy zakres ruchu, asymetria, nieprawidłowa pozycja kręgosłupa). Użytkownik otrzymuje natychmiastowy feedback z wizualnym porównaniem do prawidłowej techniki, co redukuje ryzyko kontuzji.",
+        "savings": "Redukcja kontuzji o 30% i wzrost satysfakcji członków o 40%"
+      }
+    ],
+    "stack": ["Python", "TensorFlow", "MediaPipe", "React Native", "Firebase", "Node.js"],
+    "roi": {
+      "hoursPerWeek": 20,
+      "hourlyRate": 75,
+      "annualSavings": 72000
+    },
+    "challenges": [
+      "Odpowiedzialność za kontuzje — systemy AI muszą mieć jasne disclaimery i nie mogą zastępować konsultacji medycznej",
+      "Dokładność danych z wearables — różne urządzenia mają różną precyzję pomiaru tętna, kroków i kalorii",
+      "Prywatność danych zdrowotnych — dane treningowe i biometryczne podlegają szczególnej ochronie w RODO",
+      "Ograniczenia computer vision — różne oświetlenie, kąty kamery i ubiór wpływają na dokładność analizy ruchu"
+    ],
+    "faq": [
+      {
+        "q": "Czy AI może zastąpić trenera personalnego?",
+        "a": "AI uzupełnia trenera, nie zastępuje go. System generuje plany i analizuje technikę, ale motywacja, korekta na żywo i praca z kontuzjami wymagają człowieka. Trenerzy z AI obsługują więcej klientów i oferują lepszą jakość — to narzędzie, które zwiększa ich wartość."
+      },
+      {
+        "q": "Ile kosztuje aplikacja fitness z AI?",
+        "a": "Aplikacja z personalizowanymi planami i adaptacyjnym treningiem to 60 000-120 000 PLN za MVP. System predykcji churnu dla sieci fitness: 20 000-40 000 PLN. Moduł analizy techniki z computer vision: 30 000-60 000 PLN. Utrzymanie: 3 000-8 000 PLN/miesiąc w zależności od liczby użytkowników."
+      },
+      {
+        "q": "Jak szybko zobaczę efekty wdrożenia AI w klubie fitness?",
+        "a": "System retencji daje mierzalne efekty po 4-6 tygodniach — zobaczysz spadek rezygnacji. Personalizowane plany treningowe zwiększają zaangażowanie w 2-3 tygodnie. Pełny ROI z inwestycji typowo osiągasz w 4-6 miesięcy. Zaczynam od pilotażu na 100-200 członkach."
+      }
+    ]
+  },
+  {
+    "id": "beauty-kosmetyka",
+    "slug": "beauty-kosmetyka",
+    "industry": "Beauty i Kosmetyka",
+    "intro": "Branża beauty i kosmetyczna w Polsce dynamicznie adaptuje sztuczną inteligencję, od zaawansowanych wirtualnych przymierzalni makijażu i fryzur po inteligentne systemy zarządzania salonami kosmetycznymi i klinikami medycyny estetycznej. AI analizuje typ skóry na podstawie zdjęcia selfie, personalizuje rekomendacje zabiegów i kosmetyków oraz automatyzuje całą komunikację z klientkami — od rezerwacji po przypomnienia o kolejnych wizytach. Salony kosmetyczne, studia urody i marki beauty wykorzystujące rozwiązania AI notują 30% wzrost sprzedaży dodatkowych zabiegów i znacząco wyższą lojalność klientów mierzoną częstotliwością powrotów. W branży, gdzie personalizacja doświadczenia jest kluczowa, trendy zmieniają się co sezon, a klientki oczekują indywidualnego podejścia, sztuczna inteligencja pozwala oferować doświadczenie premium w skalowalny i ekonomicznie opłacalny sposób.",
+    "useCases": [
+      {
+        "title": "Diagnostyka skóry z AI i personalizowane rekomendacje",
+        "description": "Model computer vision analizuje zdjęcie twarzy klientki, oceniając typ skóry, poziom nawilżenia, zmarszczki, przebarwienia i pory, a następnie generuje spersonalizowane rekomendacje zabiegów i kosmetyków. System porównuje stan skóry w czasie, dokumentując efekty zabiegów i budując historię pielęgnacyjną każdej klientki.",
+        "savings": "Wzrost sprzedaży zabiegów dodatkowych o 35% i cross-sell kosmetyków o 50%"
+      },
+      {
+        "title": "Inteligentne zarządzanie grafikiem i przypomnienia",
+        "description": "System AI optymalizuje grafik salonu, uwzględniając czas trwania zabiegów, przerwy na przygotowanie stanowiska, preferencje klientek i dostępność specjalistek. Automatyczne przypomnienia SMS/WhatsApp redukują no-shows, a chatbot obsługuje rezerwacje 24/7, sugerując optymalne terminy i zabiegi na podstawie historii wizyt.",
+        "savings": "Redukcja no-show o 50% i wzrost obłożenia grafiku o 20%, oszczędność 15h/tydzień"
+      },
+      {
+        "title": "Wirtualna przymierzalnia makijażu i fryzur",
+        "description": "Aplikacja AR oparta na AI pozwala klientkom przymierzyć kolory włosów, makijaż i efekty zabiegów estetycznych na swoim zdjęciu w czasie rzeczywistym. System rekomenduje kolory dopasowane do karnacji, kształtu twarzy i preferencji stylistycznych, a wynik można zapisać i przynieść do salonu jako referencję.",
+        "savings": "Wzrost konwersji konsultacji na zabieg o 45% i redukcja reklamacji o 30%"
+      }
+    ],
+    "stack": ["Python", "TensorFlow", "OpenCV", "React Native", "Node.js", "MongoDB"],
+    "roi": {
+      "hoursPerWeek": 18,
+      "hourlyRate": 75,
+      "annualSavings": 64800
+    },
+    "challenges": [
+      "Różnorodność typów skóry i karnacji — model musi działać równie dobrze dla wszystkich fototypów i unikać bias rasowego",
+      "Oczekiwania klientek vs. realia — wirtualna wizualizacja musi być realistyczna, aby nie generować rozczarowań po zabiegu",
+      "Integracja z systemami do zarządzania salonami (Versum, Booksy) — nie wszystkie mają otwarte API",
+      "Regulacje dotyczące wyrobów medycznych — diagnostyka skóry AI może wymagać klasyfikacji jako wyrób medyczny przy określonych claimach"
+    ],
+    "faq": [
+      {
+        "q": "Czy analiza skóry przez AI jest dokładna?",
+        "a": "Dokładność sięga 88-93% w porównaniu z oceną dermatologiczną dla podstawowych parametrów (nawilżenie, elastyczność, pory). System nie zastępuje dermatologa przy diagnostyce chorób skóry — jest narzędziem kosmetologicznym do doboru pielęgnacji. Dokładność rośnie z każdym zdjęciem kontrolnym."
+      },
+      {
+        "q": "Ile kosztuje wdrożenie AI w salonie kosmetycznym?",
+        "a": "Chatbot rezerwacyjny z przypomnieniami to 5 000-12 000 PLN. System diagnostyki skóry: 20 000-40 000 PLN. Wirtualna przymierzalnia AR: 30 000-70 000 PLN. Dla sieci salonów przygotowuję pakiety z rabatami. Utrzymanie: 1 500-4 000 PLN/miesiąc."
+      },
+      {
+        "q": "Czy to się opłaca przy jednym salonie?",
+        "a": "Tak — chatbot rezerwacyjny i system przypominający zwracają się w 2-3 miesiące dzięki redukcji no-show (każdy nieodwołany termin to 100-300 PLN stracone). Diagnostyka skóry AI zwiększa sprzedaż zabiegów i produktów o 30-50%, co przy salonie z 200+ klientkami daje solidny ROI."
+      }
+    ]
+  },
+  {
+    "id": "budownictwo",
+    "slug": "budownictwo",
+    "industry": "Budownictwo",
+    "intro": "Branża budowlana w Polsce, notoryjnie oporna na cyfryzację i nowoczesne technologie, zaczyna wreszcie dostrzegać ogromny potencjał sztucznej inteligencji w optymalizacji kosztów, harmonogramów i bezpieczeństwa na placu budowy. AI analizuje złożoną dokumentację projektową BIM i CAD, prognozuje opóźnienia na podstawie danych pogodowych i logistycznych oraz automatyzuje żmudne kosztorysowanie, adresując chroniczne i kosztowne problemy branży — przekroczenia budżetów o 20-50% i systematyczne opóźnienia terminów realizacji. Firmy budowlane, generalni wykonawcy i deweloperzy wdrażający systemy oparte na sztucznej inteligencji redukują odchylenia kosztowe o 30% i skracają czas realizacji inwestycji o 15%. W obliczu rosnącego niedoboru wykwalifikowanych pracowników budowlanych, eskalacji kosztów materiałów i energii oraz zaostrzających się wymagań BHP, inteligentna automatyzacja staje się strategiczną koniecznością dla polskiego sektora budowlanego.",
+    "useCases": [
+      {
+        "title": "Automatyczne kosztorysowanie i analiza dokumentacji projektowej",
+        "description": "System AI analizuje rysunki CAD/BIM i specyfikacje techniczne, automatycznie wyodrębniając przedmiar robót i generując kosztorys na podstawie aktualnych cen materiałów i robocizny (integracja z Sekocenbud). Model identyfikuje niejasności i sprzeczności w dokumentacji, flagując je przed rozpoczęciem budowy.",
+        "savings": "Skrócenie czasu kosztorysowania z 2 tygodni do 2 dni, oszczędność 30h na projekt"
+      },
+      {
+        "title": "Monitoring bezpieczeństwa na placu budowy z computer vision",
+        "description": "Kamery na placu budowy połączone z modelem AI wykrywają naruszenia BHP w czasie rzeczywistym — brak kasku, prace na wysokości bez zabezpieczeń, obecność osób w strefach niebezpiecznych. System automatycznie alarmuje kierownika budowy i dokumentuje zdarzenia fotograficznie, tworząc rejestr zgodności z przepisami BHP.",
+        "savings": "Redukcja wypadków o 40% i uniknięcie kar PIP o wartości 50 000+ PLN/rok"
+      },
+      {
+        "title": "Predykcja opóźnień i optymalizacja harmonogramu",
+        "description": "Model ML analizuje dane z bieżącego projektu (postęp robót, pogoda, dostępność ekip, dostawy materiałów) w kontekście danych historycznych z poprzednich budów, prognozując prawdopodobieństwo opóźnień na poszczególnych etapach. System sugeruje korekty harmonogramu i alokacji zasobów, minimalizując ścieżkę krytyczną.",
+        "savings": "Skrócenie czasu realizacji o 12% i redukcja kar umownych za opóźnienia"
+      }
+    ],
+    "stack": ["Python", "YOLOv8", "AutoCAD API", "BIM (IFC)", "PostgreSQL", "Grafana"],
+    "roi": {
+      "hoursPerWeek": 25,
+      "hourlyRate": 100,
+      "annualSavings": 120000
+    },
+    "challenges": [
+      "Niski poziom digitalizacji — wiele firm budowlanych wciąż pracuje na papierowej dokumentacji i Excelu, co utrudnia zbieranie danych",
+      "Specyfika każdego projektu — budowy są unikalne, co ogranicza transferowalność modeli ML między projektami",
+      "Warunki na placu budowy — kurz, wibracje, zmienne oświetlenie i pogoda utrudniają działanie kamer i czujników",
+      "Opór kadry zarządzającej — branża budowlana jest konserwatywna i preferuje sprawdzone metody pracy"
+    ],
+    "faq": [
+      {
+        "q": "Czy AI naprawdę może przewidzieć opóźnienia na budowie?",
+        "a": "Tak — model analizuje setki zmiennych (pogoda, dostępność materiałów, wydajność ekip, podwykonawcy) i prognozuje ryzyka z 75-85% dokładnością. Nie przewiduje czarnych łabędzi, ale wychwytuje wzorce, które doświadczony kierownik budowy może przeoczyć przy złożonych projektach."
+      },
+      {
+        "q": "Ile kosztuje system monitoringu BHP z AI na budowie?",
+        "a": "System z 4-8 kamerami i modelem AI dla typowego placu budowy to 30 000-60 000 PLN za wdrożenie i 3 000-5 000 PLN/miesiąc (chmura, aktualizacje modelu). Kamery można przenosić między budowami. Przy jednym unikniętym poważnym wypadku system zwraca się wielokrotnie."
+      },
+      {
+        "q": "Czy AI może analizować dokumentację BIM?",
+        "a": "Tak — system odczytuje pliki IFC (standard BIM), analizuje geometrię, materiały i zależności między elementami. Na tej podstawie automatycznie generuje przedmiary, identyfikuje kolizje instalacyjne i estymuje koszty. Integracja z Revit, ArchiCAD i Allplan przez standardowe formaty."
+      }
+    ]
+  }
+]

@@ -1,0 +1,85 @@
+<section id="hero" class="hero" aria-labelledby="hero-title">
+    <div class="hero-content">
+        <span class="hero-badge">Web Development &bull; Mobile &bull; AI Integration</span>
+        <h1 id="hero-title">Od pomysłu do działającego produktu — <span class="highlight">w tydzień.</span></h1>
+        <p>Nie czekaj tygodniami na efekty. Buduję strony, aplikacje i systemy AI, które od pierwszego dnia pracują na Twój biznes. Ponad 12 lat doświadczenia, zero zbędnych przestojów.</p>
+        <div class="hero-typed-wrapper">
+            <span class="hero-typed" id="typed-text" aria-label="Specjalizacje: Aplikacje mobilne, Systemy SaaS, Sklepy e-commerce, Integracje AI"></span>
+        </div>
+        <div class="hero-buttons">
+            <a href="#projects" class="btn btn-primary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                Zobacz projekty
+            </a>
+            <a href="#contact" class="btn btn-secondary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                Bezpłatna konsultacja
+            </a>
+        </div>
+    </div>
+    <div class="scroll-indicator">
+        <span>Scroll</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+</section>
+
+<script>
+// ===== Typed text effect =====
+(function() {
+    const phrases = ['Aplikacje mobilne', 'Systemy SaaS', 'Sklepy e-commerce', 'Integracje AI'];
+    const typedEl = document.getElementById('typed-text');
+    if (!typedEl) return;
+
+    // Check reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReducedMotion) {
+        typedEl.textContent = phrases.join(' \u2022 ');
+        return;
+    }
+
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let pauseEnd = 0;
+
+    // Add cursor span
+    const cursorSpan = document.createElement('span');
+    cursorSpan.className = 'cursor';
+    typedEl.parentNode.appendChild(cursorSpan);
+
+    function type() {
+        const now = Date.now();
+        if (now < pauseEnd) {
+            requestAnimationFrame(type);
+            return;
+        }
+
+        const currentPhrase = phrases[phraseIndex];
+
+        if (!isDeleting) {
+            charIndex++;
+            typedEl.textContent = currentPhrase.substring(0, charIndex);
+
+            if (charIndex === currentPhrase.length) {
+                isDeleting = true;
+                pauseEnd = now + 2000;
+            }
+        } else {
+            charIndex--;
+            typedEl.textContent = currentPhrase.substring(0, charIndex);
+
+            if (charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+            }
+        }
+
+        const speed = isDeleting ? 40 : 80;
+        setTimeout(() => requestAnimationFrame(type), speed);
+    }
+
+    // Start after page load
+    setTimeout(type, 1200);
+})();
+</script>

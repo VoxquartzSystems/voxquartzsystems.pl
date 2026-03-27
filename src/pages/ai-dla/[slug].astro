@@ -1,0 +1,175 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import Badge from '../../components/Badge.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTASection from '../../components/CTASection.astro';
+import RelatedLinks from '../../components/RelatedLinks.astro';
+import { getRelatedAIIndustries } from '../../lib/related';
+
+export async function getStaticPaths() {
+  const industries = await getCollection('ai-industries');
+  return industries.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { industry: entry.data, allIndustries: industries.map((e) => e.data) },
+  }));
+}
+
+const { industry, allIndustries } = Astro.props;
+
+const related = getRelatedAIIndustries(industry.slug, allIndustries);
+
+const intCollection = await getCollection('integrations');
+const allIntegrations = intCollection.map((e) => e.data);
+const aiIntegrations = allIntegrations
+  .filter((i) => i.categoryA === 'ai' || i.categoryB === 'ai')
+  .slice(0, 3)
+  .map((i) => ({
+    title: `${i.toolA} + ${i.toolB}`,
+    href: `/integracje/${i.slug}/`,
+    description: i.description.slice(0, 120) + '...',
+  }));
+
+const annualSavingsCalc = industry.roi.hoursPerWeek * industry.roi.hourlyRate * 48;
+
+const pageTitle = `Integracja AI dla branży ${industry.industry} | VoxquartzSystems`;
+const pageDescription = `Wdrożenie sztucznej inteligencji w branży ${industry.industry}. Sprawdź zastosowania, ROI i rekomendowany stack technologiczny.`;
+const canonicalUrl = `https://voxquartzsystems.pl/ai-dla/${industry.slug}/`;
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: `Integracja AI dla branży ${industry.industry}`,
+    description: pageDescription,
+    provider: {
+      '@type': 'Organization',
+      name: 'VoxquartzSystems',
+      url: 'https://voxquartzsystems.pl',
+    },
+    areaServed: 'PL',
+    serviceType: 'Wdrożenie AI',
+  },
+];
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonical={canonicalUrl}
+  ogImage={`/og/ai-dla/${industry.slug}.png`}
+  schema={schema}
+>
+  <Breadcrumbs
+    items={[
+      { label: 'Strona główna', href: '/' },
+      { label: 'AI dla branż', href: '/ai-dla/' },
+      { label: industry.industry, href: `/ai-dla/${industry.slug}` },
+    ]}
+  />
+
+  <!-- Hero -->
+  <section class="mb-16">
+    <h1 class="text-4xl md:text-5xl font-display font-bold text-text-primary mb-6">
+      Integracja AI dla branży
+      <span class="text-accent">{industry.industry}</span>
+    </h1>
+    <p class="text-xl text-text-muted max-w-3xl leading-relaxed">
+      {industry.intro}
+    </p>
+  </section>
+
+  <!-- Use Cases -->
+  <section class="mb-16">
+    <SectionHeader
+      label="Zastosowania"
+      title={`3 zastosowania AI w ${industry.industry}`}
+    />
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      {industry.useCases.map((uc, index) => (
+        <div class="bg-bg-card border border-border rounded-2xl p-6 hover:border-border-hover transition-colors">
+          <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center mb-4">
+            <span class="text-accent font-display font-bold text-lg">{index + 1}</span>
+          </div>
+          <h3 class="text-lg font-semibold text-text-primary mb-3">{uc.title}</h3>
+          <p class="text-text-muted text-sm leading-relaxed mb-4">{uc.description}</p>
+          <div class="flex items-center gap-2 text-accent-light text-sm font-label font-medium">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+            </svg>
+            {uc.savings}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Stack -->
+  <section class="mb-16">
+    <SectionHeader label="Technologia" title="Rekomendowany stack" />
+    <div class="flex flex-wrap gap-3">
+      {industry.stack.map((tech) => (
+        <Badge text={tech} />
+      ))}
+    </div>
+  </section>
+
+  <!-- ROI -->
+  <section class="mb-16">
+    <SectionHeader label="ROI" title="Zwrot z inwestycji" />
+    <div class="bg-gradient-to-br from-accent/5 via-bg-card to-bg-card border border-border rounded-2xl p-6 md:p-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="text-center">
+          <p class="text-3xl font-display font-bold text-accent mb-1">{industry.roi.hoursPerWeek}h</p>
+          <p class="text-text-dim text-sm">Oszczędność tygodniowo</p>
+        </div>
+        <div class="text-center">
+          <p class="text-3xl font-display font-bold text-accent mb-1">{industry.roi.hourlyRate} zł</p>
+          <p class="text-text-dim text-sm">Stawka godzinowa</p>
+        </div>
+        <div class="text-center">
+          <p class="text-3xl font-display font-bold text-accent-light mb-1">{annualSavingsCalc.toLocaleString('pl-PL')} zł</p>
+          <p class="text-text-dim text-sm">Oszczędność roczna</p>
+        </div>
+      </div>
+      <p class="text-text-muted text-sm text-center">
+        Kalkulacja: {industry.roi.hoursPerWeek}h/tydz &times; {industry.roi.hourlyRate} zł/h &times; 48 tygodni = <strong class="text-text-primary">{annualSavingsCalc.toLocaleString('pl-PL')} zł rocznie</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- Challenges -->
+  <section class="mb-16">
+    <SectionHeader label="Wyzwania" title="Wyzwania wdrożenia" />
+    <div class="space-y-3">
+      {industry.challenges.map((challenge) => (
+        <div class="flex gap-4 items-start bg-bg-card border border-border rounded-xl p-5">
+          <svg class="w-5 h-5 text-amber-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+          <p class="text-text-muted leading-relaxed">{challenge}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <FAQ items={industry.faq} />
+
+  <!-- CTA -->
+  <CTASection title={`Wdrożenie AI w branży ${industry.industry}`} description="Przeanalizujemy Twoje procesy i zaproponujemy konkretne zastosowania AI z realnym ROI." />
+
+  <!-- Related -->
+  <RelatedLinks
+    items={[
+      ...related,
+      { title: 'Audyt gotowości na AI', href: '/narzedzia/audyt-gotowosci-ai', description: 'Sprawdź czy Twoja firma jest gotowa na wdrożenie sztucznej inteligencji.' },
+    ]}
+    heading="Powiązane"
+  />
+  {aiIntegrations.length > 0 && (
+    <RelatedLinks items={aiIntegrations} heading="Integracje AI" />
+  )}
+</BaseLayout>

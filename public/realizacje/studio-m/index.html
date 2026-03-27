@@ -1,0 +1,2998 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<title>Studio M — Fotografia Artystyczna</title>
+<meta name="description" content="Studio M — demo portfolio fotografa artystycznego z galerią masonry, lightboxem i filtrowaniem kategorii.">
+<meta name="robots" content="noindex, follow">
+<meta name="author" content="VoxquartzSystems">
+<meta property="og:title" content="Studio M — Demo portfolio fotografa | VoxquartzSystems">
+<meta property="og:description" content="Demo portfolio fotografa artystycznego z galerią masonry i lightboxem.">
+<meta property="og:image" content="https://voxquartzsystems.pl/og-image.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://voxquartzsystems.pl/realizacje/studio-m/">
+<meta property="og:locale" content="pl_PL">
+<meta property="og:site_name" content="VoxquartzSystems">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Studio M — Demo fotografii | VoxquartzSystems">
+<meta name="twitter:description" content="Demo portfolio fotografa z galerią masonry i lightboxem.">
+<meta name="twitter:image" content="https://voxquartzsystems.pl/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Manrope:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+:root {
+  --bg: #0a0a0a;
+  --text: #f5f5f5;
+  --gold: #D4AF37;
+  --gold-dim: rgba(212,175,55,0.3);
+  --gray-1: #1a1a1a;
+  --gray-2: #2a2a2a;
+  --gray-3: #3a3a3a;
+  --gray-4: #555;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-label: 'Manrope', sans-serif;
+  --green: #2ecc71;
+  --red: #e74c3c;
+  --gray-past: #444;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--gold);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ===================== SECTION BASE ===================== */
+.section {
+  padding: 120px 24px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-label {
+  font-family: var(--font-label);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 48px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===================== INTRO / HERO ===================== */
+#intro {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  opacity: 1;
+  transform: none;
+}
+
+.hero-bg {
+  position: absolute;
+  top: -20%;
+  left: 0;
+  right: 0;
+  bottom: -20%;
+  background: url('images/hero.jpg') center/cover no-repeat;
+  z-index: 0;
+  will-change: transform;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(rgba(10,10,10,0.7), rgba(10,10,10,0.8));
+  z-index: 1;
+}
+
+#intro::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse at center, rgba(212,175,55,0.03) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+#intro > *:not(.hero-bg):not(.hero-overlay) {
+  position: relative;
+  z-index: 3;
+}
+
+/* AGENT 5: SVG Signature Animation */
+.signature-svg {
+  width: clamp(280px, 60vw, 520px);
+  height: auto;
+  overflow: visible;
+  position: relative;
+  z-index: 3;
+}
+
+.signature-svg text {
+  font-family: var(--font-display);
+  font-size: 80px;
+  font-weight: 400;
+  fill: none;
+  stroke: var(--text);
+  stroke-width: 1.2;
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+  animation: signatureDraw 3s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+}
+
+.signature-svg .sig-fill {
+  fill: var(--text);
+  stroke: none;
+  opacity: 0;
+  animation: signatureFillIn 1s ease 2.5s forwards;
+}
+
+@keyframes signatureDraw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes signatureFillIn {
+  to { opacity: 1; }
+}
+
+.intro-line {
+  display: block;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  margin: 20px auto 24px;
+  animation: lineExtend 1s cubic-bezier(0.22, 1, 0.36, 1) 2.8s forwards;
+  position: relative;
+  z-index: 3;
+}
+
+.intro-subtitle {
+  font-family: var(--font-label);
+  font-size: clamp(0.65rem, 1.5vw, 0.8rem);
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(245,245,245,0.6);
+  opacity: 0;
+  animation: subtitleFade 1s ease 3.2s forwards;
+  position: relative;
+  z-index: 3;
+}
+
+.scroll-arrow {
+  position: absolute;
+  bottom: 48px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  animation: arrowFade 1s ease 3.6s forwards;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.scroll-arrow span {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-right: 1px solid rgba(245,245,245,0.3);
+  border-bottom: 1px solid rgba(245,245,245,0.3);
+  transform: rotate(45deg);
+  animation: arrowBounce 2s ease-in-out infinite;
+}
+
+@keyframes lineExtend {
+  to { width: 80px; }
+}
+
+@keyframes subtitleFade {
+  to { opacity: 1; }
+}
+
+@keyframes arrowFade {
+  to { opacity: 1; }
+}
+
+@keyframes arrowBounce {
+  0%, 100% { transform: translateY(0) rotate(45deg); }
+  50% { transform: translateY(8px) rotate(45deg); }
+}
+
+/* ===================== NAV ===================== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 0 32px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(10,10,10,0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(245,245,245,0.04);
+  transform: translateY(-100%);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav.show {
+  transform: translateY(0);
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--text);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--font-label);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(245,245,245,0.6);
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--gold);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-links a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+
+.nav-back {
+  font-family: var(--font-label);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: rgba(245,245,245,0.35);
+}
+
+.nav-back:hover {
+  color: var(--gold);
+}
+
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
+}
+
+.nav-hamburger:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 1px;
+  background: var(--text);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.nav-hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(4px, 4px);
+}
+.nav-hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.nav-hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(4px, -4px);
+}
+
+.nav-mobile-menu {
+  display: none;
+  position: fixed;
+  top: 64px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10,10,10,0.97);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  z-index: 999;
+}
+
+.nav-mobile-menu.open {
+  display: flex;
+}
+
+.nav-mobile-menu a {
+  font-family: var(--font-label);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(245,245,245,0.7);
+}
+
+.nav-mobile-menu a:hover {
+  color: var(--gold);
+}
+
+.nav-mobile-menu a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+
+/* ===================== GALLERY ===================== */
+#galeria {
+  padding-top: 140px;
+}
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 64px;
+}
+
+.filter-btn {
+  font-family: var(--font-label);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid rgba(245,245,245,0.12);
+  color: rgba(245,245,245,0.5);
+  padding: 10px 24px;
+  cursor: pointer;
+  transition: all 0.35s ease;
+}
+
+.filter-btn:hover {
+  border-color: var(--gold-dim);
+  color: var(--gold);
+}
+
+.filter-btn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.filter-btn.active {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(212,175,55,0.06);
+}
+
+.masonry {
+  column-count: 3;
+  column-gap: 16px;
+}
+
+.gallery-item {
+  break-inside: avoid;
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(-40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.gallery-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gallery-item.filtered-out {
+  display: none;
+}
+
+.gallery-placeholder {
+  width: 100%;
+  display: block;
+}
+
+/* AGENT 5: Enhanced Gallery Hover */
+.gallery-hover-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(10,10,10,0.75);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.gallery-item:hover .gallery-hover-overlay {
+  opacity: 1;
+}
+
+.gallery-hover-icon {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.gallery-hover-icon svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--gold);
+  fill: none;
+  stroke-width: 2;
+}
+
+.gallery-hover-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--text);
+  text-align: center;
+  padding: 0 12px;
+}
+
+.gallery-hover-date {
+  font-family: var(--font-label);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+
+/* ===================== LIGHTBOX ===================== */
+.lightbox {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 2000;
+  background: rgba(5,5,5,0.96);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.lightbox.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox-inner {
+  position: relative;
+  width: 90vw;
+  max-width: 900px;
+  height: 70vh;
+  max-height: 650px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-image {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.lightbox-placeholder {
+  width: 100%;
+  height: 100%;
+  max-height: 480px;
+}
+
+.lightbox-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--text);
+  text-align: center;
+}
+
+.lightbox-category {
+  font-family: var(--font-label);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* AGENT 5: Lightbox EXIF Info */
+.lightbox-exif {
+  font-family: var(--font-label);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  color: rgba(245,245,245,0.35);
+  text-align: center;
+  margin-top: 4px;
+}
+
+/* AGENT 5: Lightbox Download Button */
+.lightbox-download {
+  position: fixed;
+  top: 24px;
+  right: 88px;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: 1px solid rgba(245,245,245,0.15);
+  cursor: pointer;
+  z-index: 2010;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.3s ease;
+}
+
+.lightbox-download:hover {
+  border-color: var(--gold);
+}
+
+.lightbox-download:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.lightbox-download svg {
+  width: 16px;
+  height: 16px;
+  stroke: rgba(245,245,245,0.6);
+  fill: none;
+  stroke-width: 1.5;
+  transition: stroke 0.3s ease;
+}
+
+.lightbox-download:hover svg {
+  stroke: var(--gold);
+}
+
+.lightbox-close {
+  position: fixed;
+  top: 24px;
+  right: 32px;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 2010;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-close:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.lightbox-close::before,
+.lightbox-close::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 1px;
+  background: rgba(245,245,245,0.6);
+  transition: background 0.3s ease;
+}
+
+.lightbox-close::before { transform: rotate(45deg); }
+.lightbox-close::after { transform: rotate(-45deg); }
+
+.lightbox-close:hover::before,
+.lightbox-close:hover::after {
+  background: var(--gold);
+}
+
+.lightbox-arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  background: none;
+  border: 1px solid rgba(245,245,245,0.1);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2010;
+  transition: border-color 0.3s ease;
+}
+
+.lightbox-arrow:hover {
+  border-color: var(--gold);
+}
+
+.lightbox-arrow:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.lightbox-arrow svg {
+  width: 16px;
+  height: 16px;
+  stroke: rgba(245,245,245,0.6);
+  fill: none;
+  stroke-width: 1.5;
+  transition: stroke 0.3s ease;
+}
+
+.lightbox-arrow:hover svg {
+  stroke: var(--gold);
+}
+
+.lightbox-prev { left: 24px; }
+.lightbox-next { right: 24px; }
+
+.lightbox-counter {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-label);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: rgba(245,245,245,0.4);
+  z-index: 2010;
+}
+
+/* ===================== ABOUT ===================== */
+#o-mnie .about-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-quote {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--text);
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.about-quote::before {
+  content: '\201E';
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 4rem;
+  color: var(--gold);
+  opacity: 0.3;
+  font-style: normal;
+  line-height: 1;
+}
+
+.about-attribution {
+  font-family: var(--font-label);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 56px;
+}
+
+.about-divider {
+  width: 40px;
+  height: 1px;
+  background: var(--gold-dim);
+  margin: 0 auto 56px;
+}
+
+.about-bio {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.9;
+  color: rgba(245,245,245,0.65);
+}
+
+/* ===================== AGENT 5: JAK PRACUJE (PROCESS) ===================== */
+.process-grid {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+  max-width: 960px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.process-step {
+  flex: 1;
+  text-align: center;
+  padding: 0 24px;
+  position: relative;
+}
+
+.process-icon {
+  width: 72px;
+  height: 72px;
+  border: 1px solid var(--gold-dim);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  transition: border-color 0.4s ease, background 0.4s ease;
+}
+
+.process-step:hover .process-icon {
+  border-color: var(--gold);
+  background: rgba(212,175,55,0.06);
+}
+
+.process-icon svg {
+  width: 28px;
+  height: 28px;
+  stroke: var(--gold);
+  fill: none;
+  stroke-width: 1.5;
+}
+
+.process-number {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.process-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.process-desc {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(245,245,245,0.55);
+}
+
+.process-connector {
+  position: absolute;
+  top: 36px;
+  right: -16px;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.process-connector svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--gold-dim);
+  fill: none;
+  stroke-width: 1.5;
+}
+
+/* ===================== PRICING ===================== */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.pricing-card {
+  border: 1px solid rgba(245,245,245,0.06);
+  padding: 48px 32px;
+  text-align: center;
+  position: relative;
+  transition: border-color 0.4s ease, transform 0.4s ease;
+  background: rgba(245,245,245,0.01);
+}
+
+.pricing-card:hover {
+  border-color: var(--gold-dim);
+  transform: translateY(-4px);
+}
+
+.pricing-card.featured {
+  border-color: var(--gold);
+}
+
+.pricing-card.featured::before {
+  content: 'Popularny';
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  font-family: var(--font-label);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--gold);
+  padding: 4px 16px;
+}
+
+.pricing-name {
+  font-family: var(--font-label);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+.pricing-price {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.pricing-currency {
+  font-family: var(--font-label);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: rgba(245,245,245,0.35);
+  margin-bottom: 36px;
+}
+
+.pricing-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.pricing-features li {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: rgba(245,245,245,0.55);
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(245,245,245,0.04);
+}
+
+.pricing-features li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* AGENT 5: Expandable pricing details */
+.pricing-expand-btn {
+  display: inline-block;
+  font-family: var(--font-label);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(245,245,245,0.4);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 0;
+  margin-bottom: 16px;
+  transition: color 0.3s ease;
+}
+
+.pricing-expand-btn:hover {
+  color: var(--gold);
+}
+
+.pricing-expand-btn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.pricing-expand-btn .expand-arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+  margin-left: 4px;
+}
+
+.pricing-expand-btn.expanded .expand-arrow {
+  transform: rotate(180deg);
+}
+
+.pricing-details {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.pricing-details-inner {
+  padding: 0 0 16px;
+}
+
+.pricing-details-list {
+  list-style: none;
+  text-align: left;
+}
+
+.pricing-details-list li {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: rgba(245,245,245,0.45);
+  padding: 6px 0 6px 20px;
+  position: relative;
+}
+
+.pricing-details-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border: 1px solid var(--gold-dim);
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+
+.pricing-cta {
+  display: inline-block;
+  font-family: var(--font-label);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border: 1px solid rgba(245,245,245,0.15);
+  color: var(--text);
+  padding: 14px 32px;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  background: none;
+  margin-bottom: 12px;
+}
+
+.pricing-cta:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.pricing-card.featured .pricing-cta {
+  border-color: var(--gold);
+  background: var(--gold);
+  color: var(--bg);
+}
+
+.pricing-card.featured .pricing-cta:hover {
+  background: transparent;
+  color: var(--gold);
+}
+
+/* AGENT 5: Zapytaj o termin button */
+.pricing-termin-btn {
+  display: block;
+  font-family: var(--font-label);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(245,245,245,0.35);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 0;
+  margin: 0 auto;
+  transition: color 0.3s ease;
+}
+
+.pricing-termin-btn:hover {
+  color: var(--gold);
+}
+
+.pricing-termin-btn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* AGENT 5: Booking Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 3000;
+  background: rgba(5,5,5,0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  padding: 24px;
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-box {
+  background: var(--gray-1);
+  border: 1px solid rgba(245,245,245,0.08);
+  padding: 48px 40px;
+  max-width: 480px;
+  width: 100%;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.modal-close::before,
+.modal-close::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 1px;
+  background: rgba(245,245,245,0.5);
+  transition: background 0.3s ease;
+}
+
+.modal-close::before { transform: rotate(45deg); }
+.modal-close::after { transform: rotate(-45deg); }
+
+.modal-close:hover::before,
+.modal-close:hover::after {
+  background: var(--gold);
+}
+
+.modal-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.modal-subtitle {
+  font-family: var(--font-label);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 32px;
+}
+
+.modal-form .form-group {
+  margin-bottom: 20px;
+}
+
+.modal-form .form-input,
+.modal-form .form-textarea {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--text);
+  background: rgba(245,245,245,0.03);
+  border: 1px solid rgba(245,245,245,0.08);
+  padding: 12px 14px;
+  outline: none;
+  transition: border-color 0.35s ease;
+}
+
+.modal-form .form-input:focus,
+.modal-form .form-textarea:focus {
+  border-color: var(--gold-dim);
+}
+
+.modal-form .form-input.error,
+.modal-form .form-textarea.error {
+  border-color: var(--red);
+}
+
+.modal-form .form-error {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  color: var(--red);
+  margin-top: 4px;
+  display: none;
+}
+
+.modal-form .form-error.show {
+  display: block;
+}
+
+.modal-form .form-textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* ===================== AGENT 5: INSTAGRAM FEED ===================== */
+.insta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.insta-card {
+  aspect-ratio: 1;
+  background: var(--gray-1);
+  border: 1px solid rgba(245,245,245,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.4s ease, transform 0.4s ease;
+  cursor: pointer;
+}
+
+.insta-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+
+.insta-card svg {
+  width: 32px;
+  height: 32px;
+  stroke: rgba(245,245,245,0.15);
+  fill: none;
+  stroke-width: 1.5;
+  transition: stroke 0.3s ease;
+}
+
+.insta-card:hover svg {
+  stroke: var(--gold-dim);
+}
+
+.insta-heading {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.insta-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.insta-icon svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--gold);
+  fill: none;
+  stroke-width: 1.5;
+  vertical-align: middle;
+}
+
+.insta-handle {
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: rgba(245,245,245,0.5);
+  margin-top: 24px;
+  text-align: center;
+}
+
+.insta-handle a {
+  color: var(--gold);
+  transition: opacity 0.3s ease;
+}
+
+.insta-handle a:hover {
+  opacity: 0.7;
+}
+
+/* ===================== AGENT 5: CALENDAR ===================== */
+.calendar-wrapper {
+  max-width: 420px;
+  margin: 0 auto;
+  border: 1px solid rgba(245,245,245,0.06);
+  padding: 32px;
+  background: rgba(245,245,245,0.01);
+}
+
+.calendar-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.calendar-month {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--text);
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.calendar-day-name {
+  font-family: var(--font-label);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(245,245,245,0.3);
+  text-align: center;
+  padding: 8px 0;
+}
+
+.calendar-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: rgba(245,245,245,0.5);
+  border-radius: 4px;
+  position: relative;
+}
+
+.calendar-day.empty {
+  background: none;
+}
+
+.calendar-day.past {
+  color: rgba(245,245,245,0.15);
+  background: rgba(68,68,68,0.15);
+}
+
+.calendar-day.available {
+  color: var(--green);
+  background: rgba(46,204,113,0.08);
+  border: 1px solid rgba(46,204,113,0.2);
+}
+
+.calendar-day.booked {
+  color: var(--red);
+  background: rgba(231,76,60,0.08);
+  border: 1px solid rgba(231,76,60,0.2);
+}
+
+.calendar-day.today {
+  border: 1px solid var(--gold);
+}
+
+.calendar-legend {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.calendar-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-label);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: rgba(245,245,245,0.4);
+}
+
+.calendar-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.calendar-legend-dot.green { background: var(--green); }
+.calendar-legend-dot.red { background: var(--red); }
+.calendar-legend-dot.gray { background: var(--gray-past); }
+
+/* ===================== CONTACT ===================== */
+#kontakt .contact-inner {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 28px;
+}
+
+.form-label {
+  display: block;
+  font-family: var(--font-label);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(245,245,245,0.45);
+  margin-bottom: 10px;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--text);
+  background: rgba(245,245,245,0.03);
+  border: 1px solid rgba(245,245,245,0.08);
+  padding: 14px 16px;
+  outline: none;
+  transition: border-color 0.35s ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: var(--gold-dim);
+}
+
+.form-input:focus-visible,
+.form-select:focus-visible,
+.form-textarea:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 1px;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: rgba(245,245,245,0.2);
+}
+
+.form-select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(245,245,245,0.3)' stroke-width='1.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+
+.form-select option {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.form-textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-submit {
+  display: inline-block;
+  font-family: var(--font-label);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  background: var(--gold);
+  color: var(--bg);
+  border: 1px solid var(--gold);
+  padding: 16px 48px;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  margin-top: 8px;
+}
+
+.form-submit:hover {
+  background: transparent;
+  color: var(--gold);
+}
+
+.form-submit:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+/* ===================== FOOTER ===================== */
+.footer {
+  padding: 80px 24px 48px;
+  text-align: center;
+  border-top: 1px solid rgba(245,245,245,0.04);
+}
+
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  margin-bottom: 24px;
+}
+
+.footer-social {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.footer-social a {
+  font-family: var(--font-label);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(245,245,245,0.35);
+  transition: color 0.3s ease;
+}
+
+.footer-social a:hover {
+  color: var(--gold);
+}
+
+.footer-address {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: rgba(245,245,245,0.25);
+  margin-bottom: 20px;
+}
+
+.footer-copy {
+  font-family: var(--font-label);
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: rgba(245,245,245,0.2);
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 1024px) {
+  .masonry {
+    column-count: 2;
+  }
+
+  .pricing-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pricing-card:last-child {
+    grid-column: 1 / -1;
+    max-width: 480px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .process-grid {
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+
+  .process-step {
+    flex: 0 0 100%;
+    max-width: 400px;
+  }
+
+  .process-connector {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 80px 20px;
+  }
+
+  #galeria {
+    padding-top: 100px;
+  }
+
+  .masonry {
+    column-count: 1;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav-hamburger {
+    display: flex;
+  }
+
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .pricing-card:last-child {
+    max-width: none;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .lightbox-arrow {
+    width: 40px;
+    height: 40px;
+  }
+
+  .lightbox-prev { left: 12px; }
+  .lightbox-next { right: 12px; }
+
+  .lightbox-download {
+    right: 76px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .filter-bar {
+    gap: 8px;
+  }
+
+  .filter-btn {
+    padding: 8px 16px;
+    font-size: 0.62rem;
+  }
+
+  .insta-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .modal-box {
+    padding: 32px 24px;
+  }
+
+  .calendar-wrapper {
+    padding: 24px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-bar {
+    gap: 6px;
+  }
+  .filter-btn {
+    font-size: 0.58rem;
+    padding: 6px 10px;
+  }
+  .insta-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .process-grid {
+    gap: 32px;
+  }
+  .pricing-grid {
+    gap: 16px;
+  }
+  .pricing-card {
+    padding: 28px 20px;
+  }
+  .calendar-grid {
+    font-size: 0.75rem;
+    gap: 2px;
+  }
+  .section-title {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .masonry {
+    column-count: 1;
+    max-width: 100%;
+  }
+
+  .section {
+    padding: 60px 16px;
+  }
+
+  .filter-btn {
+    padding: 6px 12px;
+    font-size: 0.58rem;
+  }
+
+  .pricing-card {
+    padding: 32px 20px;
+  }
+
+  .insta-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .calendar-wrapper {
+    padding: 16px 8px;
+  }
+
+  .calendar-day {
+    font-size: 0.7rem;
+  }
+
+  .modal-box {
+    padding: 24px 16px;
+  }
+}
+
+/* ===================== SELECTION ===================== */
+::selection {
+  background: var(--gold);
+  color: var(--bg);
+}
+
+/* ===================== SCROLLBAR ===================== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gray-3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-dim);
+}
+
+/* ===================== PREFERS REDUCED MOTION ===================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .section {
+    opacity: 1;
+    transform: none;
+  }
+
+  .gallery-item {
+    opacity: 1;
+    transform: none;
+  }
+
+  .signature-svg text {
+    stroke-dashoffset: 0;
+    fill: var(--text);
+  }
+
+  .signature-svg .sig-fill {
+    opacity: 1;
+  }
+
+  .intro-line {
+    width: 80px;
+  }
+
+  .intro-subtitle {
+    opacity: 1;
+  }
+
+  .scroll-arrow {
+    opacity: 1;
+  }
+
+  .hero-bg {
+    transform: none !important;
+  }
+}
+
+/* Custom Date Picker */
+.datepicker-wrapper { position: relative; }
+.datepicker-input { cursor: pointer !important; caret-color: transparent; }
+.datepicker-dropdown {
+    display: none; position: absolute; top: calc(100% + 8px); left: 0; z-index: 200;
+    background: #1a1a1a; border: 1px solid rgba(212,175,55,0.2); border-radius: 8px;
+    padding: 1rem; width: 300px; box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+}
+.datepicker-dropdown.open { display: block; }
+.datepicker-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem; }
+.datepicker-header button { background: none; border: none; color: var(--gold, #D4AF37); font-size: 1.2rem; cursor: pointer; padding: 0.25rem 0.5rem; border-radius: 4px; transition: background 0.2s; }
+.datepicker-header button:hover { background: rgba(212,175,55,0.1); }
+.datepicker-month-year { font-family: var(--font-sans, 'Inter', sans-serif); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em; color: #fff; }
+.datepicker-weekdays { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; margin-bottom: 4px; }
+.datepicker-weekdays span { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.35); text-align: center; padding: 0.25rem 0; }
+.datepicker-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+.datepicker-day { font-size: 0.8rem; color: #fff; background: none; border: none; padding: 0.5rem 0; text-align: center; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+.datepicker-day:hover { background: rgba(212,175,55,0.15); color: #D4AF37; }
+.datepicker-day.today { border: 1px solid rgba(212,175,55,0.3); }
+.datepicker-day.selected { background: #D4AF37; color: #000; font-weight: 600; }
+.datepicker-day.disabled { color: rgba(255,255,255,0.15); cursor: default; pointer-events: none; }
+.datepicker-day.empty { visibility: hidden; }
+</style>
+</head>
+<body style="padding-top:40px;">
+<div style="position:fixed;top:0;left:0;right:0;z-index:9999;background:#6366f1;color:#fff;text-align:center;padding:8px 16px;font-family:Inter,system-ui,sans-serif;font-size:14px;">
+  To jest demo realizacji. <a href="/" style="color:#fff;text-decoration:underline;font-weight:600;">Wróć do portfolio VoxquartzSystems</a>
+</div>
+
+<!-- ==================== INTRO ==================== -->
+<!-- AGENT 5: Hero Parallax + Animated Signature -->
+<section id="intro">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <h1 class="sr-only">Studio M — Fotografia Artystyczna</h1>
+  <svg class="signature-svg" viewBox="0 0 480 100" aria-hidden="true">
+    <text x="50%" y="70" text-anchor="middle" class="sig-stroke">Studio M</text>
+    <text x="50%" y="70" text-anchor="middle" class="sig-fill">Studio M</text>
+  </svg>
+  <span class="intro-line"></span>
+  <p class="intro-subtitle">Fotografia Artystyczna</p>
+  <div class="scroll-arrow" id="scrollArrow" role="button" tabindex="0" aria-label="Przewiń w dół">
+    <span></span>
+  </div>
+</section>
+
+<!-- ==================== NAV ==================== -->
+<nav class="nav" id="mainNav">
+  <a href="#intro" class="nav-logo">Studio M</a>
+  <ul class="nav-links">
+    <li><a href="#galeria">Galeria</a></li>
+    <li><a href="#o-mnie">O mnie</a></li>
+    <li><a href="#jak-pracuje">Proces</a></li>
+    <li><a href="#cennik">Cennik</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+    <li><a href="/" class="nav-back">&larr; Powrot do portfolio</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Otwórz menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile menu -->
+<div class="nav-mobile-menu" id="mobileMenu">
+  <a href="#galeria" class="mobile-link">Galeria</a>
+  <a href="#o-mnie" class="mobile-link">O mnie</a>
+  <a href="#jak-pracuje" class="mobile-link">Proces</a>
+  <a href="#cennik" class="mobile-link">Cennik</a>
+  <a href="#kontakt" class="mobile-link">Kontakt</a>
+  <a href="/" class="mobile-link" style="color: rgba(245,245,245,0.35); margin-top: 16px;">&larr; Powrot do portfolio</a>
+</div>
+
+<!-- ==================== GALLERY ==================== -->
+<section id="galeria" class="section">
+  <div class="container">
+    <p class="section-label">Portfolio</p>
+    <h2 class="section-title">Galeria</h2>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">Wszystkie</button>
+      <button class="filter-btn" data-filter="slubna">Slubna</button>
+      <button class="filter-btn" data-filter="portretowa">Portretowa</button>
+      <button class="filter-btn" data-filter="komercyjna">Komercyjna</button>
+      <button class="filter-btn" data-filter="backstage">Za kulisami</button>
+    </div>
+
+    <div class="masonry" id="gallery">
+
+      <div class="gallery-item" data-category="slubna" data-index="0">
+        <div class="gallery-placeholder" style="height:420px; background: url('images/gallery-1.jpg') center/cover no-repeat;"></div>
+        <div class="gallery-hover-overlay">
+          <div class="gallery-hover-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <div class="gallery-hover-title">Slub Ani i Marka</div>
+          <div class="gallery-hover-date">Czerwiec 2025</div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-category="portretowa" data-index="1">
+        <div class="gallery-placeholder" style="height:300px; background: url('images/gallery-2.jpg') center/cover no-repeat;"></div>
+        <div class="gallery-hover-overlay">
+          <div class="gallery-hover-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <div class="gallery-hover-title">Portret biznesowy</div>
+          <div class="gallery-hover-date">Maj 2025</div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-category="komercyjna" data-index="2">
+        <div class="gallery-placeholder" style="height:280px; background: url('images/gallery-3.jpg') center/cover no-repeat;"></div>
+        <div class="gallery-hover-overlay">
+          <div class="gallery-hover-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <div class="gallery-hover-title">Kampania modowa</div>
+          <div class="gallery-hover-date">Kwiecien 2025</div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-category="slubna" data-index="3">
+        <div class="gallery-placeholder" style="height:400px; background: url('images/gallery-4.jpg') center/cover no-repeat;"></div>
+        <div class="gallery-hover-overlay">
+          <div class="gallery-hover-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <div class="gallery-hover-title">Ceremonia w plenerze</div>
+          <div class="gallery-hover-date">Lipiec 2025</div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-category="portretowa" data-index="4">
+        <div class="gallery-placeholder" style="height:200px; background: url('images/gallery-5.jpg') center/cover no-repeat;"></div>
+        <div class="gallery-hover-overlay">
+          <div class="gallery-hover-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <div class="gallery-hover-title">Sesja rodzinna</div>
+          <div class="gallery-hover-date">Marzec 2025</div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-category="komercyjna" data-index="5">
+        <div class="gallery-placeholder" style="height:300px; background: url('images/gallery-6.jpg') center/cover no-repeat;"></div>
+        <div class="gallery-hover-overlay">
+          <div class="gallery-hover-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <div class="gallery-hover-title">Produkt eco</div>
+          <div class="gallery-hover-date">Luty 2025</div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-category="slubna" data-index="6">
+        <div class="gallery-placeholder" style="height:320px; background: url('images/gallery-7.jpg') center/cover no-repeat;"></div>
+        <div class="gallery-hover-overlay">
+          <div class="gallery-hover-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <div class="gallery-hover-title">Pierwszy taniec</div>
+          <div class="gallery-hover-date">Wrzesien 2025</div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-category="portretowa" data-index="7">
+        <div class="gallery-placeholder" style="height:450px; background: url('images/gallery-8.jpg') center/cover no-repeat;"></div>
+        <div class="gallery-hover-overlay">
+          <div class="gallery-hover-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <div class="gallery-hover-title">Portret artystyczny</div>
+          <div class="gallery-hover-date">Pazdziernik 2025</div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-category="komercyjna" data-index="8">
+        <div class="gallery-placeholder" style="height:220px; background: url('images/gallery-9.jpg') center/cover no-repeat;"></div>
+        <div class="gallery-hover-overlay">
+          <div class="gallery-hover-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <div class="gallery-hover-title">Restauracja wnetrze</div>
+          <div class="gallery-hover-date">Styczen 2025</div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-category="slubna" data-index="9">
+        <div class="gallery-placeholder" style="height:320px; background: url('images/gallery-1.jpg') center/cover no-repeat;"></div>
+        <div class="gallery-hover-overlay">
+          <div class="gallery-hover-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <div class="gallery-hover-title">Przygotowania panny mlodej</div>
+          <div class="gallery-hover-date">Sierpien 2025</div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-category="portretowa" data-index="10">
+        <div class="gallery-placeholder" style="height:300px; background: url('images/gallery-2.jpg') center/cover no-repeat;"></div>
+        <div class="gallery-hover-overlay">
+          <div class="gallery-hover-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <div class="gallery-hover-title">Sesja aktorska</div>
+          <div class="gallery-hover-date">Listopad 2025</div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-category="komercyjna" data-index="11">
+        <div class="gallery-placeholder" style="height:420px; background: url('images/gallery-3.jpg') center/cover no-repeat;"></div>
+        <div class="gallery-hover-overlay">
+          <div class="gallery-hover-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <div class="gallery-hover-title">Katalog mody</div>
+          <div class="gallery-hover-date">Grudzien 2025</div>
+        </div>
+      </div>
+
+      <!-- AGENT 5: Za kulisami -->
+      <div class="gallery-item" data-category="backstage" data-index="12">
+        <div class="gallery-placeholder" style="height:350px; background: url('images/gallery-10.jpg') center/cover no-repeat;"></div>
+        <div class="gallery-hover-overlay">
+          <div class="gallery-hover-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <div class="gallery-hover-title">Za kulisami sesji slubnej</div>
+          <div class="gallery-hover-date">Luty 2026</div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-category="backstage" data-index="13">
+        <div class="gallery-placeholder" style="height:280px; background: url('images/gallery-11.jpg') center/cover no-repeat;"></div>
+        <div class="gallery-hover-overlay">
+          <div class="gallery-hover-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <div class="gallery-hover-title">Przygotowanie studia</div>
+          <div class="gallery-hover-date">Styczen 2026</div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-category="backstage" data-index="14">
+        <div class="gallery-placeholder" style="height:320px; background: url('images/gallery-12.jpg') center/cover no-repeat;"></div>
+        <div class="gallery-hover-overlay">
+          <div class="gallery-hover-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <div class="gallery-hover-title">Retusz w Lightroomie</div>
+          <div class="gallery-hover-date">Marzec 2026</div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-category="backstage" data-index="15">
+        <div class="gallery-placeholder" style="height:250px; background: url('images/gallery-13.jpg') center/cover no-repeat;"></div>
+        <div class="gallery-hover-overlay">
+          <div class="gallery-hover-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <div class="gallery-hover-title">Moj sprzet w akcji</div>
+          <div class="gallery-hover-date">Marzec 2026</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ABOUT ==================== -->
+<section id="o-mnie" class="section">
+  <div class="container">
+    <div class="about-inner">
+      <p class="section-label">O mnie</p>
+      <h2 class="section-title">Michal Stankiewicz</h2>
+
+      <blockquote class="about-quote">
+        Kazde zdjecie opowiada historie. Moim zadaniem jest uchwycic te, ktora chcesz zapamietac.
+      </blockquote>
+      <p class="about-attribution">&mdash; Michal, Studio M</p>
+
+      <div class="about-divider"></div>
+
+      <p class="about-bio">
+        Jestem fotografem z Warszawy z ponad 8-letnim doswiadczeniem w fotografii slubnej, portretowej i komercyjnej. Moja praca laczy naturalnosc ujec z dbaloscia o kazdy detal kompozycji i swiatla. Wierze, ze najpiekniejsze kadry powstaja wtedy, gdy ludzie czuja sie swobodnie przed obiektywem. Specjalizuje sie w reportazowej fotografii slubnej oraz artystycznych portretach, tworzac obrazy, ktore przetrwaja pokolenia.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- AGENT 5: Jak pracuje (My Process) -->
+<section id="jak-pracuje" class="section">
+  <div class="container">
+    <p class="section-label" style="text-align:center;">Jak to dziala</p>
+    <h2 class="section-title" style="text-align:center;">Jak pracuje</h2>
+
+    <div class="process-grid">
+
+      <div class="process-step">
+        <div class="process-icon">
+          <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        </div>
+        <div class="process-number">01</div>
+        <h3 class="process-title">Przygotowanie</h3>
+        <p class="process-desc">Spotykamy sie na kawie lub rozmowie wideo. Poznaje Twoja wizje, omawiam lokalizacje, swiatlo i styl. Planujemy kazdy detal, zebys czul sie pewnie w dniu sesji.</p>
+        <div class="process-connector">
+          <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="process-icon">
+          <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        </div>
+        <div class="process-number">02</div>
+        <h3 class="process-title">Sesja</h3>
+        <p class="process-desc">W dniu sesji tworze komfortowa atmosfere. Naturalnie prowadze przez pozy, lapiac autentyczne emocje. Kazdy kadr jest przemyslany pod katem swiatla i kompozycji.</p>
+        <div class="process-connector">
+          <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="process-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <div class="process-number">03</div>
+        <h3 class="process-title">Postprodukcja</h3>
+        <p class="process-desc">Starannie selekcjonuje i retuszuje kazde zdjecie. Dbam o spojny styl kolorystyczny i artystyczna obrobke. Gotowa galerie dostajesz w ciagu 14 dni roboczych.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PRICING ==================== -->
+<section id="cennik" class="section">
+  <div class="container">
+    <p class="section-label" style="text-align:center;">Oferta</p>
+    <h2 class="section-title" style="text-align:center;">Cennik</h2>
+
+    <div class="pricing-grid">
+
+      <div class="pricing-card">
+        <h3 class="pricing-name">Standard</h3>
+        <div class="pricing-price">2 500</div>
+        <div class="pricing-currency">PLN</div>
+        <ul class="pricing-features">
+          <li>4h sesji fotograficznej</li>
+          <li>100 zdjec w retuszu podstawowym</li>
+          <li>Galeria online do pobrania</li>
+          <li>Konsultacja przed sesja</li>
+        </ul>
+        <button class="pricing-expand-btn" data-expand="standard" aria-expanded="false">Co zawiera? <span class="expand-arrow">&#9662;</span></button>
+        <div class="pricing-details" id="details-standard">
+          <div class="pricing-details-inner">
+            <ul class="pricing-details-list">
+              <li>Profesjonalny retusz kolorystyczny</li>
+              <li>Galeria online z haslem dostepu</li>
+              <li>Mozliwosc zamowienia wydruków</li>
+              <li>Konsultacja stylizacji przed sesja</li>
+              <li>Dojazd do 30 km gratis</li>
+            </ul>
+          </div>
+        </div>
+        <a href="#kontakt" class="pricing-cta">Zapytaj</a>
+        <button class="pricing-termin-btn" data-modal="booking">Zapytaj o termin</button>
+      </div>
+
+      <div class="pricing-card featured">
+        <h3 class="pricing-name">Premium</h3>
+        <div class="pricing-price">4 500</div>
+        <div class="pricing-currency">PLN</div>
+        <ul class="pricing-features">
+          <li>8h sesji fotograficznej</li>
+          <li>300 zdjec w retuszu zaawansowanym</li>
+          <li>Galeria online do pobrania</li>
+          <li>Album fotograficzny 30&times;30 cm</li>
+        </ul>
+        <button class="pricing-expand-btn" data-expand="premium" aria-expanded="false">Co zawiera? <span class="expand-arrow">&#9662;</span></button>
+        <div class="pricing-details" id="details-premium">
+          <div class="pricing-details-inner">
+            <ul class="pricing-details-list">
+              <li>Zaawansowany retusz artystyczny</li>
+              <li>Album premium w twardej oprawie</li>
+              <li>Sesja pre-wedding (1h gratis)</li>
+              <li>Slajd-show z muzyka</li>
+              <li>Dojazd do 50 km gratis</li>
+              <li>Priorytetowy termin realizacji</li>
+            </ul>
+          </div>
+        </div>
+        <a href="#kontakt" class="pricing-cta">Zapytaj</a>
+        <button class="pricing-termin-btn" data-modal="booking">Zapytaj o termin</button>
+      </div>
+
+      <div class="pricing-card">
+        <h3 class="pricing-name">Exclusive</h3>
+        <div class="pricing-price">7 000</div>
+        <div class="pricing-currency">PLN</div>
+        <ul class="pricing-features">
+          <li>Caly dzien &mdash; bez limitu czasu</li>
+          <li>Unlimited zdjec, retusz artystyczny</li>
+          <li>2 albumy fotograficzne</li>
+          <li>Sesja narzeczenska gratis</li>
+        </ul>
+        <button class="pricing-expand-btn" data-expand="exclusive" aria-expanded="false">Co zawiera? <span class="expand-arrow">&#9662;</span></button>
+        <div class="pricing-details" id="details-exclusive">
+          <div class="pricing-details-inner">
+            <ul class="pricing-details-list">
+              <li>Pelny retusz artystyczny kazdego zdjecia</li>
+              <li>2 albumy premium (dla pary i rodzicow)</li>
+              <li>Sesja narzeczenska do 2h</li>
+              <li>Film poklatkowy z sesji</li>
+              <li>Dojazd w calej Polsce gratis</li>
+              <li>Dedykowana galeria online na rok</li>
+              <li>Pendrive z pelnym materialem</li>
+            </ul>
+          </div>
+        </div>
+        <a href="#kontakt" class="pricing-cta">Zapytaj</a>
+        <button class="pricing-termin-btn" data-modal="booking">Zapytaj o termin</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- AGENT 5: Instagram Feed -->
+<section id="instagram" class="section">
+  <div class="container">
+    <p class="section-label" style="text-align:center;">Social media</p>
+    <div class="insta-heading">
+      <h2 class="section-title">
+        <span class="insta-icon"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg></span>
+        Sledz @studiom_foto
+      </h2>
+    </div>
+
+    <div class="insta-grid">
+      <div class="insta-card" aria-label="Zdjecie z Instagrama">
+        <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+      </div>
+      <div class="insta-card" aria-label="Zdjecie z Instagrama">
+        <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+      </div>
+      <div class="insta-card" aria-label="Zdjecie z Instagrama">
+        <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+      </div>
+      <div class="insta-card" aria-label="Zdjecie z Instagrama">
+        <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+      </div>
+      <div class="insta-card" aria-label="Zdjecie z Instagrama">
+        <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+      </div>
+      <div class="insta-card" aria-label="Zdjecie z Instagrama">
+        <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+      </div>
+    </div>
+
+    <p class="insta-handle"><a href="#" target="_blank" rel="noopener noreferrer">@studiom_foto</a></p>
+  </div>
+</section>
+
+<!-- ==================== CONTACT ==================== -->
+<section id="kontakt" class="section">
+  <div class="container">
+    <div class="contact-inner">
+      <p class="section-label">Kontakt</p>
+      <h2 class="section-title">Umow sesje</h2>
+
+      <!-- AGENT 5: Availability Calendar -->
+      <div class="calendar-wrapper" style="margin-bottom: 48px;">
+        <div class="calendar-header">
+          <div class="calendar-month">Marzec 2026</div>
+        </div>
+        <div class="calendar-grid" id="calendarGrid">
+          <div class="calendar-day-name">Pn</div>
+          <div class="calendar-day-name">Wt</div>
+          <div class="calendar-day-name">Sr</div>
+          <div class="calendar-day-name">Cz</div>
+          <div class="calendar-day-name">Pt</div>
+          <div class="calendar-day-name">Sb</div>
+          <div class="calendar-day-name">Nd</div>
+          <!-- March 2026 starts on Sunday, so 6 empty cells (Mon-Sat) -->
+          <div class="calendar-day empty"></div>
+          <div class="calendar-day empty"></div>
+          <div class="calendar-day empty"></div>
+          <div class="calendar-day empty"></div>
+          <div class="calendar-day empty"></div>
+          <div class="calendar-day empty"></div>
+          <div class="calendar-day past">1</div>
+          <div class="calendar-day past">2</div>
+          <div class="calendar-day past">3</div>
+          <div class="calendar-day past">4</div>
+          <div class="calendar-day past">5</div>
+          <div class="calendar-day past">6</div>
+          <div class="calendar-day past">7</div>
+          <div class="calendar-day past">8</div>
+          <div class="calendar-day past">9</div>
+          <div class="calendar-day past">10</div>
+          <div class="calendar-day past">11</div>
+          <div class="calendar-day past">12</div>
+          <div class="calendar-day past">13</div>
+          <div class="calendar-day past">14</div>
+          <div class="calendar-day past">15</div>
+          <div class="calendar-day past">16</div>
+          <div class="calendar-day past">17</div>
+          <div class="calendar-day past">18</div>
+          <div class="calendar-day past">19</div>
+          <div class="calendar-day past">20</div>
+          <div class="calendar-day past">21</div>
+          <div class="calendar-day today available">22</div>
+          <div class="calendar-day available">23</div>
+          <div class="calendar-day booked">24</div>
+          <div class="calendar-day available">25</div>
+          <div class="calendar-day available">26</div>
+          <div class="calendar-day booked">27</div>
+          <div class="calendar-day booked">28</div>
+          <div class="calendar-day available">29</div>
+          <div class="calendar-day available">30</div>
+          <div class="calendar-day booked">31</div>
+        </div>
+        <div class="calendar-legend">
+          <div class="calendar-legend-item"><span class="calendar-legend-dot green"></span> Dostepny</div>
+          <div class="calendar-legend-item"><span class="calendar-legend-dot red"></span> Zajety</div>
+          <div class="calendar-legend-item"><span class="calendar-legend-dot gray"></span> Miniony</div>
+        </div>
+      </div>
+
+      <form id="contactForm" onsubmit="handleSubmit(event)">
+
+        <div class="form-group">
+          <label class="form-label" for="name">Imie</label>
+          <input type="text" id="name" name="name" class="form-input" placeholder="Twoje imie" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="email">Email</label>
+            <input type="email" id="email" name="email" class="form-input" placeholder="twoj@email.pl" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="phone">Telefon</label>
+            <input type="tel" id="phone" name="phone" class="form-input" placeholder="+48 ...">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="session-type">Typ sesji</label>
+            <select id="session-type" name="session-type" class="form-select" required>
+              <option value="" disabled selected>Wybierz typ sesji</option>
+              <option value="slubna">Slubna</option>
+              <option value="portretowa">Portretowa</option>
+              <option value="komercyjna">Komercyjna</option>
+              <option value="inna">Inna</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="date">Preferowana data</label>
+            <div class="datepicker-wrapper">
+                <input type="text" id="date" name="date" class="form-input datepicker-input" readonly placeholder="Wybierz date">
+                <div class="datepicker-dropdown" data-for="date"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="message">Wiadomosc</label>
+          <textarea id="message" name="message" class="form-textarea" placeholder="Opisz swoja wizje sesji..."></textarea>
+        </div>
+
+        <button type="submit" class="form-submit">Wyslij zapytanie</button>
+
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer">
+  <div class="footer-logo">Studio M</div>
+  <div class="footer-social">
+    <a href="#">Instagram</a>
+    <a href="#">Facebook</a>
+    <a href="#">Pinterest</a>
+    <a href="#">Behance</a>
+  </div>
+  <p class="footer-address">ul. Mokotowska 17, Warszawa</p>
+  <a href="/" style="display:inline-block;margin-top:16px;font-family:var(--font-label);font-size:0.8rem;color:var(--gold);letter-spacing:0.04em;text-decoration:none;opacity:0.7;transition:opacity 0.3s;">&larr; Powrót do portfolio</a>
+  <p class="footer-copy">Studio M &copy; 2026. Wszelkie prawa zastrzezone.</p>
+</footer>
+
+<!-- ==================== LIGHTBOX ==================== -->
+<!-- AGENT 5: Enhanced Lightbox with counter, download, EXIF, swipe -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Zamknij"></button>
+  <button class="lightbox-download" id="lightboxDownload" aria-label="Pobierz">
+    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+  </button>
+  <button class="lightbox-arrow lightbox-prev" id="lightboxPrev" aria-label="Poprzednie">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+  </button>
+  <div class="lightbox-inner">
+    <div class="lightbox-image" id="lightboxImage">
+      <div class="lightbox-placeholder" id="lightboxPlaceholder"></div>
+      <div class="lightbox-title" id="lightboxTitle"></div>
+      <div class="lightbox-category" id="lightboxCategory"></div>
+      <div class="lightbox-exif" id="lightboxExif"></div>
+    </div>
+  </div>
+  <button class="lightbox-arrow lightbox-next" id="lightboxNext" aria-label="Nastepne">
+    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+  </button>
+  <div class="lightbox-counter" id="lightboxCounter"></div>
+</div>
+
+<!-- AGENT 5: Booking Modal -->
+<div class="modal-overlay" id="bookingModal">
+  <div class="modal-box">
+    <button class="modal-close" id="bookingModalClose" aria-label="Zamknij"></button>
+    <div class="modal-title">Zapytaj o termin</div>
+    <div class="modal-subtitle">Odpowiem w ciagu 24 godzin</div>
+    <form class="modal-form" id="bookingForm">
+      <div class="form-group">
+        <label class="form-label" for="booking-name">Imie</label>
+        <input type="text" id="booking-name" name="booking-name" class="form-input" placeholder="Twoje imie" required>
+        <div class="form-error" id="booking-name-error">Podaj swoje imie</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="booking-email">Email</label>
+        <input type="email" id="booking-email" name="booking-email" class="form-input" placeholder="twoj@email.pl" required>
+        <div class="form-error" id="booking-email-error">Podaj poprawny adres email</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="booking-date">Preferowana data</label>
+        <div class="datepicker-wrapper">
+            <input type="text" id="booking-date" name="booking-date" class="form-input datepicker-input" readonly placeholder="Wybierz date">
+            <div class="datepicker-dropdown" data-for="booking-date"></div>
+        </div>
+        <div class="form-error" id="booking-date-error">Wybierz preferowana date</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="booking-message">Wiadomosc</label>
+        <textarea id="booking-message" name="booking-message" class="form-textarea" placeholder="Opisz czego szukasz..."></textarea>
+      </div>
+      <button type="submit" class="form-submit" style="width:100%;">Wyslij zapytanie</button>
+    </form>
+  </div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  /* ===================== REDUCED MOTION CHECK ===================== */
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ===================== DATA ===================== */
+  var galleryData = [
+    { title: 'Slub Ani i Marka', category: 'slubna', catLabel: 'Slubna', gradient: 'linear-gradient(135deg, #1a1a1a 0%, #3a3a3a 50%, #1a1a1a 100%)', exif: 'Canon R5 \u2022 f/1.8 \u2022 1/200s \u2022 ISO 400' },
+    { title: 'Portret biznesowy', category: 'portretowa', catLabel: 'Portretowa', gradient: 'linear-gradient(180deg, #2a2a2a 0%, #0a0a0a 100%)', exif: 'Canon R5 \u2022 f/2.0 \u2022 1/160s \u2022 ISO 200' },
+    { title: 'Kampania modowa', category: 'komercyjna', catLabel: 'Komercyjna', gradient: 'linear-gradient(45deg, #0a0a0a 0%, #333 50%, #1a1a1a 100%)', exif: 'Canon R5 \u2022 f/2.8 \u2022 1/250s \u2022 ISO 100' },
+    { title: 'Ceremonia w plenerze', category: 'slubna', catLabel: 'Slubna', gradient: 'linear-gradient(160deg, #2a2a2a 0%, #111 40%, #3a3a3a 100%)', exif: 'Canon R5 \u2022 f/1.4 \u2022 1/500s \u2022 ISO 200' },
+    { title: 'Sesja rodzinna', category: 'portretowa', catLabel: 'Portretowa', gradient: 'linear-gradient(90deg, #1a1a1a 0%, #2a2a2a 100%)', exif: 'Canon R5 \u2022 f/2.8 \u2022 1/125s \u2022 ISO 400' },
+    { title: 'Produkt eco', category: 'komercyjna', catLabel: 'Komercyjna', gradient: 'linear-gradient(135deg, #222 0%, #0a0a0a 60%, #333 100%)', exif: 'Canon R5 \u2022 f/5.6 \u2022 1/60s \u2022 ISO 100' },
+    { title: 'Pierwszy taniec', category: 'slubna', catLabel: 'Slubna', gradient: 'linear-gradient(200deg, #3a3a3a 0%, #1a1a1a 50%, #2a2a2a 100%)', exif: 'Canon R5 \u2022 f/1.8 \u2022 1/100s \u2022 ISO 800' },
+    { title: 'Portret artystyczny', category: 'portretowa', catLabel: 'Portretowa', gradient: 'linear-gradient(170deg, #111 0%, #2a2a2a 40%, #0a0a0a 100%)', exif: 'Canon R5 \u2022 f/1.2 \u2022 1/320s \u2022 ISO 100' },
+    { title: 'Restauracja wnetrze', category: 'komercyjna', catLabel: 'Komercyjna', gradient: 'linear-gradient(90deg, #2a2a2a 0%, #1a1a1a 50%, #333 100%)', exif: 'Canon R5 \u2022 f/4.0 \u2022 1/30s \u2022 ISO 800' },
+    { title: 'Przygotowania panny mlodej', category: 'slubna', catLabel: 'Slubna', gradient: 'linear-gradient(150deg, #1a1a1a 0%, #333 50%, #111 100%)', exif: 'Canon R5 \u2022 f/1.8 \u2022 1/200s \u2022 ISO 400' },
+    { title: 'Sesja aktorska', category: 'portretowa', catLabel: 'Portretowa', gradient: 'linear-gradient(45deg, #1a1a1a 0%, #0a0a0a 40%, #2a2a2a 100%)', exif: 'Canon R5 \u2022 f/2.0 \u2022 1/250s \u2022 ISO 200' },
+    { title: 'Katalog mody', category: 'komercyjna', catLabel: 'Komercyjna', gradient: 'linear-gradient(180deg, #333 0%, #1a1a1a 50%, #0a0a0a 100%)', exif: 'Canon R5 \u2022 f/2.8 \u2022 1/320s \u2022 ISO 100' },
+    { title: 'Za kulisami sesji slubnej', category: 'backstage', catLabel: 'Za kulisami', gradient: 'linear-gradient(135deg, #2a2a2a 0%, #111 50%, #2a2a2a 100%)', exif: 'Canon R5 \u2022 f/2.8 \u2022 1/160s \u2022 ISO 640' },
+    { title: 'Przygotowanie studia', category: 'backstage', catLabel: 'Za kulisami', gradient: 'linear-gradient(90deg, #1a1a1a 0%, #333 100%)', exif: 'Canon R5 \u2022 f/4.0 \u2022 1/60s \u2022 ISO 400' },
+    { title: 'Retusz w Lightroomie', category: 'backstage', catLabel: 'Za kulisami', gradient: 'linear-gradient(180deg, #222 0%, #0a0a0a 100%)', exif: 'Canon R5 \u2022 f/2.0 \u2022 1/100s \u2022 ISO 200' },
+    { title: 'Moj sprzet w akcji', category: 'backstage', catLabel: 'Za kulisami', gradient: 'linear-gradient(45deg, #2a2a2a 0%, #1a1a1a 50%, #333 100%)', exif: 'Canon R5 \u2022 f/3.5 \u2022 1/80s \u2022 ISO 320' }
+  ];
+
+  /* ===================== HERO PARALLAX ===================== */
+  var heroBg = document.getElementById('heroBg');
+  if (heroBg && !prefersReducedMotion) {
+    var ticking = false;
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        window.requestAnimationFrame(function() {
+          var scrollY = window.pageYOffset;
+          var introH = document.getElementById('intro').offsetHeight;
+          if (scrollY <= introH) {
+            heroBg.style.transform = 'translateY(' + (scrollY * 0.35) + 'px)';
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+
+  /* ===================== NAV SCROLL ===================== */
+  var nav = document.getElementById('mainNav');
+  var intro = document.getElementById('intro');
+  var introHeight = intro.offsetHeight;
+
+  function checkNav() {
+    if (window.scrollY > introHeight * 0.7) {
+      nav.classList.add('show');
+    } else {
+      nav.classList.remove('show');
+    }
+  }
+
+  window.addEventListener('scroll', checkNav, { passive: true });
+  window.addEventListener('resize', function() {
+    introHeight = intro.offsetHeight;
+  });
+
+  /* ===================== HAMBURGER ===================== */
+  var hamburger = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobileMenu');
+
+  hamburger.addEventListener('click', function() {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    var isOpen = mobileMenu.classList.contains('open');
+    hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    hamburger.setAttribute('aria-label', isOpen ? 'Zamknij menu' : 'Otwórz menu');
+  });
+
+  document.querySelectorAll('.mobile-link').forEach(function(link) {
+    link.addEventListener('click', function() {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+      hamburger.setAttribute('aria-expanded', 'false');
+      hamburger.setAttribute('aria-label', 'Otwórz menu');
+    });
+  });
+
+  /* ===================== INTERSECTION OBSERVER ===================== */
+  var observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -60px 0px'
+  };
+
+  var sectionObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.section').forEach(function(section) {
+    sectionObserver.observe(section);
+  });
+
+  /* Gallery items staggered fall-in animation */
+  var galleryObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var idx = parseInt(entry.target.dataset.index) || 0;
+        var delay = prefersReducedMotion ? 0 : idx * 80;
+        setTimeout(function() {
+          entry.target.classList.add('visible');
+        }, delay);
+        galleryObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
+
+  document.querySelectorAll('.gallery-item').forEach(function(item) {
+    galleryObserver.observe(item);
+  });
+
+  /* ===================== FILTER ===================== */
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var galleryItems = document.querySelectorAll('.gallery-item');
+  var activeFilter = 'all';
+  var visibleItems = [];
+
+  function updateVisibleItems() {
+    visibleItems = [];
+    galleryItems.forEach(function(item) {
+      if (!item.classList.contains('filtered-out')) {
+        visibleItems.push(item);
+      }
+    });
+  }
+
+  function filterGallery(category) {
+    activeFilter = category;
+
+    filterBtns.forEach(function(btn) {
+      btn.classList.toggle('active', btn.dataset.filter === category);
+    });
+
+    galleryItems.forEach(function(item) {
+      if (category === 'all' || item.dataset.category === category) {
+        item.classList.remove('filtered-out');
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(-30px)';
+        var itemIdx = parseInt(item.dataset.index) || 0;
+        var stagger = prefersReducedMotion ? 0 : (itemIdx % 6) * 60;
+        setTimeout(function() {
+          item.style.opacity = '';
+          item.style.transform = '';
+          item.classList.add('visible');
+        }, 50 + stagger);
+      } else {
+        item.style.opacity = '0';
+        item.style.transform = 'scale(0.95)';
+        setTimeout(function() {
+          item.classList.add('filtered-out');
+          item.style.opacity = '';
+          item.style.transform = '';
+        }, 300);
+      }
+    });
+
+    setTimeout(updateVisibleItems, 400);
+  }
+
+  filterBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      filterGallery(this.dataset.filter);
+    });
+  });
+
+  updateVisibleItems();
+
+  /* ===================== LIGHTBOX ===================== */
+  var lightbox = document.getElementById('lightbox');
+  var lightboxPlaceholder = document.getElementById('lightboxPlaceholder');
+  var lightboxTitle = document.getElementById('lightboxTitle');
+  var lightboxCategory = document.getElementById('lightboxCategory');
+  var lightboxCounter = document.getElementById('lightboxCounter');
+  var lightboxExif = document.getElementById('lightboxExif');
+  var lightboxClose = document.getElementById('lightboxClose');
+  var lightboxPrev = document.getElementById('lightboxPrev');
+  var lightboxNext = document.getElementById('lightboxNext');
+  var lightboxDownload = document.getElementById('lightboxDownload');
+  var currentLightboxIndex = 0;
+
+  function openLightbox(globalIndex) {
+    updateVisibleItems();
+    var pos = -1;
+    for (var i = 0; i < visibleItems.length; i++) {
+      if (parseInt(visibleItems[i].dataset.index) === globalIndex) {
+        pos = i;
+        break;
+      }
+    }
+    if (pos === -1) return;
+
+    currentLightboxIndex = pos;
+    showLightboxItem();
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function showLightboxItem() {
+    if (visibleItems.length === 0) return;
+    var item = visibleItems[currentLightboxIndex];
+    var idx = parseInt(item.dataset.index);
+    var data = galleryData[idx];
+
+    lightboxPlaceholder.style.background = data.gradient;
+    lightboxTitle.textContent = data.title;
+    lightboxCategory.textContent = data.catLabel;
+    lightboxCounter.textContent = (currentLightboxIndex + 1) + ' / ' + visibleItems.length;
+    lightboxExif.textContent = data.exif || '';
+  }
+
+  function nextLightbox() {
+    currentLightboxIndex = (currentLightboxIndex + 1) % visibleItems.length;
+    showLightboxItem();
+  }
+
+  function prevLightbox() {
+    currentLightboxIndex = (currentLightboxIndex - 1 + visibleItems.length) % visibleItems.length;
+    showLightboxItem();
+  }
+
+  galleryItems.forEach(function(item) {
+    item.addEventListener('click', function() {
+      openLightbox(parseInt(this.dataset.index));
+    });
+  });
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightboxNext.addEventListener('click', nextLightbox);
+  lightboxPrev.addEventListener('click', prevLightbox);
+
+  lightboxDownload.addEventListener('click', function() {
+    alert('Pobieranie zdjecia jest dostepne po zakupie pakietu.');
+  });
+
+  lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox) {
+      closeLightbox();
+    }
+  });
+
+  /* Keyboard navigation */
+  document.addEventListener('keydown', function(e) {
+    if (!lightbox.classList.contains('open')) return;
+    switch(e.key) {
+      case 'Escape':
+        closeLightbox();
+        break;
+      case 'ArrowRight':
+        nextLightbox();
+        break;
+      case 'ArrowLeft':
+        prevLightbox();
+        break;
+    }
+  });
+
+  /* AGENT 5: Swipe gesture support for lightbox */
+  var touchStartX = 0;
+  var touchEndX = 0;
+  var touchStartY = 0;
+  var touchEndY = 0;
+
+  lightbox.addEventListener('touchstart', function(e) {
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+  }, { passive: true });
+
+  lightbox.addEventListener('touchend', function(e) {
+    touchEndX = e.changedTouches[0].screenX;
+    touchEndY = e.changedTouches[0].screenY;
+    var diffX = touchEndX - touchStartX;
+    var diffY = touchEndY - touchStartY;
+
+    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+      if (diffX > 0) {
+        prevLightbox();
+      } else {
+        nextLightbox();
+      }
+    }
+  }, { passive: true });
+
+  /* ===================== PRICING EXPAND ===================== */
+  document.querySelectorAll('.pricing-expand-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var target = document.getElementById('details-' + this.dataset.expand);
+      if (!target) return;
+      var isExpanded = this.classList.contains('expanded');
+
+      if (isExpanded) {
+        target.style.maxHeight = '0';
+        this.classList.remove('expanded');
+        this.setAttribute('aria-expanded', 'false');
+      } else {
+        target.style.maxHeight = target.scrollHeight + 'px';
+        this.classList.add('expanded');
+        this.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  /* ===================== BOOKING MODAL ===================== */
+  var bookingModal = document.getElementById('bookingModal');
+  var bookingModalClose = document.getElementById('bookingModalClose');
+  var bookingForm = document.getElementById('bookingForm');
+
+  document.querySelectorAll('.pricing-termin-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      bookingModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeBookingModal() {
+    bookingModal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  bookingModalClose.addEventListener('click', closeBookingModal);
+
+  bookingModal.addEventListener('click', function(e) {
+    if (e.target === bookingModal) {
+      closeBookingModal();
+    }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && bookingModal.classList.contains('open')) {
+      closeBookingModal();
+    }
+  });
+
+  bookingForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var valid = true;
+
+    var nameInput = document.getElementById('booking-name');
+    var emailInput = document.getElementById('booking-email');
+    var nameError = document.getElementById('booking-name-error');
+    var emailError = document.getElementById('booking-email-error');
+
+    nameInput.classList.remove('error');
+    emailInput.classList.remove('error');
+    nameError.classList.remove('show');
+    emailError.classList.remove('show');
+
+    if (!nameInput.value.trim()) {
+      nameInput.classList.add('error');
+      nameError.classList.add('show');
+      valid = false;
+    }
+
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(emailInput.value.trim())) {
+      emailInput.classList.add('error');
+      emailError.classList.add('show');
+      valid = false;
+    }
+
+    if (valid) {
+      var btn = bookingForm.querySelector('.form-submit');
+      var originalText = btn.textContent;
+      btn.textContent = 'Wyslano!';
+      btn.style.background = 'transparent';
+      btn.style.color = '#D4AF37';
+
+      setTimeout(function() {
+        btn.textContent = originalText;
+        btn.style.background = '';
+        btn.style.color = '';
+        bookingForm.reset();
+        closeBookingModal();
+      }, 2000);
+    }
+  });
+
+  /* ===================== FORM ===================== */
+  window.handleSubmit = function(e) {
+    e.preventDefault();
+    var btn = e.target.querySelector('.form-submit');
+    var originalText = btn.textContent;
+    btn.textContent = 'Wyslano!';
+    btn.style.background = 'transparent';
+    btn.style.color = '#D4AF37';
+    btn.style.borderColor = '#D4AF37';
+
+    setTimeout(function() {
+      btn.textContent = originalText;
+      btn.style.background = '';
+      btn.style.color = '';
+      btn.style.borderColor = '';
+      e.target.reset();
+    }, 2500);
+  };
+
+  /* ===================== SMOOTH ANCHOR ===================== */
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+    anchor.addEventListener('click', function(e) {
+      var href = this.getAttribute('href');
+      if (!href || href.length <= 1) return;
+      var target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        var offset = nav.classList.contains('show') ? 64 : 0;
+        var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      }
+    });
+  });
+
+  /* Scroll arrow click + keyboard support */
+  var scrollArrow = document.getElementById('scrollArrow');
+  if (scrollArrow) {
+    scrollArrow.addEventListener('click', function() {
+      document.getElementById('galeria').scrollIntoView({behavior:'smooth'});
+    });
+    scrollArrow.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        document.getElementById('galeria').scrollIntoView({behavior:'smooth'});
+      }
+    });
+  }
+
+  /* ---- Custom Date Picker ---- */
+  (function() {
+      var monthNames = ['Styczen','Luty','Marzec','Kwiecien','Maj','Czerwiec','Lipiec','Sierpien','Wrzesien','Pazdziernik','Listopad','Grudzien'];
+      var dayNames = ['Pon','Wto','Sro','Czw','Pia','Sob','Nie'];
+
+      function initDatepicker(inputId) {
+          var input = document.getElementById(inputId);
+          if (!input) return;
+          var wrapper = input.closest('.datepicker-wrapper');
+          var dropdown = wrapper.querySelector('.datepicker-dropdown');
+          if (!wrapper || !dropdown) return;
+
+          var currentMonth = new Date().getMonth();
+          var currentYear = new Date().getFullYear();
+          var selectedDate = null;
+
+          function renderCalendar() {
+              var today = new Date(); today.setHours(0,0,0,0);
+              var firstDay = new Date(currentYear, currentMonth, 1);
+              var lastDay = new Date(currentYear, currentMonth + 1, 0);
+              var startDay = (firstDay.getDay() + 6) % 7;
+
+              var html = '<div class="datepicker-header">';
+              html += '<button type="button" class="dp-prev" aria-label="Poprzedni miesiac">&#8249;</button>';
+              html += '<span class="datepicker-month-year">' + monthNames[currentMonth] + ' ' + currentYear + '</span>';
+              html += '<button type="button" class="dp-next" aria-label="Nastepny miesiac">&#8250;</button>';
+              html += '</div><div class="datepicker-weekdays">';
+              dayNames.forEach(function(d) { html += '<span>' + d + '</span>'; });
+              html += '</div><div class="datepicker-days">';
+              for (var i = 0; i < startDay; i++) html += '<span class="datepicker-day empty"></span>';
+              for (var d = 1; d <= lastDay.getDate(); d++) {
+                  var date = new Date(currentYear, currentMonth, d);
+                  var cls = ['datepicker-day'];
+                  if (date < today) cls.push('disabled');
+                  if (date.getTime() === today.getTime()) cls.push('today');
+                  if (selectedDate && date.getTime() === selectedDate.getTime()) cls.push('selected');
+                  html += '<button type="button" class="' + cls.join(' ') + '" data-day="' + d + '">' + d + '</button>';
+              }
+              html += '</div>';
+              // trusted internal data — calendar dates generated from JS Date, no user input
+              dropdown.innerHTML = html;
+          }
+
+          /* Single delegated listener for all datepicker interactions */
+          dropdown.addEventListener('click', function(e) {
+              e.stopPropagation();
+              var prev = e.target.closest('.dp-prev');
+              if (prev) {
+                  currentMonth--;
+                  if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+                  renderCalendar();
+                  return;
+              }
+              var next = e.target.closest('.dp-next');
+              if (next) {
+                  currentMonth++;
+                  if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+                  renderCalendar();
+                  return;
+              }
+              var dayEl = e.target.closest('.datepicker-day:not(.disabled):not(.empty)');
+              if (dayEl) {
+                  var day = parseInt(dayEl.dataset.day);
+                  selectedDate = new Date(currentYear, currentMonth, day);
+                  var dd = String(day).padStart(2, '0');
+                  var mm = String(currentMonth + 1).padStart(2, '0');
+                  input.value = dd + '.' + mm + '.' + currentYear;
+                  dropdown.classList.remove('open');
+                  renderCalendar();
+              }
+          });
+
+          input.addEventListener('click', function(e) {
+              e.stopPropagation();
+              document.querySelectorAll('.datepicker-dropdown.open').forEach(function(el) {
+                  if (el !== dropdown) el.classList.remove('open');
+              });
+              renderCalendar();
+              dropdown.classList.toggle('open');
+          });
+
+          document.addEventListener('click', function(e) {
+              if (!wrapper.contains(e.target)) dropdown.classList.remove('open');
+          });
+      }
+
+      initDatepicker('date');
+      initDatepicker('booking-date');
+  })();
+
+})();
+</script>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Portfolio", "item": "https://voxquartzsystems.pl/" },
+        { "@type": "ListItem", "position": 2, "name": "Studio M — Fotografia", "item": "https://voxquartzsystems.pl/04-photography/" }
+    ]
+}
+</script>
+
+</body>
+</html>

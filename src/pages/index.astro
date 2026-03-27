@@ -1,0 +1,178 @@
+---
+import PortfolioLayout from '../layouts/PortfolioLayout.astro';
+import HeroSection from '../components/portfolio/HeroSection.astro';
+import SocialProofBar from '../components/portfolio/SocialProofBar.astro';
+import AboutSection from '../components/portfolio/AboutSection.astro';
+import ProjectsSection from '../components/portfolio/ProjectsSection.astro';
+import ProcessSection from '../components/portfolio/ProcessSection.astro';
+import TechSection from '../components/portfolio/TechSection.astro';
+import FAQSection from '../components/portfolio/FAQSection.astro';
+import ContactSection from '../components/portfolio/ContactSection.astro';
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Voxquartz",
+  "description": "Freelancer IT z 12-letnim doświadczeniem. Tworzę strony internetowe, aplikacje mobilne, systemy SaaS i integracje AI.",
+  "url": "https://voxquartzsystems.pl",
+  "logo": "https://voxquartzsystems.pl/og-image.png",
+  "image": "https://voxquartzsystems.pl/og-image.png",
+  "email": "kontakt@voxquartzsystems.pl",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "PL"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Polska"
+  },
+  "knowsLanguage": ["pl", "en"],
+  "priceRange": "$$",
+  "sameAs": [
+    "https://github.com/voxquartzsystems",
+    "https://linkedin.com/in/voxquartzsystems",
+    "https://x.com/voxquartzsys"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Usługi IT",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Strony internetowe",
+          "description": "Responsywne strony z nowoczesnym designem i optymalizacją SEO"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Aplikacje mobilne",
+          "description": "Natywne i cross-platform aplikacje na iOS i Android"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Systemy SaaS",
+          "description": "Kompleksowe systemy SaaS z panelem administracyjnym"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Integracje AI",
+          "description": "Integracje z OpenAI, Claude i własnymi modelami ML"
+        }
+      }
+    ]
+  }
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "VoxquartzSystems",
+  "url": "https://voxquartzsystems.pl",
+  "inLanguage": "pl",
+  "description": "Portfolio freelancera IT — strony, aplikacje, SaaS, AI"
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Ile trwa realizacja typowego projektu?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Działamy ekspresowo — większość projektów dostarczamy w ciągu tygodnia. Prosta strona internetowa to 2-3 dni, aplikacja webowa 4-5 dni, a złożony system z integracjami AI do 7 dni."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Jak wygląda model cenowy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pracuję w modelu fixed-price lub time & material. Na początku przygotowuję szczegółową wycenę z rozkładem na etapy. Nie ma ukrytych kosztów."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czy podpisujesz NDA?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tak, standardowo podpisuję NDA przed rozpoczęciem współpracy. Poufność Twojego pomysłu jest dla mnie priorytetem."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Co z utrzymaniem po wdrożeniu?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Każdy projekt obejmuje 30 dni bezpłatnego wsparcia po wdrożeniu. Następnie oferuję pakiety utrzymaniowe lub współpracę ad-hoc."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Jakie technologie polecasz na start?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "To zależy od projektu. Dla MVP zazwyczaj rekomenduję Next.js + Supabase. Dla aplikacji mobilnych — Flutter. Dla projektów z AI — Python + OpenAI/Claude API."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Jakie integracje systemów IT oferujesz?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Specjalizuję się w integracjach systemów e-commerce, CRM, ERP, płatności i kurierskich. Łączę m.in. BaseLinker, Shoper, WooCommerce z systemami płatności i logistyki."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czy wdrażasz rozwiązania AI w firmach?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tak — wdrażam AI w e-commerce, logistyce, medycynie i wielu innych branżach. Od chatbotów i automatyzacji po analizę danych i rekomendacje."
+      }
+    }
+  ]
+};
+---
+
+<PortfolioLayout
+  title="VoxquartzSystems — Freelancer IT | Web, Mobile, AI"
+  description="VoxquartzSystems — freelancer IT z 12-letnim doświadczeniem. Tworzę strony internetowe, aplikacje mobilne, systemy SaaS i integracje AI. Od pomysłu do działającego produktu w tydzień."
+  ogTitle="VoxquartzSystems — Freelancer IT | Web, Mobile, AI"
+  ogDescription="Od pomysłu do działającego produktu w tydzień. Strony, aplikacje, systemy SaaS i integracje AI."
+  schema={[personSchema, websiteSchema, faqSchema]}
+>
+  <HeroSection />
+  <SocialProofBar />
+  <AboutSection />
+  <ProjectsSection />
+  <ProcessSection />
+  <TechSection />
+  <FAQSection />
+  <ContactSection />
+</PortfolioLayout>
+
+<script>
+  // Intersection Observer for fade-in animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.fade-in, .project-card').forEach(el => observer.observe(el));
+</script>

@@ -1,0 +1,90 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import Card from '../../components/Card.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const alternatives = await getCollection('alternatives');
+const items = alternatives.map((e) => e.data);
+
+const categoryLabels: Record<string, string> = {
+  beauty: 'Beauty i Kosmetyka',
+  crm: 'CRM',
+  'e-commerce': 'E-commerce',
+  education: 'Edukacja',
+  erp: 'ERP',
+  'project-management': 'Zarządzanie projektami',
+  restaurants: 'Gastronomia',
+};
+
+const categoryOrder = ['e-commerce', 'crm', 'erp', 'project-management', 'beauty', 'restaurants', 'education'];
+
+const grouped = categoryOrder
+  .map((cat) => ({
+    key: cat,
+    label: categoryLabels[cat] || cat,
+    items: items.filter((i) => i.category === cat),
+  }))
+  .filter((g) => g.items.length > 0);
+
+const title = 'Alternatywy dla popularnych systemów — dedykowane rozwiązania | VoxquartzSystems';
+const description = 'Porównanie popularnych systemów pudełkowych z dedykowanymi rozwiązaniami. Shoper, Salesforce, SAP, Asana, Booksy i inne — sprawdź, kiedy warto przejść na custom.';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Alternatywy dla popularnych systemów',
+  description,
+  url: 'https://voxquartzsystems.pl/alternatywa-dla/',
+  numberOfItems: items.length,
+  provider: {
+    '@type': 'Organization',
+    name: 'VoxquartzSystems',
+    url: 'https://voxquartzsystems.pl',
+  },
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical="https://voxquartzsystems.pl/alternatywa-dla/"
+  schema={schema}
+>
+  <Breadcrumbs items={[
+    { label: 'Strona główna', href: '/' },
+    { label: 'Alternatywy', href: '/alternatywa-dla/' },
+  ]} />
+
+  <SectionHeader
+    label="Alternatywy"
+    title="Alternatywy dla popularnych systemów — dedykowane rozwiązania"
+    description="Każdy system pudełkowy ma swoje ograniczenia. Porównaj popularne platformy z dedykowanymi rozwiązaniami szytymi na miarę."
+  />
+
+  {grouped.map((group) => (
+    <section class="mb-12">
+      <h2 class="text-xl font-display font-bold text-text-primary mb-4 flex items-center gap-3">
+        <span class="w-8 h-0.5 bg-accent rounded-full"></span>
+        {group.label}
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {group.items.map((item) => (
+          <Card
+            title={`Alternatywa dla ${item.systemName}`}
+            description={item.whatItIs.slice(0, 140) + '...'}
+            href={`/alternatywa-dla/${item.slug}/`}
+            tags={[item.systemName, categoryLabels[item.category] || item.category]}
+          />
+        ))}
+      </div>
+    </section>
+  ))}
+
+  <CTASection
+    title="Nie widzisz swojego systemu?"
+    description="Budujemy dedykowane alternatywy dla dowolnych platform. Opisz swoje potrzeby, a przeanalizujemy Twój przypadek."
+  />
+</BaseLayout>

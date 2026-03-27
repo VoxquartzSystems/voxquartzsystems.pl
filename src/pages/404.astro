@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Strona nie znaleziona — 404 | VoxquartzSystems';
+const description = 'Strona, której szukasz, nie istnieje. Przejdź do strony głównej lub sprawdź nasze integracje i narzędzia.';
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="flex flex-col items-center justify-center text-center py-20">
+    <span class="text-8xl font-display font-bold text-accent/20 mb-4">404</span>
+    <h1 class="text-3xl md:text-4xl font-display font-bold text-text-primary mb-4">
+      Strona nie znaleziona
+    </h1>
+    <p class="text-text-muted text-lg max-w-md mb-10">
+      Strona, której szukasz, nie istnieje lub została przeniesiona. Sprawdź poniższe linki.
+    </p>
+    <nav class="flex flex-wrap justify-center gap-4">
+      <a
+        href="/"
+        class="px-6 py-3 bg-accent hover:bg-accent-hover text-white font-semibold rounded-lg transition-colors"
+      >
+        Strona główna
+      </a>
+      <a
+        href="/#projects"
+        class="px-6 py-3 border border-border hover:border-border-hover text-text-primary rounded-lg transition-colors"
+      >
+        Realizacje
+      </a>
+      <a
+        href="/integracje/"
+        class="px-6 py-3 border border-border hover:border-border-hover text-text-primary rounded-lg transition-colors"
+      >
+        Integracje
+      </a>
+      <a
+        href="/narzedzia/"
+        class="px-6 py-3 border border-border hover:border-border-hover text-text-primary rounded-lg transition-colors"
+      >
+        Narzędzia
+      </a>
+      <a
+        href="mailto:kontakt@voxquartzsystems.pl"
+        class="px-6 py-3 border border-border hover:border-border-hover text-text-primary rounded-lg transition-colors"
+      >
+        Kontakt
+      </a>
+    </nav>
+  </div>
+</BaseLayout>

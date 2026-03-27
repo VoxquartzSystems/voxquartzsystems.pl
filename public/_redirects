@@ -1,0 +1,17 @@
+# Redirects from old GitHub Pages URLs to new paths
+/01-restaurant/     /realizacje/zlota-misa/       301
+/01-restaurant/*    /realizacje/zlota-misa/:splat  301
+/02-saas/           /realizacje/taskflow/          301
+/02-saas/*          /realizacje/taskflow/:splat    301
+/03-realestate/     /realizacje/nowy-dom/          301
+/03-realestate/*    /realizacje/nowy-dom/:splat    301
+/04-photography/    /realizacje/studio-m/          301
+/04-photography/*   /realizacje/studio-m/:splat    301
+/05-ecommerce/      /realizacje/zielonydom/        301
+/05-ecommerce/*     /realizacje/zielonydom/:splat  301
+/07-beautysalon/    /realizacje/atelier-piekna/    301
+/07-beautysalon/*   /realizacje/atelier-piekna/:splat 301
+
+# Booking portal — excluded
+/booking-portal/    /   302
+/booking-portal/*   /   302
