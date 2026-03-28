@@ -83,22 +83,4 @@
     });
 })();
 </script>
-<script>
-// Lazy-load web3forms (+ hCaptcha) when contact section is near viewport
-(function() {
-    var loaded = false;
-    var contactSection = document.getElementById('contact');
-    if (!contactSection) return;
-    var observer = new IntersectionObserver(function(entries) {
-        if (entries[0].isIntersecting && !loaded) {
-            loaded = true;
-            var s = document.createElement('script');
-            s.src = 'https://web3forms.com/client/script.js';
-            s.async = true;
-            document.body.appendChild(s);
-            observer.disconnect();
-        }
-    }, { rootMargin: '200px' });
-    observer.observe(contactSection);
-})();
-</script>
+<script src="https://web3forms.com/client/script.js" async defer></script>
